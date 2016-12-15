@@ -31,6 +31,40 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Template Engine
+gem 'haml-rails'
+
+# Bootstrap
+gem 'bootstrap-sass'
+
+# Authentication Library
+gem 'devise'
+
+# Font Awesome
+gem "font-awesome-rails"
+
+# Add a comment summarizing the current schema to the top or bottom of each of your
+# - ActiveRecord models
+# - Tests and Specs
+gem 'annotate', '~> 2.7', '>= 2.7.1'
+
+# Admin interface
+gem 'activeadmin', github: 'activeadmin'
+gem 'inherited_resources', github: 'activeadmin/inherited_resources'
+
+# Development and Test
+group :development do
+  gem 'better_errors'
+  gem 'html2haml'
+  gem 'rails_layout'
+  gem 'binding_of_caller'
+end
+
+group :development, :test do
+  # Use Passenger as the app server
+  gem 'passenger'
+end
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
