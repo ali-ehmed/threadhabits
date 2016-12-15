@@ -5,6 +5,16 @@
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    %link{href: "https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700", rel: "stylesheet"}
+
   %body
-    = render partial: "layouts/top_navigation"
-    = yield
+    = render partial: "layouts/navbar/top_navigation"
+    = render partial: "layouts/navbar/bottom_navigation"
+    .jumbotron.landing-banner
+      %h1
+        Buying and selling menswear.
+      %p
+        Buy or sell menswear. With designers and brands from A to Z, we've got you covered. Completely free to use. 0% commission taken.
+    .container-fluid
+      = yield
+      = render partial: "layouts/footer"

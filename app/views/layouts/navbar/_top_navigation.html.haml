@@ -1,0 +1,49 @@
+%nav.navbar.navbar-default.application-top-header
+  .container-fluid
+    / Brand and toggle get grouped for better mobile display
+    .navbar-header
+      %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+    / Collect the nav links, forms, and other content for toggling
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      .row
+        .col-md-4.col-sm-4.col-xs-4
+          %form.navbar-form.navbar-left
+            .form-group
+              .input-group
+                .input-group-addon
+                  %i.fa.fa-search
+                %input.form-control{:placeholder => "Search", :type => "text"}/
+        %ul.nav.navbar-nav.navbar-center.col-md-3.col-sm-3.col-xs-3
+          %li
+            %a.brand_name{:href => "#"}
+              Threadhabits
+        %ul.nav.navbar-nav.navbar-right.col-md-5.col-xs-5.col-sm-5
+          %li.side-left-li
+            %a{:href => "#"} About
+          %li.side-left-li
+            %a{:href => "#"} Contact
+
+          %li.side-right-li
+            %a.sell-btn{:href => "#"}
+              %span Sell
+          %li.side-right-li
+            %a{:href => "#"}
+              %i.fa.fa-shopping-bag
+          %li.navbar-profile-icon.side-right-li
+            = image_tag "http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/profile-icon.png", class: "img-responsive"
+            %a{:href => "#"}
+              %span Quinn
+
+          -# %li.side-right-li
+          -#   %a.sell-btn{:href => "#"}
+          -#     %span Sell
+          -# %li.side-right-li
+          -#   %a{:href => "#"}
+          -#     Register
+          -# %li.navbar-profile-icon.side-right-li
+          -#   %a{:href => "#"}
+          -#     Login

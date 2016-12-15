@@ -1,0 +1,84 @@
+nav.application-top-header {
+  // Center Navbar
+  .navbar-center {
+    text-align: center;
+    li { float: right; }
+
+    .brand_name {
+      font-size: 26px;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: #000 !important;
+      letter-spacing: 1.5px;
+    }
+  }
+
+  // Navbar right side
+  .navbar-right {
+    li {
+      text-transform: uppercase;
+      text-align: center;
+    }
+    li.side-left-li {
+      margin-left: 35px;
+      width: 15%;
+    }
+
+    li.side-right-li {
+      float: right;
+      width: 15%;
+    }
+
+    li a.sell-btn span {
+      border: 1px solid #f38f8f;
+      padding: 8px 10px;
+    }
+    li.navbar-profile-icon {
+      img {
+        width: 30px;
+        position: absolute;
+        top: 8px;
+      }
+      a {
+        margin-left: 25px;
+      }
+    }
+  }
+
+  // Navbar left side
+  form.navbar-form {
+    padding-left: 0px;
+    input[type='text'] {
+      width: 400px;
+    }
+    .input-group-addon, input[type='text'] {
+      border-radius: 1px;
+    }
+    .input-group-addon {
+      background-color: #fff;
+    }
+  }
+}
+
+nav.application-bottom-header {
+  min-height: 38px;
+  font-size: 12px;
+  ul li {
+    text-transform: uppercase;
+  }
+  ul.side-left-section {
+    li {
+      width: 15%;
+    }
+  }
+  ul.side-right-section {
+    padding-right: 0px;
+    li { text-align: center; width: 33%; }
+  }
+  li.listing-view-options {
+    a {
+      color: #000;
+      display: inline-block;
+    }
+  }
+}
