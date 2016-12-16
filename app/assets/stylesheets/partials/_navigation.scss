@@ -44,6 +44,9 @@ nav.application-top-header {
   form.navbar-search-form {
     position: relative;
     top: 9px;
+    input[type='text'] {
+      border-width: 1px;
+    }
     .input-group-addon, input[type='text'] {
       border-radius: 1px;
     }

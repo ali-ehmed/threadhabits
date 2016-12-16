@@ -1,0 +1,13 @@
+@mixin authform-container($width) {
+  width: $width;
+}
+
+.authform { margin: 0 auto; margin-top: 35px;}
+
+.authform-container {
+  @include authform-container(30%);
+}
+
+.authform-container-fluid {
+  @include authform-container(40%);
+}
