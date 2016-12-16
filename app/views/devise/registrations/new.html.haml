@@ -1,22 +1,37 @@
-= title "Register Free"
-%h2 Sign up
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = devise_error_messages!
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true
-  .field
-    = f.label :password
-    - if @minimum_password_length
-      %em
-        (#{@minimum_password_length} characters minimum)
-    %br/
-    = f.password_field :password, autocomplete: "off"
-  .field
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "off"
-  .actions
-    = f.submit "Sign up"
-= render "devise/shared/links"
+- title "Create a new Threadhabits account"
+= heading_section :h2, "Create a new Threadhabits account"
+.authform.authform-container
+  = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+    = validation_errors_notifications(resource)
+    .form-group
+      = f.label :email
+      %br/
+      = f.email_field :email, autofocus: true, class: "form-control input-lg"
+    .form-group
+      = f.label :first_name
+      %br/
+      = f.text_field :first_name, class: "form-control input-lg"
+    .form-group
+      = f.label :last_name
+      %br/
+      = f.text_field :last_name, class: "form-control input-lg"
+    .form-group
+      = f.label :username
+      %br/
+      = f.text_field :username, class: "form-control input-lg"
+    .form-group
+      = f.label :password
+      - if @minimum_password_length
+        %em
+          (#{@minimum_password_length} characters minimum)
+      %br/
+      = f.password_field :password, autocomplete: "off", class: "form-control input-lg"
+    .form-group
+      = f.label :password_confirmation
+      %br/
+      = f.password_field :password_confirmation, autocomplete: "off", class: "form-control input-lg"
+    .form-group
+      = f.check_box :terms
+      = f.label :terms, "I accept the terms of use"
+    .form-actions
+      = f.submit "Create Account", class: "btn btn-default"

@@ -22,7 +22,7 @@ module ApplicationHelper
 
     messages = object.errors.full_messages.map { |msg| content_tag(:li, msg) }.join
     html = <<-HTML
-      <div class="alert alert-danger alert-block"> <button type="button"
+      <div class="alert alert-danger alert-block validation-errors"> <button type="button"
       class="close" data-dismiss="alert">x</button>
       #{messages}
       </div>
