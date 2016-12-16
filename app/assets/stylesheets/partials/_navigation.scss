@@ -19,13 +19,9 @@ nav.application-top-header {
       text-transform: uppercase;
       text-align: center;
     }
-    li.side-left-li {
-      // width: 15%;
-    }
 
     li.side-right-li {
       float: right;
-      // width: 15%;
     }
 
     li a.sell-btn span {
@@ -46,7 +42,6 @@ nav.application-top-header {
 
   // Navbar left side
   form.navbar-search-form {
-    // padding-left: 0px;
     position: relative;
     top: 9px;
     .input-group-addon, input[type='text'] {
