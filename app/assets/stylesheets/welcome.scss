@@ -1,9 +1,9 @@
 // Application Welcome Sass
 body {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Avenir Light', sans-serif;
 }
 .landing-banner {
-  background: url('https://threadhabits.s3-us-west-2.amazonaws.com/images/communities/cover_photos/2/hd_header/THcover_copy.png?1479054958');
+  background: url('THbanner');
   text-align: center;
   color: #fff;
   h1 {
@@ -16,5 +16,32 @@ body {
     font-weight: 600;
     margin: 0.75em auto;
     max-width: 22.5em;
+  }
+}
+
+main {
+  min-height: 540px;
+}
+
+.heading_section {
+  background-color: #D1D1D1;
+  background: url('THcover.png');
+  min-height: 95px;
+  padding: 10px 6em;
+  margin: 0px -15px;
+  margin-bottom: 15px;
+  h1, h2, h3, h4 {
+    color: #fff;
+    font-weight: 600;
+  }
+  h1 { font-size: 40px; }
+  h2 { font-size: 35px; }
+}
+
+a {
+  color: #777;
+  &:hover, &:focus {
+    color: #000;
+    text-decoration: none;
   }
 }
