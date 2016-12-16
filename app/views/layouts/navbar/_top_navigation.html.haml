@@ -34,10 +34,36 @@
             %li.side-right-li
               %a{:href => "#"}
                 %i.fa.fa-shopping-bag
-            %li.navbar-profile-icon.side-right-li
+            %li.navbar-profile-icon.side-right-li.dropdown
               = image_tag "http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/profile-icon.png", class: "img-responsive"
-              %a{:href => "#"}
+              %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
                 %span Quinn
+              .dropdown-menu
+                %ul.dropdown-options
+                  %li
+                    %a{:href => "#"}
+                      %i.fa.fa-inbox.fa-3x
+                      %br/
+                      Inbox
+                  %li
+                    %a{:href => "#"}
+                      %i.fa.fa-user.fa-3x
+                      %br/
+                      Profile
+                  %li
+                    %a{:href => "#"}
+                      %i.fa.fa-cog.fa-3x
+                      %br/
+                      Settings
+                .dropdown-bottom
+                  %ul.list-inline
+                    %li
+                      %a{href: "#"}
+                        Admin Dashboard
+                    %li.pull-right
+                      = link_to "Log Out", destroy_person_session_path, method: :delete
+
+
           - else
             %li.side-right-li
               %a.sell-btn{:href => new_person_session_path}
