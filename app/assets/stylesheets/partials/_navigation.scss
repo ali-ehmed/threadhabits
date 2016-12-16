@@ -2,10 +2,10 @@ nav.application-top-header {
   // Center Navbar
   .navbar-center {
     text-align: center;
-    li { float: right; }
+    li { width: 100%; }
 
     .brand_name {
-      font-size: 26px;
+      font-size: 20px;
       font-weight: 900;
       text-transform: uppercase;
       color: #000 !important;
@@ -19,14 +19,9 @@ nav.application-top-header {
       text-transform: uppercase;
       text-align: center;
     }
-    li.side-left-li {
-      margin-left: 35px;
-      width: 15%;
-    }
 
     li.side-right-li {
       float: right;
-      width: 15%;
     }
 
     li a.sell-btn span {
@@ -46,11 +41,9 @@ nav.application-top-header {
   }
 
   // Navbar left side
-  form.navbar-form {
-    padding-left: 0px;
-    input[type='text'] {
-      width: 400px;
-    }
+  form.navbar-search-form {
+    position: relative;
+    top: 9px;
     .input-group-addon, input[type='text'] {
       border-radius: 1px;
     }
@@ -68,12 +61,12 @@ nav.application-bottom-header {
   }
   ul.side-left-section {
     li {
-      width: 15%;
+      padding: 0px 10px;
     }
   }
   ul.side-right-section {
     padding-right: 0px;
-    li { text-align: center; width: 33%; }
+    li { text-align: center; float: right; padding: 0px 10px; }
   }
   li.listing-view-options {
     a {
