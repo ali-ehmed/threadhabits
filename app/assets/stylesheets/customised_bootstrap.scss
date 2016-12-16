@@ -47,12 +47,11 @@ $alert-success-border-color: #89ad6a;
   &:hover {
     color: $btn-default-color-hover;
     background-color: $btn-default-bg-color-hover;
-    border-width: 2px;
-    border-style: solid;
   }
 }
 
 .alert {
+  margin-top: 15px;
   border-width: 2px;
   padding: 8px 1.5em;
   font-size: 20px;

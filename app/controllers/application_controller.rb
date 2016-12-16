@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  def landing_banner(flag = false) @landing_banner = person_signed_in? && flag end;
+  def landing_banner(flag = false) @landing_banner = !person_signed_in? && flag end;
 
   protected
 

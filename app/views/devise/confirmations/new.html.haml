@@ -1,0 +1,12 @@
+= heading_section :h2, "Resend confirmation instructions"
+.authform.authform-container
+  = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+    = validation_errors_notifications(resource)
+    .form-group
+      = f.label :email
+      %br/
+      = f.email_field :email, autofocus: true, class: "form-control input-lg", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email)
+    .form-actions
+      = f.submit "Resend confirmation instructions", class: "btn btn-default"
+  %br/
+  = render "devise/shared/links"

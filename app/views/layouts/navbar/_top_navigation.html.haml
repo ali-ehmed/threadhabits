@@ -37,7 +37,7 @@
             %li.navbar-profile-icon.side-right-li.dropdown
               = image_tag "http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/profile-icon.png", class: "img-responsive"
               %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-                %span Quinn
+                %span= current_person.username
               .dropdown-menu
                 %ul.dropdown-options
                   %li
