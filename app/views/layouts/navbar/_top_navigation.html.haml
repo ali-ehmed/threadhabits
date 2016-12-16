@@ -19,7 +19,7 @@
                 %input.form-control{:placeholder => "Search", :type => "text"}/
         %ul.nav.navbar-nav.navbar-center.col-md-3.col-xs-3.col-sm-2.col-lg-2
           %li
-            %a.brand_name{:href => "#"}
+            %a.brand_name{:href => root_path}
               Threadhabits
         %ul.nav.navbar-nav.navbar-right.col-md-4.col-xs-4.col-sm-5.col-lg-5
           %li.side-left-li
@@ -27,23 +27,24 @@
           %li.side-left-li
             %a{:href => "#"} Contact
 
-          %li.side-right-li
-            %a.sell-btn{:href => "#"}
-              %span Sell
-          %li.side-right-li
-            %a{:href => "#"}
-              %i.fa.fa-shopping-bag
-          %li.navbar-profile-icon.side-right-li
-            = image_tag "http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/profile-icon.png", class: "img-responsive"
-            %a{:href => "#"}
-              %span Quinn
-
-          -# %li.side-right-li
-          -#   %a.sell-btn{:href => "#"}
-          -#     %span Sell
-          -# %li.side-right-li
-          -#   %a{:href => "#"}
-          -#     Register
-          -# %li.navbar-profile-icon.side-right-li
-          -#   %a{:href => "#"}
-          -#     Login
+          - if person_signed_in?
+            %li.side-right-li
+              %a.sell-btn{:href => "#"}
+                %span Sell
+            %li.side-right-li
+              %a{:href => "#"}
+                %i.fa.fa-shopping-bag
+            %li.navbar-profile-icon.side-right-li
+              = image_tag "http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/profile-icon.png", class: "img-responsive"
+              %a{:href => "#"}
+                %span Quinn
+          - else
+            %li.side-right-li
+              %a.sell-btn{:href => new_person_session_path}
+                %span Sell
+            %li.side-right-li
+              %a{:href => new_person_registration_path}
+                Register
+            %li.navbar-profile-icon.side-right-li
+              %a{:href => new_person_session_path}
+                Login

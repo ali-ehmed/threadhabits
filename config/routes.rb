@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :people
   get 'welcome/index'
 
   root to: "welcome#index"

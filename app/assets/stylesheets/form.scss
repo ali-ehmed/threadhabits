@@ -2,7 +2,9 @@
   width: $width;
 }
 
-.authform { margin: 0 auto; margin-top: 35px;}
+.authform {
+  margin: 0 auto; 
+}
 
 .authform-container {
   @include authform-container(30%);
@@ -11,3 +13,9 @@
 .authform-container-fluid {
   @include authform-container(40%);
 }
+
+.validation-errors {
+  font-size: 15px;
+}
+
+.field_with_errors { display: inline; }

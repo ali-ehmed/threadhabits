@@ -17,6 +17,8 @@ $btn-default-color-hover: #333;
 
 $alert-danger-bg-color: #C81F1F;
 $alert-danger-border-color: #ad6873;
+$alert-success-bg-color: #7ec560;
+$alert-success-border-color: #89ad6a;
 
 .navbar {
   background-color: $navbar-color;
@@ -60,4 +62,9 @@ $alert-danger-border-color: #ad6873;
 .alert-danger {
   background-color: $alert-danger-bg-color;
   border-color: $alert-danger-border-color;
+}
+
+.alert-success {
+  background-color: $alert-success-bg-color;
+  border-color: $alert-success-border-color;
 }
