@@ -29,4 +29,8 @@ class Person < ApplicationRecord
   validates_acceptance_of :terms
   validates_presence_of :first_name, :last_name, :username
   validates_uniqueness_of :username
+
+  def admin?
+    admin == true
+  end
 end

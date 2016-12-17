@@ -51,6 +51,7 @@ gem 'annotate', '~> 2.7', '>= 2.7.1'
 # Admin interface
 gem 'activeadmin', github: 'activeadmin'
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'
+gem 'active_admin_flat_skin'
 
 # Environment variables
 gem "figaro"

@@ -54,7 +54,11 @@ nav.application-top-header {
         }
         .dropdown-bottom {
           border-top: 1px solid;
-          ul { padding: 7px 10px; }
+          ul {
+            margin-right: 0;
+            padding: 0px 0px;
+            li a { padding: 10px 10px; }
+          }
         }
       }
 

@@ -6,7 +6,7 @@ $ ->
       $(this).hide()
   ), 5000
 
-  $("li.navbar-profile-icon a").click (e) ->
+  $("li.navbar-profile-icon a.dropdown-toggle").click (e) ->
     return false
 
   $("li.navbar-profile-icon").hover (->
