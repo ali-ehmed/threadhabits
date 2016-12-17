@@ -1,0 +1,69 @@
+//Import bootstrap-sprockets
+@import "bootstrap-sprockets";
+
+// import original bootstrap
+@import "bootstrap";
+
+// Variables
+$navbar-color:     #fff;
+$form-input-color: #9a9898;
+$form-input-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(47, 51, 53, 0.6);
+
+$btn-default-bg-color: #000;
+$btn-default-color: #fff;
+
+$btn-default-bg-color-hover: #e6e6e6;
+$btn-default-color-hover: #333;
+
+$alert-danger-bg-color: #C81F1F;
+$alert-danger-border-color: #ad6873;
+$alert-success-bg-color: #7ec560;
+$alert-success-border-color: #89ad6a;
+
+.navbar {
+  background-color: $navbar-color;
+  margin-bottom: 0px;
+}
+
+.form-control {
+  border-width: 3px;
+  &:focus {
+    border-width: 2px;
+    border-color: $form-input-color;
+    outline: 0;
+    -webkit-box-shadow: $form-input-box-shadow;
+    box-shadow: $form-input-box-shadow;
+  }
+}
+
+.btn {
+  padding: 6px 25px;
+  font-size: 18px;
+}
+
+.btn-default {
+  background-color: $btn-default-bg-color;
+  color: $btn-default-color;
+  &:hover {
+    color: $btn-default-color-hover;
+    background-color: $btn-default-bg-color-hover;
+  }
+}
+
+.alert {
+  margin-top: 15px;
+  border-width: 2px;
+  padding: 8px 1.5em;
+  font-size: 20px;
+  color: #fff;
+}
+
+.alert-danger {
+  background-color: $alert-danger-bg-color;
+  border-color: $alert-danger-border-color;
+}
+
+.alert-success {
+  background-color: $alert-success-bg-color;
+  border-color: $alert-success-border-color;
+}

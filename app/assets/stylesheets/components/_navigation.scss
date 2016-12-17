@@ -1,0 +1,114 @@
+nav.application-top-header {
+  // Center Navbar
+  .navbar-center {
+    text-align: center;
+    li { width: 100%; }
+
+    .brand_name {
+      font-size: 20px;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: #000 !important;
+      letter-spacing: 1.5px;
+    }
+  }
+
+  // Navbar right side
+  .navbar-right {
+    li {
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    li.side-right-li {
+      float: right;
+    }
+
+    li a.sell-btn span {
+      border: 1px solid #f38f8f;
+      padding: 8px 10px;
+    }
+    li.open {
+      a:focus, a:hover, {
+        background-color: transparent !important;
+      }
+      .dropdown-options {
+        display: flex;
+        padding: 0
+      }
+    }
+    li.navbar-profile-icon {
+      .dropdown-menu {
+        padding: 0;
+        ul.dropdown-options {
+          a { margin-left: 0px; }
+          li {
+            border-right: 1px solid;
+            width: 130px;
+            list-style: none;
+            padding: 20px 0px;
+          }
+          li:last-child {
+            border-right: 0px;
+          }
+        }
+        .dropdown-bottom {
+          border-top: 1px solid;
+          ul {
+            margin-right: 0;
+            padding: 0px 0px;
+            li a { padding: 10px 10px; }
+          }
+        }
+      }
+
+      img {
+        width: 30px;
+        position: absolute;
+        top: 8px;
+      }
+      > a {
+        margin-left: 25px;
+      }
+    }
+  }
+
+  // Navbar left side
+  form.navbar-search-form {
+    position: relative;
+    top: 9px;
+    width: 95%;
+    input[type='text'] {
+      border-width: 1px;
+    }
+    .input-group-addon, input[type='text'] {
+      border-radius: 1px;
+    }
+    .input-group-addon {
+      background-color: #fff;
+    }
+  }
+}
+
+nav.application-bottom-header {
+  min-height: 38px;
+  font-size: 11px;
+  ul li {
+    text-transform: uppercase;
+  }
+  ul.side-left-section {
+    li {
+      padding: 0px 10px;
+    }
+  }
+  ul.side-right-section {
+    padding-right: 0px;
+    li { text-align: center; float: right; padding: 0px 10px; }
+  }
+  li.listing-view-options {
+    a {
+      color: #000;
+      display: inline-block;
+    }
+  }
+}

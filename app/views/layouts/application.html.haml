@@ -1,0 +1,28 @@
+!!!
+%html
+  %head
+    %title
+      = content_for(:title) ? yield(:title) : "Threadhabits - Buying and selling menswear."
+
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    %link{href: "https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700", rel: "stylesheet"}
+
+    = favicon_link_tag "favicon.png"
+  %body
+    = render partial: "layouts/navbar/top_navigation"
+    = render partial: "layouts/navbar/bottom_navigation"
+    - if @landing_banner
+      .jumbotron.landing-banner
+        %h1
+          Buying and selling menswear.
+        %p
+          Buy or sell menswear. With designers and brands from A to Z, we've got you covered. Completely free to use. 0% commission taken.
+    .container-fluid
+      = yield(:heading_section)
+      = render 'layouts/messages'
+      %main
+        = yield
+
+      = render partial: "layouts/footer"

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  ActiveAdmin.routes(self)
+  devise_for :people
   get 'welcome/index'
 
   root to: "welcome#index"
