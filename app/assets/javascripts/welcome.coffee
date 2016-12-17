@@ -6,6 +6,9 @@ $ ->
       $(this).hide()
   ), 5000
 
+  $("li.navbar-profile-icon a").click (e) ->
+    return false
+
   $("li.navbar-profile-icon").hover (->
     $(this).toggleClass 'open'
     return
