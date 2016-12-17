@@ -39,20 +39,20 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-  config.default_email = ENV["gmail_username"]
+  
+  config.default_email = "quinn@threadhabits.com"
 
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
 
   config.action_mailer.smtp_settings = {
-    :address              => "smtp.gmail.com",
+    :address              => ENV["smtp_address"],
     :port                 => "587",
-    :domain               => ENV["domain"],
-    :user_name            => ENV["gmail_username"],
-    :password             => ENV["gmail_password"],
-    :authentication       => 'login',
-    :enable_starttls_auto => true
+    :domain               => ENV["smtp_domain"],
+    :user_name            => ENV["smtp_username"],
+    :password             => ENV["smtp_password"],
+    :authentication       => 'plain'
   }
 
   config.action_mailer.default_url_options = { host: ENV["domain"] }
