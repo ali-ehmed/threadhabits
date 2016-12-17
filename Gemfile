@@ -52,6 +52,8 @@ gem 'annotate', '~> 2.7', '>= 2.7.1'
 gem 'activeadmin', github: 'activeadmin'
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 
+# Environment variables
+gem "figaro"
 # Development and Test
 group :development do
   gem 'better_errors'
