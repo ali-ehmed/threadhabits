@@ -3,9 +3,9 @@
 .authform.authform-container
   = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
     .form-group
-      = f.label :email, "Email address"
+      = f.label :login, "Email address or Username"
       %br/
-      = f.email_field :email, autofocus: true, class: "form-control input-lg"
+      = f.text_field :login, autofocus: true, class: "form-control input-lg"
     .form-group
       = f.label :password
       %br/
