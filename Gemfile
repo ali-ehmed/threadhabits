@@ -62,10 +62,8 @@ group :development do
   gem 'binding_of_caller'
 end
 
-group :development, :test do
-  # Use Passenger as the app server
-  gem 'passenger'
-end
+# Use Passenger as the app server
+gem 'passenger'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
