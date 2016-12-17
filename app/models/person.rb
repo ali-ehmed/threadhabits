@@ -30,6 +30,8 @@ class Person < ApplicationRecord
   validates_presence_of :first_name, :last_name, :username
   validates_uniqueness_of :username
 
+  scope :admins, -> { where(admin: true) }
+
   def admin?
     admin == true
   end
