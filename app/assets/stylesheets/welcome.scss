@@ -1,6 +1,9 @@
+$threadhabits-theme-bg-color: #FBFBFB;
+
 // Application Welcome Sass
 body {
   font-family: 'Avenir Light', sans-serif;
+  background-color: $threadhabits-theme-bg-color;
 }
 .landing-banner {
   background: url('THbanner');
