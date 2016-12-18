@@ -1,0 +1,13 @@
+.settings
+  .row
+    .col-md-3
+      %ul.nav.nav-pills.nav-stacked.settings-list
+        - settings_list.each do |list|
+          %li{class: active_list?(list[0]) ? "active" : ""}
+            = link_to "#" do
+              %i.fa.fa-dot-circle-o
+              = settings_list[list[0]]
+              - if active_list?(list[0])
+                %i.fa.fa-arrow-right.pull-right
+    .col-md-9
+      = yield

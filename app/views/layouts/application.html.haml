@@ -13,14 +13,16 @@
   %body
     = render partial: "layouts/navbar/top_navigation"
     = render partial: "layouts/navbar/bottom_navigation"
+
     - if @landing_banner
       .jumbotron.landing-banner
         %h1
           Buying and selling menswear.
         %p
           Buy or sell menswear. With designers and brands from A to Z, we've got you covered. Completely free to use. 0% commission taken.
+
     .container-fluid
-      = yield(:heading_section)
+      = yield(:heading_section) #Top Heading Section
       = render 'layouts/messages'
       %main
         = yield
