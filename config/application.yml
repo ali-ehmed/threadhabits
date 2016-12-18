@@ -1,0 +1,15 @@
+development:
+  domain: "staging-threadhabits.herokuapp.com"
+
+staging:
+  domain: "staging-threadhabits.herokuapp.com"
+  smtp_domain: "threadhabits.com"
+  smtp_address: "smtp.mailgun.org"
+  smtp_username: 'postmaster@threadhabits.com'
+  smtp_password: '39af02bfc2880c3c5efe20144e59cec2'
+  admin_username: quinnmcnamara
+  admin_email: quinnmcnamara@threadhabits.com
+  admin_first_name: Quinn
+  admin_last_name: Alexander
+  admin_password: Virginia9567
+  secret_key_base: 5b837a29850fdbd65ad9615b5a5fa92bd3d4a404a86bdf9033668dbd532068ba4bbf95ff2527545e7a755a5b602884531311c997f2debfe3d852b2f36a893424

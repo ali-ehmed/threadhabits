@@ -1,0 +1,42 @@
+.profile
+  = image_tag "THbanner.png", class: "fb-image-lg", align: "left", alt: "Profile Cover"
+  = image_tag "profile-icon.png", class: "image-profile thumbnail", align: "left", alt: "Profile image"
+  .profile-text
+    %h1= @person.full_name
+    %p Girls just wanna go fun.
+  .profile-desc
+    .col-md-6
+      %p.desc
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    .col-md-6
+      %ul.list-inline.additional-details
+        %li
+          %span.value
+            31
+          %br/
+          %span.label
+            Items
+        %li
+          %span.value
+            19
+          %br/
+          %span.label
+            Sales
+        %li
+          %span.value
+            5, 436
+          %br/
+          %span.label
+            Followers
+        %li
+          %span.value
+            352
+          %br/
+          %span.label
+            Following
+        %li.feedback
+          %span.value
+            5/5
+          %br/
+          %span.label
+            + Feedback

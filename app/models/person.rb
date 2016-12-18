@@ -28,5 +28,28 @@ class Person < ApplicationRecord
 
   validates_acceptance_of :terms
   validates_presence_of :first_name, :last_name, :username
-  validates_uniqueness_of :username
+  validates :username,
+  :presence => true,
+  :uniqueness => {
+    :case_sensitive => false
+  }
+
+  scope :admins, -> { where(admin: true) }
+
+  def admin?
+    admin == true
+  end
+
+  def self.find_for_database_authentication(warden_conditions)
+    conditions = warden_conditions.dup
+    if login = conditions.delete(:login)
+      where(conditions.to_h).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+    elsif conditions.has_key?(:username) || conditions.has_key?(:email)
+      where(conditions.to_h).first
+    end
+  end
+
+  def full_name
+    [first_name, last_name].join(" ")
+  end
 end

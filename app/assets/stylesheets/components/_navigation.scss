@@ -28,6 +28,7 @@ nav.application-top-header {
       border: 1px solid #f38f8f;
       padding: 8px 10px;
     }
+
     li.open {
       a:focus, a:hover, {
         background-color: transparent !important;
@@ -37,6 +38,7 @@ nav.application-top-header {
         padding: 0
       }
     }
+
     li.navbar-profile-icon {
       .dropdown-menu {
         padding: 0;
@@ -105,6 +107,15 @@ nav.application-bottom-header {
     a {
       color: #000;
       display: inline-block;
+    }
+  }
+}
+
+// window size ipad
+@media (max-width: 1024px) {
+  nav.application-top-header {
+    .navbar-center {
+      .brand_name { font-size: 15px; }
     }
   }
 }
