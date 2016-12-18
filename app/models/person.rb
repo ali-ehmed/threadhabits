@@ -52,4 +52,8 @@ class Person < ApplicationRecord
   def full_name
     [first_name, last_name].join(" ")
   end
+
+  def tagged_username
+    ["@", username].join
+  end
 end
