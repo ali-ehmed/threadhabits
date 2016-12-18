@@ -22,9 +22,9 @@ class Person < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
-  attr_accessor :terms
+  attr_accessor :terms, :login
 
   validates_acceptance_of :terms
   validates_presence_of :first_name, :last_name, :username

@@ -2,7 +2,7 @@ $threadhabits-theme-bg-color: #FBFBFB;
 
 // Application Welcome Sass
 body {
-  font-family: 'Avenir Light', sans-serif;
+  font-family: 'Avenir Roman', sans-serif;
   background-color: $threadhabits-theme-bg-color;
 }
 .landing-banner {
@@ -49,4 +49,9 @@ a {
     color: #000;
     text-decoration: none;
   }
+}
+
+ul.list-right {
+  float: right !important;
+  margin-right: 0;
 }

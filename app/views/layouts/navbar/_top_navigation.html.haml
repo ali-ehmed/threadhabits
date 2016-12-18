@@ -37,7 +37,7 @@
             %li.navbar-profile-icon.side-right-li.dropdown
               = image_tag "http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/profile-icon.png", class: "img-responsive"
               %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-                %span Quinn
+                %span= current_person.username
               .dropdown-menu
                 %ul.dropdown-options
                   %li
@@ -56,11 +56,14 @@
                       %br/
                       Settings
                 .dropdown-bottom
-                  %ul.list-inline
+                  - if current_person.admin?
+                    %ul.nav.navbar-nav
+                      %li
+                        %a{href: admin_root_path}
+                          Admin Dashboard
+
+                  %ul.nav.navbar-nav.navbar-right
                     %li
-                      %a{href: "#"}
-                        Admin Dashboard
-                    %li.pull-right
                       = link_to "Log Out", destroy_person_session_path, method: :delete
 
 

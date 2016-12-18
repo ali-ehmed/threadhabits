@@ -41,18 +41,29 @@ $alert-success-border-color: #89ad6a;
   font-size: 18px;
 }
 
-.btn-default {
+.btn-primary {
   background-color: $btn-default-bg-color;
   color: $btn-default-color;
   &:hover {
     color: $btn-default-color-hover;
     background-color: $btn-default-bg-color-hover;
-    border-width: 2px;
-    border-style: solid;
+  }
+}
+
+.btn-default {
+  -webkit-transition: border-color 1s ease;
+  -moz-transition: border-color 1s ease;
+  -o-transition: border-color 1s ease;
+  -ms-transition: border-color 1s ease;
+  transition: border-color 1s ease;
+  border-color: #000;
+  &:hover {
+    background-color: rgba(230, 230, 230, 0);
   }
 }
 
 .alert {
+  margin-top: 15px;
   border-width: 2px;
   padding: 8px 1.5em;
   font-size: 20px;

@@ -51,7 +51,13 @@ gem 'annotate', '~> 2.7', '>= 2.7.1'
 # Admin interface
 gem 'activeadmin', github: 'activeadmin'
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'
+gem 'active_admin_flat_skin'
 
+# Environment variables
+gem "figaro"
+
+# Preview email on local
+gem "letter_opener", :group => :development
 # Development and Test
 group :development do
   gem 'better_errors'
@@ -60,10 +66,8 @@ group :development do
   gem 'binding_of_caller'
 end
 
-group :development, :test do
-  # Use Passenger as the app server
-  gem 'passenger'
-end
+# Use Passenger as the app server
+gem 'passenger'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
