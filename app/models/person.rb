@@ -48,4 +48,8 @@ class Person < ApplicationRecord
       where(conditions.to_h).first
     end
   end
+
+  def full_name
+    [first_name, last_name].join(" ")
+  end
 end

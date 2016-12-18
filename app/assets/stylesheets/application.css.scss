@@ -16,3 +16,12 @@
 
 
 @import "font-awesome";
+
+@font-face {
+  font-family: 'Avenir Roman';
+  src:font-url('AvenirLTStd-Book.otf');
+  src:font-url('AvenirLTStd-Light.otf');
+  src:font-url('AvenirLTStd-Roman.otf');
+  font-weight: normal;
+  font-style: normal;
+}
