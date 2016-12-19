@@ -79,3 +79,8 @@ $alert-success-border-color: #89ad6a;
   background-color: $alert-success-bg-color;
   border-color: $alert-success-border-color;
 }
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+  color: #000000;
+  background-color: #E8E8E8;
+}

@@ -58,6 +58,7 @@ gem "figaro"
 
 # Preview email on local
 gem "letter_opener", :group => :development
+
 # Development and Test
 group :development do
   gem 'better_errors'
