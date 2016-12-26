@@ -55,7 +55,7 @@ Rails.application.configure do
     :password             => ENV["smtp_password"],
     :authentication       => 'plain'
   }
-  aaa
+  
   config.action_mailer.default_url_options = { host: ENV["domain"] }
 
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
