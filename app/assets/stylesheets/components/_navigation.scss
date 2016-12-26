@@ -30,7 +30,7 @@ nav.application-top-header {
     }
 
     li.open {
-      a:focus, a:hover, {
+      a, a:focus, a:hover, {
         background-color: transparent !important;
       }
       .dropdown-options {
