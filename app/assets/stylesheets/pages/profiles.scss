@@ -7,6 +7,7 @@ $feedback-color: #b8ea1a;
   background: linear-gradient(to bottom,  rgba(32,124,202,0.01) 0%,rgba(206,226,243,0.01) 53%,rgba(255,255,255,0.33) 68%,rgba(255,255,255,0.35) 69%,rgba(255,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#03207cca', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
 }
+
 // Window Size For Macbook
 .profile .cover-img {
   margin-left: -15px;
@@ -58,7 +59,17 @@ $feedback-color: #b8ea1a;
   }
 }
 
+// Generate sprite (Multiple images to single sprite image)
+@import "compass/utilities/sprites";
+@import "social-icons/*.png";
+
 .profile .bottom-content {
+  ul.socal-icons-list {
+    li {
+      @include all-social-icons-sprites;
+      a { padding: 9px 20px; }
+    }
+  }
   .listing-tabs {
     padding: 0px 15px;
     li {
