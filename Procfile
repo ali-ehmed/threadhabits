@@ -1,4 +1,4 @@
-web: bundle exec passenger start -p $PORT --max-pool-size 3
+#web: bundle exec passenger start -p $PORT --max-pool-size 3
 
 # -OR-
 # Use the following line instead of the above 'web' line if you want
