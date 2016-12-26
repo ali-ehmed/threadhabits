@@ -21,4 +21,12 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :first_name, :last_name, :terms])
   end
+
+  def store_current_location!
+    session[:redirect_to] = request.url
+  end
+
+  def stored_location!
+    session[:redirect_to] ||= nil
+  end
 end
