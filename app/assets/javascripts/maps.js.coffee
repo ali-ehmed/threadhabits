@@ -1,22 +1,21 @@
 class window.GoogleMaps
   constructor: ->
     @markers = []
-    
+
   @initMap: (mapContainer, opt = {}, callback) =>
     markerOpt = {}
-
-    if gon.location != undefined && gon.location.marker != undefined
-      markerOpt = gon.location.marker
+    if opt.marker
+      markerOpt = opt.marker
 
     console.log opt, markerOpt
 
     location =
-      lat: parseFloat(opt.latitude) || parseFloat(gon.location.latitude) || 0
-      lng: parseFloat(opt.longitude) || parseFloat(gon.location.longitude) || 0
+      lat: parseFloat(opt.latitude)
+      lng: parseFloat(opt.longitude)
 
     map = new (google.maps.Map)(mapContainer,
       center: location
-      zoom: parseInt(opt.zoom) || 17)
+      zoom: parseInt(opt.zoom) || 20)
 
     self = new GoogleMaps
 
@@ -71,3 +70,66 @@ class window.GoogleMaps
     service.getDetails { placeId: place_id }, (place, status) ->
       if status == google.maps.places.PlacesServiceStatus.OK
         callback place
+
+  holdFormOnAutocomplete: =>
+    input = document.getElementsByClassName("google-autocomplete")
+    $(input).focus ->
+      $(this).closest("form").find("input[type='submit']").prop("disabled", true)
+    $(input).blur ->
+      $(this).closest("form").find("input[type='submit']").prop("disabled", false)
+
+  # Autocomplete search for google map api
+  initAutocomplete: (map, input, callback) =>
+    $(input).addClass "google-autocomplete"
+    @holdFormOnAutocomplete()
+
+    autocomplete = new (google.maps.places.Autocomplete)(input)
+    autocomplete.bindTo 'bounds', map
+    infowindow = new (google.maps.InfoWindow)
+
+    marker = new (google.maps.Marker)(
+      map: map
+      anchorPoint: new (google.maps.Point)(0, -29))
+    autocomplete.addListener 'place_changed', ->
+      infowindow.close()
+      marker.setVisible false
+      place = autocomplete.getPlace()
+
+      if !place.geometry
+        # User entered the name of a Place that was not suggested and
+        # pressed the Enter key, or the Place Details request failed.
+        window.alert 'No details available for input: \'' + place.name + '\''
+        return
+      # If the place has a geometry, then present it on a map.
+      if place.geometry.viewport
+        map.fitBounds place.geometry.viewport
+      else
+        map.setCenter place.geometry.location
+        map.setZoom 17
+        # Why 17? Because it looks good.
+
+      marker.setIcon
+        url: place.icon
+        size: new (google.maps.Size)(71, 71)
+        origin: new (google.maps.Point)(0, 0)
+        anchor: new (google.maps.Point)(17, 34)
+        scaledSize: new (google.maps.Size)(35, 35)
+      marker.setPosition place.geometry.location
+      marker.setVisible true
+
+      address = ''
+
+      if place.address_components
+        address = [
+          place.address_components[0] and place.address_components[0].short_name or ''
+          place.address_components[1] and place.address_components[1].short_name or ''
+          place.address_components[2] and place.address_components[2].short_name or ''
+        ].join(' ')
+
+      infowindow.setContent '<div><strong>' + place.name + '</strong><br>' + address
+      infowindow.open map, marker
+
+      if typeof callback == "function"
+        callback(place)
+      return
+    return

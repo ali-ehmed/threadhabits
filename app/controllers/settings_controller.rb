@@ -4,15 +4,10 @@ class SettingsController < ApplicationController
   @@current_settings = ""
 
   def profiles
-    current_person.build_address
-
     if current_person.has_address?
-      gon.location = {
-        location: current_person.address.location,
-        latitude: current_person.address.latitude,
-        longitude: current_person.address.longitude,
-        place_id: current_person.address.place_id
-      }
+      set_geocode_location!(current_person.address)
+    else
+      current_person.build_address
     end
   end
 
@@ -42,7 +37,7 @@ class SettingsController < ApplicationController
                               when :profiles
                                [:first_name, :last_name, :email,
                                :password, :password_confirmation,
-                               :phone_number, :about_you, :address_attributes => [:location, :place_id, :latitude, :longtitude]]
+                               :phone_number, :about_you, :address_attributes => [:id, :location, :place_id, :latitude, :longitude]]
                              end
       params.require(:person).permit(permitted_attributes)
     end

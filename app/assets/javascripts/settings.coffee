@@ -5,7 +5,8 @@ class window.MainSubject
 
   @unsubscribe: (fn) ->
     @observers = @observers.filter((item) ->
-      if item != fn
+      if item == fn
+        console.log "Hello"
         return item
       return
     )
@@ -36,9 +37,13 @@ class Settings
     return
 
   showPosition: (position) =>
-    Settings.current_location.latitude = position.coords.latitude
-    Settings.current_location.longitude = position.coords.longitude
-    console.log 'Latitude: ' + position.coords.latitude + '<br>Longitude: ' + position.coords.longitude
+    if typeof gon != undefined
+      Settings.current_location = gon.current_location
+    else
+      Settings.current_location.latitude = position.coords.latitude
+      Settings.current_location.longitude = position.coords.longitude
+
+    console.log 'Latitude: ' + Settings.current_location.latitude + '<br>Longitude: ' + Settings.current_location.longitude
     return
 
   updateCurrentLocation: (key, value) =>
@@ -47,7 +52,7 @@ class Settings
   updateLocationInputs: (key, value) =>
     @inputs[key].value = value
 
-class Profiles extends Settings
+class window.Profiles extends Settings
   setMap: ->
     that = this
     container = document.getElementById("google-maps")
@@ -67,10 +72,7 @@ class Profiles extends Settings
           MainSubject.publish(["updateCurrentLocation", "updateLocationInputs"], "location", place.name)
           MainSubject.publish(["updateCurrentLocation", "updateLocationInputs"], "place_id", marker.placeId)
 
-$(document).on "turbolinks:load", ->
-  profiles = new Profiles
-  profiles.initializeLocation()
-
-  setTimeout(->
-    profiles.setMap()
-  , 1000)
+    googleMap.initAutocomplete map, @inputs.location, (place) ->
+      MainSubject.publish(["updateCurrentLocation", "updateLocationInputs"], "latitude", place.geometry.location.lat())
+      MainSubject.publish(["updateCurrentLocation", "updateLocationInputs"], "longitude", place.geometry.location.lng())
+      MainSubject.publish(["updateCurrentLocation", "updateLocationInputs"], "place_id", place.place_id)

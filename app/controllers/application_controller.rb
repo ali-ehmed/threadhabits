@@ -29,4 +29,16 @@ class ApplicationController < ActionController::Base
   def stored_location!
     session[:redirect_to] ||= nil
   end
+
+  def set_geocode_location!(address)
+    gon.current_location = {
+      location: address.location,
+      latitude: address.latitude,
+      longitude: address.longitude,
+      place_id: address.place_id,
+      marker: {
+        title: address.location
+      }
+    }
+  end
 end

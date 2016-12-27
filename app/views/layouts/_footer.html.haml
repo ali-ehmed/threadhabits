@@ -1,4 +1,7 @@
 -# Application footer
+:javascript
+  $(document).on("turbolinks:load", function() { #{yield :javascript} });
+
 %footer
   .row
     .col-md-8.col-sm-8.col-xs-8
