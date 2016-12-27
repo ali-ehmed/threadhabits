@@ -51,13 +51,16 @@ gem 'annotate', '~> 2.7', '>= 2.7.1'
 # Admin interface
 gem 'activeadmin', github: 'activeadmin'
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'
-gem 'active_admin_flat_skin'
+gem "active_material", github: "vigetlabs/active_material"
 
 # Environment variables
 gem "figaro"
 
 # Preview email on local
 gem "letter_opener", :group => :development
+
+# Compass SASS
+gem 'compass-rails'
 # Development and Test
 group :development do
   gem 'better_errors'

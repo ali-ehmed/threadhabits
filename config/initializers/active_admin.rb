@@ -7,13 +7,13 @@ ActiveAdmin.setup do |config|
   config.site_title = "Threadhabits"
 
   config.namespace :admin do |admin|
-  admin.build_menu do |menu|
-    # menu.add :label => 'Custom Menu' do |submenu|
-    #   submenu.add :label => 'Custom Link', :url => "/"
-    # end
-    menu.add :label => 'Visit Site', :url => "/"
+    admin.build_menu do |menu|
+      # menu.add :label => 'Custom Menu' do |submenu|
+      #   submenu.add :label => 'Custom Link', :url => "/"
+      # end
+      menu.add :label => 'Visit Site', :url => "/", html_options: { target: :blank }
+    end
   end
-end
 
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
@@ -128,7 +128,7 @@ end
   # This allows your users to comment on any resource registered with Active Admin.
   #
   # You can completely disable comments:
-  # config.comments = false
+  config.comments = false
   #
   # You can change the name under which comments are registered:
   # config.comments_registration_name = 'AdminComment'
@@ -138,7 +138,7 @@ end
   # config.comments_order = 'created_at ASC'
   #
   # You can disable the menu item for the comments index page:
-  # config.comments_menu = false
+  config.comments_menu = false
   #
   # You can customize the comment menu:
   # config.comments_menu = { parent: 'Admin', priority: 1 }

@@ -30,7 +30,7 @@ nav.application-top-header {
     }
 
     li.open {
-      a:focus, a:hover, {
+      a, a:focus, a:hover, {
         background-color: transparent !important;
       }
       .dropdown-options {
@@ -44,10 +44,10 @@ nav.application-top-header {
         padding: 0;
         ul.dropdown-options {
           width: 100%;
-          border-bottom: 1px solid;
+          border-bottom: 1px solid #bdbdbd;
           a { padding: 35px 0px; i { font-size: 2.5em; } }
           li {
-            border-right: 1px solid;
+            border-right: 1px solid #bdbdbd;
             width: 130px;
             list-style: none;
             &:hover { background-color: rgba(204, 204, 204, 0.22); }
