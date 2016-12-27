@@ -16,6 +16,13 @@
 #  first_name             :string
 #  last_name              :string
 #  username               :string
+#  confirmation_token     :string
+#  confirmed_at           :datetime
+#  confirmation_sent_at   :datetime
+#  unconfirmed_email      :string
+#  admin                  :boolean          default(FALSE)
+#  about_you              :text
+#  phone_number           :string
 #
 
 class Person < ApplicationRecord
@@ -23,6 +30,10 @@ class Person < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
+
+
+  has_one :address, as: :owner
+  accepts_nested_attributes_for :address
 
   attr_accessor :terms, :login
 
@@ -38,6 +49,10 @@ class Person < ApplicationRecord
 
   def admin?
     admin == true
+  end
+
+  def has_address?
+    address.present?
   end
 
   def self.find_for_database_authentication(warden_conditions)

@@ -16,6 +16,13 @@
 #  first_name             :string
 #  last_name              :string
 #  username               :string
+#  confirmation_token     :string
+#  confirmed_at           :datetime
+#  confirmation_sent_at   :datetime
+#  unconfirmed_email      :string
+#  admin                  :boolean          default(FALSE)
+#  about_you              :text
+#  phone_number           :string
 #
 
 require 'test_helper'

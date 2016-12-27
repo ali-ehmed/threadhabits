@@ -1,4 +1,5 @@
 = heading_section :h2, "Settings"
+= include_google_map(places: true)
 = render layout: "side_bar" do
   %p This information is visible to all Threadhabits users in your profile page.
   = validation_errors_notifications current_person
@@ -9,12 +10,17 @@
     .form-group
       = f.label :last_name
       = f.text_field :last_name, class: "form-control input-lg"
-    -# .form-group
-      = f.label :location
-      = f.text_field :location, class: "form-control input-lg"
+    .form-group
+      = f.fields_for :address do |n|
+        = n.label :location
+        = n.text_field :location, class: "form-control input-lg", id: "location_input"
+        = n.hidden_field :latitude, class: "form-control input-lg", id: "latitude_input"
+        = n.hidden_field :longitude, class: "form-control input-lg", id: "longitude_input"
+        = n.hidden_field :place_id, class: "form-control input-lg", id: "place_id_input"
+        #google-maps
     .form-group
       = f.label :about_you
-      = f.text_area :about_you, class: "form-control input-lg"
+      = f.text_area :about_you, class: "form-control input-lg", rows: 5
     .form-group
       = f.label :phone_number
       = f.text_field :phone_number, class: "form-control input-lg"
