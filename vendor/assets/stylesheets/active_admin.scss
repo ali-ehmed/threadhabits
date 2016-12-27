@@ -9,12 +9,19 @@
 
 // Active Admin's got SASS!
 @import "active_admin/mixins";
-@import "active_admin/base";
+$am-theme-primary: #252525;
+$am-theme-backdrop: #FBFBFB;
+
+@import "active_material";
 
 @import "font-awesome";
-@import "active_material";
 
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
 //
 //   .status_tag { background: #6090DB; }
+
+
+ul.header-item.tabs {
+  li#visit_site { float: right; }
+}
