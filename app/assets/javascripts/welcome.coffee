@@ -6,12 +6,6 @@ $(document).on "turbolinks:load", ->
       $(this).hide()
   ), 5000
 
-  $("li.navbar-profile-icon .dropdown-menu").click (e) ->
-    if $(e.target).is("li")
-      return false
-    else
-      return true
-
   $("li.navbar-profile-icon a.dropdown-toggle").click (e) ->
     return false
 
