@@ -6,7 +6,6 @@ class window.MainSubject
   @unsubscribe: (fn) ->
     @observers = @observers.filter((item) ->
       if item == fn
-        console.log "Hello"
         return item
       return
     )
@@ -19,7 +18,7 @@ class window.MainSubject
       else
         item[message](key, value)
 
-class Settings
+class window.Settings
   @current_location: {}
 
   constructor: ->
@@ -37,7 +36,7 @@ class Settings
     return
 
   showPosition: (position) =>
-    if typeof gon != undefined
+    if typeof gon != "undefined"
       Settings.current_location = gon.current_location
     else
       Settings.current_location.latitude = position.coords.latitude
@@ -52,27 +51,39 @@ class Settings
   updateLocationInputs: (key, value) =>
     @inputs[key].value = value
 
+  @clear_external_javascript: =>
+    document.addEventListener 'turbolinks:before-visit', ->
+      if $('#external_javascript').length
+        $('#external_javascript').remove()
+      return
+
 class window.Profiles extends Settings
   setMap: ->
     that = this
-    container = document.getElementById("google-maps")
-    googleMap = new GoogleMaps
+    mapInterval = setInterval(->
+      if !jQuery.isEmptyObject(Settings.current_location)
+        clearInterval mapInterval
+        container = document.getElementById("google-maps")
+        googleMap = new GoogleMaps
 
-    MainSubject.subscribe(that)
+        MainSubject.subscribe(that)
 
-    MainSubject.publish(["updateLocationInputs"], "latitude", Settings.current_location.latitude)
-    MainSubject.publish(["updateLocationInputs"], "longitude", Settings.current_location.latitude)
+        MainSubject.publish(["updateLocationInputs"], "latitude", Settings.current_location.latitude)
+        MainSubject.publish(["updateLocationInputs"], "longitude", Settings.current_location.latitude)
 
-    map = GoogleMaps.initMap container, Settings.current_location, (marker) ->
-      MainSubject.publish(["updateCurrentLocation", "updateLocationInputs"], "latitude", marker.latLng.lat())
-      MainSubject.publish(["updateCurrentLocation", "updateLocationInputs"], "longitude", marker.latLng.lng())
+        map = GoogleMaps.initMap container, Settings.current_location, (marker) ->
+          MainSubject.publish(["updateCurrentLocation", "updateLocationInputs"], "latitude", marker.latLng.lat())
+          MainSubject.publish(["updateCurrentLocation", "updateLocationInputs"], "longitude", marker.latLng.lng())
 
-      if marker.placeId
-        googleMap.getPlaceDetails map, marker.placeId, (place) ->
-          MainSubject.publish(["updateCurrentLocation", "updateLocationInputs"], "location", place.name)
-          MainSubject.publish(["updateCurrentLocation", "updateLocationInputs"], "place_id", marker.placeId)
+          if marker.placeId
+            googleMap.getPlaceDetails map, marker.placeId, (place) ->
+              MainSubject.publish(["updateCurrentLocation", "updateLocationInputs"], "location", place.name)
+              MainSubject.publish(["updateCurrentLocation", "updateLocationInputs"], "place_id", marker.placeId)
 
-    googleMap.initAutocomplete map, @inputs.location, (place) ->
-      MainSubject.publish(["updateCurrentLocation", "updateLocationInputs"], "latitude", place.geometry.location.lat())
-      MainSubject.publish(["updateCurrentLocation", "updateLocationInputs"], "longitude", place.geometry.location.lng())
-      MainSubject.publish(["updateCurrentLocation", "updateLocationInputs"], "place_id", place.place_id)
+        googleMap.initAutocomplete map, that.inputs.location, (place) ->
+          MainSubject.publish(["updateCurrentLocation", "updateLocationInputs"], "latitude", place.geometry.location.lat())
+          MainSubject.publish(["updateCurrentLocation", "updateLocationInputs"], "longitude", place.geometry.location.lng())
+          MainSubject.publish(["updateCurrentLocation", "updateLocationInputs"], "place_id", place.place_id)
+
+        MainSubject.unsubscribe(that)
+    , 500)

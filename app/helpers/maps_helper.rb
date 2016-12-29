@@ -9,7 +9,7 @@ module MapsHelper
       api << places_library
     end
 
-    api.join
+    api.join.html_safe
   end
 
   # Place Autocomplete search

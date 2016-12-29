@@ -1,13 +1,25 @@
 class window.GoogleMaps
   constructor: ->
     @markers = []
+    @ready = undefined
+
+  @init: (api_url) =>
+    if !api_url
+      console.error "Google API URL is null."
+    else
+      script = document.createElement('script')
+      script.type = 'text/javascript'
+      script.className = "google-script"
+      script.src = api_url
+      document.body.appendChild script
+      return
 
   @initMap: (mapContainer, opt = {}, callback) =>
     markerOpt = {}
     if opt.marker
       markerOpt = opt.marker
 
-    console.log opt, markerOpt
+    console.log opt
 
     location =
       lat: parseFloat(opt.latitude)
