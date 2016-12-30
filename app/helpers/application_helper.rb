@@ -31,8 +31,8 @@ module ApplicationHelper
     html.html_safe
   end
 
-  def active_list?(list_name)
-    current = [params[:controller].split("/").last, params[:action]]
+  def active_list?(list_name, custom_active = nil)
+    current = [params[:controller].split("/").last, params[:action], custom_active]
     if current.include?(list_name)
       true
     else

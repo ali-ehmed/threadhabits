@@ -35,6 +35,8 @@ class Person < ApplicationRecord
   has_one :address, as: :owner
   accepts_nested_attributes_for :address
 
+  has_many :preferences
+
   attr_accessor :terms, :login
 
   validates_acceptance_of :terms

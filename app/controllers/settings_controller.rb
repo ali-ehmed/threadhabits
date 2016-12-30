@@ -16,7 +16,7 @@ class SettingsController < ApplicationController
   end
 
   def notifications
-    #code
+    @preferences = current_person.preferences.notifications.first.try(:activated) || []
   end
 
   def payments
@@ -24,22 +24,36 @@ class SettingsController < ApplicationController
   end
 
   def update
+    @current_settings = @@current_settings
     if current_person.update_attributes(person_params)
-      redirect_to stored_location!, notice: "#{@@current_settings.capitalize} settings updated successfully"
+      bypass_sign_in(current_person)
+      redirect_to stored_location!, notice: "#{@current_settings.capitalize} settings updated successfully"
     else
       flash[:alert] = "Review errors below"
-      render @@current_settings.to_sym
+      render @current_settings.to_sym
     end
+  end
+
+  def preferences
+    @preference = current_person.preferences.notifications.first
+    if @preference.blank?
+      @preference = current_person.preferences.notifications.build(preference_type: "Notification")
+    end
+    @preference.data = params[:notification_preferences] || {}
+    @preference.save
+    redirect_to notifications_settings_path, notice: "Notifications settings updated successfully"
   end
 
   private
     def person_params
-      permitted_attributes = case @@current_settings.to_sym
+      permitted_attributes =  case @@current_settings.to_sym
                               when :profiles
                                [:first_name, :last_name, :email,
                                :password, :password_confirmation,
                                :phone_number, :about_you, :avatar, :cover_image,
                                :address_attributes => [:id, :location, :place_id, :latitude, :longitude]]
+                             when :accounts
+                               [:email, :username, :password, :password_confirmation, :current_password]
                              end
       params.require(:person).permit(permitted_attributes)
     end

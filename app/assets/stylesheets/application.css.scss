@@ -8,11 +8,11 @@
   font-style: normal;
 }
 
-@import "customised_bootstrap";
-
 @import "compass";
 
 @import "base";
+
+@import "customised_bootstrap";
 
 // Components
 @import "components/footer";

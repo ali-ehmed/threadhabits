@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :settings, only: [:index] do
     collection do
       put "/" => "settings#update"
+      post "/preferences" => "settings#preferences"
       SettingsHelper.settings_list.each do |list|
         get list[0]
       end
