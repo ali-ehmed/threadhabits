@@ -21,13 +21,6 @@ class window.MainSubject
 class window.Settings
   @current_location: {}
 
-  constructor: ->
-    @inputs =
-      location: document.getElementById("location_input")
-      latitude: document.getElementById("latitude_input")
-      longitude: document.getElementById("longitude_input")
-      place_id: document.getElementById("place_id_input")
-
   initializeLocation: () =>
     if navigator.geolocation
       navigator.geolocation.getCurrentPosition(@showPosition)
@@ -51,13 +44,19 @@ class window.Settings
   updateLocationInputs: (key, value) =>
     @inputs[key].value = value
 
-  @clear_external_javascript: =>
+  @clear_cache: =>
     document.addEventListener 'turbolinks:before-visit', ->
       if $('#external_javascript').length
         $('#external_javascript').remove()
       return
 
-class window.Profiles extends Settings
+class window.Location extends Settings
+  constructor: ->
+    @inputs =
+      location: document.getElementById("location_input")
+      latitude: document.getElementById("latitude_input")
+      longitude: document.getElementById("longitude_input")
+      place_id: document.getElementById("place_id_input")
   setMap: ->
     that = this
     mapInterval = setInterval(->

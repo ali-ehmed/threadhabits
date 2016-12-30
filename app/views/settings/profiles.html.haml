@@ -1,9 +1,9 @@
 = heading_section :h2, "Settings"
 = include_google_map(places: true)
 - content_for :javascript do
-  profiles = new Profiles();
-  profiles.initializeLocation();
-  profiles.setMap();
+  $location = new Location();
+  $location.initializeLocation();
+  $location.setMap();
 
 = render layout: "side_bar" do
   %p This information is visible to all Threadhabits users in your profile page.

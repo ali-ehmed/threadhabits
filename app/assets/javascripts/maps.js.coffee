@@ -19,15 +19,13 @@ class window.GoogleMaps
     if opt.marker
       markerOpt = opt.marker
 
-    console.log opt
-
     location =
       lat: parseFloat(opt.latitude)
       lng: parseFloat(opt.longitude)
 
     map = new (google.maps.Map)(mapContainer,
       center: location
-      zoom: parseInt(opt.zoom) || 20)
+      zoom: 18)
 
     self = new GoogleMaps
 
