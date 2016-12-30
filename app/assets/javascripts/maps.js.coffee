@@ -117,7 +117,6 @@ class window.GoogleMaps
       marker.setVisible true
 
       address = ''
-
       if place.address_components
         address = [
           place.address_components[0] and place.address_components[0].short_name or ''
@@ -125,8 +124,19 @@ class window.GoogleMaps
           place.address_components[2] and place.address_components[2].short_name or ''
         ].join(' ')
 
+        location_name = [
+          place.address_components[3] and place.address_components[3].short_name or 0
+          place.address_components[4] and place.address_components[4].short_name or 0
+        ]
+
       infowindow.setContent '<div><strong>' + place.name + '</strong><br>' + address
       infowindow.open map, marker
+      if location_name[0] == 0 or location_name[1] == 0
+        location_name = place.name
+      else
+        location_name = location_name .join(', ')
+
+      input.value = location_name
 
       if typeof callback == "function"
         callback(place)

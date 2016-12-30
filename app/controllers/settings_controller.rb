@@ -57,7 +57,7 @@ class SettingsController < ApplicationController
                               else
                                 [:paypal_id]
                               end
-      params.require(:person).permit(permitted_attributes)
+      params.require(:person).permit(permitted_attributes).merge!(setting_tab: @@current_settings)
     end
 
     def prepend_configuration

@@ -76,7 +76,8 @@ class window.Location extends Settings
 
           if marker.placeId
             googleMap.getPlaceDetails map, marker.placeId, (place) ->
-              MainSubject.publish(["updateCurrentLocation", "updateLocationInputs"], "location", place.name)
+
+              MainSubject.publish(["updateCurrentLocation", "updateLocationInputs"], "location", place.formatted_address)
               MainSubject.publish(["updateCurrentLocation", "updateLocationInputs"], "place_id", marker.placeId)
 
         googleMap.initAutocomplete map, that.inputs.location, (place) ->

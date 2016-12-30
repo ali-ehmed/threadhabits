@@ -46,11 +46,11 @@ class Person < ApplicationRecord
 
   has_many :preferences
 
-  attr_accessor :terms, :login
+  attr_accessor :terms, :login, :setting_tab
 
   validates_acceptance_of :terms
   validates_presence_of :first_name, :last_name, :username
-  validates_presence_of :paypal_id, :on => :update
+  validates_presence_of :paypal_id, if: Proc.new{|person| person.setting_tab == "payments"}
   validates :username,
   :presence => true,
   :uniqueness => {
@@ -59,7 +59,7 @@ class Person < ApplicationRecord
 
   scope :admins, -> { where(admin: true) }
 
-  has_attached_file :avatar, styles: { medium: "300x300#", thumb: "100x100>" }, :default_url => "/assets/profile-icon.png"
+  has_attached_file :avatar, styles: { medium: "300x300#", thumb: "100x100#" }, :default_url => "/assets/profile-icon.png"
                                     # default_url: "user-login.png",
                                     # :storage => :dropbox,
                                     # :dropbox_credentials => Rails.root.join("config/initializers/dropbox.yml"),
@@ -88,6 +88,10 @@ class Person < ApplicationRecord
 
   def full_name
     [first_name, last_name].join(" ")
+  end
+
+  def location
+    address.location
   end
 
   def tagged_username

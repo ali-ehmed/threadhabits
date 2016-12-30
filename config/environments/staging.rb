@@ -41,7 +41,8 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
 
-  config.default_email = "quinn@threadhabits.com"
+  # config.default_email = "quinn@threadhabits.com"
+  config.default_email = "ali.ahmed.cs2104@gmail.com"
 
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
@@ -55,7 +56,7 @@ Rails.application.configure do
     :password             => ENV["smtp_password"],
     :authentication       => 'plain'
   }
-  
+
   config.action_mailer.default_url_options = { host: ENV["domain"] }
 
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
