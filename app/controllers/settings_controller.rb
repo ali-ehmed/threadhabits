@@ -38,7 +38,8 @@ class SettingsController < ApplicationController
                               when :profiles
                                [:first_name, :last_name, :email,
                                :password, :password_confirmation,
-                               :phone_number, :about_you, :address_attributes => [:id, :location, :place_id, :latitude, :longitude]]
+                               :phone_number, :about_you, :avatar, :cover_image,
+                               :address_attributes => [:id, :location, :place_id, :latitude, :longitude]]
                              end
       params.require(:person).permit(permitted_attributes)
     end

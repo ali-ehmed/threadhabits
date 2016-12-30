@@ -1,11 +1,11 @@
 .profile
-  .cover-img{style: "background: url('assets/THbanner.png');"}
+  .cover-img{style: "background: url('#{@person.cover_image.url(:medium)}');"}
     -# = image_tag "THbanner.png", class: "fb-image-lg", align: "left", alt: "Profile Cover"
   .top-content
     .row
       .col-md-1.col-sm-1.col-xs-1
       .col-md-2.col-sm-2.col-xs-2
-        = image_tag "profile-icon.png", class: "image-profile thumbnail img-responsive", align: "left", alt: "Profile image"
+        = image_tag @person.avatar.url(:medium), class: "image-profile thumbnail img-responsive", align: "left", alt: "Profile image"
       .col-md-9.col-sm-9.col-xs-9
         .profile-text
           %h1= @person.full_name

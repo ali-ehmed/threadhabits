@@ -7,7 +7,7 @@
 = render layout: "side_bar" do
   %p This information is visible to all Threadhabits users in your profile page.
   = validation_errors_notifications current_person
-  = form_for current_person, url: settings_path, method: :put do |f|
+  = form_for current_person, url: settings_path, method: :put, html: { multipart: true } do |f|
     .form-group
       = f.label :first_name
       = f.text_field :first_name, class: "form-control input-lg"
@@ -25,6 +25,15 @@
     .form-group
       = f.label :about_you
       = f.text_area :about_you, class: "form-control input-lg", rows: 5
+
+    .form-group
+      = f.label :avatar, "Profile Image"
+      = f.preview_image_field :avatar
+
+    .form-group
+      = f.label :avatar, "Cover Image"
+      = f.preview_image_field :cover_image
+
     .form-group
       = f.label :phone_number
       = f.text_field :phone_number, class: "form-control input-lg"
