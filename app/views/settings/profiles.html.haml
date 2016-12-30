@@ -6,7 +6,6 @@
 
 = render layout: "side_bar" do
   %p This information is visible to all Threadhabits users in your profile page.
-  = validation_errors_notifications current_person
   = form_for current_person, url: settings_path, method: :put, html: { multipart: true } do |f|
     .form-group
       = f.label :first_name

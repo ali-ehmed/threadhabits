@@ -52,9 +52,11 @@ class SettingsController < ApplicationController
                                :password, :password_confirmation,
                                :phone_number, :about_you, :avatar, :cover_image,
                                :address_attributes => [:id, :location, :place_id, :latitude, :longitude]]
-                             when :accounts
+                              when :accounts
                                [:email, :username, :password, :password_confirmation, :current_password]
-                             end
+                              else
+                                [:paypal_id]
+                              end
       params.require(:person).permit(permitted_attributes)
     end
 
