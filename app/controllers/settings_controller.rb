@@ -1,6 +1,7 @@
 class SettingsController < ApplicationController
   before_action :authenticate_person!
   before_action :prepend_configuration, :except => [:update]
+  before_action only: [:profiles] { google_service(true) }
   @@current_settings = ""
 
   def profiles

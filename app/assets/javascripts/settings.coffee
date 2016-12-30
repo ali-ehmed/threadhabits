@@ -44,7 +44,7 @@ class window.Settings
   updateLocationInputs: (key, value) =>
     @inputs[key].value = value
 
-  @clear_cache: =>
+  @clearTurbolinksCache: =>
     document.addEventListener 'turbolinks:before-visit', ->
       if $('#external_javascript').length
         $('#external_javascript').remove()

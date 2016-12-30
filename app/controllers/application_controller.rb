@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_person!, :authorize_person!, if: :admin_controller?
 
   def landing_banner(flag = false) @landing_banner = !person_signed_in? && flag end;
+  def google_service(flag = false) @google_service = flag end;
 
   def authorize_person!
     if !current_person.admin?

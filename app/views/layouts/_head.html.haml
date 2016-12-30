@@ -1,0 +1,11 @@
+%title
+  = content_for(:title) ? yield(:title) : "Threadhabits - Buying and selling menswear."
+
+= csrf_meta_tags
+
+= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+= javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+= favicon_link_tag "favicon.png"
+= include_gon
+- if @google_service
+  = include_google_map(places: true)
