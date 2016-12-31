@@ -46,15 +46,26 @@ Rails.application.configure do
 
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.delivery_method = :smtp
+  #
+  # config.action_mailer.smtp_settings = {
+  #   :address              => ENV["smtp_address"],
+  #   :port                 => "587",
+  #   :domain               => ENV["smtp_domain"],
+  #   :user_name            => ENV["smtp_username"],
+  #   :password             => ENV["smtp_password"],
+  #   :authentication       => 'plain'
+  # }
 
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     :address              => ENV["smtp_address"],
     :port                 => "587",
     :domain               => ENV["smtp_domain"],
     :user_name            => ENV["smtp_username"],
     :password             => ENV["smtp_password"],
-    :authentication       => 'plain'
+    :authentication       => 'login',
+    :enable_starttls_auto => true
   }
 
   config.action_mailer.default_url_options = { host: ENV["domain"] }
