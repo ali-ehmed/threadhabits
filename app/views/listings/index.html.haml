@@ -1,0 +1,8 @@
+- title "Listings - Threadhabits"
+= heading_section :h2, "Select Your Preferred Category"
+.listings-index
+  .authform.authform-container-fluid
+    .list-group.categories
+      - @categories.each do |category|
+        %a.list-group-item{:href => new_listing_path(slug: category.slug)}
+          = category.name

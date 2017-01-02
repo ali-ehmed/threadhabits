@@ -45,6 +45,7 @@ class Person < ApplicationRecord
   accepts_nested_attributes_for :address
 
   has_many :preferences
+  has_many :listings
 
   attr_accessor :terms, :login, :setting_tab
 

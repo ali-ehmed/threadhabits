@@ -9,7 +9,6 @@
 #
 
 class Category < ApplicationRecord
+  include Utilities
   has_many :listings
-
-  validates_presence_of :name
 end

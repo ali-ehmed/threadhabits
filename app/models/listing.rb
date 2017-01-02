@@ -20,4 +20,6 @@ class Listing < ApplicationRecord
   has_many :listings, through: :listings_sizes
 
   has_many :uploads
+
+  include Utilities
 end

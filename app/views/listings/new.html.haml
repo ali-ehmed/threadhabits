@@ -1,1 +1,25 @@
+- title "Create a new Listing"
 = heading_section :h2, "Create a new Listing"
+.authform.authform-container
+  = form_for(@listing) do |f|
+    = validation_errors_notifications(@listing)
+    .form-group
+      = f.label :name
+      %br/
+      = f.email_field :name, autofocus: true, class: "form-control input-lg"
+    .form-group
+      = f.label :description
+      %br/
+      = f.text_area :description, class: "form-control input-lg"
+    .form-group
+      = f.label :price
+      %br/
+      = f.number_field :price, class: "form-control input-lg"
+    .form-group
+      = f.label :condition
+      %br/
+      = f.text_field :condition, class: "form-control input-lg"
+
+    .form-actions
+      = f.submit "Submit", class: "btn btn-primary"
+      = link_to "Back", listings_path, class: "btn btn-default"
