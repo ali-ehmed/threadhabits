@@ -14,7 +14,7 @@ class window.GoogleMaps
 
     map = new (google.maps.Map)(mapContainer,
       center: location
-      zoom: 18)
+      zoom: 13)
 
     self = new GoogleMaps
 

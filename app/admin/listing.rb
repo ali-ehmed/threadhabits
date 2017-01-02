@@ -1,9 +1,9 @@
-ActiveAdmin.register Person, :as => "Users" do
-  menu priority: 1
+ActiveAdmin.register Listing do
+
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :email, :username, :address, :first_name, :last_name
+# permit_params :list, :of, :attributes, :on, :model
 #
 # or
 #
@@ -12,13 +12,6 @@ permit_params :email, :username, :address, :first_name, :last_name
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
+  config.clear_action_items!
 
-  index do
-    column :email
-    column :username
-    column :address
-    column :first_name
-    column :last_name
-    actions
-  end
 end

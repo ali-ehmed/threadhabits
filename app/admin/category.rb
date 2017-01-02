@@ -1,9 +1,10 @@
-ActiveAdmin.register Person, :as => "Users" do
-  menu priority: 1
+ActiveAdmin.register Category do
+  menu parent: "Utilities", label: 'Main Categories'
+# menu label: "Main Cateogries"
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :email, :username, :address, :first_name, :last_name
+permit_params :name
 #
 # or
 #
@@ -13,12 +14,5 @@ permit_params :email, :username, :address, :first_name, :last_name
 #   permitted
 # end
 
-  index do
-    column :email
-    column :username
-    column :address
-    column :first_name
-    column :last_name
-    actions
-  end
+
 end
