@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :people
 
+  resources :listings
   resources :settings, only: [:index] do
     collection do
       put "/" => "settings#update"
