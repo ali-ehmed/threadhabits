@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
   ActiveAdmin.routes(self)
-  devise_for :people
+  devise_for :people, controllers: { registrations: "people/registrations" }
 
-  resources :listings
+  resources :listings do
+    collection do
+      get "collect_size/:product_id" => "listings#collect_size"
+    end
+  end
   resources :settings, only: [:index] do
     collection do
       put "/" => "settings#update"

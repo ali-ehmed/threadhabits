@@ -8,6 +8,14 @@ class ListingsController < ApplicationController
 
   def new
     @listing = current_person.listings.build
+    @products = ProductType.all
+    @designers = Designer.all
+
+    if @listing.has_address?
+      set_geocode_location!(@listing.address)
+    else
+      @listing.build_address
+    end
   end
 
   def create
@@ -19,6 +27,14 @@ class ListingsController < ApplicationController
     end
   end
 
+  def collect_size
+    @product_type = ProductType.find(params[:product_id])
+    @sizes = @product_type.sizes
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
 
     def fetch_category!
@@ -27,6 +43,9 @@ class ListingsController < ApplicationController
     end
 
     def listing_params
-      params.require(:listing).permit(:name, :description, :price, :category_id, :condition)
+      params.require(:listing).permit(
+        :name, :description, :price, :company_id, :category_id, :condition, :sizes,
+        :address_attributes => [:id, :location, :place_id, :latitude, :longitude]
+      )
     end
 end

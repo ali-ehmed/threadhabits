@@ -32,12 +32,20 @@ module ApplicationHelper
   end
 
   def active_list?(list_name, custom_active = nil)
-    current = [params[:controller].split("/").last, params[:action], custom_active]
+    current = [view_controller, view_action, custom_active]
     if current.include?(list_name)
       true
     else
       false
     end
+  end
+
+  def view_controller
+    params[:controller].split("/").last
+  end
+
+  def view_action
+    params[:action]
   end
 end
 

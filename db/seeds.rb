@@ -93,3 +93,31 @@ puts "Creating Main Categories"
 end
 
 puts "Creating Product Type & Sizes"
+
+@designers = [
+  "Acne Studios",
+  "Adidas",
+  "Alexander McQueen",
+  "Alexander Wang",
+  "All Saints",
+  "A.P.C.",
+  "Diesel",
+  "Fear of God",
+  "Fendi",
+  "Gianni Mora",
+  "Gucci",
+  "H&M",
+  "Helmut Lang",
+  "Levi Strauss & Co.",
+  "Moschino",
+  "Ralph Lauren",
+  "Saint Laurent Paris",
+  "Supreme",
+  "Zara",
+]
+
+@designers.each do |designer|
+  Designer.find_or_create_by!(name: designer)
+end
+
+puts "Creating Company/Designers"

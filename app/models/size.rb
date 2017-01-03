@@ -15,4 +15,6 @@ class Size < ApplicationRecord
 
   has_many :listings_sizes
   has_many :listings, through: :listings_sizes
+
+  scope :product, -> (name) { joins(:product_type).where "lower(products.name) = ?",  name.downcase}
 end

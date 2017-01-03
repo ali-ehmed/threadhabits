@@ -102,4 +102,9 @@ class Person < ApplicationRecord
   def has_image?(field_name)
     send(field_name).url != send(field_name).options[:default_url]
   end
+
+  def valid_attribute?(attribute_name)
+    self.valid?
+    self.errors[attribute_name].blank?
+  end
 end

@@ -189,6 +189,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
+    jquery-validation-rails (1.16.0)
     json (2.0.2)
     kaminari (0.17.0)
       actionpack (>= 3.0.0)
@@ -329,6 +330,7 @@ DEPENDENCIES
   inherited_resources!
   jbuilder (~> 2.5)
   jquery-rails
+  jquery-validation-rails
   letter_opener
   listen (~> 3.0.5)
   paperclip!

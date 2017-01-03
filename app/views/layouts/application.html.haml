@@ -2,7 +2,7 @@
 %html
   %head
     = render partial: "layouts/components/head"
-  %body
+  %body{ class: [view_controller, view_action].join(" ") }
     = render partial: "layouts/navbar/top_navigation"
     = render partial: "layouts/navbar/bottom_navigation"
 

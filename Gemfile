@@ -61,6 +61,8 @@ gem "letter_opener", :group => :development
 
 # Compass SASS
 gem 'compass-rails'
+
+gem 'jquery-validation-rails'
 # Development and Test
 group :development do
   gem 'better_errors'
