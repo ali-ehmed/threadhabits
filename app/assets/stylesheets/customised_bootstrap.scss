@@ -38,8 +38,6 @@ $alert-success-border-color: #89ad6a;
 }
 
 .btn {
-  padding: 6px 25px;
-  font-size: 18px;
   border-width: 2px;
 }
 
@@ -57,6 +55,11 @@ $alert-success-border-color: #89ad6a;
     background-color: #010102;
     border-color: #7d7d7d;
   }
+}
+
+.site-btn {
+  padding: 6px 25px;
+  font-size: 18px;
 }
 
 .btn-default {

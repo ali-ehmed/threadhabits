@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :listings do
     collection do
+      post "uploads/" => "listings#uploads", :constraints => { :format => 'json' }
       get "collect_size/:product_type" => "listings#collect_size"
     end
   end

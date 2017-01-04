@@ -23,12 +23,12 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :username, :first_name, :last_name, :terms])
   end
 
-  def store_current_location!
-    session[:redirect_to] = request.url
+  def store_config(options = {})
+    session[:config] = options
   end
 
-  def stored_location!
-    session[:redirect_to] ||= nil
+  def fetch_stored_config(attribute)
+    session[:config][attribute.to_s] ||= nil
   end
 
   def set_geocode_location!(address)

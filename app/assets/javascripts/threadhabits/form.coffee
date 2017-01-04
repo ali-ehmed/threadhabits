@@ -37,9 +37,12 @@
         return
 
 @Listings =
+  redirect_to: ""
   validateForm: ->
+    that = this
     $('#new_listing').validate
       debug: true
+      errorClass: "error"
       rules:
         "listing[name]": 'required'
         "listing[description]": 'required'
@@ -48,24 +51,46 @@
         "listing[condition]": 'required'
         "listing[size]": 'required'
         "listing[company_id]": 'required'
+        "upload_photos[]":
+          required: true
+          extension: "png|jpg|jpeg"
       messages:
-        product: 'Product Type must be selected'
-        "listing[sizes]": 'Sizes must be selected'
+        "listing[product_type]": 'Product Type must be selected'
+        "listing[size]": 'Sizes must be selected'
+        "upload_photos[]": 'Please select Images for your listing.'
       submitHandler: (form) ->
-        form.submit()
+        console.log form
+        that.submitListings(form)
         return
+
+  submitListings: (form) ->
+    that = this
+    $form = $(form)
+    $form.find("input[type='submit']").prop("disabled", true)
+    action = $form.attr("action")
+    method = $form.attr("method")
+    $upload = $form.find(".listing-uploads .fileinput-upload")
+    $.ajax
+      type: method
+      url: action
+      data: $form.serialize()
+      dataType: "json"
+      success: (response) ->
+        if response.status == 200
+          that.redirect_to = response.redirect_to
+          $upload.click()
+        else
+          $form.find("input[type='submit']").prop("disabled", false)
+          console.log response
+      error: (response) ->
+        console.log "error"
+        $form.find("input[type='submit']").prop("disabled", false)
 
   initializeListingsForm: ->
     that = this
     that.validateForm()
 
     $("#listing_company_id").select2()
-
-    $(".add-more-uploads").on "click", (e) ->
-      e.preventDefault()
-      parent = $(@).closest(".wrapper-upload")
-      console.log parent
-      parent.before "<div class='col-md-4'>#{wrapper_upload.html()}</div>"
 
     $(".product-type-listing-input").on "change", (e) ->
       $.get("/listings/collect_size/#{$(this).val()}.js", (data) ->
@@ -76,9 +101,60 @@
         return
       )
 
+    setTimeout(->
+      # Loading DOM to let the plugin initialized
+      $(document).on "click", ".listing-uploads .fileinput-remove, .listing-uploads .kv-file-remove", ->
+        setTimeout(->
+          # Waiting for callback to complete (Already set on above plugin selectors)
+          totalFiles = $("#listing_upload_photos").fileinput('getFilesCount')
+          if totalFiles == 0
+            $("#listing_upload_photos").rules 'add',
+              required: true
+        , 1000)
+    , 1000)
+
+    $("#listing_upload_photos").fileinput(
+      uploadUrl: "/listings/uploads.json",
+      uploadAsync: false,
+      minFileCount: 1
+      maxFileCount: 5
+      showPreview: true
+      showBrowse: true,
+      browseOnZoneClick: true
+      previewFileType: "png",
+      allowedFileExtensions: ["png", "jpg", "jpeg"]
+      elErrorContainer: '#file-upload-error-container'
+      showDrag: true
+    ).on('filebatchpreupload', (event, data, id, index) ->
+      $('#file-upload-success-container').html('<h4>Upload Status</h4><ul></ul>').hide()
+      return
+    ).on('fileselect', (event, numFiles, label) ->
+      totalFiles = $("#listing_upload_photos").fileinput('getFilesCount')
+      if totalFiles > 0
+        $("#listing_upload_photos").rules 'add',
+          required: false
+    ).on('filebatchuploadsuccess', (event, data) ->
+      out = ''
+      $.each data.files, (key, file) ->
+        fname = file.name
+        out = out + '<li>' + 'Uploaded file # ' + key + 1 + ' - ' + fname + ' successfully.' + '</li>'
+        return
+      $('#file-upload-success-container ul').append out
+      $('#file-upload-success-container').fadeIn 'slow'
+
+      setTimeout(->
+        console.log event
+        @location.href = that.redirect_to
+      , 3000)
+      return
+    ).on 'filebatchuploaderror', (event, data) ->
+      $("form").find("input[type='submit']").prop("disabled", false)
+
 $ ->
   $.validator.setDefaults
     errorPlacement: (error, element) ->
+      if $(element).hasClass "file-field-input"
+        $(error).addClass "file-field-input-error"
       $(element).closest(".form-group").after(error)
       return
     invalidHandler: (form, validator) ->

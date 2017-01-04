@@ -1,6 +1,6 @@
 module Utilities
   extend ActiveSupport::Concern
-  
+
   included do
     validates_presence_of :name
     before_save :generate_slug
@@ -8,6 +8,6 @@ module Utilities
 
 
   def generate_slug
-    slug = name.parameterize
+    self.slug = name.parameterize
   end
 end

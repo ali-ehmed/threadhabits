@@ -2,6 +2,7 @@ class ProfilesController < ApplicationController
   before_action :set_profile
 
   def show
+    @listings = @person.listings
   end
 
   private
