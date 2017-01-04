@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :listings do
     collection do
-      get "collect_size/:product_id" => "listings#collect_size"
+      get "collect_size/:product_type" => "listings#collect_size"
     end
   end
   resources :settings, only: [:index] do

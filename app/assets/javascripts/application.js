@@ -16,4 +16,5 @@
 //= require bootstrap-sprockets
 //= require jquery.validate
 //= require select2.min
-//= require_tree .
+//= require jquery-readySelector
+//= require_tree ./threadhabits

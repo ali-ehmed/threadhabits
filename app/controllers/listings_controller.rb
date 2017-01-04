@@ -12,10 +12,16 @@ class ListingsController < ApplicationController
     @designers = Designer.all
 
     if @listing.has_address?
-      set_geocode_location!(@listing.address)
+      @address = @listing.address
     else
-      @listing.build_address
+      @address = current_person.address
     end
+
+    if @address.present?
+      set_geocode_location!(@address)
+    end
+
+    @listing.build_address
   end
 
   def create
@@ -28,7 +34,7 @@ class ListingsController < ApplicationController
   end
 
   def collect_size
-    @product_type = ProductType.find(params[:product_id])
+    @product_type = ProductType.find_by_name(params[:product_type])
     @sizes = @product_type.sizes
     respond_to do |format|
       format.js
@@ -44,7 +50,7 @@ class ListingsController < ApplicationController
 
     def listing_params
       params.require(:listing).permit(
-        :name, :description, :price, :company_id, :category_id, :condition, :sizes,
+        :name, :description, :price, :company_id, :category_id, :condition, :size, :product_type,
         :address_attributes => [:id, :location, :place_id, :latitude, :longitude]
       )
     end

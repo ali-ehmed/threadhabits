@@ -1,8 +1,8 @@
-previewImageElem = ->
+previewImageElem = (options = {}) ->
   img = $('<img/>',
     id: 'dynamic'
-    width: 250
-    height: "auto")
+    width: (options.width || 250)
+    height: (options.height || "auto"))
 
   img
 
@@ -15,20 +15,23 @@ window.clearPreviewImage = (elem) ->
   parent.find('.image-preview-input-title').text 'Browse'
   return
 
-window.createPreviewImage = (elem) ->
-  img = previewImageElem()
+window.createPreviewImage = (elem, options = {}) ->
+  img = previewImageElem(options)
   # Create the preview image
   file = elem.files[0]
   reader = new FileReader
 
   # Set preview image into the popover data-content
   reader.onload = (e) ->
-    parent = $(elem).closest('.image-preview')
-    parent.find('.image-preview-input-title').text 'Change'
-    parent.find('.image-preview-clear').show()
-    parent.find('.image-preview-filename').val file.name
     img.attr 'src', e.target.result
-    parent.attr('data-content', $(img)[0].outerHTML).popover 'show'
+    if !options.removeDefault
+      parent = $(elem).closest('.image-preview')
+      parent.find('.image-preview-input-title').text 'Change'
+      parent.find('.image-preview-clear').show()
+      parent.find('.image-preview-filename').val file.name
+      parent.attr('data-content', $(img)[0].outerHTML).popover 'show'
+    else
+      $(options.element).replace($(img)[0].outerHTML)
     return
 
   reader.readAsDataURL file

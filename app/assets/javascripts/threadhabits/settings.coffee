@@ -57,33 +57,43 @@ class window.Location extends Settings
       latitude: document.getElementById("latitude_input")
       longitude: document.getElementById("longitude_input")
       place_id: document.getElementById("place_id_input")
-  setMap: ->
-    that = this
+
+    @container = document.getElementById("google-maps")
+
+  startMap: (callback) =>
     mapInterval = setInterval(->
       if !jQuery.isEmptyObject(Settings.current_location)
         clearInterval mapInterval
-        container = document.getElementById("google-maps")
-        googleMap = new GoogleMaps
+        callback()
+    , 50)
 
-        MainSubject.subscribe(that)
+  setMap: =>
+    @startMap ->
+      GoogleMaps.initMap @container, Settings.current_location
 
-        MainSubject.publish(["updateLocationInputs"], "latitude", Settings.current_location.latitude)
-        MainSubject.publish(["updateLocationInputs"], "longitude", Settings.current_location.latitude)
+  setMapForm: ->
+    that = this
+    @startMap ->
+      googleMap = new GoogleMaps
 
-        map = GoogleMaps.initMap container, Settings.current_location, (marker) ->
-          MainSubject.publish(["updateCurrentLocation", "updateLocationInputs"], "latitude", marker.latLng.lat())
-          MainSubject.publish(["updateCurrentLocation", "updateLocationInputs"], "longitude", marker.latLng.lng())
+      MainSubject.subscribe(that)
 
-          if marker.placeId
-            googleMap.getPlaceDetails map, marker.placeId, (place) ->
+      MainSubject.publish(["updateLocationInputs"], "latitude", Settings.current_location.latitude)
+      MainSubject.publish(["updateLocationInputs"], "longitude", Settings.current_location.longitude)
 
-              MainSubject.publish(["updateCurrentLocation", "updateLocationInputs"], "location", place.formatted_address)
-              MainSubject.publish(["updateCurrentLocation", "updateLocationInputs"], "place_id", marker.placeId)
+      map = GoogleMaps.initMap that.container, Settings.current_location, (marker) ->
+        MainSubject.publish(["updateCurrentLocation", "updateLocationInputs"], "latitude", marker.latLng.lat())
+        MainSubject.publish(["updateCurrentLocation", "updateLocationInputs"], "longitude", marker.latLng.lng())
 
-        googleMap.initAutocomplete map, that.inputs.location, (place) ->
-          MainSubject.publish(["updateCurrentLocation", "updateLocationInputs"], "latitude", place.geometry.location.lat())
-          MainSubject.publish(["updateCurrentLocation", "updateLocationInputs"], "longitude", place.geometry.location.lng())
-          MainSubject.publish(["updateCurrentLocation", "updateLocationInputs"], "place_id", place.place_id)
+        if marker.placeId
+          googleMap.getPlaceDetails map, marker.placeId, (place) ->
 
-        MainSubject.unsubscribe(that)
-    , 500)
+            MainSubject.publish(["updateCurrentLocation", "updateLocationInputs"], "location", place.formatted_address)
+            MainSubject.publish(["updateCurrentLocation", "updateLocationInputs"], "place_id", marker.placeId)
+
+      googleMap.initAutocomplete map, that.inputs.location, (place) ->
+        MainSubject.publish(["updateCurrentLocation", "updateLocationInputs"], "latitude", place.geometry.location.lat())
+        MainSubject.publish(["updateCurrentLocation", "updateLocationInputs"], "longitude", place.geometry.location.lng())
+        MainSubject.publish(["updateCurrentLocation", "updateLocationInputs"], "place_id", place.place_id)
+
+      MainSubject.unsubscribe(that)
