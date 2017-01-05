@@ -92,7 +92,7 @@ class Person < ApplicationRecord
   end
 
   def location
-    address.location
+    address.try(:location)
   end
 
   def tagged_username

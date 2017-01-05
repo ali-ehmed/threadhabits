@@ -6,7 +6,7 @@
       .desc
         %h4
           = listing.name
-          %small= listing.size.name
+          %small= listing.size.try(:name)
         %p.content
           = listing.description
       %p.price= number_to_currency listing.price
