@@ -60,12 +60,11 @@ class Person < ApplicationRecord
 
   scope :admins, -> { where(admin: true) }
 
-  has_attached_file :avatar, styles: { medium: "300x300#", thumb: "100x100#" }, :default_url => "/assets/profile-icon.png"
-                                    # default_url: "user-login.png",
-                                    # :storage => :dropbox,
-                                    # :dropbox_credentials => Rails.root.join("config/initializers/dropbox.yml"),
-                                    # :dropbox_visibility => 'public'
-  has_attached_file :cover_image, styles: { medium: "851x315#" }, :default_url => "/assets/THbanner.png"
+  has_attached_file :avatar, styles: {
+    medium: "300x300#",
+    thumb: "100x100#"
+  }
+  has_attached_file :cover_image, styles: { medium: "851x315#" }
 
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   validates_attachment_content_type :cover_image, content_type: /\Aimage\/.*\Z/
