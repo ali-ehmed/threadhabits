@@ -76,9 +76,13 @@
       .col-md-9.col-sm-9.col-xs-9
         .tab-content
           #items.tab-pane.fade.in.active{:role => "tabpanel"}
-            .listings
-              .row
-                = render partial: "listings/listing", collection: @listings
+            - if @listings.present?
+              .listings
+                .row
+                  = render partial: "listings/listing", collection: @listings
+            - else
+              .alert.alert-success
+                There are no listings
           #instgram.tab-pane{:role => "tabpanel"}
       .col-md-3.col-sm-3.col-xs-3
         = render  partial: "side_section"

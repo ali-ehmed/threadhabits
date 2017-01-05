@@ -2,6 +2,6 @@
   = label_tag :sizes
   %br/
   - if sizes.present?
-    = select :listing, :size, sizes.map{ |v| [v.name] }, { include_blank: "Select Size" }, class: "form-control input-lg"
+    = select :listing, :size_id, sizes.map{ |v| [v.name, v.id] }, { include_blank: "Select Size" }, class: "form-control input-lg"
   - else
-    = select :listing, :size, [], { include_blank: "There are no sizes present for #{@product_type.name}" }, class: "form-control input-lg"
+    = select :listing, :size_id, [], { include_blank: "There are no sizes present for #{@product_type.name}" }, class: "form-control input-lg"

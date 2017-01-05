@@ -1,0 +1,119 @@
+- content_for :javascript do
+  Home.initializeFilters();
+  $location = new Location(false);
+  $location.initializeLocation();
+  $location.setMapForm();
+
+.listing-filters
+  = form_tag fetch_listings_path, method: :get do
+    = hidden_field_tag :product_type, params[:product_type]
+    .panel.panel-default
+      .panel-body
+        -# Categories
+        #categoriesFilter
+          %label
+            ALL CATEGORIES
+          %ul.list-unstyled
+            - @categories.each do |category|
+              %li
+              .checkbox
+                = check_box_tag "category_ids[]", category.id, params[:category_ids] && params[:category_ids].include?(category.id.to_s), id: "categories_#{category.id}"
+                %label{for: "categories_#{category.id}"}= category.name
+
+        -# Accordians
+        #accordion.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
+          -# Price
+          #headingOne.field-strip{:role => "tab"}
+            %a{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapsePriceFiler", :role => "button"}
+              %span &ndash;
+              PRICE
+          #collapsePriceFiler.collapse.in{"aria-labelledby" => "headingOne", :role => "tabpanel"}
+            #priceFilter
+              #nonlinearRangePriceSlider
+              #priceDisplayRangeSet
+                %label
+                  Min:
+                  %span#lower-price-span
+                    = (params[:lower_price] || 0)
+                  = hidden_field_tag :lower_price, (params[:lower_price] || 0), id: "lower-price-input"
+                %label.pull-right
+                  Max:
+                  %span#upper-price-span
+                    = (params[:upper_price] || 15000)
+                  = hidden_field_tag :upper_price, (params[:upper_price] || 15000), id: "upper-price-input"
+
+
+          -# Designers
+          #headingTwo.field-strip{:role => "tab"}
+            %a.collapse-filter-link{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseDesignerFilter", :role => "button"}
+              %span -
+              DESIGNERS/COMPANIES
+          #collapseDesignerFilter.collapse{"aria-labelledby" => "headingTwo", :role => "tabpanel", class: (params[:company_ids] && (@designers.map(&:id).map(&:to_s) & params[:company_ids])).present? ? "in" : ""}
+            #designersFilter.scroll
+              -# .form-group
+                .input-group
+                  .input-group-addon
+                    %i.fa.fa-search
+                  %input.form-control{:placeholder => "Search", :type => "text"}/
+              %ul.list-unstyled
+                - @designers.each do |designer|
+                  %li
+                  .checkbox
+                    = check_box_tag "company_ids[]", designer.id, params[:company_ids] && params[:company_ids].include?(designer.id.to_s), id: "company_id_#{designer.id}"
+                    %label{for: "company_id_#{designer.id}"}= designer.name
+
+
+          - %w(tops bottoms shoes accessories).each do |product|
+            #headingTwo.field-strip{:role => "tab"}
+              %a.collapse-filter-link{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse#{product.capitalize}Filter", :role => "button"}
+                %span -
+                - case product
+                - when "tops"
+                  TOP/OUTWEAR SIZE
+                - when "accessories"
+                  ACCESSORIES
+                - else
+                  = product.singularize.upcase
+                  SIZE
+            .collapse.filtersCollapse{"aria-labelledby" => "headingTwo", :role => "tabpanel", id: "collapse#{product.capitalize}Filter", class: (params[:size_names] && (instance_variable_get("@#{product}").map(&:name) & params[:size_names])).present? ? "in" : "" }
+              #filter.scroll
+                %ul.list-unstyled
+                  - instance_variable_get("@#{product}").each do |size|
+                    %li
+                    .checkbox
+                      = check_box_tag "size_names[]", size.name, params[:size_names] && params[:size_names].include?(size.name), id: "#{product}_sizes_#{size.id}"
+                      %label{for: "#{product}_sizes_#{size.id}"}= size.name
+
+          -# Condition
+          #headingTwo.field-strip{:role => "tab"}
+            %a.collapse-filter-link{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseConditionFilter", :role => "button"}
+              %span -
+              CONDITION
+          #collapseConditionFilter.collapse{"aria-labelledby" => "headingTwo", :role => "tabpanel", class: (params[:conditions] && (@condtions & params[:conditions])).present? ? "in" : ""}
+            #conditionFilter.scroll
+              %ul.list-unstyled
+                - @condtions.each do |condition|
+                  %li
+                  .checkbox
+                    = check_box_tag "condition[]", condition, params[:conditions] && params[:conditions].include?(condition), id: "condtions_#{condition}"
+                    %label{for: "condtions_#{condition}"}= condition
+
+          -# Locations
+          #headingTwo.field-strip{:role => "tab"}
+            %a.collapse-filter-link{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseLocationFilter", :role => "button"}
+              %span -
+              LOCATION
+          #collapseLocationFilter.collapse.in{"aria-labelledby" => "headingTwo", :role => "tabpanel"}
+            #locationFilter
+              .form-group
+                .input-group
+                  .input-group-addon
+                    %i.fa.fa-search
+                  %input.form-control#location_input{name: "location", value: params[:location], :placeholder => "Search Location", :type => "text"}/
+                  %input#latitude_input{name: "latitude", value: params[:latitude], :type => "hidden"}/
+                  %input#longitude_input{name: "longitude", value: params[:longitude], :type => "hidden"}/
+                  %input#place_id_input{name: "place_id", value: params[:place_id], :type => "hidden"}/
+                  #google-maps
+
+        .form-action
+          = button_tag "Update View", type: :submit, class: "btn btn-primary"

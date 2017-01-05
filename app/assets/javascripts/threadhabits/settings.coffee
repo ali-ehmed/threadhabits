@@ -51,7 +51,8 @@ class window.Settings
       return
 
 class window.Location extends Settings
-  constructor: ->
+  constructor: (map = true) ->
+    @map = map
     @inputs =
       location: document.getElementById("location_input")
       latitude: document.getElementById("latitude_input")
@@ -60,6 +61,9 @@ class window.Location extends Settings
 
     @container = document.getElementById("google-maps")
 
+    if @map == false
+      $(@container).css "height", "0px"
+      
   startMap: (callback) =>
     mapInterval = setInterval(->
       if !jQuery.isEmptyObject(Settings.current_location)

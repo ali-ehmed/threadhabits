@@ -104,3 +104,8 @@ label.error:before {
 }
 #file-upload-error-container { @extend .alert-danger; }
 #file-upload-success-container { @extend .alert-success; }
+
+// Form
+.radio label, .checkbox label {
+  padding-left: 5px !important;
+}

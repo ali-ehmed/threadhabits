@@ -1,0 +1,11 @@
+.row
+  .col-md-3
+    = render partial: "filters"
+  .col-md-9
+    - if @listings.present?
+      .listings
+        .row
+          = render partial: "listings/listing", collection: @listings
+    - else
+      .alert.alert-success
+        There are no listings

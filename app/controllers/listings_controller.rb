@@ -47,7 +47,7 @@ class ListingsController < ApplicationController
   end
 
   def collect_size
-    @product_type = ProductType.find_by_name(params[:product_type])
+    @product_type = ProductType.find(params[:product_type_id])
     @sizes = @product_type.sizes
     respond_to do |format|
       format.js
@@ -66,7 +66,7 @@ class ListingsController < ApplicationController
     end
 
     def listing_params
-      params.require(:listing).permit(:name, :description, :price, :company_id, :category_id, :condition, :size, :product_type,
+      params.require(:listing).permit(:name, :description, :price, :company_id, :category_id, :condition, :size_id, :product_type_id,
                                       :address_attributes => [:id, :location, :place_id, :latitude, :longitude]
                                      )
     end

@@ -46,17 +46,17 @@
       rules:
         "listing[name]": 'required'
         "listing[description]": 'required'
-        "listing[product_type]": 'required'
+        "listing[product_type_id]": 'required'
         "listing[price]": 'required'
         "listing[condition]": 'required'
-        "listing[size]": 'required'
+        "listing[size_id]": 'required'
         "listing[company_id]": 'required'
         "upload_photos[]":
           required: true
           extension: "png|jpg|jpeg"
       messages:
-        "listing[product_type]": 'Product Type must be selected'
-        "listing[size]": 'Sizes must be selected'
+        "listing[product_type_id]": 'Product Type must be selected'
+        "listing[size_id]": 'Sizes must be selected'
         "upload_photos[]": 'Please select Images for your listing.'
       submitHandler: (form) ->
         console.log form
@@ -67,6 +67,7 @@
     that = this
     $form = $(form)
     $form.find("input[type='submit']").prop("disabled", true)
+    $form.find("input[type='submit']").val("Saving Your Listing...")
     action = $form.attr("action")
     method = $form.attr("method")
     $upload = $form.find(".listing-uploads .fileinput-upload")
@@ -81,7 +82,7 @@
           $upload.click()
         else
           $form.find("input[type='submit']").prop("disabled", false)
-          console.log response
+          alert "Couldn't Save Listing at the moment"
       error: (response) ->
         console.log "error"
         $form.find("input[type='submit']").prop("disabled", false)
@@ -118,6 +119,7 @@
       uploadAsync: false,
       minFileCount: 1
       maxFileCount: 5
+      showDrag: true
       showPreview: true
       showBrowse: true,
       browseOnZoneClick: true
@@ -150,6 +152,42 @@
     ).on 'filebatchuploaderror', (event, data) ->
       $("form").find("input[type='submit']").prop("disabled", false)
 
+@Home =
+  initializeFilters: ->
+    nonLinearSlider = nonLinearSlider = document.getElementById('nonlinearRangePriceSlider')
+    nodes = [
+    	document.getElementById('lower-price-span')
+    	document.getElementById('upper-price-span')
+    ]
+    nodesInput = [
+    	document.getElementById('lower-price-input')
+    	document.getElementById('upper-price-input')
+    ]
+
+    noUiSlider.create nonLinearSlider,
+      connect: true
+      behaviour: 'tap'
+      start: [
+        nodesInput[0].value,
+        nodesInput[1].value
+      ]
+      range:
+        'min': [ 0 ]
+        'max': [ 15000 ]
+
+
+    nonLinearSlider.noUiSlider.on 'update', (values, handle, unencoded, isTap, positions) ->
+      nodes[handle].innerHTML  = parseInt(values[handle])
+      nodesInput[handle].value = parseInt(values[handle])
+
+      return
+
+    $('a.collapse-filter-link').on 'click', (e) ->
+      target = $(this).find("span")
+      if target.html() == "-"
+        target.html "+"
+      else
+        target.html "-"
 $ ->
   $.validator.setDefaults
     errorPlacement: (error, element) ->

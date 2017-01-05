@@ -18,5 +18,6 @@
 //= require jquery.validate.additional-methods
 //= require select2.min
 //= require jquery-readySelector
+//= require nouislider.min
 //= require_tree ../../../vendor/assets/javascripts/bootstrap-fileinput
 //= require_tree ./threadhabits

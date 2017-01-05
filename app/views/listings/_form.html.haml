@@ -31,7 +31,7 @@
         .form-group
           = f.label :product_type
           %br/
-          = f.select :product_type, options_for_select(@products.map{ |v| [v.name] }), { include_blank: "--Select Product Type--" }, class: "form-control input-lg product-type-listing-input"
+          = f.select :product_type_id, options_for_select(@products.map{ |v| [v.name, v.id] }), { include_blank: "--Select Product Type--" }, class: "form-control input-lg product-type-listing-input"
         .product-size
           .form-group
             -# Size field will be output

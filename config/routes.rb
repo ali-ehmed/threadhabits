@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :listings do
     collection do
       post "uploads/" => "listings#uploads", :constraints => { :format => 'json' }
-      get "collect_size/:product_type" => "listings#collect_size"
+      get "collect_size/:product_type_id" => "listings#collect_size"
     end
   end
   resources :settings, only: [:index] do
@@ -20,7 +20,8 @@ Rails.application.routes.draw do
 
   get ":username" => "profiles#show", as: :profiles
 
-  get 'welcome/index'
-  root to: "welcome#index"
+  get '/' => "home#index", as: :fetch_listings
+  # get "/" => "home#fetch_listings", as: :fetch_listings
+  root to: "home#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

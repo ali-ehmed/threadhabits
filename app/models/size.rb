@@ -13,8 +13,11 @@
 class Size < ApplicationRecord
   belongs_to :product_type
 
-  has_many :listings_sizes
-  has_many :listings, through: :listings_sizes
+  has_many :listings
 
   scope :product, -> (name) { joins(:product_type).where "lower(products.name) = ?",  name.downcase}
+
+  %w(tops bottoms shoes accessories).each do |product|
+    scope product.to_sym, -> { joins(:product_type).where "lower(product_types.name) = ?",  product}
+  end
 end
