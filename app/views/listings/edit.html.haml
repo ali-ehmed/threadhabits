@@ -1,0 +1,14 @@
+- images, configs = listing_raw_images(@listing)
+- content_for :javascript do
+  Listings.initializeListingsForm();
+  Listings.refreshFileInput(#{images}, #{configs});
+
+- title "Edit your Listing"
+= heading_section :h2, "Sell Item"
+.authform.authform-container-fluid
+  .list-group.categories
+    %a.list-group-item.active{:href => listings_path(slug: @listing.slug)}
+      Category:
+      = @category.name
+= render layout: "form", locals: { action: update_listings_path, method: :put } do |f|
+  = render partial: "size_field", locals: { sizes: f.object.product_type.sizes }

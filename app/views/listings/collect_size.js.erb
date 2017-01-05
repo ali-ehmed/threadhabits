@@ -1,5 +1,5 @@
 <% if @product_type.present? %>
-  $("#new_listing").find(".product-size").html("<%= escape_javascript(render partial: 'size_field', locals: { sizes: @sizes }).html_safe %>");
+  $("#listingForm").find(".product-size").html("<%= escape_javascript(render partial: 'size_field', locals: { sizes: @sizes }).html_safe %>");
 <% else %>
   alert("Couldn't Fetch Product Type")
 <% end %>

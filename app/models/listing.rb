@@ -25,6 +25,7 @@ class Listing < ApplicationRecord
   belongs_to :category
   belongs_to :person
   belongs_to :size
+  belongs_to :product_type
   belongs_to :company, class_name: "Designer", foreign_key: :company_id
 
   has_many :uploads, dependent: :destroy
@@ -37,9 +38,8 @@ class Listing < ApplicationRecord
 
   include Utilities
 
-  attr_accessor :upload_photos
-
   validates_presence_of :description, :size
+  validates_uniqueness_of :slug
 
   %w(tops bottoms shoes accessories).each do |product|
     scope product.to_sym, -> { joins(:size => :product_type).where("lower(product_types.name) = ?", product) }
@@ -49,18 +49,25 @@ class Listing < ApplicationRecord
     "1/10", "2/10", "3/10", "4/10", "5/10", "6/10", "7/10", "8/10", "9/10", "Deadstock"
   ]
 
-  def upload_photos=(files = [])
-    self.display_image = files.first
+  PER_PAGE = 30
+
+  def upload_photos(files = [])
+    self.display_image = files.last
     save!
-    files.each{|file| (@upload_photos ||= []) << uploads.create(image: file) }
+    files.each{|file| uploads.create(image: file) }
   end
 
   def has_address?
     address.present?
   end
 
+  def valid_attribute?(attribute_name)
+    self.valid?
+    self.errors[attribute_name].blank?
+  end
+
   def self.fetch_by_filters(filters)
-    listings = all
+    listings = all.includes(:size, :company)
     conditions = []
 
     if filters[:category_ids]
@@ -85,7 +92,7 @@ class Listing < ApplicationRecord
       conditions << "sizes.name in (:size_names)"
     end
 
-    if filters[:location]
+    if filters[:location].present?
       listings = listings.joins(:address)
       conditions << "addresses.latitude in (:latitude) and addresses.longitude in (:longitude)"
     end

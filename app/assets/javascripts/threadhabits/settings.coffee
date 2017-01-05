@@ -66,11 +66,12 @@ class window.Location extends Settings
       $(@container).css "height", "0px"
 
   startMap: (callback) =>
+    Settings.current_location = gon.current_location if typeof gon != "undefined"
     mapInterval = setInterval(->
       if !jQuery.isEmptyObject(Settings.current_location)
         clearInterval mapInterval
         callback()
-    , 50)
+    , 500)
 
   setMap: =>
     that = this

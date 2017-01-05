@@ -3,11 +3,7 @@ class HomeController < ApplicationController
   before_action :filter_data, only: [:index, :fetch_listings]
 
   def index
-    @listings = Listing.fetch_by_filters(params).paginate(:page => params[:page], :per_page => 30)
-  end
-
-  def fetch_listings
-    render :index
+    @listings = Listing.fetch_by_filters(params).paginate(:page => params[:page], :per_page => Listing::PER_PAGE)
   end
 
   private

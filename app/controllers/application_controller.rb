@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_person!, :authorize_person!, if: :admin_controller?
+  # before_action :reset_location
 
   def landing_banner(flag = false) @landing_banner = !person_signed_in? && flag end;
 
@@ -14,12 +15,6 @@ class ApplicationController < ActionController::Base
 
   def admin_controller?
     params[:controller].include?("admin")
-  end
-
-  protected
-
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :username, :first_name, :last_name, :terms])
   end
 
   def store_config(options = {})
@@ -40,5 +35,13 @@ class ApplicationController < ActionController::Base
         title: address.location
       }
     }
+
+    gon.current_location
+  end
+
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :username, :first_name, :last_name, :terms])
   end
 end

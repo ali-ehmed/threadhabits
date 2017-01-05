@@ -1,8 +1,11 @@
 class ListingsController < ApplicationController
   before_action :authenticate_person!
-  before_action :fetch_category!, only: [:new]
-  before_action :set_default_request_format, only: [:create]
-  before_action :set_listing, only: [:show]
+  before_action :set_current_person_listing, only: [:edit, :update]
+  before_action :fetch_category!, only: [:new, :edit]
+  before_action :set_default_request_format, only: [:create, :update]
+  before_action :set_listing_data, only: [:new, :edit]
+
+  include Publisher
 
   def index
     @categories = Category.all
@@ -10,39 +13,33 @@ class ListingsController < ApplicationController
 
   def new
     @listing = current_person.listings.build
-    @products = ProductType.all
-    @designers = Designer.all
-
-    if @listing.has_address?
-      @address = @listing.address
-    else
-      @address = current_person.address
-    end
-
-    if @address.present?
-      set_geocode_location!(@address)
-    end
+    set_address!(current_person.address)
 
     @listing.build_address
   end
 
   def create
     @listing = current_person.listings.build
-    respond_to do |format|
-      @listing.attributes = listing_params
-      if @listing.save
-        store_config(listing_id: @listing.id)
-        flash[:notice] = "Your Product has been Published Sucessfully"
-        format.json { render json: { status: 200, redirect_to: root_path } }
-      else
-        format.json { render json: { status: false, errors: @listing.errors } }
-      end
-    end
+    change = PlanListing.new(@listing, params)
+    change.add_subscriber(PersistenceResponse.new(self))
+    change.attributes = listing_params
+    change.perform
   end
 
   def uploads
     listing = Listing.find(fetch_stored_config(:listing_id))
-    listing.upload_photos = uploads_params[:upload_photos]
+    listing.upload_photos uploads_params[:upload_photos]
+    render json: 200
+  end
+
+  def destroy_uploads
+    upload = Upload.find(params[:upload_id]).destroy
+    listing = upload.listing
+    if listing.uploads.blank?
+      listing.update_attribute(:display_image, nil)
+    else
+      listing.update_attribute(:display_image, listing.uploads.last.image)
+    end
     render json: 200
   end
 
@@ -55,9 +52,34 @@ class ListingsController < ApplicationController
   end
 
   def show
+    @listing = Listing.includes(:uploads).find_by_slug(params[:slug])
+    redirect_to root_path, flash: { alert: "Page not found" } unless @listing
+
     @uploads = @listing.uploads
-    if @listing.has_address?
-      set_geocode_location!(@listing.address)
+    set_geocode_location!(@listing.address)
+  end
+
+  def edit
+    set_address!(@listing.address)
+  end
+
+  def update
+    change = PlanListing.new(@listing, params)
+    change.add_subscriber(PersistenceResponse.new(self))
+    change.attributes = listing_params
+    change.perform
+  end
+
+  class PersistenceResponse < SimpleDelegator
+    def listing_updated(listing)
+      unless params[:attribute_name]
+        flash[:notice] = "Your Product has been Saved Sucessfully"
+      end
+      render json: { status: 200, redirect_to: root_path }
+    end
+
+    def listing_failed(status = false)
+      render json: status
     end
   end
 
@@ -68,8 +90,12 @@ class ListingsController < ApplicationController
     end
 
     def fetch_category!
-      @category = Category.find_by_slug(params[:slug])
-      redirect_to listings_path unless @category
+      @category = if params[:category_slug].present?
+                    Category.find_by_slug(params[:category_slug])
+                  elsif @listing
+                    @listing.category
+                  end
+      redirect_to listings_path if !@category
     end
 
     def listing_params
@@ -84,11 +110,21 @@ class ListingsController < ApplicationController
       )
     end
 
-    def set_listing
-      begin
-        @listing = Listing.find(params[:id])
-      rescue ActiveRecord::RecordNotFound => e
-        redirect_to root_path, flash: { alert: "Page not found" }
+    def set_listing_data
+      @products = ProductType.all
+      @designers = Designer.all
+    end
+
+    def set_current_person_listing
+      add_subscriber(self)
+      @listing = current_person.listings.includes(:uploads).find_by_slug(params[:slug])
+      redirect_to root_path, flash: { alert: "Page not found" } unless @listing
+    end
+
+    def set_address!(address)
+      @address = address
+      if @address.present?
+        set_geocode_location!(@address)
       end
     end
 end

@@ -46,6 +46,13 @@
                       %li 31 Items
                       %li 19 Sales
                   = link_to "Message", "#", class: "btn btn-default btn-block"
-              = link_to "Purchase with Paypal", "#", class: "btn btn-default btn-block"
-              = link_to "Add to cart", "#", class: "btn btn-default btn-block"
+              = link_to "#", class: "btn btn-default btn-block" do
+                %i.fa.fa-paypal
+                Purchase with Paypal
+              = link_to "#", class: "btn btn-default btn-block" do
+                %i.fa.fa-cart-plus
+                Add to cart
+              = link_to edit_listings_path(@listing.slug, category_slug: @listing.category.slug), class: "btn btn-primary btn-block" do
+                %i.fa.fa-pencil
+                Edit
               #google-maps

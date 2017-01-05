@@ -1,12 +1,11 @@
 - content_for :javascript do
-  Listings.initializeListingsForm();
   $location = new Location();
   $location.initializeLocation();
   $location.setMapForm();
 
   window.wrapper_upload = $(".listing-uploads").find(".dummy-box");
 
-= form_for @listing, html: { class: "listing-form", :multipart => true }  do |f|
+= form_for @listing, url: action, method: method, html: { id: "listingForm", class: "listing-form", :multipart => true, data: { new_record: @listing.new_record? } }  do |f|
   = hidden_field_tag :listing_id, f.object.id
   .container
     .row
@@ -31,7 +30,7 @@
         .form-group
           = f.label :product_type
           %br/
-          = f.select :product_type_id, options_for_select(@products.map{ |v| [v.name, v.id] }), { include_blank: "--Select Product Type--" }, class: "form-control input-lg product-type-listing-input"
+          = f.select :product_type_id, options_for_select(@products.map{ |v| [v.name, v.id] }, f.object.product_type_id), { include_blank: "--Select Product Type--" }, class: "form-control input-lg product-type-listing-input"
         .product-size
           .form-group
             -# Size field will be output

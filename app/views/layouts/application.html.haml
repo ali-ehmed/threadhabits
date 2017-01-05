@@ -3,6 +3,7 @@
   %head
     = render partial: "layouts/components/head"
   %body{ class: [view_controller, view_action].join(" ") }
+    = include_gon
     = render partial: "layouts/navbar/top_navigation"
     = render partial: "layouts/navbar/bottom_navigation"
 

@@ -111,3 +111,31 @@ label.error:before {
 }
 
 .checkbox { padding-left: 22px; }
+
+// Pagination
+.items-pagination {
+  text-align: center;
+  li span {
+    border-width: 2px !important;
+    &:focus, &:hover {
+      background-color: $success;
+      border-color: $success-border;
+    }
+  }
+  li a {
+    border-width: 2px; color: #777 !important;
+    &:focus, &:hover {
+      background-color: $success;
+      border-color: $success-border;
+    }
+  }
+  li.active span {
+    background-color: $black;
+    border-color: $success-border;
+    color: $white;
+    &:focus, &:hover {
+      background-color: $success;
+      border-color: $success-border;
+    }
+  }
+}

@@ -6,5 +6,9 @@
       %h4 Select Category
       .list-group.categories
         - @categories.each do |category|
-          %a.list-group-item{:href => new_listing_path(slug: category.slug)}
-            = category.name
+          - if params[:slug].present?
+            %a.list-group-item{:href => edit_listings_path(params[:slug], category_slug: category.slug)}
+              = category.name
+          - else
+            %a.list-group-item{:href => new_listing_path(category_slug: category.slug)}
+              = category.name

@@ -40,11 +40,21 @@
   redirect_to: ""
   validateForm: ->
     that = this
-    $('#new_listing').validate
+    remoteUrl = $('form.listing-form').attr("action") + ".json?"
+    remoteMethod =  if $('form.listing-form').data("new-record")
+                      "POST"
+                    else
+                      "PUT"
+
+    $('form#listingForm').validate
       debug: true
       errorClass: "error"
       rules:
-        "listing[name]": 'required'
+        "listing[name]":
+          required: true
+          remote:
+            url: remoteUrl + "attribute_name=slug"
+            type: remoteMethod
         "listing[description]": 'required'
         "listing[product_type_id]": 'required'
         "listing[price]": 'required'
@@ -55,6 +65,8 @@
           required: true
           extension: "png|jpg|jpeg"
       messages:
+        "listing[name]":
+          remote: "This item name is already taken"
         "listing[product_type_id]": 'Product Type must be selected'
         "listing[size_id]": 'Sizes must be selected'
         "upload_photos[]": 'Please select Images for your listing.'
@@ -79,13 +91,84 @@
       success: (response) ->
         if response.status == 200
           that.redirect_to = response.redirect_to
-          $upload.click()
+          totalFiles = $("#listing_upload_photos").fileinput('getFilesCount')
+          if $form.data("new-record") == false && totalFiles == 0
+            window.location.href = that.redirect_to
+          else
+            $upload.click()
         else
           $form.find("input[type='submit']").prop("disabled", false)
-          alert "Couldn't Save Listing at the moment"
+          console.log "Couldn't Save Listing at the moment"
       error: (response) ->
         console.log "error"
         $form.find("input[type='submit']").prop("disabled", false)
+
+  # For New Listing Check
+  toggleFileUploadValidation: ->
+    $(document).on "click", ".listing-uploads .fileinput-remove, .listing-uploads .kv-file-remove", ->
+      setTimeout(->
+        # Waiting for callback to complete (Already set on above plugin selectors)
+        totalFiles = $("#listing_upload_photos").fileinput('getFilesCount')
+        if totalFiles == 0
+          $("#listing_upload_photos").rules 'add',
+            required: true
+      , 1000)
+
+  # For Edit Listing Check
+  refreshFileInput: (imgsPath = [], imgsConfig = []) ->
+    that = this
+
+    parsedConfig = []
+    imgsConfig.forEach (val, index) ->
+      console.log index
+      parsed = JSON.parse(val)
+      parsedConfig.push parsed
+
+      setTimeout(->
+        uploadId = parsed.upload_id
+        removeElem = $(".listing-uploads").find("button.kv-file-remove")
+
+        $(removeElem[index]).on "click", ->
+          elem = $(this)
+          $.ajax
+            url: '/listings/delete_uploads/' + uploadId
+            type: 'DELETE'
+            success: (result) ->
+              # If There are no images in the frame setting File Input Validation
+              elem.closest(".file-preview-frame").fadeOut 500, ->
+                elem.remove()
+                removeElems = $(".listing-uploads").find("button.kv-file-remove")
+                $(".file-caption-name").html('<i class="glyphicon glyphicon-file kv-caption-icon"></i> ' + removeElems.length + " files selected")
+
+                if removeElems.length == 0
+                  $(".listing-uploads").find(".file-drop-zone").html '<div class="file-drop-zone-title">Drag &amp; drop files here …<br>(or click to select files)</div>'
+                  $("#listing_upload_photos").rules 'add',
+                    required: true
+              return
+            error: ->
+              alert "Something went wrong"
+      , 500)
+
+    # Setting Validation of File Input
+    if imgsPath.length >= 1
+      $("#listing_upload_photos").rules 'add',
+        required: false
+
+      minFileCount = 0
+    else
+      minFileCount = 1
+
+    # Refreshing File Input
+    $("#listing_upload_photos").fileinput('refresh', {
+      initialPreview: imgsPath
+      minFileCount: minFileCount
+      initialPreviewConfig: parsedConfig
+      showBrowse: true
+      initialPreviewFileType: 'image'
+      initialPreviewAsData: false
+      overwriteInitial: false
+      initialPreviewShowDelete: true
+    })
 
   initializeListingsForm: ->
     that = this
@@ -101,18 +184,6 @@
         alert "Couldn't fetch sizes at the moment"
         return
       )
-
-    setTimeout(->
-      # Loading DOM to let the plugin initialized
-      $(document).on "click", ".listing-uploads .fileinput-remove, .listing-uploads .kv-file-remove", ->
-        setTimeout(->
-          # Waiting for callback to complete (Already set on above plugin selectors)
-          totalFiles = $("#listing_upload_photos").fileinput('getFilesCount')
-          if totalFiles == 0
-            $("#listing_upload_photos").rules 'add',
-              required: true
-        , 1000)
-    , 1000)
 
     $("#listing_upload_photos").fileinput(
       uploadUrl: "/listings/uploads.json",
@@ -138,8 +209,9 @@
     ).on('filebatchuploadsuccess', (event, data) ->
       out = ''
       $.each data.files, (key, file) ->
-        fname = file.name
-        out = out + '<li>' + 'Uploaded file # ' + key + 1 + ' - ' + fname + ' successfully.' + '</li>'
+        if file
+          fname = file.name
+          out = out + '<li>' + 'Uploaded file # ' + key + 1 + ' - ' + fname + ' successfully.' + '</li>'
         return
       $('#file-upload-success-container ul').append out
       $('#file-upload-success-container').fadeIn 'slow'
@@ -149,8 +221,11 @@
         @location.href = that.redirect_to
       , 3000)
       return
-    ).on 'filebatchuploaderror', (event, data) ->
+    ).on('filebatchuploaderror', (event, data) ->
       $("form").find("input[type='submit']").prop("disabled", false)
+    ).on 'fileerror', (event, data) ->
+      $("form").find("input[type='submit']").prop("disabled", false)
+      $("form").find("input[type='submit']").val("Submit")
 
 @Home =
   initializeFilters: ->
