@@ -2,7 +2,7 @@ class ListingsController < ApplicationController
   before_action :authenticate_person!
   before_action :fetch_category!, only: [:new]
   before_action :set_default_request_format, only: [:create]
-  # before_action :set_listing, only: [:uploads]
+  before_action :set_listing, only: [:show]
 
   def index
     @categories = Category.all
@@ -54,6 +54,13 @@ class ListingsController < ApplicationController
     end
   end
 
+  def show
+    @uploads = @listing.uploads
+    if @listing.has_address?
+      set_geocode_location!(@listing.address)
+    end
+  end
+
   private
 
     def set_default_request_format
@@ -78,6 +85,10 @@ class ListingsController < ApplicationController
     end
 
     def set_listing
-      @listing = Listing.find(params[:id])
+      begin
+        @listing = Listing.find(params[:id])
+      rescue ActiveRecord::RecordNotFound => e
+        redirect_to root_path, flash: { alert: "Page not found" }
+      end
     end
 end

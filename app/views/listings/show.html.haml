@@ -1,0 +1,51 @@
+- content_for :javascript do
+  $location = new Location();
+  $location.initializeLocation();
+  $location.setMap();
+
+.listing-details
+  .row
+    .col-md-6.box.box-left
+      .col-md-12
+        .images
+          - @uploads.each do |upload|
+            = image_tag upload.image.url(:large), class: "img-responsive listing"
+    .col-md-6.box.box-right
+      .col-md-10
+        .detailed
+          .heading-top
+            %h1
+              = @listing.company.try(:name)
+              .pull-right
+                = number_to_currency @listing.price
+          .heading-bottom
+            %span.item-name
+              = @listing.name
+            %span.size.pull-right
+              = @listing.size.try(:name)
+
+          .description
+            = @listing.description
+          .condition
+            %label
+              Condition:
+            = @listing.condition
+
+          .owner-profile
+            .col-md-10
+              .row.profile-details
+                .col-md-5
+                  = image_tag @listing.person.avatar.url(:medium), class: "img-responsive"
+                .col-md-7
+                  .heading
+                    = @listing.person.full_name
+                  .username
+                    = @listing.person.tagged_username
+                  .sellings
+                    %ul.list-inline
+                      %li 31 Items
+                      %li 19 Sales
+                  = link_to "Message", "#", class: "btn btn-default btn-block"
+              = link_to "Purchase with Paypal", "#", class: "btn btn-default btn-block"
+              = link_to "Add to cart", "#", class: "btn btn-default btn-block"
+              #google-maps

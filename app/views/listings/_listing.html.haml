@@ -1,12 +1,13 @@
 .col-md-3.col-sm-3.col-xs-3
   .thumbnail
-    = image_tag listing.display_image.url(:medium)
+    %a{href: listing_path(listing.id)}
+      = image_tag listing.display_image.url(:medium)
     .caption
       %p.created= time_ago_in_words(listing.created_at)
       .desc
         %h4
-          = listing.name
+          = listing.company.try(:name)
           %small= listing.size.try(:name)
         %p.content
-          = listing.description
+          = listing.name
       %p.price= number_to_currency listing.price
