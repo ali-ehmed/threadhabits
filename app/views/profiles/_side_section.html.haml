@@ -1,4 +1,10 @@
+- content_for :javascript do
+  $location = new Location();
+  $location.initializeLocation();
+  $location.setMap();
+
 .side-content
   = link_to "Message", "#", class: "btn btn-default btn-block"
   = link_to "Follow", "#", class: "btn btn-default btn-block"
   = link_to "Feedback", "#", class: "btn btn-default btn-block"
+#google-maps

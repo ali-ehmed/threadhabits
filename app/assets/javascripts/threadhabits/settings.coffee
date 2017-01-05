@@ -51,8 +51,9 @@ class window.Settings
       return
 
 class window.Location extends Settings
-  constructor: (map = true) ->
+  constructor: (map = true, presetLocation = true) ->
     @map = map
+    @presetLocation = presetLocation
     @inputs =
       location: document.getElementById("location_input")
       latitude: document.getElementById("latitude_input")
@@ -63,7 +64,7 @@ class window.Location extends Settings
 
     if @map == false
       $(@container).css "height", "0px"
-      
+
   startMap: (callback) =>
     mapInterval = setInterval(->
       if !jQuery.isEmptyObject(Settings.current_location)
@@ -72,8 +73,9 @@ class window.Location extends Settings
     , 50)
 
   setMap: =>
+    that = this
     @startMap ->
-      GoogleMaps.initMap @container, Settings.current_location
+      GoogleMaps.initMap that.container, Settings.current_location
 
   setMapForm: ->
     that = this
@@ -82,8 +84,9 @@ class window.Location extends Settings
 
       MainSubject.subscribe(that)
 
-      MainSubject.publish(["updateLocationInputs"], "latitude", Settings.current_location.latitude)
-      MainSubject.publish(["updateLocationInputs"], "longitude", Settings.current_location.longitude)
+      if that.presetLocation == true
+        MainSubject.publish(["updateLocationInputs"], "latitude", Settings.current_location.latitude)
+        MainSubject.publish(["updateLocationInputs"], "longitude", Settings.current_location.longitude)
 
       map = GoogleMaps.initMap that.container, Settings.current_location, (marker) ->
         MainSubject.publish(["updateCurrentLocation", "updateLocationInputs"], "latitude", marker.latLng.lat())

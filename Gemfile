@@ -63,6 +63,10 @@ gem "letter_opener", :group => :development
 gem 'compass-rails'
 
 gem 'jquery-validation-rails'
+
+# Pagination
+gem 'will_paginate', '~> 3.1.0'
+gem 'will_paginate-bootstrap', '~> 1.0', '>= 1.0.1'
 # Development and Test
 group :development do
   gem 'better_errors'

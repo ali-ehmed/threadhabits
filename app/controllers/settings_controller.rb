@@ -1,7 +1,7 @@
 class SettingsController < ApplicationController
   before_action :authenticate_person!
   before_action :prepend_configuration, :except => [:update]
-  before_action only: [:profiles] { google_service(true) }
+
   @@current_settings = ""
 
   def profiles
@@ -27,7 +27,7 @@ class SettingsController < ApplicationController
     @current_settings = @@current_settings
     if current_person.update_attributes(person_params)
       bypass_sign_in(current_person)
-      redirect_to stored_location!, notice: "#{@current_settings.capitalize} settings updated successfully"
+      redirect_to fetch_stored_config(:location), notice: "#{@current_settings.capitalize} settings updated successfully"
     else
       flash[:alert] = "Review errors below"
       render @current_settings.to_sym
@@ -62,6 +62,6 @@ class SettingsController < ApplicationController
 
     def prepend_configuration
       @@current_settings = params[:action]
-      store_current_location!
+      store_config(location: request.url)
     end
 end

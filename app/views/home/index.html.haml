@@ -6,6 +6,8 @@
       .listings
         .row
           = render partial: "listings/listing", collection: @listings
+
+        = will_paginate @listings, renderer: BootstrapPagination::Rails
     - else
       .alert.alert-success
         There are no listings
