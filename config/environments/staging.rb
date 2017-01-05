@@ -41,32 +41,32 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
 
-  # config.default_email = "quinn@threadhabits.com"
-  config.default_email = "ali.ahmed.cs2104@gmail.com"
+  config.default_email = "quinn@threadhabits.com"
+  # config.default_email = "ali.ahmed.cs2104@gmail.com"
 
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  # config.action_mailer.delivery_method = :smtp
-  #
-  # config.action_mailer.smtp_settings = {
-  #   :address              => ENV["smtp_address"],
-  #   :port                 => "587",
-  #   :domain               => ENV["smtp_domain"],
-  #   :user_name            => ENV["smtp_username"],
-  #   :password             => ENV["smtp_password"],
-  #   :authentication       => 'plain'
-  # }
-
   config.action_mailer.delivery_method = :smtp
+
   config.action_mailer.smtp_settings = {
     :address              => ENV["smtp_address"],
     :port                 => "587",
     :domain               => ENV["smtp_domain"],
     :user_name            => ENV["smtp_username"],
     :password             => ENV["smtp_password"],
-    :authentication       => 'login',
-    :enable_starttls_auto => true
+    :authentication       => 'plain'
   }
+
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   :address              => ENV["smtp_address"],
+  #   :port                 => "587",
+  #   :domain               => ENV["smtp_domain"],
+  #   :user_name            => ENV["smtp_username"],
+  #   :password             => ENV["smtp_password"],
+  #   :authentication       => 'login',
+  #   :enable_starttls_auto => true
+  # }
 
   config.action_mailer.default_url_options = { host: ENV["domain"] }
 
