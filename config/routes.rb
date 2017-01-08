@@ -1,12 +1,10 @@
 Rails.application.routes.draw do
-
-  get 'messages/index'
-
   ActiveAdmin.routes(self)
   devise_for :people, controllers: { registrations: "people/registrations" }
 
   resources :inbox, only: [:index, :create, :show]
   resources :messages, only: [:new, :create]
+  resources :follow, only: [:index, :create, :update]
 
   resources :listings, except: [:show, :edit, :update, :destroy] do
     collection do

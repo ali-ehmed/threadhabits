@@ -1,20 +1,17 @@
 # == Schema Information
 #
-# Table name: messages
+# Table name: follows
 #
 #  id           :integer          not null, primary key
-#  chat_room_id :integer
-#  sender_id    :integer
-#  receiver_id  :integer
-#  body         :text
+#  following_id :integer
+#  follower_id  :integer
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
-#  read         :boolean          default(FALSE)
 #
 
 require 'test_helper'
 
-class MessageTest < ActiveSupport::TestCase
+class FollowTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

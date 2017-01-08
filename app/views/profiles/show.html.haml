@@ -34,15 +34,15 @@
                   %br/
                   %span.label
                     Sales
-                %li
+                %li.followers
                   %span.value
-                    5, 436
+                    = current_person.followers.count
                   %br/
                   %span.label
                     Followers
-                %li
+                %li.followings
                   %span.value
-                    352
+                    = current_person.followings.count
                   %br/
                   %span.label
                     Following

@@ -1,3 +1,29 @@
+@Follow =
+  initializeFollowings: ->
+    $(".follow-person").click (e) ->
+      e.preventDefault()
+      $elem = $(this)
+      $(this).prop "disabled", true
+      $.ajax
+        type: $(this).data("method")
+        url: $(this).attr("href")
+        dataType: "json"
+        complete: ->
+          $(this).prop "disabled", false
+        success: (response) ->
+          $elem.attr("data-method", response.method)
+          $elem.attr("href", response.url)
+          if $elem.data("follow") == false
+            $(".follow-person").html("Follow")
+            $elem.attr("data-follow", true)
+          else
+            $elem.attr("data-follow", false)
+            $(".follow-person").html("Unfollow")
+          $(".profile-desc .followings span.value").text response.followings
+          $(".profile-desc .followers span.value").text response.followers
+        error: (response) ->
+          console.log "error"
+
 @Inbox =
   validateForm: ->
     that = this

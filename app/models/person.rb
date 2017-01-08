@@ -54,6 +54,9 @@ class Person < ApplicationRecord
   has_many :sent_messages, class_name: "Message", foreign_key: :sender_id
   has_many :received_messages, class_name: "Message", foreign_key: :receiver_id
 
+  has_many :followings, class_name: "Follow", foreign_key: :following_id
+  has_many :followers, class_name: "Follow", foreign_key: :follower_id
+
   attr_accessor :terms, :login, :setting_tab
 
   validates_acceptance_of :terms
@@ -132,5 +135,9 @@ class Person < ApplicationRecord
     else
       chat_rooms.joins(:persons).where("people.id = ? and listing_id = ?", recepient, listing_id)
     end
+  end
+
+  def following_a_person(person_id)
+    followings.find_by_follower_id(person_id)
   end
 end

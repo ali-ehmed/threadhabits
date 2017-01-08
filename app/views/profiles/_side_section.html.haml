@@ -4,9 +4,14 @@
   $location.setMap();
 
   Inbox.initializeMessageBox();
+  Follow.initializeFollowings();
 
 .side-content
   = link_to "Message", "#", id: "message-box-link", data: { url: new_message_path(receiver_id: @person.id) }, class: "btn btn-default btn-block" unless @person.is_current_person?(current_person)
-  = link_to "Follow", "#", class: "btn btn-default btn-block"
+  - unless @person.is_current_person?(current_person)
+    - if current_person.following_a_person(@person.id).present?
+      = link_to "Unfollow", follow_path(current_person.following_a_person(@person.id).id), data: { method: :put, follow: true }, class: "btn btn-default btn-block follow-person"
+    - else
+      = link_to "Follow", follow_index_path(follower_id: @person.id), data: { method: :post, follow: false }, class: "btn btn-default btn-block follow-person"
   = link_to "Feedback", "#", class: "btn btn-default btn-block"
 #google-maps
