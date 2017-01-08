@@ -1,0 +1,61 @@
+= render layout: "inbox/inbox" do
+  - content_for :javascript do
+    Inbox.validateForm();
+
+  .message-detail
+    - if @chat_room.listing.present?
+      .row
+        .col-md-9.col-sm-9.col-xs-9.listing
+          .col-md-4.col-sm-4.col-xs-4
+            = link_to detail_listings_path @chat_room.listing.slug do
+              = image_tag @chat_room.listing.display_image.url(:medium), class: "img-responsive recepient-img"
+          .col-md-8.col-sm-8.col-xs-8
+            %h2
+              = link_to detail_listings_path @chat_room.listing.slug do
+                = @chat_room.listing.name
+              %small.pull-right
+                = number_to_currency @chat_room.listing.price
+            .item-info
+              %label
+                Designer/Company:
+              = @chat_room.listing.company.name
+              %br
+              %label
+                Size:
+              = @chat_room.listing.size.name
+              %br
+              %label
+                Condition:
+              = @chat_room.listing.condition
+            -# %button.btn.btn-default Add to Cart
+            %button.btn.btn-default Buy it now
+
+    .messages-list
+      %ul.list-group
+        - @messages.each do |message|
+          %li.list-group-item
+            .row
+              .col-md-2.col-sm-2.col-xs-2
+                = link_to profiles_path message.sender.username do
+                  = image_tag message.sender.avatar.url(:medium), class: "img-responsive"
+              .col-md-10.col-xs-10.col-sm-10
+                .top-section
+                  %span.recepient-name
+                  = link_to profiles_path message.sender.username do
+                    = message.sender.full_name
+                  %span.message-date.pull-right= message.created_at.strftime("%B %d, %Y")
+                .bottom-section
+                  = message.body
+      .message-form
+        .row
+          .col-md-2.col-sm-2.col-xs-2
+            = image_tag current_person.avatar.url(:medium), class: "img-responsive"
+          .col-md-10.col-xs-10.col-sm-10
+            = form_for @message, url: messages_path(chatroom_id: @chat_room.id), method: :post, html: { id: "messageForm" } do |f|
+              .form-group
+                = label_tag :message
+                = f.text_area :body, class: "form-control input-lg", row: 7
+                = f.hidden_field :receiver_id, value: @messages.select{ |v| v.sender_id == current_person.id }.first.try(:receiver_id) || @messages.last.sender_id
+                = f.hidden_field :sender_id, value: current_person.id
+              .form-actions.text-right
+                %button.btn.btn-primary{:type => "submit"} Reply

@@ -47,6 +47,13 @@ class Person < ApplicationRecord
   has_many :preferences
   has_many :listings
 
+  has_many :chatrooms_persons, dependent: :destroy
+  has_many :chat_rooms, through: :chatrooms_persons
+
+  has_many :messages, foreign_key: :sender_id
+  has_many :sent_messages, class_name: "Message", foreign_key: :sender_id
+  has_many :received_messages, class_name: "Message", foreign_key: :receiver_id
+
   attr_accessor :terms, :login, :setting_tab
 
   validates_acceptance_of :terms
@@ -63,8 +70,11 @@ class Person < ApplicationRecord
   has_attached_file :avatar, styles: {
     medium: "300x300#",
     thumb: "100x100#"
+  }, default_url: "profile-icon.png"
+
+  has_attached_file :cover_image, styles: {
+    medium: "851x315#"
   }
-  has_attached_file :cover_image, styles: { medium: "851x315#" }
 
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   validates_attachment_content_type :cover_image, content_type: /\Aimage\/.*\Z/
@@ -105,5 +115,22 @@ class Person < ApplicationRecord
   def valid_attribute?(attribute_name)
     self.valid?
     self.errors[attribute_name].blank?
+  end
+
+  def send_message(options)
+    message = messages.build(options)
+    message.save
+  end
+
+  def is_current_person?(person)
+    self.id == person.id
+  end
+
+  def conversations(recepient, listing_id)
+    if listing_id.blank?
+      chat_rooms.joins(:persons).where("people.id = ? and listing_id is null", recepient)
+    else
+      chat_rooms.joins(:persons).where("people.id = ? and listing_id = ?", recepient, listing_id)
+    end
   end
 end

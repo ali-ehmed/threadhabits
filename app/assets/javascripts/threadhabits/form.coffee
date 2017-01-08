@@ -1,3 +1,66 @@
+@Inbox =
+  validateForm: ->
+    that = this
+    $('#chatRoomForm').validate
+      rules:
+        "chat_room[title]": 'required'
+        "chat_room[messages_attributes][0][body]": 'required'
+        "message[body]": 'required'
+      submitHandler: (form) ->
+        that.submitMessage(form)
+        return
+
+    $('#messageForm').validate
+      rules:
+        "message[body]": 'required'
+      submitHandler: (form) ->
+        form.submit()
+        return
+
+  submitMessage: (form) ->
+    that = this
+    $form = $(form)
+    $form.find("button[type='submit']").html("<i class='fa fa-spinner fa-pulse'></i> Sending...")
+    action = $form.attr("action")
+    method = $form.attr("method")
+    $modal_body = $form.closest(".modal-body")
+    $.ajax
+      type: method
+      url: action
+      data: $form.serialize()
+      dataType: "json"
+      complete: ->
+        $form.find("button[type='submit']").hide()
+        $modal_body.find(".message-body-form").hide()
+      success: (response) ->
+        if response.status == 200
+          $modal_body.find(".message-body-success").show()
+          $modal_body.find(".inbox-link").attr "href", response.inbox_path
+        else
+          $modal_body.find(".message-body-success").hide()
+          $modal_body.find(".message-body-failure").show()
+      error: (response) ->
+        $modal_body.find(".message-body-success").hide()
+        $modal_body.find(".message-body-failure").show()
+        console.log "error"
+
+  initializeMessageBox: ->
+    $("#message-box-link").click (e) ->
+      e.preventDefault()
+      $.get $(this).data("url"), (response) ->
+        console.log "Hello"
+        $("#messageModal").modal({
+            show: true
+            backdrop: "static"
+        })
+        $("#messageModal").on 'shown.bs.modal', ->
+          Inbox.validateForm();
+          Inbox.hideMessageBox();
+
+  hideMessageBox: ->
+    $("#messageModal").on 'hidden.bs.modal', ->
+      $(".message-box").empty()
+
 @Registrations =
   validateForm: ->
     remoteUrl = "/people.json?"
@@ -175,7 +238,7 @@
             elem.prop "disabled", true
             window.setTimeout(->
               $('#file-upload-error-container').fadeOut "slow", ->
-                $('#file-upload-error-container ul').remove() 
+                $('#file-upload-error-container ul').remove()
               elem.prop "disabled", false
             , 2000)
 

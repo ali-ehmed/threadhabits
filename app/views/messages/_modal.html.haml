@@ -1,0 +1,54 @@
+#messageModal.modal.fade{"aria-labelledby" => "messageModal", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4#myModalLabel.modal-title Write a new Message
+      .modal-body
+        .message-body-form
+          - if object.is_a?(ChatRoom) and object.new_record?
+            = form_for object, url: inbox_index_path(listing_id: object.listing_id), method: :post, html: { id: "chatRoomForm" } do |f|
+              .form-group
+                -# = label_tag :title
+                -# = f.text_field :title, class: "form-control input-lg"
+                - if object.listing_id.present?
+                  = f.hidden_field :listing_id, value: object.listing_id
+              = f.fields_for :messages do |m|
+                .form-group
+                  = label_tag :message
+                  = m.text_area :body, class: "form-control input-lg", row: 7
+                  = m.hidden_field :receiver_id, value: receiver.id
+                  = m.hidden_field :sender_id, value: sender.id
+
+              .form-actions.text-center
+                %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+                %button.btn.btn-primary.btn-container{:type => "submit"} Send
+          - else
+            = form_for object, url: messages_path(chatroom_id: @chat_room.id), method: :post, html: { id: "chatRoomForm" } do |f|
+              -# .form-group
+                = label_tag :title
+                = f.text_field :title, class: "form-control input-lg", disabled: true, value: @chat_room.title
+              .form-group
+                = label_tag :message
+                = f.text_area :body, class: "form-control input-lg", row: 7
+                = f.hidden_field :receiver_id, value: receiver.id
+                = f.hidden_field :sender_id, value: sender.id
+              .form-actions
+                %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+                %button.btn.btn-primary.send-btn{:type => "submit"} Send
+
+        .message-body-success.hide-content
+          .alert.alert-success
+            %i.fa.fa-check-circle-o
+            Your Message has been sent successfully.
+            %a.inbox-link{href: "#"}
+              Check your Inbox.
+          .form-actions
+            %button.btn.btn-primary.btn-container{"data-dismiss" => "modal", :type => "button"} OK
+        .message-body-failure.hide-content
+          .alert.alert-danger
+            %i.fa.fa-ban
+            There was something wrong while sending a message.
+          .form-actions
+            %button.btn.btn.btn-primary.btn-container{"data-dismiss" => "modal", :type => "button"} OK

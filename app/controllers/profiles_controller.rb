@@ -5,7 +5,7 @@ class ProfilesController < ApplicationController
     if current_person.has_address?
       set_geocode_location!(current_person.address)
     end
-
+    
     @listings = @person.listings
   end
 

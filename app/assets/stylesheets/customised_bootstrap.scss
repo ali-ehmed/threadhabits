@@ -26,8 +26,9 @@ $alert-success-border-color: #89ad6a;
 }
 
 .form-control {
-  border-width: 3px;
+  border-width: 2px;
   border-color: #aaa;
+  border-radius: 0px;
   &:focus {
     border-width: 2px;
     border-color: $form-input-color;
@@ -121,4 +122,13 @@ a.list-group-item:hover, a.list-group-item:focus, button.list-group-item:hover, 
   background-color: #E8E8E8;
   border-color: #aaa;
   border-width: 3px;
+}
+
+.panel.panel-default {
+  border-color: #aaa !important;
+  border-radius: 2px !important;
+}
+
+.btn-container {
+  padding: 6px 50px;
 }

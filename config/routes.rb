@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
+
+  get 'messages/index'
+
   ActiveAdmin.routes(self)
   devise_for :people, controllers: { registrations: "people/registrations" }
+
+  resources :inbox, only: [:index, :create, :show]
+  resources :messages, only: [:new, :create]
 
   resources :listings, except: [:show, :edit, :update, :destroy] do
     collection do
@@ -26,7 +32,7 @@ Rails.application.routes.draw do
   get ":username" => "profiles#show", as: :profiles
 
   get '/' => "home#index", as: :fetch_listings
-  
+
   root to: "home#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

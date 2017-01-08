@@ -1,0 +1,13 @@
+= link_to inbox_path(chat_room.id), class: "list-group-item chat-room #{params[:id].to_i == chat_room.id || (!params[:id] && @chat_rooms[0].id == chat_room.id) ? 'active' : ''}" do
+  .row
+    .col-md-3.col-sm-3.col-xs-3
+      = image_tag chat_room.messages.first.sender.avatar.url(:medium), class: "img-responsive recepient-img"
+    .col-md-9.col-xs-9.col-sm-9
+      .top-section
+        %span.recepient-name= chat_room.messages.first.sender.full_name
+        %span.message-date.pull-right= chat_room.messages.first.created_at.strftime("%B %d, %Y")
+      .bottom-section
+        = chat_room.messages.first.body
+        - if !chat_room.messages.first.has_read? && chat_room.messages.first.receiver_id == current_person.id
+          %span.pull-right
+            %i.fa.fa-circle

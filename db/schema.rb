@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170104222647) do
+ActiveRecord::Schema.define(version: 20170108221431) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,23 @@ ActiveRecord::Schema.define(version: 20170104222647) do
     t.string   "slug"
   end
 
+  create_table "chat_rooms", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "listing_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["listing_id"], name: "index_chat_rooms_on_listing_id", using: :btree
+  end
+
+  create_table "chatrooms_people", force: :cascade do |t|
+    t.integer  "chat_room_id"
+    t.integer  "person_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["chat_room_id"], name: "index_chatrooms_people_on_chat_room_id", using: :btree
+    t.index ["person_id"], name: "index_chatrooms_people_on_person_id", using: :btree
+  end
+
   create_table "designers", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -71,6 +88,17 @@ ActiveRecord::Schema.define(version: 20170104222647) do
     t.string   "display_image_content_type"
     t.integer  "display_image_file_size"
     t.datetime "display_image_updated_at"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.integer  "chat_room_id"
+    t.integer  "sender_id"
+    t.integer  "receiver_id"
+    t.text     "body"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.boolean  "read",         default: false
+    t.index ["chat_room_id"], name: "index_messages_on_chat_room_id", using: :btree
   end
 
   create_table "people", force: :cascade do |t|
@@ -141,5 +169,9 @@ ActiveRecord::Schema.define(version: 20170104222647) do
     t.datetime "updated_at",         null: false
   end
 
+  add_foreign_key "chat_rooms", "listings"
+  add_foreign_key "chatrooms_people", "chat_rooms"
+  add_foreign_key "chatrooms_people", "people"
+  add_foreign_key "messages", "chat_rooms"
   add_foreign_key "preferences", "people"
 end
