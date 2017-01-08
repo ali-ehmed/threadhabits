@@ -9,14 +9,14 @@
   = hidden_field_tag :listing_id, f.object.id
   .container
     .row
-      .col-md-7
+      .col-md-7.col-sm-7.col-xs-7
         .form-group
           .listing-uploads
             = f.label :uploads, "Images"
             = file_field_tag "upload_photos[]", multiple: true, id: "listing_upload_photos", class: "file-field-input"
             #file-upload-error-container.file-status-container
             #file-upload-success-container.file-status-container
-      .col-md-5
+      .col-md-5.col-sm-5.col-xs-5
         = validation_errors_notifications(@listing)
         = f.hidden_field :category_id, value: @category.id
         .form-group

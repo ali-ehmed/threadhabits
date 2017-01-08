@@ -33,7 +33,7 @@ class Listing < ApplicationRecord
   has_one :address, as: :owner
   accepts_nested_attributes_for :address
 
-  has_attached_file :display_image, styles: { medium: "300x300#", large: "1024x1024#" }, :default_url => "/assets/profile-icon.png"
+  has_attached_file :display_image, styles: { medium: "300x300#" }, :default_url => "/assets/profile-icon.png"
   validates_attachment_content_type :display_image, content_type: /\Aimage\/.*\Z/
 
   include Utilities
@@ -67,7 +67,7 @@ class Listing < ApplicationRecord
   end
 
   def self.fetch_by_filters(filters)
-    listings = all.includes(:size, :company)
+    listings = all.includes(:size, :company).order("created_at desc")
     conditions = []
 
     if filters[:category_ids]
@@ -107,5 +107,9 @@ class Listing < ApplicationRecord
         latitude: filters[:latitude], longitude: filters[:longitude],
       }
     )
+  end
+
+  def belongs_to_person?(person)
+    person_id == person.id
   end
 end

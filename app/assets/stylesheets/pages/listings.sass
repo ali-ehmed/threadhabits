@@ -9,10 +9,25 @@
     width: 35%
 
   .listing-uploads
+    .file-preview-frame
+      height: 260px
     button.kv-file-upload
       display: none
     .fileinput-upload
       display: none
+    .removal-frame
+      opacity: 0.6
+      pointer-events: none
+      img.listing-removal-loader
+        position: absolute
+        top: 15em
+
+    .uploaded-img
+      width: auto
+      height: 160px
+    .file-zoom-dialog
+      .uploaded-img
+        height: 100% !important
 
 .listing-filters
   .panel
@@ -53,12 +68,13 @@
   img.listing
     margin: 0 auto
     text-align: center
-    margin-top: 25px
-    margin-bottom: 25px
-    width: 80%
+    margin-top: 50px
+    margin-bottom: 50px
+    width: 58%
   .box
     padding: 0
     padding-bottom: 2em
+    min-height: 1200px
   .box-left
     background-color: #F5F5F7
   .box-right
@@ -76,6 +92,8 @@
       margin-bottom: 15px
     .condition
       font-size: 20px
+    .edit-options
+      margin-top: 5px
 
   .owner-profile
     margin-top: 15px

@@ -103,6 +103,11 @@
         console.log "error"
         $form.find("input[type='submit']").prop("disabled", false)
 
+  updateNumberOfFilesText: ->
+    frames = $(".listing-uploads .file-preview-frame").length
+    text = frames + " " + (if frames > 1 then "files" else "file")
+    $(".file-caption-name").html('<i class="glyphicon glyphicon-file kv-caption-icon"></i>' + text + " selected")
+
   # For New Listing Check
   toggleFileUploadValidation: ->
     $(document).on "click", ".listing-uploads .fileinput-remove, .listing-uploads .kv-file-remove", ->
@@ -124,30 +129,57 @@
       parsed = JSON.parse(val)
       parsedConfig.push parsed
 
+      # Waiting for initial preview to load all the images
       setTimeout(->
         uploadId = parsed.upload_id
-        removeElem = $(".listing-uploads").find("button.kv-file-remove")
+        # Removing default class ".kv-file-remove" to add custom behavior
+        $(".listing-uploads").find("button.kv-file-remove").removeClass("kv-file-remove").addClass "remove-listing-btn"
 
-        $(removeElem[index]).on "click", ->
+        removeElems = removeElems = $(".listing-uploads").find("button.remove-listing-btn")
+
+        # Remove Listings From Frame
+        $(removeElems[index]).on "click", ->
           elem = $(this)
-          $.ajax
-            url: '/listings/delete_uploads/' + uploadId
-            type: 'DELETE'
-            success: (result) ->
-              # If There are no images in the frame setting File Input Validation
-              elem.closest(".file-preview-frame").fadeOut 500, ->
-                elem.remove()
-                removeElems = $(".listing-uploads").find("button.kv-file-remove")
-                $(".file-caption-name").html('<i class="glyphicon glyphicon-file kv-caption-icon"></i> ' + removeElems.length + " files selected")
+          removeElems = $(".listing-uploads").find("button.remove-listing-btn")
 
-                if removeElems.length == 0
-                  $(".listing-uploads").find(".file-drop-zone").html '<div class="file-drop-zone-title">Drag &amp; drop files here …<br>(or click to select files)</div>'
-                  $("#listing_upload_photos").rules 'add',
-                    required: true
-              return
-            error: ->
-              alert "Something went wrong"
-      , 500)
+          if removeElems.length > 1
+            elem.css "cursor", "not-allowed"
+            $(".listing-uploads").find(".btn").each ->
+              $(this).prop "disabled", true
+
+            $('#file-upload-error-container').empty()
+            $('#file-upload-error-container').hide()
+            elem.closest(".file-preview-frame").addClass "removal-frame"
+            elem.closest(".file-preview-frame").prepend("<img src='/assets/loading-sm.gif' class='listing-removal-loader' />")
+
+            $.ajax
+              url: '/listings/delete_uploads/' + uploadId
+              type: 'DELETE'
+              success: (result) ->
+                elem.css "cursor", "pointer"
+                $(".listing-uploads").find(".btn").each ->
+                  $(this).prop "disabled", false
+                # If There are no images in the frame setting File Input Validation
+                elem.closest(".file-preview-frame").fadeOut 500, ->
+                  elem.closest(".file-preview-frame").remove()
+                  that.updateNumberOfFilesText()
+                return
+              error: ->
+                alert "Something went wrong"
+          else
+            out = "<ul class='list-unstyled'><li>Atleast 1 Image must be added in a listing</li></ul>"
+            $('#file-upload-error-container').addClass ""
+            $('#file-upload-error-container').append out
+            $('#file-upload-error-container').fadeIn 'slow'
+
+            elem.prop "disabled", true
+            window.setTimeout(->
+              $('#file-upload-error-container').fadeOut "slow", ->
+                $('#file-upload-error-container ul').remove() 
+              elem.prop "disabled", false
+            , 2000)
+
+      , 100)
 
     # Setting Validation of File Input
     if imgsPath.length >= 1
@@ -170,6 +202,34 @@
       initialPreviewShowDelete: true
     })
 
+  scrollingFileInput: ->
+    (($) ->
+      element = $('.listing-uploads')
+      if element.length
+        # Getting top of note to make the distance b/w note & header
+        originalY = element.offset().top
+        # Getting Top of footer to make the distance b/w note & footer
+        footerY = $("footer").offset().top - 700
+        topMarginFromBottom = 120
+        element.css 'position', 'relative'
+
+        $(window).on 'scroll', (event) ->
+          scrollTop = $(window).scrollTop()
+
+          if scrollTop < originalY
+            totalMargin = 0 # setting top margin
+          else if scrollTop > footerY
+            totalMargin = scrollTop - topMarginFromBottom # setting bottom margin
+          else
+            totalMargin = scrollTop - originalY + 480
+
+          element.stop(false, false).animate {
+            top: totalMargin
+          }, 300
+          return
+      return
+    ) jQuery
+
   initializeListingsForm: ->
     that = this
     that.validateForm()
@@ -185,6 +245,16 @@
         return
       )
 
+    setTimeout(->
+      $(".listing-uploads .fileinput-remove").remove()
+    , 100)
+
+    $(document).on "click", ".listing-uploads .kv-file-remove", ->
+      setTimeout(->
+        that.updateNumberOfFilesText()
+      , 1000)
+
+
     $("#listing_upload_photos").fileinput(
       uploadUrl: "/listings/uploads.json",
       uploadAsync: false,
@@ -192,6 +262,7 @@
       maxFileCount: 5
       showDrag: true
       showPreview: true
+      showRemove: false
       showBrowse: true,
       browseOnZoneClick: true
       previewFileType: "png",
@@ -202,6 +273,7 @@
       $('#file-upload-success-container').html('<h4>Upload Status</h4><ul></ul>').hide()
       return
     ).on('fileselect', (event, numFiles, label) ->
+      that.updateNumberOfFilesText()
       totalFiles = $("#listing_upload_photos").fileinput('getFilesCount')
       if totalFiles > 0
         $("#listing_upload_photos").rules 'add',

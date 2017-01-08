@@ -15,6 +15,6 @@
 class Upload < ApplicationRecord
   belongs_to :listing
 
-  has_attached_file :image, styles: { medium: "300x300#", large: "1024x1024#" }, :default_url => "/assets/profile-icon.png"
+  has_attached_file :image, styles: { medium: "120x160#", large: "1200x1200>", banner: "950x505>" }, :default_url => "/assets/profile-icon.png"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 end

@@ -1,7 +1,7 @@
 module ListingsHelper
   def listing_raw_images(listing)
     uploads = listing.uploads
-    images = uploads.map(&:image).map{|v| image_tag v.url(:medium), style: "width: auto;height: 160px;" }
+    images = uploads.map(&:image).map{|v| image_tag v.url(:large), class: "uploaded-img" }
     images_config = []
     uploads.map do |v|
       images_config << {

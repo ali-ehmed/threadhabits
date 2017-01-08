@@ -1,6 +1,6 @@
 class ListingsController < ApplicationController
   before_action :authenticate_person!
-  before_action :set_current_person_listing, only: [:edit, :update]
+  before_action :set_current_person_listing, only: [:edit, :update, :destroy]
   before_action :fetch_category!, only: [:new, :edit]
   before_action :set_default_request_format, only: [:create, :update]
   before_action :set_listing_data, only: [:new, :edit]
@@ -68,6 +68,11 @@ class ListingsController < ApplicationController
     change.add_subscriber(PersistenceResponse.new(self))
     change.attributes = listing_params
     change.perform
+  end
+
+  def destroy
+    @listing.destroy
+    redirect_to root_path, notice: "Your listing has been sucessfully removed."
   end
 
   class PersistenceResponse < SimpleDelegator

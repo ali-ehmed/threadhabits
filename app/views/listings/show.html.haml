@@ -5,13 +5,13 @@
 
 .listing-details
   .row
-    .col-md-6.box.box-left
-      .col-md-12
+    .col-md-6.col-sm-6.col-xs-6.box.box-left
+      .col-md-12.col-sm-12.col-xs-12
         .images
           - @uploads.each do |upload|
             = image_tag upload.image.url(:large), class: "img-responsive listing"
-    .col-md-6.box.box-right
-      .col-md-10
+    .col-md-6.col-sm-6.col-xs-6.box.box-right
+      .col-md-10.col-sm-12.col-xs-12
         .detailed
           .heading-top
             %h1
@@ -32,11 +32,11 @@
             = @listing.condition
 
           .owner-profile
-            .col-md-10
+            .col-md-10.col-sm-12.col-xs-12
               .row.profile-details
-                .col-md-5
+                .col-md-5.col-sm-5.col-xs-5
                   = image_tag @listing.person.avatar.url(:medium), class: "img-responsive"
-                .col-md-7
+                .col-md-7.col-sm-7.col-xs-7
                   .heading
                     = @listing.person.full_name
                   .username
@@ -52,7 +52,16 @@
               = link_to "#", class: "btn btn-default btn-block" do
                 %i.fa.fa-cart-plus
                 Add to cart
-              = link_to edit_listings_path(@listing.slug, category_slug: @listing.category.slug), class: "btn btn-primary btn-block" do
-                %i.fa.fa-pencil
-                Edit
+
+              - if @listing.belongs_to_person?(current_person)
+                .edit-options
+                  .row
+                    .col-md-6
+                      = link_to edit_listings_path(@listing.slug, category_slug: @listing.category.slug), class: "btn btn-primary btn-block" do
+                        %i.fa.fa-pencil
+                        Edit
+                    .col-md-6
+                      = link_to destroy_listings_path(@listing.slug), method: :delete, class: "btn btn-primary btn-block ", data: { confirm: "Are you sure?" } do
+                        %i.fa.fa-trash
+                        Delete
               #google-maps
