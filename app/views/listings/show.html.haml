@@ -53,7 +53,7 @@
                       = link_to "Message", "#", id: "message-box-link", data: { url: new_message_path(receiver_id: @listing.person.id, listing_id: @listing.id) }, class: "btn btn-default btn-block"
                   - else
                     = link_to "Message", new_person_session_path, class: "btn btn-default btn-block"
-              = link_to "#", class: "btn btn-default btn-block" do
+              = link_to payments_checkout_paypal_path(listing_id: @listing.id), "data-turbolinks" => false, class: "btn btn-default btn-block" do
                 %i.fa.fa-paypal
                 Purchase with Paypal
               -# = link_to "#", class: "btn btn-default btn-block" do

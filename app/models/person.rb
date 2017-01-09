@@ -154,4 +154,9 @@ class Person < ApplicationRecord
       pref.save
     end
   end
+
+  # Checkout paypal business email
+  def is_seller?
+    self.paypal_id.present?
+  end
 end

@@ -10,6 +10,19 @@ Rails.application.routes.draw do
   resources :messages, only: [:new, :create]
   resources :follow, only: [:index, :create, :update]
 
+  namespace :payments do
+    # Braintree routes - Not using currently
+    # get "/new" => "braintree#new", as: :purchase_new
+    # post "/merchant" => "braintree#create", as: :merchant
+    # post "/purchase" => "braintree#purchase", as: :purchase
+    # post "/braintree_webhook" => "braintree#braintree_webhook", as: :sub_merchant_webhook
+
+    # Paypal routes
+    get "/checkout_paypal" => "paypal#checkout", as: :checkout_paypal
+    post "/webhook" => "paypal#webhook"
+    post "/confirm" => "paypal#confirm", as: :confirm_checkout
+  end
+
   resources :listings, except: [:show, :edit, :update, :destroy] do
     collection do
       get "details/:slug" => "listings#show", as: :detail
