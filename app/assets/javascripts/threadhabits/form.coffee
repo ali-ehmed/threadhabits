@@ -1,24 +1,25 @@
 @Follow =
   initializeFollowings: ->
-    $(".follow-person").click (e) ->
+    $("#follow-person").on "click", (e) ->
       e.preventDefault()
       $elem = $(this)
-      $(this).prop "disabled", true
+      $elem.prop "disabled", true
+      # console.log $elem.attr("data-method-type")
       $.ajax
-        type: $(this).data("method")
-        url: $(this).attr("href")
+        type: $elem.attr("data-method-type")
+        url: $elem.attr("href")
         dataType: "json"
         complete: ->
-          $(this).prop "disabled", false
+          $elem.prop "disabled", false
         success: (response) ->
-          $elem.attr("data-method", response.method)
+          $elem.attr("data-method-type", response.method)
           $elem.attr("href", response.url)
-          if $elem.data("follow") == false
-            $(".follow-person").html("Follow")
-            $elem.attr("data-follow", true)
+          if $elem.attr("data-follow") == "false"
+            $elem.html("Unfollow")
+            $elem.attr("data-follow", "true")
           else
-            $elem.attr("data-follow", false)
-            $(".follow-person").html("Unfollow")
+            $elem.attr("data-follow", "false")
+            $elem.html("Follow")
           $(".profile-desc .followings span.value").text response.followings
           $(".profile-desc .followers span.value").text response.followers
         error: (response) ->
@@ -29,8 +30,6 @@
     that = this
     $('#chatRoomForm').validate
       rules:
-        "chat_room[title]": 'required'
-        "chat_room[messages_attributes][0][body]": 'required'
         "message[body]": 'required'
       submitHandler: (form) ->
         that.submitMessage(form)

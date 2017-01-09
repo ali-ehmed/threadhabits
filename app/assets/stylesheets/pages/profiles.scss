@@ -54,6 +54,14 @@ $feedback-color: #b8ea1a;
         font-size: 18px;
       }
     }
+    li.followers, li.followings {
+      a {
+        color: $black;
+        &:hover, &:focus {
+          color: #777;
+        }
+      }
+    }
     li.feedback {
       color: $feedback-color;
     }

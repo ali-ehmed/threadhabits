@@ -14,10 +14,19 @@
 
 class Message < ApplicationRecord
   belongs_to :chat_room
+  accepts_nested_attributes_for :chat_room
+
   belongs_to :sender, class_name: "Person", foreign_key: :sender_id
   belongs_to :receiver, class_name: "Person", foreign_key: :receiver_id
 
   validates_presence_of :body
+
+  def chat_room_attributes=(attributes)
+    if attributes['id'].present?
+      self.chat_room = ChatRoom.find(attributes['id'])
+    end
+    super
+  end
 
   def mark_as_read
     update_attribute(:read, true)

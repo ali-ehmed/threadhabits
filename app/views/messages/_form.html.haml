@@ -1,0 +1,14 @@
+= form_for object, url: messages_path, method: :post, html: { id: "messageForm" } do |f|
+  .form-group
+    = label_tag :message
+    = f.text_area :body, class: "form-control input-lg", row: 7
+    = f.hidden_field :receiver_id, value: receiver_id
+    = f.hidden_field :sender_id, value: sender_id
+    = f.fields_for :chat_room do |m|
+      = m.hidden_field :id, value: chat_room.id
+      - if object.chat_room.listing_id.present?
+        = m.hidden_field :listing_id, value: object.chat_room.listing_id
+      = m.fields_for :chatrooms_persons do |p|
+        = p.hidden_field :person_id
+
+  = yield

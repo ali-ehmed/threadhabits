@@ -73,12 +73,13 @@ Rails.application.configure do
 
   config.paperclip_defaults = {
     storage: :s3,
-    s3_region: ENV['AWS_REGION'],
+    s3_region: "us-east-1",
     s3_credentials: {
-      bucket: ENV['S3_BUCKET'],
-      access_key_id: ENV['AWS_ACCESS_KEY_ID'],
-      secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
+      bucket: "threadhabits",
+      access_key_id: "AKIAJK4T2CFKLIWSFR2A",
+      secret_access_key: "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",
       s3_host_name: 's3-us-west-2.amazonaws.com'
-    }
+    },
+    :default_url => "profile-icon.png"
   }
 end

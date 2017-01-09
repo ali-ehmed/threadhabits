@@ -24,29 +24,41 @@
               %ul.list-inline.additional-details
                 %li
                   %span.value
-                    31
+                    = @person.listings.count
                   %br/
                   %span.label
                     Items
                 %li
                   %span.value
-                    19
+                    = @person.try(:sales) || 0
                   %br/
                   %span.label
                     Sales
                 %li.followers
                   %span.value
-                    = current_person.followers.count
+                    - if @person.is_current_person?(current_person)
+                      = current_person.followers.count
+                    - else
+                      = @person.followers.count
                   %br/
                   %span.label
-                    Followers
+                    - if @person.is_current_person?(current_person)
+                      = link_to "Followers", follow_index_path
+                    - else
+                      Followers
                 %li.followings
                   %span.value
-                    = current_person.followings.count
+                    - if @person.is_current_person?(current_person)
+                      = current_person.followings.count
+                    - else
+                      = @person.followings.count
                   %br/
                   %span.label
-                    Following
-                %li.feedback
+                    - if @person.is_current_person?(current_person)
+                      = link_to "Following", follow_index_path
+                    - else
+                      Following
+                -# %li.feedback
                   %span.value
                     5/5
                   %br/

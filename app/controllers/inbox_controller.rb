@@ -4,41 +4,18 @@ class InboxController < ApplicationController
   before_action :set_chat_room, only: [:show]
 
   def index
-    @chat_room = current_person.chat_rooms.first
+    @chat_room = @chat_rooms.first
     if @chat_room.present?
       @messages = @chat_room.messages.order("created_at asc")
       @messages.last.mark_as_read if @messages.last.receiver_id == current_person.id
     end
-    @message = Message.new
+    @message = @chat_room.messages.build
   end
 
   def show
     @messages = @chat_room.messages.order("created_at asc")
     @messages.last.mark_as_read if @messages.last.receiver_id == current_person.id
-    @message = Message.new
-  end
-
-  def create
-    @chatroom = ChatRoom.new(chatroom_params)
-    ChatRoom.transaction do
-      if @chatroom.save
-        sender_id   = current_person.id
-        receiver_id = @chatroom.messages.first.receiver_id
-
-        [sender_id, receiver_id].each do |recepient|
-          @chatroom.chatrooms_persons.create(person_id: recepient)
-        end
-
-        current_person.send_message({
-          receiver_id: receiver_id,
-          chat_room_id: @chatroom.id
-        })
-
-        render json: { status: 200, inbox_path: inbox_path(@chatroom) }
-      else
-        render json: { status: false }
-      end
-    end
+    @message = @chat_room.messages.build
   end
 
   private

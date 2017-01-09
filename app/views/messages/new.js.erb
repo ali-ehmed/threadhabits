@@ -1,1 +1,1 @@
-$(".message-box").html("<%= escape_javascript(render partial: 'modal', locals: { object: @object, receiver: @receiver, sender: current_person }).html_safe %>")
+$(".message-box").html("<%= escape_javascript(render partial: 'modal').html_safe %>")

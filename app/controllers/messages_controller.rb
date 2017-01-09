@@ -6,15 +6,19 @@ class MessagesController < ApplicationController
     conversations = current_person.conversations(@receiver.id, params[:listing_id])
 
     if conversations.blank?
-      @object = ChatRoom.new
-      @object.messages.build
+      @message = current_person.messages.build
+      @chat_room = @message.build_chat_room
 
       if params[:listing_id].present?
-        @object.listing_id = params[:listing_id]
+        @chat_room.listing_id = params[:listing_id]
+      end
+
+      [current_person, @receiver].each do |recepient|
+        @chat_room.chatrooms_persons.build(person_id: recepient.id)
       end
     else
       @chat_room = conversations.first
-      @object = @chat_room.messages.build
+      @message = @chat_room.messages.build
     end
 
     respond_to do |format|
@@ -24,19 +28,21 @@ class MessagesController < ApplicationController
 
   def create
     @message = Message.new messages_params
-    @message.chat_room_id = @chat_room.id
-    respond_to do |format|
-      if @message.save
-        format.html { redirect_to inbox_path(@chat_room), notice: "Message has been sent successfully" }
-        format.json { render json: { status: 200, inbox_path: inbox_path(@chat_room) } }
-      else
-        format.html do
-          @chat_rooms = current_person.chat_rooms.includes(:messages)
-          @messages = @chat_room.messages
-          flash[:alert] = "Please review errors"
-          render 'inbox/show'
+
+    Message.transaction do
+      respond_to do |format|
+        if @message.save
+          format.html { redirect_to inbox_path(@message.chat_room), notice: "Message has been sent successfully" }
+          format.json { render json: { status: 200, inbox_path: inbox_path(@message.chat_room) } }
+        else
+          format.html do
+            @chat_rooms = current_person.chat_rooms.includes(:messages)
+            @messages = @message.chat_room.messages
+            flash[:alert] = "Please review errors"
+            render 'inbox/show'
+          end
+          format.json { render json: { status: false } }
         end
-        format.json { render json: { status: false } }
       end
     end
   end
@@ -45,16 +51,13 @@ class MessagesController < ApplicationController
 
   def set_chat_room
     begin
-      @chat_room = ChatRoom.find(params[:chatroom_id])
+      @chat_room = ChatRoom.find(messages_params[:chat_room_attributes][:id])
     rescue ActiveRecord::RecordNotFound
-      respond_to do |format|
-        format.html { redirect_to inbox_index_path, flash: { alert: "Chat Room could not found" } and return }
-        format.json { render json: { status: 200, message: "Chat Room could not found" } and return }
-      end
+      @chat_room = nil
     end
   end
 
   def messages_params
-    params.require(:message).permit(:body, :receiver_id, :sender_id)
+    params.require(:message).permit(:id, :body, :receiver_id, :sender_id, :chat_room_attributes => [:id, :listing_id, :_destroy, :chatrooms_persons_attributes => [:id, :person_id, :chat_room_id, :_destroy]])
   end
 end
