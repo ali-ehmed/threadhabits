@@ -5,8 +5,10 @@ class InboxController < ApplicationController
 
   def index
     @chat_room = current_person.chat_rooms.first
-    @messages = @chat_room.messages.order("created_at asc")
-    @messages.last.mark_as_read if @messages.last.receiver_id == current_person.id
+    if @chat_room.present?
+      @messages = @chat_room.messages.order("created_at asc")
+      @messages.last.mark_as_read if @messages.last.receiver_id == current_person.id
+    end
     @message = Message.new
   end
 

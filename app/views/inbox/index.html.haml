@@ -1,1 +1,5 @@
-= render partial: "inbox/details"
+- if @chat_room.present?
+  = render partial: "inbox/details"
+- else
+  .alert.alert-success
+    There are no Messages
