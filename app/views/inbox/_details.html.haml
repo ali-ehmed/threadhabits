@@ -28,7 +28,11 @@
                 Condition:
               = @chat_room.listing.condition
             -# %button.btn.btn-default Add to Cart
-            %button.btn.btn-default Buy it now
+            -# %button.btn.btn-default Buy it now
+            %br
+            = link_to payments_checkout_paypal_path(listing_id: @chat_room.listing.id), "data-turbolinks" => false, class: "btn btn-default btn-block" do
+              %i.fa.fa-paypal
+              Purchase with Paypal
 
     .messages-list
       %ul.list-group

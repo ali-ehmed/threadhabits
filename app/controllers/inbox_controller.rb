@@ -8,8 +8,8 @@ class InboxController < ApplicationController
     if @chat_room.present?
       @messages = @chat_room.messages.order("created_at asc")
       @messages.last.mark_as_read if @messages.last.receiver_id == current_person.id
+      @message = @chat_room.messages.build
     end
-    @message = @chat_room.messages.build
   end
 
   def show

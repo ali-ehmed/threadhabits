@@ -33,7 +33,7 @@ class Listing < ApplicationRecord
   has_one :address, as: :owner
   accepts_nested_attributes_for :address
 
-  has_attached_file :display_image, styles: { medium: "120x160#", large: "1200x1200>", banner: "950x505>" }, :default_url => "/assets/profile-icon.png"
+  has_attached_file :display_image, styles: { medium: "300x300#", large: "1200x1200>", banner: "950x505>" }, :default_url => "/assets/profile-icon.png"
   validates_attachment_content_type :display_image, content_type: /\Aimage\/.*\Z/
 
   include Utilities

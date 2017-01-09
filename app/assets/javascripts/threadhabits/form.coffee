@@ -28,18 +28,11 @@
 @Inbox =
   validateForm: ->
     that = this
-    $('#chatRoomForm').validate
-      rules:
-        "message[body]": 'required'
-      submitHandler: (form) ->
-        that.submitMessage(form)
-        return
-
     $('#messageForm').validate
       rules:
         "message[body]": 'required'
       submitHandler: (form) ->
-        form.submit()
+        that.submitMessage(form)
         return
 
   submitMessage: (form) ->

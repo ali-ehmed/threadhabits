@@ -5,13 +5,10 @@
 *= require nouislider.min
 */
 @import "font-awesome";
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700,900');
+
 @font-face {
-  font-family: 'Avenir Roman';
-  src:font-url('AvenirLTStd-Book.otf');
-  src:font-url('AvenirLTStd-Light.otf');
-  src:font-url('AvenirLTStd-Roman.otf');
-  font-weight: normal;
-  font-style: normal;
+  font-family: 'Lato', sans-serif;
 }
 
 @import "compass";

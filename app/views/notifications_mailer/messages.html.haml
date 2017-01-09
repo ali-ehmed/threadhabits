@@ -42,8 +42,11 @@
           = number_to_currency @listing.price
           %br
           .col-md-offset-6
-            .buy-actions
+            -# .buy-actions
               = link_to 'BUY IT NOW', root_url, target: "_blank", class: "btn"
+            = link_to payments_checkout_paypal_path(listing_id: @chat_room.listing.id), "data-turbolinks" => false, class: "btn btn-default btn-block" do
+              %i.fa.fa-paypal
+              Purchase with Paypal
 
 %footer
   %p
