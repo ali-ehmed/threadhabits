@@ -21,6 +21,8 @@ class Message < ApplicationRecord
 
   validates_presence_of :body
 
+  after_create :notify_receiver
+
   def chat_room_attributes=(attributes)
     if attributes['id'].present?
       self.chat_room = ChatRoom.find(attributes['id'])
@@ -34,5 +36,12 @@ class Message < ApplicationRecord
 
   def has_read?
     read.present?
+  end
+
+  def notify_receiver
+    preferences = self.receiver.preferences.notifications.first.try(:activated)
+    if preferences.include?(:new_message)
+      NotificationsMailer.messages(self, self.chat_room.try(:listing)).deliver
+    end
   end
 end

@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/devel/emails"
+  end
+
   ActiveAdmin.routes(self)
   devise_for :people, controllers: { registrations: "people/registrations" }
 

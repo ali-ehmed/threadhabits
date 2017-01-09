@@ -57,7 +57,7 @@ gem "active_material", github: "vigetlabs/active_material"
 gem "figaro"
 
 # Preview email on local
-gem "letter_opener", :group => :development
+gem 'letter_opener_web', '~> 1.2.0', :group => :development
 
 # Compass SASS
 gem 'compass-rails'

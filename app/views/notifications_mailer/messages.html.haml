@@ -1,0 +1,68 @@
+%p.sent-at.pull-right= Date.today.strftime("%B %d, %Y")
+%p
+  Hey
+  = "#{@receiver.full_name}!"
+%p
+  You have received a new message from
+  = @sender.full_name
+  on Threadhabits.com
+
+.messages
+  .person
+    .row
+      .col-md-2
+        = image_tag @sender.avatar.url(:medium), class: "img-responsive"
+      .col-md-10
+        %span.name= @sender.full_name
+        %br
+        %span.username= @sender.tagged_username
+        %br
+        %span.message
+          = @body
+    .row
+      .col-md-offset-7
+        .reply-actions
+          = link_to 'REPLY NOW', inbox_url(@message.chat_room.id), target: "_blank", class: "btn btn-primary reply"
+  - if @listing.present?
+    .listing
+      .reference Regarding:
+      .row
+        .col-md-2
+          = image_tag @listing.display_image.url(:medium), class: "img-responsive"
+        .col-md-10
+          %label= @listing.name
+          %br
+          %label Size:
+          = @listing.size.name
+          %br
+          %label Condition:
+          = @listing.condition
+          %br
+          %label Price:
+          = number_to_currency @listing.price
+          %br
+          .col-md-offset-6
+            .buy-actions
+              = link_to 'BUY IT NOW', root_url, target: "_blank", class: "btn"
+
+%footer
+  %p
+    Change notifications settings
+    %a{href: notifications_settings_url, target: "_blank"}
+      here.
+  %p
+    &copy; 2017 Threadhabits
+    %br
+    All Rights Reserved
+    %br
+    = link_to 'www.threadhabits.com', "#", target: "_blank"
+  %ul.list-inline.social-icons
+    %li
+      = link_to "#" do
+        = image_tag "social-icons/fb.png", class: "img-responsive"
+    %li
+      = link_to "#" do
+        = image_tag "social-icons/instagram.png", class: "img-responsive"
+    %li
+      = link_to "#" do
+        = image_tag "social-icons/snapchat.png", class: "img-responsive"

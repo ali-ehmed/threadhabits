@@ -59,6 +59,8 @@ class Person < ApplicationRecord
 
   attr_accessor :terms, :login, :setting_tab
 
+  after_create :generate_default_preferences
+
   validates_acceptance_of :terms
   validates_presence_of :first_name, :last_name, :username
   validates_presence_of :paypal_id, if: Proc.new{|person| person.setting_tab == "payments"}
@@ -139,5 +141,17 @@ class Person < ApplicationRecord
 
   def following_a_person(person_id)
     followings.find_by_follower_id(person_id)
+  end
+
+  def generate_default_preferences
+    unless self.preferences.notifications.present?
+      hash = {}
+      Preference::DEFAULT_PREFERENCES.each do |pref|
+        hash[pref.to_sym] = false
+      end
+      pref = preferences.notifications.build(preference_type: "Notification")
+      pref.data = hash
+      pref.save
+    end
   end
 end
