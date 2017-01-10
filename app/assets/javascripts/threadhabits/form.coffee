@@ -34,6 +34,12 @@
       submitHandler: (form) ->
         that.submitMessage(form)
         return
+    $('#messageFormInbox').validate
+      rules:
+        "message[body]": 'required'
+      submitHandler: (form) ->
+        form.submit()
+        return
 
   submitMessage: (form) ->
     that = this

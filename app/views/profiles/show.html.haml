@@ -1,102 +1,103 @@
 .profile
-  .cover-img{style: "background: url('#{@person.cover_image.url(:medium)}');"}
-    -# = image_tag "THbanner.png", class: "fb-image-lg", align: "left", alt: "Profile Cover"
-  .top-content
-    .row
-      .col-md-1.col-sm-1.col-xs-1
-      .col-md-2.col-sm-2.col-xs-2
-        = image_tag @person.avatar.url(:medium), class: "image-profile thumbnail img-responsive", align: "left", alt: "Profile image"
-      .col-md-9.col-sm-9.col-xs-9
-        .profile-text
-          %h1= @person.full_name
-          %ul.list-inline.contact
-            %li= @person.tagged_username
+  .container
+    .cover-img{style: "background: url('#{@person.cover_image.url(:medium)}');"}
+      -# = image_tag "THbanner.png", class: "fb-image-lg", align: "left", alt: "Profile Cover"
+    .top-content
+      .row
+        .col-md-1.col-sm-1.col-xs-1
+        .col-md-2.col-sm-2.col-xs-2
+          = image_tag @person.avatar.url(:medium), class: "image-profile thumbnail img-responsive", align: "left", alt: "Profile image"
+        .col-md-9.col-sm-9.col-xs-9
+          .profile-text
+            %h1= @person.full_name
+            %ul.list-inline.contact
+              %li= @person.tagged_username
+              %li
+                %span.location
+                  %i.fa.fa-map-marker
+                = @person.location
+          .profile-desc
+            .row
+              .col-md-6.col-lg-6
+                %p.desc
+                  = @person.about_you
+              .col-md-6.col-lg-6
+                %ul.list-inline.additional-details
+                  %li
+                    %span.value
+                      = @person.listings.count
+                    %br/
+                    %span.label
+                      Items
+                  %li
+                    %span.value
+                      = @person.try(:sales) || 0
+                    %br/
+                    %span.label
+                      Sales
+                  %li.followers
+                    %span.value
+                      - if @person.is_current_person?(current_person)
+                        = current_person.followers.count
+                      - else
+                        = @person.followers.count
+                    %br/
+                    %span.label
+                      - if @person.is_current_person?(current_person)
+                        = link_to "Followers", follow_index_path
+                      - else
+                        Followers
+                  %li.followings
+                    %span.value
+                      - if @person.is_current_person?(current_person)
+                        = current_person.followings.count
+                      - else
+                        = @person.followings.count
+                    %br/
+                    %span.label
+                      - if @person.is_current_person?(current_person)
+                        = link_to "Following", follow_index_path
+                      - else
+                        Following
+                  -# %li.feedback
+                    %span.value
+                      5/5
+                    %br/
+                    %span.label
+                      + Feedback
+    .bottom-content
+      .row
+        .col-md-6.col-sm-6.col-xs-6
+          %ul.list-inline.listing-tabs
+            %li.active{:role => "presentation"}
+              %a{"aria-controls" => "items", "data-toggle" => "tab", :href => "#items", :role => "tab"} Items:
+            %li{:role => "presentation"}
+              %a{"aria-controls" => "instgram", "data-toggle" => "tab", :href => "#instgram", :role => "tab"} Instagram:
+        .col-md-6.col-sm-6.col-xs-6
+          %ul.list-inline.list-right.socal-icons-list
             %li
-              %span.location
-                %i.fa.fa-map-marker
-              = @person.location
-        .profile-desc
-          .row
-            .col-md-6.col-lg-6
-              %p.desc
-                = @person.about_you
-            .col-md-6.col-lg-6
-              %ul.list-inline.additional-details
-                %li
-                  %span.value
-                    = @person.listings.count
-                  %br/
-                  %span.label
-                    Items
-                %li
-                  %span.value
-                    = @person.try(:sales) || 0
-                  %br/
-                  %span.label
-                    Sales
-                %li.followers
-                  %span.value
-                    - if @person.is_current_person?(current_person)
-                      = current_person.followers.count
-                    - else
-                      = @person.followers.count
-                  %br/
-                  %span.label
-                    - if @person.is_current_person?(current_person)
-                      = link_to "Followers", follow_index_path
-                    - else
-                      Followers
-                %li.followings
-                  %span.value
-                    - if @person.is_current_person?(current_person)
-                      = current_person.followings.count
-                    - else
-                      = @person.followings.count
-                  %br/
-                  %span.label
-                    - if @person.is_current_person?(current_person)
-                      = link_to "Following", follow_index_path
-                    - else
-                      Following
-                -# %li.feedback
-                  %span.value
-                    5/5
-                  %br/
-                  %span.label
-                    + Feedback
-  .bottom-content
-    .row
-      .col-md-6.col-sm-6.col-xs-6
-        %ul.list-inline.listing-tabs
-          %li.active{:role => "presentation"}
-            %a{"aria-controls" => "items", "data-toggle" => "tab", :href => "#items", :role => "tab"} Items:
-          %li{:role => "presentation"}
-            %a{"aria-controls" => "instgram", "data-toggle" => "tab", :href => "#instgram", :role => "tab"} Instagram:
-      .col-md-6.col-sm-6.col-xs-6
-        %ul.list-inline.list-right.socal-icons-list
-          %li
-            = link_to "", "#", class: "social-icons-fb"
-          %li
-            = link_to "", "#", class: "social-icons-instagram"
-          %li
-            = link_to "", "#", class: "social-icons-snapchat"
-          %li
-            = link_to "", "#", class: "social-icons-twitter"
-          %li
-            = link_to "", "#", class: "social-icons-pinterest"
-    .row
-      .col-md-9.col-sm-9.col-xs-9
-        .tab-content
-          #items.tab-pane.fade.in.active{:role => "tabpanel"}
-            - if @listings.present?
-              .listings
-                .row
-                  = render partial: "listings/listing", collection: @listings
-            - else
-              .alert.alert-success
-                There are no listings
-          #instgram.tab-pane{:role => "tabpanel"}
-      .col-md-3.col-sm-3.col-xs-3
-        = render  partial: "side_section"
-%br/
-.message-box
+              = link_to "", "#", class: "social-icons-fb"
+            %li
+              = link_to "", "#", class: "social-icons-instagram"
+            %li
+              = link_to "", "#", class: "social-icons-snapchat"
+            %li
+              = link_to "", "#", class: "social-icons-twitter"
+            %li
+              = link_to "", "#", class: "social-icons-pinterest"
+      .row
+        .col-md-9.col-sm-9.col-xs-9
+          .tab-content
+            #items.tab-pane.fade.in.active{:role => "tabpanel"}
+              - if @listings.present?
+                .listings
+                  .row
+                    = render partial: "listings/listing", collection: @listings
+              - else
+                .alert.alert-success
+                  There are no listings
+            #instgram.tab-pane{:role => "tabpanel"}
+        .col-md-3.col-sm-3.col-xs-3
+          = render  partial: "side_section"
+  %br/
+  .message-box

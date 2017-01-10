@@ -4,16 +4,15 @@
     padding: 0;
   }
   .caption {
-    min-height: 215px;
+    min-height: 185px;
     .created {
       color: rgba(119, 119, 119, 0.7);
-      font-weight: 900;
-      border-bottom: 3px solid rgba(119, 119, 119, 0.3);
+      font-weight: 400;
+      border-bottom: 1px solid rgba(119, 119, 119, 0.3);
     }
     .desc {
-      font-size: 13px;
       padding: 0px 8px;
-      h4 { font-weight: bold; }
+      h4 { font-size: 15px; font-weight: bold; }
       p.content {
         font-size: 14px;
       }

@@ -56,7 +56,7 @@
             = image_tag current_person.avatar.url(:medium), class: "img-responsive"
           .col-md-10.col-xs-10.col-sm-10
             - receiver_id = @messages.select{ |v| v.sender_id == current_person.id }.first.try(:receiver_id) || @messages.last.sender_id
-            = render layout: "messages/form", locals: { object: @message, receiver_id: receiver_id, sender_id: current_person.id, chat_room: @chat_room } do
+            = render layout: "messages/form", locals: { object: @message, receiver_id: receiver_id, sender_id: current_person.id, chat_room: @chat_room, form_id: "messageFormInbox" } do
               .form-actions.text-right
                 %button.btn.btn-primary{:type => "submit"} Reply
             -# = form_for @message, url: messages_path(chatroom_id: @chat_room.id), method: :post, html: { id: "messageForm" } do |f|

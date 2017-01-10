@@ -10,26 +10,26 @@
 .messages
   .person
     .row
-      .col-md-2
+      .col-md-2.col-sm-2.col-xs-2
         = image_tag @sender.avatar.url(:medium), class: "img-responsive"
-      .col-md-10
+      .col-md-10.col-sm-1.col-xs-10
         %span.name= @sender.full_name
         %br
         %span.username= @sender.tagged_username
         %br
-        %span.message
-          = @body
+        %div.message
+          = "'#{@body}'"
     .row
-      .col-md-offset-7
+      .col-md-offset-7.col-sm-offset-7.col-xs-offset-7
         .reply-actions
           = link_to 'REPLY NOW', inbox_url(@message.chat_room.id), target: "_blank", class: "btn btn-primary reply"
   - if @listing.present?
     .listing
       .reference Regarding:
       .row
-        .col-md-2
+        .col-md-2.col-sm-2.col-xs-2
           = image_tag @listing.display_image.url(:medium), class: "img-responsive"
-        .col-md-10
+        .col-md-10.col-xs-10.col-sm-10
           %label= @listing.name
           %br
           %label Size:
@@ -41,10 +41,10 @@
           %label Price:
           = number_to_currency @listing.price
           %br
-          .col-md-offset-6
+          .col-md-offset-6.col-sm-offset-6.col-xs-offset-6
             -# .buy-actions
               = link_to 'BUY IT NOW', root_url, target: "_blank", class: "btn"
-            = link_to payments_checkout_paypal_path(listing_id: @chat_room.listing.id), "data-turbolinks" => false, class: "btn btn-default btn-block" do
+            = link_to payments_checkout_paypal_url(listing_id: @listing.id), "data-turbolinks" => false, class: "btn btn-default" do
               %i.fa.fa-paypal
               Purchase with Paypal
 

@@ -50,11 +50,11 @@ class MessagesController < ApplicationController
   private
 
   def set_chat_room
-    begin
+    # begin
       @chat_room = ChatRoom.find(messages_params[:chat_room_attributes][:id])
-    rescue ActiveRecord::RecordNotFound
-      @chat_room = nil
-    end
+    # rescue ActiveRecord::RecordNotFound
+    #   @chat_room = nil
+    # end
   end
 
   def messages_params

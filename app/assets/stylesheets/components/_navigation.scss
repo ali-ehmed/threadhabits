@@ -5,6 +5,7 @@ nav.application-top-header {
     li { width: 100%; }
 
     .brand_name {
+      padding: 9px 0px;
       font-size: 20px;
       font-weight: 900;
       text-transform: uppercase;
@@ -96,17 +97,19 @@ nav.application-top-header {
 nav.application-bottom-header {
   min-height: 38px;
   font-size: 11px;
+  border-width: 0px;
   ul li {
     text-transform: uppercase;
   }
   ul.side-left-section {
     li {
       padding: 0px 10px;
+      width: 25%;
     }
   }
   ul.side-right-section {
     padding-right: 0px;
-    li { text-align: center; float: right; padding: 0px 10px; }
+    li { text-align: center; float: right; padding: 0px 10px; width: 35%; }
   }
   li.listing-view-options {
     a {
@@ -121,6 +124,16 @@ nav.application-bottom-header {
   nav.application-top-header {
     .navbar-center {
       .brand_name { font-size: 15px; }
+    }
+  }
+}
+
+@media (min-width: 1440px) {
+  nav.application-top-header {
+    .navbar-center {
+      .brand_name {
+        padding: 3px 0px;
+      }
     }
   }
 }
