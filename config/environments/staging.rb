@@ -49,11 +49,11 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
 
   config.action_mailer.smtp_settings = {
-    :address              => ENV["smtp_address"],
+    :address              => ENV["MAILGUN_SMTP_SERVER"],
     :port                 => "587",
     :domain               => ENV["smtp_domain"],
-    :user_name            => ENV["smtp_username"],
-    :password             => ENV["smtp_password"],
+    :user_name            => ENV["MAILGUN_SMTP_LOGIN"],
+    :password             => ENV["MAILGUN_SMTP_PASSWORD"],
     :authentication       => 'plain'
   }
 
