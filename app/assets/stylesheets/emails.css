@@ -1,0 +1,95 @@
+@font-face {
+  font-family: 'Lato', sans-serif;
+}
+body {
+  font-family: 'Lato', sans-serif;
+  background-color: #FBFBFB;
+}
+
+.btn {
+  border-width: 2px;
+}
+
+.btn-primary {
+  color: #fff !important;
+  background-color: #010102;
+  border-color: #000;
+  -webkit-transition: border-color 0.2s ease;
+  -moz-transition: border-color 0.2s ease;
+  -o-transition: border-color 0.2s ease;
+  -ms-transition: border-color 0.2s ease;
+  transition: border-color 0.2s ease;
+}
+.btn-primary:hover {
+  color: #fff;
+  background-color: #010102;
+  border-color: #7d7d7d;
+}
+
+header h1.main {
+  color: #000;
+  font-weight: bold;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #aaa;
+}
+
+a {
+  color: #000;
+}
+
+main {
+  padding-top: 20px;
+}
+main .sent-at {
+  color: #000;
+  font-weight: bold;
+}
+main .messages .person {
+  font-style: italic;
+  font-weight: bold;
+}
+main .messages .person .name {
+  font-size: 20px;
+}
+main .messages .person .username {
+  font-size: 15px;
+}
+main .messages .person .message {
+  font-size: 25px;
+}
+main .messages .person .message {
+  font-size: 25px;
+}
+main .messages .person .message:before, main .messages .person .message:after {
+  content: '"';
+}
+main .messages .person .reply-actions {
+  margin-top: 25px;
+}
+main .messages .person .reply-actions a {
+  font-style: initial !important;
+  padding: 15px 25px !important;
+}
+main .messages .listing .reference {
+  margin-bottom: 15px;
+  font-size: 22px;
+}
+main .messages .listing .buy-actions a {
+  border-color: #7be27b;
+  border-width: 1px;
+  border-radius: 0px;
+  padding: 15px 25px;
+}
+main .reset-link {
+  padding: 15px 25px;
+}
+
+footer {
+  margin-top: 20px;
+  border-top: 1px solid #aaa;
+  padding-top: 25px;
+}
+footer ul.list-inline {
+  text-align: center;
+  font-style: italic;
+}

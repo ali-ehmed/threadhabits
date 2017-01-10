@@ -79,7 +79,7 @@ class Person < ApplicationRecord
 
   has_attached_file :cover_image, styles: {
     medium: "851x315#"
-  }, default_url: "assets/THbanner.png"
+  }, default_url: "#{S3_ASSET_PATH}/THbanner.png"
 
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   validates_attachment_content_type :cover_image, content_type: /\Aimage\/.*\Z/
