@@ -68,7 +68,7 @@ Rails.application.configure do
   #   :enable_starttls_auto => true
   # }
 
-  config.action_mailer.default_url_options = { host: ENV["secure_domain"] }
+  config.action_mailer.default_url_options = { host: "https://staging-threadhabits.herokuapp.com" }
 
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
