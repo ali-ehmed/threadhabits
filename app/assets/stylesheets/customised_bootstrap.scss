@@ -99,9 +99,12 @@ $alert-success-border-color: #89ad6a;
   border-color: $danger-border;
 }
 
-.panel-default {
-  .panel-heading { background-color: $success; }
-  border-color: $success-border;
+.panel {
+  border-radius: 0px;
+  .panel-default {
+    .panel-heading { background-color: $success; }
+    border-color: $success-border;
+  }
 }
 
 .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {

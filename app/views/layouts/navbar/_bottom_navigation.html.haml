@@ -1,18 +1,19 @@
-%nav.navbar.navbar-default.application-bottom-header
+%nav.navbar.navbar-default.application-bottom-header.navbar-fixed-top
   .container-fluid
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       %ul.nav.navbar-nav.col-md-6.col-sm-6.col-xs-6.side-left-section
+        - params.delete("product_type")
         %li
-          %a{:href => fetch_listings_path(product_type: "tops")}
+          %a{:href => fetch_listings_path({product_type: "tops"}.merge(params))}
             Tops
         %li
-          %a{:href => fetch_listings_path(product_type: "bottoms")}
+          %a{:href => fetch_listings_path({product_type: "bottoms"}.merge(params))}
             Bottoms
         %li
-          %a{:href => fetch_listings_path(product_type: "shoes")}
+          %a{:href => fetch_listings_path({product_type: "shoes"}.merge(params))}
             Shoes
         %li
-          %a{:href => fetch_listings_path(product_type: "accessories")}
+          %a{:href => fetch_listings_path({product_type: "accessories"}.merge(params))}
             Accessories
       %ul.nav.navbar-nav.navbar-right.col-md-6.col-sm-6.col-xs-6.side-right-section
         -# %li.listing-view-options

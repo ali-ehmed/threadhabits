@@ -388,6 +388,41 @@
 
 @Home =
   initializeFilters: ->
+    # (($) ->
+    #   element = $('.listing-filters')
+    #   if element.length
+    #     # Getting top of note to make the distance b/w note & header
+    #     originalY = element.offset().top
+    #     # Getting Top of footer to make the distance b/w note & footer
+    #     if $(window).width() < 1500
+    #       footerTopMargin = 700
+    #     else
+    #       footerTopMargin = 1024
+    #
+    #     footerY = $("footer").offset().top - footerTopMargin
+    #     element.css 'position', 'relative'
+    #
+    #     $(window).on 'scroll', (event) ->
+    #       scrollTop = $(window).scrollTop()
+    #
+    #       totalMargin = 0
+    #       if scrollTop < originalY
+    #         console.log originalY
+    #         totalMargin = 0 # setting top margin
+    #       else if scrollTop > footerY
+    #         # alert "Helllo"
+    #         totalMargin = (footerY - 650)
+    #       else if scrollTop > element.offset().top + 200
+    #         console.log element.offset().top
+    #         totalMargin = scrollTop - (originalY)
+    #
+    #       element.stop(false, false).animate {
+    #         top: totalMargin
+    #       }, 300
+    #       return
+    #   return
+    # ) jQuery
+
     nonLinearSlider = nonLinearSlider = document.getElementById('nonlinearRangePriceSlider')
     nodes = [
     	document.getElementById('lower-price-span')

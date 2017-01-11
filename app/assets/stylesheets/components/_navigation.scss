@@ -5,7 +5,7 @@ nav.application-top-header {
     li { width: 100%; }
 
     .brand_name {
-      padding: 9px 0px;
+      padding: 10px 13px;
       font-size: 20px;
       font-weight: 900;
       text-transform: uppercase;
@@ -98,6 +98,8 @@ nav.application-bottom-header {
   min-height: 38px;
   font-size: 11px;
   border-width: 0px;
+  margin-top: 50px;
+  z-index: 2;
   ul li {
     text-transform: uppercase;
   }
@@ -132,7 +134,7 @@ nav.application-bottom-header {
   nav.application-top-header {
     .navbar-center {
       .brand_name {
-        padding: 3px 0px;
+        padding: 7px 25px;
       }
     }
   }
