@@ -69,6 +69,35 @@
         console.log "error"
 
   initializeMessageBox: ->
+
+    $.fn.followTo = (pos) ->
+      $this = this
+      $window = $(window)
+      $window.scroll (e) ->
+        if $window.scrollTop() > pos
+          $this.css
+            position: 'absolute'
+            top: pos
+          $this.css "width", "100%"
+          $this.css "padding-right", "9em"
+        else if $window.scrollTop() > 160
+          $this.css
+            position: 'fixed'
+            top: 0
+          $this.css "width", "50%"
+          $this.css "background-color", "#fff"
+          $this.css "padding-right", "9em"
+        else if $window.scrollTop() < 138
+          $this.css
+            position: 'relative'
+            top: 0
+          $this.css "width", "83.33333333%"
+          $this.css "padding-right", "15px"
+        return
+      return
+
+    $('#scrolling-section').followTo(($("footer").offset().top - 1200));
+
     $("#message-box-link").click (e) ->
       e.preventDefault()
       $.get $(this).data("url"), (response) ->
@@ -388,45 +417,47 @@
 
 @Home =
   initializeFilters: ->
-    # (($) ->
-    #   element = $('.listing-filters')
-    #   if element.length
-    #     # Getting top of note to make the distance b/w note & header
-    #     originalY = element.offset().top
-    #     # Getting Top of footer to make the distance b/w note & footer
-    #
-    #     footerY = $("footer").offset().top
-    #     headerOffset = $(".application-bottom-header")
-    #     $(window).on('scroll', (event) ->
-    #       if (footerY - $(window).scrollTop()) < 675
-    #         console.log "Hello"
-    #         element.css('top', 0);
-    #       else
-    #         element.css('top', $(window).scrollTop());
-    #
-    #     ).trigger('scroll');
-          # scrollTop = $(window).scrollTop()
+    # Scroll Plugin
+    $.fn.followTo = (pos) ->
+      $this = this
+      $window = $(window)
+      if $(".landing-banner").length
+        topOffset = 407
+      else
+        topOffset = 49
+      $this.css "z-index", "1"
 
-          # totalMargin = 0
+      $window.scroll (e) ->
+        # Stops when scroll position cross
+        if $window.scrollTop() > pos
+          $this.css
+            position: 'absolute'
+            top: pos
+          $this.css "width", "90%"
+        else if $window.scrollTop() > topOffset
+          # Starts
+          $this.css
+            position: 'fixed'
+            top: 90
+          if $(window).width() <= 980
+            $this.css "width", "160px"
+          else
+            $this.css "width", "262px"
+        else if $window.scrollTop() < topOffset
+          # Stops back where started
+          $this.css
+            position: 'relative'
+            top: 0
+          $this.css "width", "100%"
+        return
+      return
 
-          # if $(".landing-banner").length
-            # if scrollTop < originalY
-            #   console.log originalY
-            #   console.log scrollTop
-            #   element.css("position", "fixed")
-            #   if $(".application-bottom-header").offset().top > 400
-            #     element.css("transform", "translateY(-59%)")
-            #   else
-            #     element.css("transform", "translateY(0%)")
-            # else
-            #   element.css("position", "fixed")
-            #   if $(window).width() < 1500
-            #     element.css("transform", "translateY(-92%)")
-            #   else
-            #     element.css("transform", "translateY(-60%)")
-          # return
-    #   return
-    # ) jQuery
+    if $(".landing-banner").length
+      footerY = 0
+    else
+      footerY = 627
+      
+    $('.listing-filters').followTo(($("footer").offset().top - footerY));
 
     nonLinearSlider = nonLinearSlider = document.getElementById('nonlinearRangePriceSlider')
     nodes = [
