@@ -70,33 +70,26 @@
 
   initializeMessageBox: ->
 
-    $.fn.followTo = (pos) ->
+    $.fn.followTo = (element, pos) ->
       $this = this
       $window = $(window)
       $window.scroll (e) ->
         if $window.scrollTop() > pos
-          $this.css
-            position: 'absolute'
+          element.stop(false, false).animate {
             top: pos
-          $this.css "width", "100%"
-          $this.css "padding-right", "9em"
-        else if $window.scrollTop() > 160
-          $this.css
-            position: 'fixed'
-            top: 0
-          $this.css "width", "50%"
-          $this.css "background-color", "#fff"
-          $this.css "padding-right", "9em"
+          }, 300
+        else if $window.scrollTop() > 400
+          element.stop(false, false).animate {
+            top: $window.scrollTop()
+          }, 300
         else if $window.scrollTop() < 138
-          $this.css
-            position: 'relative'
+          element.stop(false, false).animate {
             top: 0
-          $this.css "width", "83.33333333%"
-          $this.css "padding-right", "15px"
+          }, 300
         return
       return
 
-    $('#scrolling-section').followTo(($("footer").offset().top - 1200));
+    $('#scrolling-section').followTo($('#scrolling-section'), $("footer").offset().top - 1200);
 
     $("#message-box-link").click (e) ->
       e.preventDefault()
@@ -456,7 +449,7 @@
       footerY = 0
     else
       footerY = 627
-      
+
     $('.listing-filters').followTo(($("footer").offset().top - footerY));
 
     nonLinearSlider = nonLinearSlider = document.getElementById('nonlinearRangePriceSlider')
