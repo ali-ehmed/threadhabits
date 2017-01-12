@@ -37,25 +37,19 @@
                       Sales
                   %li.followers
                     %span.value
-                      - if @person.is_current_person?(current_person)
-                        = current_person.followers.count
-                      - else
-                        = @person.followers.count
+                      = @person.followers.count
                     %br/
                     %span.label
-                      - if @person.is_current_person?(current_person)
+                      - if current_person and @person.is_current_person?(current_person)
                         = link_to "Followers", follow_index_path
                       - else
                         Followers
                   %li.followings
                     %span.value
-                      - if @person.is_current_person?(current_person)
-                        = current_person.followings.count
-                      - else
-                        = @person.followings.count
+                      = @person.followings.count
                     %br/
                     %span.label
-                      - if @person.is_current_person?(current_person)
+                      - if current_person and @person.is_current_person?(current_person)
                         = link_to "Following", follow_index_path
                       - else
                         Following

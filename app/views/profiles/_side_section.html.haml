@@ -6,7 +6,7 @@
   Inbox.initializeMessageBox();
   Follow.initializeFollowings();
 
-- unless @person.is_current_person?(current_person)
+- if current_person and !@person.is_current_person?(current_person)
   .side-content
     = link_to "Message", "#", id: "message-box-link", data: { url: new_message_path(receiver_id: @person.id) }, class: "btn btn-default btn-block"
     - if current_person.following_a_person(@person.id).present?

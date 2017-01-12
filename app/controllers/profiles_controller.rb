@@ -2,10 +2,10 @@ class ProfilesController < ApplicationController
   before_action :set_profile
 
   def show
-    if current_person.has_address?
-      set_geocode_location!(current_person.address)
+    if @person.has_address?
+      set_geocode_location!(@person.address)
     end
-    
+
     @listings = @person.listings
   end
 

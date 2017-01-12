@@ -1,5 +1,5 @@
 class ListingsController < ApplicationController
-  before_action :authenticate_person!
+  before_action :authenticate_person!, except: [:show]
   before_action :set_current_person_listing, only: [:edit, :update, :destroy]
   before_action :fetch_category!, only: [:new, :edit]
   before_action :set_default_request_format, only: [:create, :update]

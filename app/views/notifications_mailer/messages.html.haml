@@ -1,3 +1,32 @@
+:css
+  .messages .person .person-img, .messages .listing .listing-img {
+    display: inline-block;
+    width: 20%;
+  }
+  .messages .person .person-img img, .messages .listing .listing-img img {
+    width: 90%;
+  }
+  .messages .person .details, .messages .listing .details {
+    display: inline-block;
+    width: 78%;
+    position: relative;
+    top: -42px;
+  }
+  .messages .listing .details {
+    top: -60px;
+  }
+  .messages .person .details .reply-actions a, .messages .listing .details a {
+    margin-left: 15em;
+  }
+  .messages .person {
+    margin-bottom: 10px;
+  }
+  ul.social-icons li {
+    list-style: none;
+    display: inline-block;
+    width: 8%;
+  }
+
 %p.sent-at.pull-right= Date.today.strftime("%B %d, %Y")
 %p
   Hey
@@ -9,44 +38,40 @@
 
 .messages
   .person
-    .row
-      .col-md-2.col-sm-2.col-xs-2
-        = image_tag @sender.avatar.url(:medium), class: "img-responsive"
-      .col-md-10.col-sm-1.col-xs-10
-        %span.name= @sender.full_name
-        %br
-        %span.username= @sender.tagged_username
-        %br
-        %div.message
-          = "'#{@body}'"
-    .row
-      .col-md-offset-7.col-sm-offset-7.col-xs-offset-7
-        .reply-actions
-          = link_to 'REPLY NOW', inbox_url(@message.chat_room.id), target: "_blank", class: "btn btn-primary reply"
+    .person-img
+      = image_tag @sender.avatar.url(:medium), class: "img-responsive"
+    .details
+      %span.name= @sender.full_name
+      %br
+      %span.username= @sender.tagged_username
+      %br
+      %div.message
+        = "'#{@body}'"
+      .reply-actions
+        = link_to 'REPLY NOW', inbox_url(@message.chat_room.id), target: "_blank", class: "btn-primary reply", style: "padding: 15px 47px;"
   - if @listing.present?
     .listing
       .reference Regarding:
-      .row
-        .col-md-2.col-sm-2.col-xs-2
-          = image_tag @listing.display_image.url(:medium), class: "img-responsive"
-        .col-md-10.col-xs-10.col-sm-10
-          %label= @listing.name
-          %br
-          %label Size:
-          = @listing.size.name
-          %br
-          %label Condition:
-          = @listing.condition
-          %br
-          %label Price:
-          = number_to_currency @listing.price
-          %br
-          .col-md-offset-6.col-sm-offset-6.col-xs-offset-6
-            -# .buy-actions
-              = link_to 'BUY IT NOW', root_url, target: "_blank", class: "btn"
-            = link_to payments_checkout_paypal_url(listing_id: @listing.id), "data-turbolinks" => false, class: "btn btn-default" do
-              %i.fa.fa-paypal
-              Purchase with Paypal
+      .listing-img
+        = image_tag @listing.display_image.url(:medium)
+
+      .details
+        %label= @listing.name
+        %br
+        %label Size:
+        = @listing.size.name
+        %br
+        %label Condition:
+        = @listing.condition
+        %br
+        %label Price:
+        = number_to_currency @listing.price
+        %br
+        -# .buy-actions
+          = link_to 'BUY IT NOW', root_url, target: "_blank", class: "btn"
+        = link_to payments_checkout_paypal_url(listing_id: @listing.id), "data-turbolinks" => false, class: "btn btn-default" do
+          %i.fa.fa-paypal
+          Purchase with Paypal
 
 %footer
   %p

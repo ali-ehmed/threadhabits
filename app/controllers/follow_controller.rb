@@ -1,4 +1,5 @@
 class FollowController < ApplicationController
+  before_action :authenticate_person!
   def index
     @followings = current_person.followings
     @followers = current_person.followers
@@ -13,6 +14,10 @@ class FollowController < ApplicationController
   def update
     @follow = Follow.find(params[:id])
     @follow.destroy
-    render :json => { status: 200, url: follow_index_path(follower_id: @follow.follower_id), method: :post, followers: @follow.follower.followers.count, followings: @follow.follower.followings.count }
+    respond_to do |format|
+      format.html { redirect_to follow_index_path }
+      format.json { render :json => { status: 200, url: follow_index_path(follower_id: @follow.follower_id), method: :post, followers: @follow.follower.followers.count, followings: @follow.follower.followings.count } }
+    end
+
   end
 end
