@@ -19,11 +19,15 @@ nav.application-top-header {
     li {
       text-transform: uppercase;
       text-align: center;
+
+      a {
+        padding: 15px 20px;
+      }
     }
 
-    li.side-right-li {
-      float: right;
-    }
+    // li.side-right-li {
+    //   float: right;
+    // }
 
     li a.sell-btn span {
       border: 1px solid #f38f8f;
@@ -41,6 +45,11 @@ nav.application-top-header {
     }
 
     li.navbar-profile-icon {
+      a.dropdown-toggle {
+        span {
+          font-size: 12px;
+        }
+      }
       .dropdown-menu {
         padding: 0;
         ul.dropdown-options {
@@ -70,6 +79,7 @@ nav.application-top-header {
         width: 30px;
         position: absolute;
         top: 8px;
+        left: 10px;
       }
       > a {
         margin-left: 25px;
@@ -95,13 +105,16 @@ nav.application-top-header {
 }
 
 nav.application-bottom-header {
-  min-height: 38px;
+  min-height: 0px;
   font-size: 11px;
   border-width: 0px;
   margin-top: 50px;
   z-index: 2;
   ul li {
     text-transform: uppercase;
+    a {
+      padding: 8px 0px;
+    }
   }
   ul.side-left-section {
     li {

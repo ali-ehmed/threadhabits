@@ -27,7 +27,7 @@
             %a{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapsePriceFiler", :role => "button"}
               %span &ndash;
               PRICE
-          #collapsePriceFiler.collapse.in.filtersCollapse{"aria-labelledby" => "headingOne", :role => "tabpanel"}
+          #collapsePriceFiler.collapse.filtersCollapse{"aria-labelledby" => "headingOne", :role => "tabpanel"}
             #priceFilter
               #nonlinearRangePriceSlider
               #priceDisplayRangeSet
@@ -103,7 +103,7 @@
             %a.collapse-filter-link{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseLocationFilter", :role => "button"}
               %span -
               LOCATION
-          #collapseLocationFilter.collapse.in{"aria-labelledby" => "headingTwo", :role => "tabpanel"}
+          #collapseLocationFilter.collapse{"aria-labelledby" => "headingTwo", :role => "tabpanel"}
             #locationFilter
               .form-group
                 .input-group

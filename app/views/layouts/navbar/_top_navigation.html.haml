@@ -28,12 +28,6 @@
             %a{:href => "#"} Contact
 
           - if person_signed_in?
-            %li.side-right-li
-              %a.sell-btn{:href => new_listing_path}
-                %span Sell
-            %li.side-right-li
-              %a{:href => "#"}
-                %i.fa.fa-shopping-bag
             %li.navbar-profile-icon.side-right-li.dropdown
               -# = image_tag "http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/profile-icon.png", class: "img-responsive"
               = image_tag current_person.avatar.url(:thumb), class: "img-responsive"
@@ -67,14 +61,21 @@
                     %li
                       = link_to "Log Out", destroy_person_session_path, method: :delete
 
-
-          - else
+            %li.side-right-li
+              %a{:href => "#"}
+                %i.fa.fa-shopping-bag
             %li.side-right-li
               %a.sell-btn{:href => new_listing_path}
                 %span Sell
-            %li.side-right-li
-              %a{:href => new_person_registration_path}
-                Register
+
+          - else
             %li.navbar-profile-icon.side-right-li
               %a{:href => new_person_session_path}
                 Login
+            %li.side-right-li
+              %a{:href => new_person_registration_path}
+                Register
+
+            %li.side-right-li
+              %a.sell-btn{:href => new_listing_path}
+                %span Sell

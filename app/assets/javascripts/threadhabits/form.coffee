@@ -394,32 +394,37 @@
     #     # Getting top of note to make the distance b/w note & header
     #     originalY = element.offset().top
     #     # Getting Top of footer to make the distance b/w note & footer
-    #     if $(window).width() < 1500
-    #       footerTopMargin = 700
-    #     else
-    #       footerTopMargin = 1024
     #
-    #     footerY = $("footer").offset().top - footerTopMargin
-    #     element.css 'position', 'relative'
+    #     footerY = $("footer").offset().top
+    #     headerOffset = $(".application-bottom-header")
+    #     $(window).on('scroll', (event) ->
+    #       if (footerY - $(window).scrollTop()) < 675
+    #         console.log "Hello"
+    #         element.css('top', 0);
+    #       else
+    #         element.css('top', $(window).scrollTop());
     #
-    #     $(window).on 'scroll', (event) ->
-    #       scrollTop = $(window).scrollTop()
-    #
-    #       totalMargin = 0
-    #       if scrollTop < originalY
-    #         console.log originalY
-    #         totalMargin = 0 # setting top margin
-    #       else if scrollTop > footerY
-    #         # alert "Helllo"
-    #         totalMargin = (footerY - 650)
-    #       else if scrollTop > element.offset().top + 200
-    #         console.log element.offset().top
-    #         totalMargin = scrollTop - (originalY)
-    #
-    #       element.stop(false, false).animate {
-    #         top: totalMargin
-    #       }, 300
-    #       return
+    #     ).trigger('scroll');
+          # scrollTop = $(window).scrollTop()
+
+          # totalMargin = 0
+
+          # if $(".landing-banner").length
+            # if scrollTop < originalY
+            #   console.log originalY
+            #   console.log scrollTop
+            #   element.css("position", "fixed")
+            #   if $(".application-bottom-header").offset().top > 400
+            #     element.css("transform", "translateY(-59%)")
+            #   else
+            #     element.css("transform", "translateY(0%)")
+            # else
+            #   element.css("position", "fixed")
+            #   if $(window).width() < 1500
+            #     element.css("transform", "translateY(-92%)")
+            #   else
+            #     element.css("transform", "translateY(-60%)")
+          # return
     #   return
     # ) jQuery
 
