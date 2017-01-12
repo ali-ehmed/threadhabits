@@ -47,6 +47,7 @@ Rails.application.routes.draw do
   get ":username" => "profiles#show", as: :profiles
 
   get '/' => "home#index", as: :fetch_listings
+  get '/emails/test' => "home#test"
 
   root to: "home#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

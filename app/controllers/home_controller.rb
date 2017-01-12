@@ -6,6 +6,10 @@ class HomeController < ApplicationController
     @listings = Listing.fetch_by_filters(params).paginate(:page => params[:page], :per_page => Listing::PER_PAGE)
   end
 
+  def test
+    render layout: "test"
+  end
+
   private
 
   def filter_data

@@ -4,11 +4,9 @@
 body {
   font-family: 'Lato', sans-serif;
   background-color: #FBFBFB;
+  padding: 2em 5em
 }
 
-.btn {
-  border-width: 2px;
-}
 
 .btn-primary {
   color: #fff !important;
@@ -20,12 +18,22 @@ body {
   -ms-transition: border-color 0.2s ease;
   transition: border-color 0.2s ease;
 }
+.btn-default {
+  color: #333;
+  background-color: #fff;
+  border-color: #000;
+}
+a {
+  text-decoration: none;
+}
 .btn-primary:hover {
   color: #fff;
   background-color: #010102;
   border-color: #7d7d7d;
 }
-
+.btn {
+  padding: 15px 25px !important;
+}
 header h1.main {
   color: #000;
   font-weight: bold;
@@ -43,6 +51,7 @@ main {
 main .sent-at {
   color: #000;
   font-weight: bold;
+  float: right;
 }
 main .messages .person {
   font-style: italic;
@@ -60,15 +69,11 @@ main .messages .person .message {
 main .messages .person .message {
   font-size: 25px;
 }
-main .messages .person .message:before, main .messages .person .message:after {
-  content: '"';
-}
 main .messages .person .reply-actions {
   margin-top: 25px;
 }
 main .messages .person .reply-actions a {
   font-style: initial !important;
-  padding: 15px 25px !important;
 }
 main .messages .listing .reference {
   margin-bottom: 15px;

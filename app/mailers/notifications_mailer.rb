@@ -1,4 +1,5 @@
 class NotificationsMailer < ActionMailer::Base
+  include Roadie::Rails::Automatic
   default from: "Threadhabits <#{Threadhabits::Application.config.default_email}>"
   layout 'mailer'
 
