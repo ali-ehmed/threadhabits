@@ -124,7 +124,12 @@ nav.application-bottom-header {
   }
   ul.side-right-section {
     padding-right: 0px;
-    li { text-align: center; float: right; padding: 0px 10px; width: 35%; }
+    li {
+      text-align: right; float: right; padding: 0px 10px; width: 25%;
+    }
+    li:first-child {
+      padding-right: 30px;
+    }
   }
   li.listing-view-options {
     a {
