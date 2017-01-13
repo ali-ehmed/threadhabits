@@ -123,8 +123,10 @@ class ListingsController < ApplicationController
 
     def set_current_person_listing
       add_subscriber(self)
-      @listing = current_person.listings.includes(:uploads).find_by_slug(params[:slug])
-      redirect_to root_path, flash: { alert: "Page not found" } unless @listing
+      @listing = Listing.includes(:uploads).find_by_slug(params[:slug])
+      if (!@listing || (current_person and !@listing.belongs_to_person?(current_person))) and !current_person.admin?
+        redirect_to root_path, flash: { alert: "Page not found" }
+      end
     end
 
     def set_address!(address)

@@ -1,4 +1,4 @@
-ActiveAdmin.register Category do
+ActiveAdmin.register Category, { :sort_order => :name_asc } do
   menu parent: "Utilities", label: 'Main Categories'
 # menu label: "Main Cateogries"
 # See permitted parameters documentation:

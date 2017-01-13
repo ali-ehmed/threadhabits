@@ -8,12 +8,12 @@
 .listing-details
   .row
     .col-md-6.col-sm-6.col-xs-6.box.box-left
-      .col-md-12.col-sm-12.col-xs-12
+      .col-md-12.col-sm-12.col-xs-12#scrolling-section
         .images
           - @uploads.each do |upload|
             = image_tag upload.image.url(:large), class: "img-responsive listing"
     .col-md-6.col-sm-6.col-xs-6.box.box-right
-      .col-md-10.col-sm-12.col-xs-12#scrolling-section
+      .col-md-10.col-sm-12.col-xs-12
         .detailed
           .heading-top
             %h1
@@ -68,7 +68,7 @@
                 %i.fa.fa-cart-plus
                 Add to cart
 
-              - if current_person and @listing.belongs_to_person?(current_person)
+              - if (current_person and @listing.belongs_to_person?(current_person)) || (current_person and current_person.admin?)
                 .edit-options
                   .row
                     .col-md-6

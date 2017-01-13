@@ -22,12 +22,14 @@
             %a.brand_name{:href => root_path}
               = image_tag "#{S3_ASSET_PATH}/threadhabitsheader_logo.png", class: "img-responsive", style: "max-width: 100%;"
         %ul.nav.navbar-nav.navbar-right.col-md-4.col-xs-4.col-sm-5.col-lg-5
-          %li.side-left-li
-            %a{:href => "#"} About
-          %li.side-left-li
-            %a{:href => "#"} Contact
 
           - if person_signed_in?
+            %li.side-right-li
+              %a.sell-btn{:href => new_listing_path}
+                %span Sell
+            %li.side-right-li
+              %a{:href => "#"}
+                %i.fa.fa-shopping-bag
             %li.navbar-profile-icon.side-right-li.dropdown
               -# = image_tag "http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/profile-icon.png", class: "img-responsive"
               = image_tag current_person.avatar.url(:thumb), class: "img-responsive"
@@ -61,21 +63,21 @@
                     %li
                       = link_to "Log Out", destroy_person_session_path, method: :delete
 
-            %li.side-right-li
-              %a{:href => "#"}
-                %i.fa.fa-shopping-bag
+          - else
             %li.side-right-li
               %a.sell-btn{:href => new_listing_path}
                 %span Sell
 
-          - else
-            %li.navbar-profile-icon.side-right-li
-              %a{:href => new_person_session_path}
-                Login
             %li.side-right-li
               %a{:href => new_person_registration_path}
                 Register
-
+                
             %li.side-right-li
-              %a.sell-btn{:href => new_listing_path}
-                %span Sell
+              %a{:href => new_person_session_path}
+                Login
+
+
+          %li.side-left-li
+            %a{:href => "#"} Contact
+          %li.side-left-li
+            %a{:href => "#"} About

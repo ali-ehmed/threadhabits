@@ -89,7 +89,7 @@
         return
       return
 
-    $('#scrolling-section').followTo($('#scrolling-section'), $("footer").offset().top - 1200);
+    # $('#scrolling-section').followTo($('#scrolling-section'), $("footer").offset().top - 1200);
 
     $("#message-box-link").click (e) ->
       e.preventDefault()

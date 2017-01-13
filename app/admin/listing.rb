@@ -12,6 +12,19 @@ ActiveAdmin.register Listing do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
-  actions :index
-
+  actions :index, :destroy
+  index do
+    column :name
+    column :price
+    column :uploads do |listing|
+      listing.uploads.count
+    end
+    column :size
+    column :company
+    column :product_type
+    actions do |resource|
+      item "Detail", detail_listings_path(resource.slug, category_slug: resource.category.slug)
+      item "Edit", edit_listings_path(resource.slug, category_slug: resource.category.slug)
+    end
+  end
 end
