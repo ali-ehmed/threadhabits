@@ -4,9 +4,11 @@
   $location.initializeLocation();
   $location.setMapForm();
 
+  Profiles.validateForm();
+
 = render layout: "side_bar" do
   %p This information is visible to all Threadhabits users in your profile page.
-  = form_for current_person, url: settings_path, method: :put, html: { multipart: true } do |f|
+  = form_for current_person, url: settings_path, method: :put, html: { multipart: true, id: "editProfilesForm" } do |f|
     .form-group
       = f.label :first_name
       = f.text_field :first_name, class: "form-control input-lg"
@@ -36,5 +38,17 @@
     .form-group
       = f.label :phone_number
       = f.text_field :phone_number, class: "form-control input-lg"
+
+    %blockquote.blockquote
+      Social Media Links
+    .form-group
+      = f.label :facebook_profile
+      = f.text_field :facebook_profile, class: "form-control input-lg"
+    .form-group
+      = f.label :instagram_profile
+      = f.text_field :instagram_profile, class: "form-control input-lg"
+    .form-group
+      = f.label :twitter_profile
+      = f.text_field :twitter_profile, class: "form-control input-lg"
     .form-actions
       = f.submit "Save Information", class: "btn btn-primary site-btn"

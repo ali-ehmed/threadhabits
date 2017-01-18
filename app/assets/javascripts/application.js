@@ -19,5 +19,6 @@
 //= require select2.min
 //= require jquery-readySelector
 //= require nouislider.min
+//= require easyzoom
 //= require_tree ../../../vendor/assets/javascripts/bootstrap-fileinput
 //= require_tree ./threadhabits

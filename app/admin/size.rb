@@ -3,7 +3,7 @@ menu parent: "Utilities"
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :name
+permit_params :name, :product_type_id
 #
 # or
 #
@@ -13,5 +13,11 @@ permit_params :name
 #   permitted
 # end
 
-
+  index do
+    selectable_column
+    column :id
+    column :name
+    column :product_type_id
+    actions
+  end
 end

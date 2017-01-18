@@ -34,7 +34,7 @@
               -# = image_tag "http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/profile-icon.png", class: "img-responsive"
               = image_tag current_person.avatar.url(:thumb), class: "img-responsive"
               %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-                %span= current_person.username
+                %span.profile-name= current_person.username
               .dropdown-menu
                 %ul.nav.navbar-nav.dropdown-options
                   %li
@@ -71,7 +71,7 @@
             %li.side-right-li
               %a{:href => new_person_registration_path}
                 Register
-                
+
             %li.side-right-li
               %a{:href => new_person_session_path}
                 Login

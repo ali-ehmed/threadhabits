@@ -11,7 +11,8 @@
       .col-md-12.col-sm-12.col-xs-12#scrolling-section
         .images
           - @uploads.each do |upload|
-            = image_tag upload.image.url(:large), class: "img-responsive listing"
+            = image_tag upload.image.url(:large), class: "img-responsive listing", data: { toggle: "modal", target: "#uploadViewerModal_#{upload.id}" }
+            = render partial: "upload_viewer", locals: { upload: upload }
     .col-md-6.col-sm-6.col-xs-6.box.box-right
       .col-md-10.col-sm-12.col-xs-12
         .detailed
@@ -27,7 +28,7 @@
               = @listing.size.try(:name)
 
           .description
-            = @listing.description
+            = simple_format @listing.description
           .condition
             %label
               Condition:

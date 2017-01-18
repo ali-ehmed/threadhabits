@@ -7,6 +7,9 @@
           %a{:href => fetch_listings_path({product_type: "tops"}.merge(params))}
             Tops
         %li
+          %a{:href => fetch_listings_path({product_type: "outerwear"}.merge(params))}
+            Outerwear
+        %li
           %a{:href => fetch_listings_path({product_type: "bottoms"}.merge(params))}
             Bottoms
         %li
@@ -27,5 +30,5 @@
           %a{:href => "#"}
             Content
         %li
-          %a{:href => "#"}
-            Submit your outfit
+          %a{:href => profiles_path("threadhabits")}
+            Our Inventory

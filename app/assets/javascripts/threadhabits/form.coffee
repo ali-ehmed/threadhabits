@@ -107,6 +107,21 @@
     $("#messageModal").on 'hidden.bs.modal', ->
       $(".message-box").empty()
 
+@Profiles =
+  validateForm: ->
+    $("form#editProfilesForm").validate
+      rules:
+        "person[first_name]": 'required'
+        "person[last_name]": 'required'
+        "person[address_attributes][location]": 'required'
+        "person[about_you]": 'required'
+        "person[facebook_profile]":
+          url: true
+        "person[instagram_profile]":
+          url: true
+        "person[twitter_profile]":
+          url: true
+
 @Registrations =
   validateForm: ->
     remoteUrl = "/people.json?"
@@ -407,7 +422,6 @@
     ).on 'fileerror', (event, data) ->
       $("form").find("input[type='submit']").prop("disabled", false)
       $("form").find("input[type='submit']").val("Submit")
-
 @Home =
   initializeFilters: ->
     # Scroll Plugin

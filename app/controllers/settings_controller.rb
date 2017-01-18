@@ -50,7 +50,7 @@ class SettingsController < ApplicationController
                               when :profiles
                                [:first_name, :last_name, :email,
                                :password, :password_confirmation,
-                               :phone_number, :about_you, :avatar, :cover_image,
+                               :phone_number, :about_you, :avatar, :cover_image, :facebook_profile, :instagram_profile, :twitter_profile,
                                :address_attributes => [:id, :location, :place_id, :latitude, :longitude]]
                               when :accounts
                                [:email, :username, :password, :password_confirmation, :current_password]

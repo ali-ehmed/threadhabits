@@ -7,6 +7,7 @@ $(document).on "turbolinks:load", ->
   # ), 5000
 
   $("li.navbar-profile-icon a.dropdown-toggle").click (e) ->
+    Turbolinks.visit("/#{$(this).find('.profile-name').text()}")
     return false
 
   $("li.navbar-profile-icon").hover (->

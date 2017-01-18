@@ -30,7 +30,9 @@
         height: 100% !important
 
 .listing-filters
-  // position: fixed
+  // position: relative
+  // form
+  //   position: fixed
   // width: 18em
   // transform: translate(-35%, -19%)
   .panel
@@ -80,6 +82,8 @@
     margin: 0 auto
     text-align: center
     margin-bottom: 10px
+    cursor: pointer
+  
   .box
     padding: 0
     min-height: 1200px
@@ -90,6 +94,21 @@
       padding: 0px
       height: 1200px
       overflow: scroll
+      &::-webkit-scrollbar
+        -webkit-appearance: none
+      &::-webkit-scrollbar:vertical
+        width: 0px
+      //
+      // &::-webkit-scrollbar:horizontal
+      //   height: 11px
+      //
+      // &::-webkit-scrollbar-thumb
+      //   border-radius: 8px
+      //   border: 2px solid white
+      //   background-color: rgba(0, 0, 0, .5)
+      // &::-webkit-scrollbar-track
+      //   background-color: #fff
+      //   border-radius: 8px
   .box-right
     background-color: #FFFFFF
 

@@ -69,15 +69,12 @@
               %a{"aria-controls" => "instgram", "data-toggle" => "tab", :href => "#instgram", :role => "tab"} Instagram:
         .col-md-6.col-sm-6.col-xs-6
           %ul.list-inline.list-right.socal-icons-list
-            %li
-              = link_to "", "#", class: "social-icons-fb"
-            %li
-              = link_to "", "#", class: "social-icons-instagram"
-            %li
+            %li= link_to "", @person.facebook_profile, class: "social-icons-fb", target: "_blank" if @person.facebook_profile.present?
+            %li= link_to "", @person.instagram_profile, class: "social-icons-instagram", target: "_blank" if @person.instagram_profile.present?
+            -# %li
               = link_to "", "#", class: "social-icons-snapchat"
-            %li
-              = link_to "", "#", class: "social-icons-twitter"
-            %li
+            %li= link_to "", @person.instagram_profile, class: "social-icons-twitter", target: "_blank" if @person.instagram_profile.present?
+            -# %li
               = link_to "", "#", class: "social-icons-pinterest"
       .row
         .col-md-9.col-sm-9.col-xs-9

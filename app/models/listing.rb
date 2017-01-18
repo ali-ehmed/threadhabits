@@ -41,7 +41,7 @@ class Listing < ApplicationRecord
   validates_presence_of :description, :size
   validates_uniqueness_of :slug
 
-  %w(tops bottoms shoes accessories).each do |product|
+  %w(tops outerwear bottoms shoes accessories).each do |product|
     scope product.to_sym, -> { joins(:size => :product_type).where("lower(product_types.name) = ?", product) }
   end
 

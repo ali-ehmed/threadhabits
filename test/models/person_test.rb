@@ -32,6 +32,9 @@
 #  cover_image_file_size    :integer
 #  cover_image_updated_at   :datetime
 #  paypal_id                :string
+#  facebook_profile         :string
+#  instagram_profile        :string
+#  twitter_profile          :string
 #
 
 require 'test_helper'
