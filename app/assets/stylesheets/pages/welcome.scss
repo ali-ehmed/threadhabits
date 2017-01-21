@@ -8,7 +8,7 @@ body {
   background: url('THbanner');
   text-align: center;
   color: #fff;
-  margin-top: 100px;
+  margin-top: -10px;
   margin-bottom: 10px !important;
   h1 {
     font-size: 5.4em;
@@ -20,6 +20,14 @@ body {
     font-weight: 600;
     margin: 0.75em auto;
     max-width: 22.5em;
+  }
+}
+
+.search-results {
+  h1, h2, h3, h4 {
+    margin-top: 20px;
+    margin-bottom: 5px;
+    font-weight: bold;
   }
 }
 

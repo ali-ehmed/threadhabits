@@ -25,9 +25,12 @@ nav.application-top-header {
       }
     }
 
-    // li.side-right-li {
-    //   float: right;
-    // }
+    li.side-left-li a, li.side-right-li a {
+      font-size: 12px;
+    }
+    li a.sell-btn {
+      font-size: 15px;
+    }
 
     li a.sell-btn span {
       border: 1px solid #f38f8f;
@@ -64,6 +67,16 @@ nav.application-top-header {
           }
           li:last-child {
             border-right: 0px;
+          }
+          li:first-child {
+            span.notify_message {
+              position: absolute;
+              font-size: 5px;
+              right: 5px;
+              top: 21em;
+              color: red;
+              display: none;
+            }
           }
         }
         .dropdown-bottom {
@@ -152,7 +165,7 @@ nav.application-bottom-header {
   nav.application-top-header {
     .navbar-center {
       .brand_name {
-        padding: 7px 25px;
+        padding: 7px 165px;
       }
     }
   }

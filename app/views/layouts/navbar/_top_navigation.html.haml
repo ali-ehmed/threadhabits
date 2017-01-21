@@ -11,17 +11,17 @@
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       .row
         .col-md-5.col-sm-5.col-xs-5.col-lg-5
-          %form.navbar-search-form
+          = form_tag fetch_listings_path(@p.merge!(filters: { q: @p[:filters][:q] })), method: :get, class: "navbar-search-form" do
             .form-group
               .input-group
                 .input-group-addon
                   %i.fa.fa-search
-                %input.form-control{:placeholder => "Search", :type => "text"}/
-        %ul.nav.navbar-nav.navbar-center.col-md-3.col-xs-3.col-sm-2.col-lg-2
+                = text_field_tag "filters[q]", @p[:filters][:q], class: "form-control", placeholder: "Search"
+        %ul.nav.navbar-nav.navbar-center.col-md-2.col-xs-2.col-sm-2.col-lg-2
           %li
             %a.brand_name{:href => root_path}
               = image_tag "#{S3_ASSET_PATH}/threadhabitsheader_logo.png", class: "img-responsive", style: "max-width: 100%;"
-        %ul.nav.navbar-nav.navbar-right.col-md-4.col-xs-4.col-sm-5.col-lg-5
+        %ul.nav.navbar-nav.navbar-right.col-md-5.col-xs-5.col-sm-5.col-lg-5
 
           - if person_signed_in?
             %li.side-right-li
@@ -42,6 +42,8 @@
                       %i.fa.fa-inbox.fa-3x
                       %br/
                       Inbox
+                      %span.notify_message
+                        %i.fa.fa-circle
                   %li
                     %a{:href => profiles_path(current_person.username)}
                       %i.fa.fa-user.fa-3x

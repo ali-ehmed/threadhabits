@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_person!, :authorize_person!, if: :admin_controller?
-  # before_action :reset_location
+  before_action :set_filter_params
 
   def landing_banner(flag = false) @landing_banner = !person_signed_in? && flag end;
 
@@ -37,6 +37,15 @@ class ApplicationController < ActionController::Base
     }
 
     gon.current_location
+  end
+
+  def set_filter_params
+    @p = ActionController::Parameters.new({filters: {}})
+    if params[:filters].present?
+      @p[:filters] = params[:filters]
+    end
+
+    @p = @p.to_unsafe_h
   end
 
   protected

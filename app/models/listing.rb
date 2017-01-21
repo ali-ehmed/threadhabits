@@ -67,7 +67,7 @@ class Listing < ApplicationRecord
   end
 
   def self.fetch_by_filters(filters)
-    listings = all.includes(:size, :company).order("created_at desc")
+    listings = all.includes(:size, :company).order("listings.created_at desc")
     conditions = []
 
     if filters[:category_ids]
@@ -87,7 +87,7 @@ class Listing < ApplicationRecord
     end
 
 
-    if filters[:size_names]
+    if filters[:size_names].present?
       listings = listings.joins(:size) unless filters[:product_type].present?
       conditions << "sizes.name in (:size_names)"
     end
@@ -101,10 +101,16 @@ class Listing < ApplicationRecord
       conditions << "condition in (:conditions})"
     end
 
+    if filters[:q].present?
+      listings = listings.joins(:company)
+      conditions << "(listings.name iLike (:query) OR description iLike (:query) OR designers.name iLike (:query))"
+    end
+
     listings.where(conditions.join(" AND "), {
-        size_names: filters[:size_names], companies: filters[:company_ids],
+        size_names: filters[:size_names].try(:uniq), companies: filters[:company_ids],
         categories: filters[:category_ids], condition: filters[:conditions],
         latitude: filters[:latitude], longitude: filters[:longitude],
+        query: "%#{filters[:q]}%"
       }
     )
   end

@@ -425,21 +425,27 @@
 @Home =
   initializeFilters: ->
     # Scroll Plugin
-    $.fn.followTo = (pos) ->
+    $.fn.followTo = (pos, banner) ->
       $this = this
       $window = $(window)
-      if $(".landing-banner").length
+      # Setting Start Position
+      if banner == true
         topOffset = 407
       else
         topOffset = 49
+
       $this.css "z-index", "1"
 
       $window.scroll (e) ->
         # Stops when scroll position cross
         if $window.scrollTop() > pos
+          stopPos = pos
+          # For Banner (only comes when user not signed in)
+          if banner == true
+            stopPos = pos - 600
           $this.css
             position: 'absolute'
-            top: pos
+            top: stopPos
           $this.css "width", "90%"
         else if $window.scrollTop() > topOffset
           # Starts
@@ -459,12 +465,18 @@
         return
       return
 
+    landing_banner = false
+    # Setting Stop Position
     if $(".landing-banner").length
-      footerY = 0
+      # This is the position for Screen Size 1440px (Macbook 13inch)
+      # Setting extra top position for properly collapsing the filters
+      footerY = 675
+      landing_banner = true
     else
-      footerY = 627
+      # 627 - was set top
+      footerY = 890
 
-    $('.listing-filters').followTo(($("footer").offset().top - footerY));
+    $('.listing-filters').followTo(($("footer").offset().top - footerY), landing_banner);
 
     nonLinearSlider = nonLinearSlider = document.getElementById('nonlinearRangePriceSlider')
     nodes = [
