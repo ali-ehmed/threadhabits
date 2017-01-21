@@ -30,7 +30,7 @@
             -# %button.btn.btn-default Add to Cart
             -# %button.btn.btn-default Buy it now
             %br
-            = link_to payments_checkout_paypal_path(listing_id: @chat_room.listing.id), "data-turbolinks" => false, class: "btn btn-default btn-block" do
+            = link_to payments_checkout_paypal_path(listing_id: @chat_room.listing.id), "data-turbolinks" => false, class: "btn btn-default btn-block btn-block-lg" do
               %i.fa.fa-paypal
               Purchase with Paypal
 
