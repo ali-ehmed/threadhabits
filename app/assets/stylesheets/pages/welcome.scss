@@ -2,7 +2,8 @@
 body {
   font-family: 'Lato', sans-serif;
   background-color: $threadhabits-theme-bg-color;
-  margin-top: 7em
+  margin-top: 7em;
+  position: relative;
 }
 .landing-banner {
   background: url('THbanner');

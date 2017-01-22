@@ -44,10 +44,12 @@ Rails.application.routes.draw do
     end
   end
 
-  get ":username" => "profiles#show", as: :profiles
+  get "profiles/:username" => "profiles#show", as: :profiles
 
   get '/' => "home#index", as: :fetch_listings
   get 'home/verify_unread_message' => "home#verify_unread_message"
+  get 'about_us' => "home#about_us", as: :about_us
+  get 'contact_us' => "home#contact_us"
 
   root to: "home#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

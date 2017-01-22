@@ -30,19 +30,21 @@
         height: 100% !important
 
 .listing-filters
-  // position: relative
-  // form
-  //   position: fixed
-  // width: 18em
-  // transform: translate(-35%, -19%)
   .panel
+    border-color: $black
     .checkbox
       margin-top: 2px
       margin-bottom: 2px
+    .field-strip:first-child
+      margin-top: 0
+    .panel-group
+      margin-bottom: 0
     .field-strip
       background: #EFEFEF
       padding: 1px 10px
-      margin: 10px 0
+      margin: 10px
+      a
+        color: $black
       span
         padding-right: 7px
     #priceFilter
@@ -75,6 +77,7 @@
     .scroll
       max-height: 250px
       overflow: scroll
+      overflow-x: hidden
 
 .listing-details
   margin-top: -35px
@@ -83,7 +86,7 @@
     text-align: center
     margin-bottom: 10px
     cursor: pointer
-  
+
   .box
     padding: 0
     min-height: 1200px

@@ -1,4 +1,7 @@
 nav.application-top-header {
+  a {
+    color: $black !important;
+  }
   // Center Navbar
   .navbar-center {
     text-align: center;
@@ -26,14 +29,14 @@ nav.application-top-header {
     }
 
     li.side-left-li a, li.side-right-li a {
-      font-size: 12px;
+      font-size: 11px;
     }
     li a.sell-btn {
       font-size: 15px;
     }
 
     li a.sell-btn span {
-      border: 1px solid #f38f8f;
+      border: 1px solid #ba0028;
       padding: 8px 10px;
     }
 
@@ -113,11 +116,15 @@ nav.application-top-header {
     }
     .input-group-addon {
       background-color: #fff;
+      border: 0;
     }
   }
 }
 
 nav.application-bottom-header {
+  a {
+    color: $black !important;
+  }
   min-height: 0px;
   font-size: 11px;
   border-width: 0px;

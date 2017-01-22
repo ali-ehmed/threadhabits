@@ -430,9 +430,9 @@
       $window = $(window)
       # Setting Start Position
       if banner == true
-        topOffset = 407
+        topOffset = 388
       else
-        topOffset = 49
+        topOffset = 34
 
       $this.css "z-index", "1"
 
@@ -455,7 +455,7 @@
           if $(window).width() <= 980
             $this.css "width", "160px"
           else
-            $this.css "width", "262px"
+            $this.css "width", "263px"
         else if $window.scrollTop() < topOffset
           # Stops back where started
           $this.css

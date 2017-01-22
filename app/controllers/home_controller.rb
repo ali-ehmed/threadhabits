@@ -20,12 +20,20 @@ class HomeController < ApplicationController
     render json: { status: 200, unread: read }
   end
 
+  def about_us
+
+  end
+
+  def contact_us
+
+  end
+
   private
 
   def filter_data
-    @categories  = Rails.cache.fetch("categories", expires_in: 1.hour) do
-                      Category.all
-                    end
+    # @categories  = Rails.cache.fetch("categories", expires_in: 1.hour) do
+    #                   Category.all
+    #                 end
     @designers   =  Rails.cache.fetch("designers", expires_in: 1.hour) do
                       Designer.all
                     end

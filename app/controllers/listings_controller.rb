@@ -1,7 +1,7 @@
 class ListingsController < ApplicationController
   before_action :authenticate_person!, except: [:show]
   before_action :set_current_person_listing, only: [:edit, :update, :destroy]
-  before_action :fetch_category!, only: [:new, :edit]
+  # before_action :fetch_category!, only: [:new, :edit]
   before_action :set_default_request_format, only: [:create, :update]
   before_action :set_listing_data, only: [:new, :edit]
 
@@ -95,6 +95,7 @@ class ListingsController < ApplicationController
       request.format = :json unless params[:format]
     end
 
+    # Not being used anymore
     def fetch_category!
       @category = if params[:category_slug].present?
                     Category.find_by_slug(params[:category_slug])

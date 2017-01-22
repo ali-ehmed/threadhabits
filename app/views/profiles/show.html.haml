@@ -65,7 +65,7 @@
           %ul.list-inline.listing-tabs
             %li.active{:role => "presentation"}
               %a{"aria-controls" => "items", "data-toggle" => "tab", :href => "#items", :role => "tab"} Items:
-            %li{:role => "presentation"}
+            -# %li{:role => "presentation"}
               %a{"aria-controls" => "instgram", "data-toggle" => "tab", :href => "#instgram", :role => "tab"} Instagram:
         .col-md-6.col-sm-6.col-xs-6
           %ul.list-inline.list-right.socal-icons-list
@@ -87,7 +87,7 @@
               - else
                 .alert.alert-success
                   There are no listings
-            #instgram.tab-pane{:role => "tabpanel"}
+            -# #instgram.tab-pane{:role => "tabpanel"}
         .col-md-3.col-sm-3.col-xs-3
           = render  partial: "side_section"
   %br/

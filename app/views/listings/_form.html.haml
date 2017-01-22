@@ -18,7 +18,7 @@
             #file-upload-success-container.file-status-container
       .col-md-5.col-sm-5.col-xs-5
         = validation_errors_notifications(@listing)
-        = f.hidden_field :category_id, value: @category.id
+        -# = f.hidden_field :category_id, value: @category.id
         .form-group
           = f.label :name, "Title"
           %br/

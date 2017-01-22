@@ -42,7 +42,7 @@ class window.Settings
     Settings.current_location[key] = value
 
   updateLocationInputs: (key, value) =>
-    @inputs[key].value = value
+    @inputs[key].value = value if @inputs[key]
 
   @clearTurbolinksCache: =>
     document.addEventListener 'turbolinks:before-visit', ->

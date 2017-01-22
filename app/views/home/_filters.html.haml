@@ -10,17 +10,17 @@
     = hidden_field_tag "filters[q]", @p[:filters][:q]
     .panel.panel-default
       .panel-body
-        -# Categories
-        #categoriesFilter
-          %label
-            ALL CATEGORIES
-          %ul.list-unstyled
-            - @categories.each do |category|
-              %li
-              .checkbox
-                = check_box_tag "filters[category_ids][]", category.id, @p[:filters][:category_ids] && @p[:filters][:category_ids].include?(category.id.to_s), id: "categories_#{category.id}"
-                -# = f.check_box "category_ids[]", { id: "categories_#{category.id}", checked: @p[:filters][:category_ids] && @p[:filters][:category_ids].include?(category.id.to_s) }, category.id
-                %label{for: "categories_#{category.id}"}= category.name
+        -# -# Categories
+        -# #categoriesFilter
+        -#   %label
+        -#     ALL CATEGORIES
+        -#   %ul.list-unstyled
+        -#     - @categories.each do |category|
+        -#       %li
+        -#       .checkbox
+        -#         = check_box_tag "filters[category_ids][]", category.id, @p[:filters][:category_ids] && @p[:filters][:category_ids].include?(category.id.to_s), id: "categories_#{category.id}"
+        -#         -# = f.check_box "category_ids[]", { id: "categories_#{category.id}", checked: @p[:filters][:category_ids] && @p[:filters][:category_ids].include?(category.id.to_s) }, category.id
+        -#         %label{for: "categories_#{category.id}"}= category.name
 
         -# Accordians
         #accordion.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
@@ -99,7 +99,7 @@
             %a.collapse-filter-link{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseLocationFilter", :role => "button"}
               %span -
               LOCATION
-          #collapseLocationFilter.collapse{"aria-labelledby" => "headingTwo", :role => "tabpanel"}
+          #collapseLocationFilter.collapse{"aria-labelledby" => "headingTwo", :role => "tabpanel", class: @p[:filters][:location].present? ? "in" : ""}
             #locationFilter
               .form-group
                 .input-group
@@ -107,6 +107,7 @@
                     %i.fa.fa-search
                   %input.form-control#location_input{name: "filters[location]", value: @p[:filters][:location], :placeholder => "Search Location", :type => "text"}/
                   %input#latitude_input{name: "filters[latitude]", value: @p[:filters][:latitude], :type => "hidden"}/
+                  %input#longitude_input{name: "filters[longitude]", value: @p[:filters][:longitude], :type => "hidden"}/
                   %input#place_id_input{name: "filters[place_id]", value: @p[:filters][:place_id], :type => "hidden"}/
                   #google-maps
 
