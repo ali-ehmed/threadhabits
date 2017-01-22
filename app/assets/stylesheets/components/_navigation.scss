@@ -53,7 +53,7 @@ nav.application-top-header {
     li.navbar-profile-icon {
       a.dropdown-toggle {
         span {
-          font-size: 12px;
+          font-size: 11px;
         }
       }
       .dropdown-menu {
@@ -110,6 +110,7 @@ nav.application-top-header {
     width: 95%;
     input[type='text'] {
       border-width: 1px;
+      width: 365px;
     }
     .input-group-addon, input[type='text'] {
       border-radius: 1px;

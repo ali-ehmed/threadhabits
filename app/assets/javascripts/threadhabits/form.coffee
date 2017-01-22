@@ -430,9 +430,9 @@
       $window = $(window)
       # Setting Start Position
       if banner == true
-        topOffset = 388
+        topOffset = 355
       else
-        topOffset = 34
+        topOffset = 5
 
       $this.css "z-index", "1"
 

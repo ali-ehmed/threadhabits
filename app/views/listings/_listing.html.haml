@@ -11,3 +11,42 @@
         %p.content
           = listing.name
       %p.price= number_to_currency listing.price
+.col-md-3.col-sm-3.col-xs-3.listing-column
+  .thumbnail
+    %a{href: detail_listings_path(listing.slug)}
+      = image_tag listing.display_image.url(:medium)
+    .caption
+      %p.created= time_ago_in_words((listing.updated_at || listing.created_at))
+      .desc
+        %h4
+          = listing.company.try(:name)
+          %small= listing.size.try(:name)
+        %p.content
+          = listing.name
+      %p.price= number_to_currency listing.price
+.col-md-3.col-sm-3.col-xs-3.listing-column
+  .thumbnail
+    %a{href: detail_listings_path(listing.slug)}
+      = image_tag listing.display_image.url(:medium)
+    .caption
+      %p.created= time_ago_in_words((listing.updated_at || listing.created_at))
+      .desc
+        %h4
+          = listing.company.try(:name)
+          %small= listing.size.try(:name)
+        %p.content
+          = listing.name
+      %p.price= number_to_currency listing.price
+.col-md-3.col-sm-3.col-xs-3.listing-column
+  .thumbnail
+    %a{href: detail_listings_path(listing.slug)}
+      = image_tag listing.display_image.url(:medium)
+    .caption
+      %p.created= time_ago_in_words((listing.updated_at || listing.created_at))
+      .desc
+        %h4
+          = listing.company.try(:name)
+          %small= listing.size.try(:name)
+        %p.content
+          = listing.name
+      %p.price= number_to_currency listing.price
