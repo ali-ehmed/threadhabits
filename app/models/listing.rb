@@ -53,7 +53,7 @@ class Listing < ApplicationRecord
 
   def upload_photos(files = [])
     self.display_image = files.first
-    save!
+    save! if self.display_image.blank?
     files.each{|file| uploads.create(image: file) }
   end
 
