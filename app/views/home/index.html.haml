@@ -1,0 +1,21 @@
+.container
+  .row
+    .col-md-3.col-sm-3.col-xs-3
+      = render partial: "filters"
+    .col-md-9.col-sm-9.col-xs-9
+      - if @p[:filters].present?
+        %blockquote.blockquote.search-results
+          %h3.page-header
+            Results
+            %small
+              = pluralize(@listings.length, "Item")
+      - if @listings.present?
+        .listings
+          .row
+            = render partial: "listings/listing", collection: @listings
+
+          .items-pagination
+            = will_paginate @listings, renderer: BootstrapPagination::Rails
+      - else
+        .alert.alert-success
+          There are no listings

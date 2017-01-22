@@ -1,7 +1,12 @@
 class ProfilesController < ApplicationController
-  before_action :authenticate_person!, :set_profile
+  before_action :set_profile
 
   def show
+    if @person.has_address?
+      set_geocode_location!(@person.address)
+    end
+
+    @listings = @person.listings
   end
 
   private

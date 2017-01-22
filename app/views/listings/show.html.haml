@@ -1,0 +1,85 @@
+- content_for :javascript do
+  $location = new Location();
+  $location.initializeLocation();
+  $location.setMap();
+
+  Inbox.initializeMessageBox();
+
+.listing-details
+  .row
+    .col-md-6.col-sm-6.col-xs-6.box.box-left
+      .col-md-12.col-sm-12.col-xs-12#scrolling-section
+        .images
+          - @uploads.each do |upload|
+            = image_tag upload.image.url(:large), class: "img-responsive listing", data: { toggle: "modal", target: "#uploadViewerModal_#{upload.id}" }
+            = render partial: "upload_viewer", locals: { upload: upload }
+    .col-md-6.col-sm-6.col-xs-6.box.box-right
+      .col-md-10.col-sm-12.col-xs-12
+        .detailed
+          .heading-top
+            %h1
+              = @listing.company.try(:name)
+              .pull-right
+                = number_to_currency @listing.price
+          .heading-bottom
+            %span.item-name
+              = @listing.name
+            %span.size.pull-right
+              = @listing.size.try(:name)
+
+          .description
+            = simple_format @listing.description
+          .condition
+            %label
+              Condition:
+            = @listing.condition
+
+          .owner-profile
+            .col-md-10.col-sm-12.col-xs-12
+              .row.profile-details
+                .col-md-5.col-sm-5.col-xs-5
+                  = link_to profiles_path(@listing.person.username) do
+                    = image_tag @listing.person.avatar.url(:medium), class: "img-responsive"
+                .col-md-7.col-sm-7.col-xs-7
+                  .heading
+                    = link_to @listing.person.full_name, profiles_path(@listing.person.username)
+                  .username
+                    = link_to @listing.person.tagged_username, profiles_path(@listing.person.username)
+                  .sellings
+                    %ul.list-inline
+                      %li
+                        = @listing.person.listings.count
+                        Items
+                      -# %li 19 Sales
+                  - if person_signed_in?
+                    - unless @listing.person.is_current_person?(current_person)
+                      = link_to "Message", "#", id: "message-box-link", data: { url: new_message_path(receiver_id: @listing.person.id, listing_id: @listing.id) }, class: "btn btn-default btn-block-lg btn-block"
+                  - else
+                    = link_to "Message", new_person_session_path, class: "btn btn-default btn-block-lg btn-block"
+              - if person_signed_in?
+                - unless @listing.person.is_current_person?(current_person)
+                  = link_to payments_checkout_paypal_path(listing_id: @listing.id), "data-turbolinks" => false, class: "btn btn-default btn-block btn-block-lg" do
+                    %i.fa.fa-paypal
+                    Purchase with Paypal
+              - else
+                = link_to new_person_session_path, "data-turbolinks" => false, class: "btn btn-default btn-block btn-block-lg" do
+                  %i.fa.fa-paypal
+                  Purchase with Paypal
+              -# = link_to "#", class: "btn btn-default btn-block" do
+                %i.fa.fa-cart-plus
+                Add to cart
+
+              - if (current_person and @listing.belongs_to_person?(current_person)) || (current_person and current_person.admin?)
+                .edit-options
+                  .row
+                    .col-md-6
+                      = link_to edit_listings_path(@listing.slug), class: "btn btn-primary btn-block" do
+                        %i.fa.fa-pencil
+                        Edit
+                    .col-md-6
+                      = link_to destroy_listings_path(@listing.slug), method: :delete, class: "btn btn-primary btn-block ", data: { confirm: "Are you sure?" } do
+                        %i.fa.fa-trash
+                        Delete
+              #google-maps
+
+.message-box

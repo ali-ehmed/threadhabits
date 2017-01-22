@@ -1,10 +1,14 @@
 nav.application-top-header {
+  a {
+    color: $black !important;
+  }
   // Center Navbar
   .navbar-center {
     text-align: center;
     li { width: 100%; }
 
     .brand_name {
+      padding: 10px 13px;
       font-size: 20px;
       font-weight: 900;
       text-transform: uppercase;
@@ -18,19 +22,26 @@ nav.application-top-header {
     li {
       text-transform: uppercase;
       text-align: center;
+      float: right;
+      a {
+        padding: 15px 20px;
+      }
     }
 
-    li.side-right-li {
-      float: right;
+    li.side-left-li a, li.side-right-li a {
+      font-size: 11px;
+    }
+    li a.sell-btn {
+      font-size: 15px;
     }
 
     li a.sell-btn span {
-      border: 1px solid #f38f8f;
+      border: 1px solid #ba0028;
       padding: 8px 10px;
     }
 
     li.open {
-      a:focus, a:hover, {
+      a, a:focus, a:hover, {
         background-color: transparent !important;
       }
       .dropdown-options {
@@ -40,20 +51,35 @@ nav.application-top-header {
     }
 
     li.navbar-profile-icon {
+      a.dropdown-toggle {
+        span {
+          font-size: 11px;
+        }
+      }
       .dropdown-menu {
         padding: 0;
         ul.dropdown-options {
           width: 100%;
-          border-bottom: 1px solid;
+          border-bottom: 1px solid #bdbdbd;
           a { padding: 35px 0px; i { font-size: 2.5em; } }
           li {
-            border-right: 1px solid;
+            border-right: 1px solid #bdbdbd;
             width: 130px;
             list-style: none;
             &:hover { background-color: rgba(204, 204, 204, 0.22); }
           }
           li:last-child {
             border-right: 0px;
+          }
+          li:first-child {
+            span.notify_message {
+              position: absolute;
+              font-size: 5px;
+              right: 5px;
+              top: 21em;
+              color: red;
+              display: none;
+            }
           }
         }
         .dropdown-bottom {
@@ -69,6 +95,7 @@ nav.application-top-header {
         width: 30px;
         position: absolute;
         top: 8px;
+        left: 10px;
       }
       > a {
         margin-left: 25px;
@@ -83,30 +110,47 @@ nav.application-top-header {
     width: 95%;
     input[type='text'] {
       border-width: 1px;
+      width: 365px;
     }
     .input-group-addon, input[type='text'] {
       border-radius: 1px;
     }
     .input-group-addon {
       background-color: #fff;
+      border: 0;
     }
   }
 }
 
 nav.application-bottom-header {
-  min-height: 38px;
+  a {
+    color: $black !important;
+  }
+  min-height: 0px;
   font-size: 11px;
+  border-width: 0px;
+  margin-top: 50px;
+  z-index: 2;
   ul li {
     text-transform: uppercase;
+    a {
+      padding: 8px 0px;
+    }
   }
   ul.side-left-section {
     li {
       padding: 0px 10px;
+      width: 20%;
     }
   }
   ul.side-right-section {
     padding-right: 0px;
-    li { text-align: center; float: right; padding: 0px 10px; }
+    li {
+      text-align: right; float: right; padding: 0px 10px; width: 25%;
+    }
+    li:first-child {
+      padding-right: 30px;
+    }
   }
   li.listing-view-options {
     a {
@@ -121,6 +165,16 @@ nav.application-bottom-header {
   nav.application-top-header {
     .navbar-center {
       .brand_name { font-size: 15px; }
+    }
+  }
+}
+
+@media (min-width: 1440px) {
+  nav.application-top-header {
+    .navbar-center {
+      .brand_name {
+        padding: 7px 15px;
+      }
     }
   }
 }

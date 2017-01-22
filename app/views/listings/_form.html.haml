@@ -1,0 +1,65 @@
+- content_for :javascript do
+  $location = new Location();
+  $location.initializeLocation();
+  $location.setMapForm();
+
+  window.wrapper_upload = $(".listing-uploads").find(".dummy-box");
+
+= form_for @listing, url: action, method: method, html: { id: "listingForm", class: "listing-form", :multipart => true, data: { new_record: @listing.new_record? } }  do |f|
+  = hidden_field_tag :listing_id, f.object.id
+  .container
+    .row
+      .col-md-7.col-sm-7.col-xs-7
+        .form-group
+          .listing-uploads
+            = f.label :uploads, "Images"
+            = file_field_tag "upload_photos[]", multiple: true, id: "listing_upload_photos", class: "file-field-input"
+            #file-upload-error-container.file-status-container
+            #file-upload-success-container.file-status-container
+      .col-md-5.col-sm-5.col-xs-5
+        = validation_errors_notifications(@listing)
+        -# = f.hidden_field :category_id, value: @category.id
+        .form-group
+          = f.label :name, "Title"
+          %br/
+          = f.text_field :name, autofocus: true, class: "form-control input-lg"
+        .form-group
+          = f.label :description, "Detailed Description"
+          %br/
+          = f.text_area :description, class: "form-control input-lg"
+        .form-group
+          = f.label :product_type
+          %br/
+          = f.select :product_type_id, options_for_select(@products.map{ |v| [v.name, v.id] }, f.object.product_type_id), { include_blank: "--Select Product Type--" }, class: "form-control input-lg product-type-listing-input"
+        .product-size
+          .form-group
+            -# Size field will be output
+            - unless f.object.new_record?
+              = yield f
+        .form-group
+          = f.label :price
+          %br/
+          = f.number_field :price, class: "form-control input-lg"
+        .form-group
+          = f.label :condition
+          %br/
+          = f.select :condition,  Listing::CONDITIONS.map{ |v| v }, { include_blank: "Select Condition" }, class: "form-control input-lg"
+
+        .form-group
+          = f.label :comapny, "Company/Designers"
+          %br/
+          = f.select :company_id,  @designers.map{ |v| [v.name, v.id] }, { include_blank: "Select Company/Designers" }, class: "form-control input-lg"
+
+        .form-group
+          = f.fields_for :address do |n|
+            = n.label :location
+            = n.text_field :location, value: @address.try(:location), class: "form-control input-lg", id: "location_input"
+            = n.hidden_field :latitude, class: "form-control input-lg", id: "latitude_input"
+            = n.hidden_field :longitude, class: "form-control input-lg", id: "longitude_input"
+            = n.hidden_field :place_id, value: @address.try(:place_id), class: "form-control input-lg", id: "place_id_input"
+            #google-maps
+
+
+
+        .form-actions
+          = f.submit "Submit", class: "btn btn-primary site-btn"

@@ -1,0 +1,14 @@
+.settings.container
+  .row
+    .col-md-3.col-sm-3.col-xs-3
+      %ul.nav.nav-pills.nav-stacked.settings-list
+        - settings_list.each do |list|
+          %li{class: active_list?(list[0], @current_settings) ? "active" : ""}
+            = link_to list[1][:path] do
+              %i.fa.fa-dot-circle-o
+              = list[1][:name]
+              - if active_list?(list[0], @current_settings)
+                %i.fa.fa-arrow-right.pull-right
+    .col-md-9.col-sm-9.col-xs-9
+      = validation_errors_notifications current_person
+      = yield

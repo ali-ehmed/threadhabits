@@ -1,0 +1,14 @@
+- content_for :javascript do
+  easyzoom = $(".easyzoom-#{upload.id}").easyZoom();
+  easyzoom.show();
+
+.modal.fade{"aria-labelledby" => "uploadViewerModal", :role => "dialog", :tabindex => "-1", id: "uploadViewerModal_#{upload.id}"}
+  .modal-dialog{role: "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+      .modal-body
+        .easyzoom.easyzoom--overlay.easyzoom--with-toggle.is-ready{style: "width: 100%;", class: "easyzoom-#{upload.id}"}
+          = link_to upload.image.url(:large), class: "text-center" do
+            = image_tag upload.image.url(:large), class: "img-responsive", style: "max-width: 100%;margin: 0 auto;"

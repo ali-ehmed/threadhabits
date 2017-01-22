@@ -1,0 +1,36 @@
+= heading_section :h2, "Notifications Settings"
+= render layout: "side_bar" do
+  = form_tag preferences_settings_path, method: :post do
+    = fields_for :notification_preferences do |f|
+      -# %h3 Newsletters
+      -# .form-group
+        = f.radio_button :newsletters, true, {checked: @preferences.include?(:newsletters)}
+        = f.label :newsletters_true, "Send me a <strong>weekly</strong> newsletter if there are new listings".html_safe
+        %br
+        = f.radio_button :newsletters, false, {checked: !@preferences.include?(:newsletters)}
+        = f.label :newsletters_false, "Don't send me newsletters"
+
+      -# %h3 Emails from administrators
+      -# .form-group
+        = f.check_box :emails_from_administrator, {checked: @preferences.include?(:emails_from_administrator)}, true, false
+        = f.label :emails_from_administrator, "I'm willing receive occasional emails from administrator"
+
+      %h3 I want to get an email notification when ...
+      .form-group
+        = f.check_box :new_message, { checked: @preferences.include?(:new_message) }, true, false
+        = f.label :new_message, "...someone sends me a message"
+      -# .form-group
+        = f.check_box :give_feedback, {checked: @preferences.include?(:give_feedback)}, true, false
+        = f.label :send_message, "...someone gives me a feedback"
+      -# .form-group
+        = f.check_box :marks_order, {checked: @preferences.include?(:marks_order)}, true, false
+        = f.label :marks_order, "...someone marks my order"
+      .form-group
+        = f.check_box :new_payment, { checked: @preferences.include?(:new_payment) }, true, false
+        = f.label :new_payment, "...I receive a new payment"
+      -# .form-group
+        = f.check_box :following_new_post, {checked: @preferences.include?(:following_new_post)}, true, false
+        = f.label :following_new_post, "...someone I follow posts new listing"
+
+      .form-group
+        = f.submit "Save Information", class: "btn btn-primary site-btn"

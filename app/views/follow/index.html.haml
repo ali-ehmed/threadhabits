@@ -1,0 +1,63 @@
+= heading_section :h2, "Following Users List"
+
+.container
+  .row
+    .col-md-6
+      %ul.nav.nav-pills.nav-justified
+        %li.active
+          %a{:href => "#"}
+            Followings
+            Total
+            = "(#{@followings.count})"
+      .panel.panel-default.follow-list
+        .panel-body
+          - if @followings.present?
+            %table.table.table-striped
+              %thead
+                %tr
+                  %th.col-md-1.col-sm-1.col-xs-1
+                  %th Name
+                  %th Items
+                  %th Profile
+                  %th
+              %tbody
+                - @followings.each do |list|
+                  %tr
+                    %td= image_tag list.follower.avatar.url(:medium), class: "img-responsive"
+                    %td= list.follower.full_name
+                    %td= list.follower.listings.count
+                    %td
+                      = link_to "View", profiles_path(list.follower.username)
+                    %td
+                      = link_to "Unfollow", follow_path(list), method: :put
+          - else
+            .alert.alert-success
+              No Followings Yet
+    .col-md-6
+      %ul.nav.nav-pills.nav-justified
+        %li.active
+          %a{:href => "#"}
+            Followers
+            Total
+            = "(#{@followers.count})"
+      .panel.panel-default.follow-list
+        .panel-body
+          - if @followers.present?
+            %table.table.table-striped
+              %thead
+                %tr
+                  %th.col-md-1.col-sm-1.col-xs-1
+                  %th Name
+                  %th Items
+                  %th Profile
+              %tbody
+                - @followers.each do |list|
+                  %tr
+                    %td= image_tag list.following.avatar.url(:medium), class: "img-responsive"
+                    %td= list.following.full_name
+                    %td= list.following.listings.count
+                    %td
+                      = link_to "View", profiles_path(list.following.username)
+          - else
+            .alert.alert-success
+              No Followers Yet

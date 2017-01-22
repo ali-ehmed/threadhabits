@@ -1,0 +1,54 @@
+= heading_section :h2, "Settings"
+- content_for :javascript do
+  $location = new Location();
+  $location.initializeLocation();
+  $location.setMapForm();
+
+  Profiles.validateForm();
+
+= render layout: "side_bar" do
+  %p This information is visible to all Threadhabits users in your profile page.
+  = form_for current_person, url: settings_path, method: :put, html: { multipart: true, id: "editProfilesForm" } do |f|
+    .form-group
+      = f.label :first_name
+      = f.text_field :first_name, class: "form-control input-lg"
+    .form-group
+      = f.label :last_name
+      = f.text_field :last_name, class: "form-control input-lg"
+    .form-group
+      = f.fields_for :address do |n|
+        = n.label :location
+        = n.text_field :location, class: "form-control input-lg", id: "location_input"
+        = n.hidden_field :latitude, class: "form-control input-lg", id: "latitude_input"
+        = n.hidden_field :longitude, class: "form-control input-lg", id: "longitude_input"
+        = n.hidden_field :place_id, class: "form-control input-lg", id: "place_id_input"
+        #google-maps
+    .form-group
+      = f.label :about_you
+      = f.text_area :about_you, class: "form-control input-lg", rows: 5
+
+    .form-group
+      = f.label :avatar, "Profile Image"
+      = f.preview_image_field :avatar
+
+    .form-group
+      = f.label :avatar, "Cover Image"
+      = f.preview_image_field :cover_image
+
+    .form-group
+      = f.label :phone_number
+      = f.text_field :phone_number, class: "form-control input-lg"
+
+    %blockquote.blockquote
+      Social Media Links
+    .form-group
+      = f.label :facebook_profile
+      = f.text_field :facebook_profile, class: "form-control input-lg"
+    .form-group
+      = f.label :instagram_profile
+      = f.text_field :instagram_profile, class: "form-control input-lg"
+    .form-group
+      = f.label :twitter_profile
+      = f.text_field :twitter_profile, class: "form-control input-lg"
+    .form-actions
+      = f.submit "Save Information", class: "btn btn-primary site-btn"

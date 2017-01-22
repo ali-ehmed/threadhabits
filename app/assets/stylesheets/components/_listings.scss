@@ -1,19 +1,25 @@
 .listings {
+  .listing-column {
+    padding: 0px 2px;
+  }
   .thumbnail {
     border-radius: 0px;
     padding: 0;
+    margin-bottom: 9px;
   }
   .caption {
-    min-height: 215px;
+    padding: 9px 5px;
+    min-height: 160px;
     .created {
       color: rgba(119, 119, 119, 0.7);
-      font-weight: 900;
-      border-bottom: 3px solid rgba(119, 119, 119, 0.3);
+      font-weight: 400;
+      border-bottom: 1px solid rgba(119, 119, 119, 0.3);
     }
     .desc {
-      font-size: 13px;
-      padding: 0px 8px;
-      h4 { font-weight: bold; }
+      h4 { font-size: 15px; font-weight: bold; }
+      p.content {
+        font-size: 14px;
+      }
     }
     .price { font-size: 13px; }
   }

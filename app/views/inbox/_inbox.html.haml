@@ -1,0 +1,13 @@
+.inbox
+  .container
+    .row
+      .col-md-4.col-sm-4.col-xs-4
+        %h3.text-center Messages
+    .row
+      .col-md-4.col-sm-4.col-xs-4.list-section
+        .list-group.chat-room-group
+          = render partial: "inbox/chat_rooms", collection: @chat_rooms, as: :chat_room
+      .col-md-8.col-sm-8.col-xs-8.message-section
+        .panel.panel-default
+          .panel-body.message-body
+            = yield
