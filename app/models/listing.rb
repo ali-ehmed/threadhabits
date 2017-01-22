@@ -52,7 +52,7 @@ class Listing < ApplicationRecord
   PER_PAGE = 30
 
   def upload_photos(files = [])
-    self.display_image = files.last
+    self.display_image = files.first
     save!
     files.each{|file| uploads.create(image: file) }
   end
