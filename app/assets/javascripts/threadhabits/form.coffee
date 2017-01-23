@@ -470,7 +470,7 @@
     if $(".landing-banner").length
       # This is the position for Screen Size 1440px (Macbook 13inch)
       # Setting extra top position for properly collapsing the filters
-      footerY = 675
+      footerY = 600
       landing_banner = true
     else
       # 627 - was set top

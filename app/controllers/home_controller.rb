@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  before_action { landing_banner(true) }
+  before_action only: [:index] { landing_banner(true) }
   before_action :filter_data, only: [:index, :fetch_listings]
   before_action :authenticate_person!, only: [:verify_unread_message]
 
