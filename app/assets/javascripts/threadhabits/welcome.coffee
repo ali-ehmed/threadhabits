@@ -61,6 +61,6 @@ $(document).on "turbolinks:load", ->
         target = $(@hash)
         target = if target.length then target else $('[name=' + @hash.slice(1) + ']')
         if target.length
-          $('html,body').animate { scrollTop: target.offset().top - 100 }, 1000
+          $('html,body').animate { scrollTop: target.offset().top - 110 }, 1000
           return false
       return
