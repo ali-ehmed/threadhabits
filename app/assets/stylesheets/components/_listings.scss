@@ -31,3 +31,12 @@
     .price { font-size: 17px; }
   }
 }
+// Window Size Iphones
+@media only screen
+and (min-device-width : 375px)
+and (max-device-width : 667px)
+and (orientation : portrait) {
+  .listings .caption {
+    min-height: 190px;
+  }
+}
