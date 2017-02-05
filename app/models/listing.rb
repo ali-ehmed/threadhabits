@@ -29,8 +29,9 @@ class Listing < ApplicationRecord
   belongs_to :company, class_name: "Designer", foreign_key: :company_id
 
   has_many :uploads, dependent: :destroy
+  has_many :chat_rooms, dependent: :destroy
 
-  has_one :address, as: :owner
+  has_one :address, as: :owner, dependent: :destroy
   accepts_nested_attributes_for :address
 
   has_attached_file :display_image, styles: { medium: "400x500#", large: "1200x1200>", banner: "950x505>" }, :default_url => "/assets/profile-icon.png"
@@ -52,8 +53,10 @@ class Listing < ApplicationRecord
   PER_PAGE = 30
 
   def upload_photos(files = [])
-    self.display_image = files.first
-    save! if self.display_image.blank?
+    if self.display_image.blank?
+      self.display_image = files.first
+      save!
+    end
     files.each{|file| uploads.create(image: file) }
   end
 

@@ -430,7 +430,7 @@
       $window = $(window)
       # Setting Start Position
       if banner == true
-        topOffset = 390
+        topOffset = 616
       else
         topOffset = 5
 
@@ -441,27 +441,27 @@
         if $window.scrollTop() > pos
           stopPos = pos
           # For Banner (only comes when user not signed in)
-          if banner == true
-            stopPos = pos - 600
+          # if banner == true
+          #   stopPos = pos - 600
           $this.css
             position: 'absolute'
             top: stopPos
-          $this.css "width", "90%"
+          # $this.css "width", "90%"
         else if $window.scrollTop() > topOffset
           # Starts
           $this.css
             position: 'fixed'
             top: 90
-          if $(window).width() <= 980
-            $this.css "width", "160px"
-          else
-            $this.css "width", "263px"
+          # if $(window).width() <= 980
+          #   $this.css "width", "160px"
+          # else
+          #   $this.css "width", "263px"
         else if $window.scrollTop() < topOffset
           # Stops back where started
           $this.css
             position: 'relative'
             top: 0
-          $this.css "width", "100%"
+          # $this.css "width", "100%"
         return
       return
 
@@ -476,7 +476,7 @@
       # 627 - was set top
       footerY = 890
 
-    $('.listing-filters').followTo(($("footer").offset().top - footerY), landing_banner);
+    $('.listing-filters form').followTo(($("footer").offset().top - footerY), landing_banner);
 
     nonLinearSlider = nonLinearSlider = document.getElementById('nonlinearRangePriceSlider')
     nodes = [

@@ -44,6 +44,12 @@ class SettingsController < ApplicationController
     redirect_to notifications_settings_path, notice: "Notifications settings updated successfully"
   end
 
+  def remove_avatar
+    current_person.send("#{params[:avatar_type]}=", nil)
+    current_person.save!
+    redirect_to profiles_settings_path, notice: "Image Removed Successfully"
+  end
+
   private
     def person_params
       permitted_attributes =  case @@current_settings.to_sym

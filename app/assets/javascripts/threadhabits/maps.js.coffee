@@ -73,9 +73,9 @@ class @GoogleMaps
   holdFormOnAutocomplete: =>
     input = document.getElementsByClassName("google-autocomplete")
     $(input).focus ->
-      $(this).closest("form").find("input[type='submit']").prop("disabled", true)
+      $(this).closest("form").find("input[type='submit'], button[type='submit']").prop("disabled", true)
     $(input).blur ->
-      $(this).closest("form").find("input[type='submit']").prop("disabled", false)
+      $(this).closest("form").find("input[type='submit'], button[type='submit']").prop("disabled", false)
 
   # Autocomplete search for google map api
   initAutocomplete: (map, input, callback) =>

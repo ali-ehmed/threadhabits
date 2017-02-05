@@ -32,7 +32,8 @@
                 %i.fa.fa-shopping-bag
             %li.navbar-profile-icon.side-right-li.dropdown
               -# = image_tag "http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/profile-icon.png", class: "img-responsive"
-              = image_tag current_person.avatar.url(:thumb), class: "img-responsive"
+              -# = image_tag current_person.avatar.url(:thumb), class: "img-responsive"
+              = person_avatar(current_person, class: "alphabetical-avatar-nav")
               %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
                 %span.profile-name= current_person.username
               .dropdown-menu
