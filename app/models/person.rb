@@ -44,21 +44,21 @@ class Person < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
 
-  has_one :address, as: :owner
+  has_one :address, as: :owner, dependent: :destroy
   accepts_nested_attributes_for :address
 
-  has_many :preferences
-  has_many :listings
+  has_many :preferences, dependent: :destroy
+  has_many :listings, dependent: :destroy
 
   has_many :chatrooms_persons, dependent: :destroy
   has_many :chat_rooms, through: :chatrooms_persons
 
-  has_many :messages, foreign_key: :sender_id
-  has_many :sent_messages, class_name: "Message", foreign_key: :sender_id
-  has_many :received_messages, class_name: "Message", foreign_key: :receiver_id
+  has_many :messages, foreign_key: :sender_id, dependent: :destroy
+  has_many :sent_messages, class_name: "Message", foreign_key: :sender_id, dependent: :destroy
+  has_many :received_messages, class_name: "Message", foreign_key: :receiver_id, dependent: :destroy
 
-  has_many :followings, class_name: "Follow", foreign_key: :following_id
-  has_many :followers, class_name: "Follow", foreign_key: :follower_id
+  has_many :followings, class_name: "Follow", foreign_key: :following_id, dependent: :destroy
+  has_many :followers, class_name: "Follow", foreign_key: :follower_id, dependent: :destroy
 
   attr_accessor :terms, :login, :setting_tab
 

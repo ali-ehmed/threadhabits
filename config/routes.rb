@@ -38,6 +38,7 @@ Rails.application.routes.draw do
     collection do
       put "/" => "settings#update"
       post "/preferences" => "settings#preferences"
+      put "/remove_avatar" => "settings#remove_avatar"
       SettingsHelper.settings_list.each do |list|
         get list[0]
       end
