@@ -430,7 +430,7 @@
       $window = $(window)
       # Setting Start Position
       if banner == true
-        topOffset = 615
+        topOffset = 616
       else
         topOffset = 5
 
