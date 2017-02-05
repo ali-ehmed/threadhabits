@@ -84,28 +84,6 @@ ul.list-right {
   display: none;
 }
 
-.alphabetical-avatar {
-  padding: 12px 0px;
-  text-align: center;
-  font-size: 5em;
-  border: 1px solid #bbb;
-  color: #000;
-  line-height: 1.555em;
-}
-.alphabetical-avatar-nav {
-  @extend .alphabetical-avatar;
-  font-size: 1em;
-  display: inline-block;
-  padding: 6px 10px;
-  margin-right: -30px;
-}
-.alphabetical-avatar-user-profile {
-  @extend .alphabetical-avatar;
-  padding: 27px 0px;
-  background-color: #fff;
-  margin-bottom: 19px;
-}
-
 /* Styles for Desktops */
 @media screen and (min-width: 1025px) and (max-width: 1280px) {
    .landing-banner {
