@@ -69,7 +69,7 @@
             -# %li{:role => "presentation"}
               %a{"aria-controls" => "instgram", "data-toggle" => "tab", :href => "#instgram", :role => "tab"} Instagram:
         .col-md-6.col-sm-6.col-xs-6
-          - if @persion.social_links.any?
+          - if @person.social_links.any?
             %ul.list-inline.list-right.socal-icons-list
               %li= link_to "", @person.facebook_profile, class: "social-icons-fb", target: "_blank" if @person.facebook_profile.present?
               %li= link_to "", @person.instagram_profile, class: "social-icons-instagram", target: "_blank" if @person.instagram_profile.present?
