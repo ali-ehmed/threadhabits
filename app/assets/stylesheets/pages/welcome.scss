@@ -6,11 +6,13 @@ body {
   position: relative;
 }
 .landing-banner {
-  background: url('THbanner');
+  background-size: cover;
   text-align: center;
   color: #fff;
-  margin-top: 90px;
   margin-bottom: 10px !important;
+  width: 97%;
+  margin: 0 auto;
+  border: 1px solid #000;
   h1 {
     font-size: 5.4em;
     font-weight: 900;
