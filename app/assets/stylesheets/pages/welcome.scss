@@ -6,20 +6,23 @@ body {
   position: relative;
 }
 .landing-banner {
+  min-height: 600px;
   background-size: cover;
   text-align: center;
   color: #fff;
   margin-bottom: 10px !important;
-  width: 97%;
+  width: 98%;
   margin: 0 auto;
   border: 1px solid #000;
   h1 {
     font-size: 5.4em;
     font-weight: 900;
+    line-height: 80px;
+    margin-top: 70px;
   }
   p {
     font-size: 2em;
-    line-height: 1.38462em;
+    line-height: 2.38462em;
     font-weight: 600;
     margin: 0.75em auto;
     max-width: 22.5em;
@@ -48,7 +51,7 @@ main {
   padding: 10px 6em;
   margin: 0px -15px;
   margin-bottom: 15px;
-  margin-top: -19px;
+  margin-top: 18px;
   h1, h2, h3, h4 {
     color: #fff;
     font-weight: 600;
@@ -78,3 +81,10 @@ ul.list-right {
 .hide-content {
   display: none;
 }
+
+/* Styles for Desktops */
+@media screen and (min-width: 1025px) and (max-width: 1280px) {
+   .landing-banner {
+     min-height: 600px;
+   }
+ }
