@@ -39,7 +39,7 @@
               .row.profile-details
                 .col-md-5.col-sm-5.col-xs-5
                   = link_to profiles_path(@listing.person.username) do
-                    = person_avatar(@listing.person, class: "alphabetical-avatar")
+                    = person_avatar(@listing.person, inner_class: "alphabetical-avatar")
                     -# = image_tag @listing.person.avatar.url(:medium), class: "img-responsive"
                 .col-md-7.col-sm-7.col-xs-7
                   .heading

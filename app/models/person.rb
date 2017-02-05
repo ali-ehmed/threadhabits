@@ -158,6 +158,10 @@ class Person < ApplicationRecord
     end
   end
 
+  def social_links
+    [facebook_profile, instagram_profile, twitter_profile]
+  end
+
   # Checkout paypal business email
   def is_seller?
     self.paypal_id.present?
