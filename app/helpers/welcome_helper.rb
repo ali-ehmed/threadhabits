@@ -9,7 +9,7 @@ module WelcomeHelper
 
   def person_avatar(person, options = {})
     if person.has_image?(:avatar)
-      image_tag @listing.person.avatar.url(:medium), class: "img-responsive"
+      image_tag person.avatar.url(:medium), class: "img-responsive"
     else
       person_alphabetical_avatar(person, options)
     end
