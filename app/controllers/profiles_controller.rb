@@ -6,7 +6,7 @@ class ProfilesController < ApplicationController
       set_geocode_location!(@person.address)
     end
 
-    @listings = @person.listings
+    @listings = @person.listings.paginate(:page => params[:page], :per_page => Listing::PER_PAGE)
   end
 
   private
