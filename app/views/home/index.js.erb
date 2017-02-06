@@ -2,6 +2,6 @@ $('#public-listings .listing-item').append('<div class="row"><%= j render partia
 <% if @listings.next_page %>
   $('.pagination').replaceWith('<%= j will_paginate @listings %>');
 <% else %>
-  $(window).off('scroll');
+  // $(window).off('scroll');
   $('.pagination').remove();
 <% end %>
