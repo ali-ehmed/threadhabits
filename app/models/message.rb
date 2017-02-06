@@ -41,7 +41,7 @@ class Message < ApplicationRecord
   def notify_receiver
     preferences = self.receiver.preferences.notifications.first.try(:activated)
     if preferences and preferences.include?(:new_message)
-      NotificationsMailer.messages(self, self.chat_room.try(:listing)).deliver
+      NotificationsMailer.messages_alert(self, self.chat_room.try(:listing)).deliver
     end
   end
 end

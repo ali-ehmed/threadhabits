@@ -23,9 +23,6 @@ body {
   background-color: #fff;
   border-color: #000;
 }
-a {
-  text-decoration: none;
-}
 .btn-primary:hover {
   color: #fff;
   background-color: #010102;
@@ -42,7 +39,7 @@ header h1.main {
 }
 
 a {
-  color: #000;
+  color: #3a85bd;
 }
 
 main {
@@ -85,16 +82,38 @@ main .messages .listing .buy-actions a {
   border-radius: 0px;
   padding: 15px 25px;
 }
-main .reset-link {
+main .center-link {
+  text-align: center;
+  margin: 35px 0px;
+}
+main .center-link a {
   padding: 15px 25px;
 }
 
+/* footer css */
 footer {
   margin-top: 20px;
   border-top: 1px solid #aaa;
   padding-top: 25px;
 }
+
 footer ul.list-inline {
   text-align: center;
   font-style: italic;
+}
+
+footer ul.company-info li, ul.social-icons li {
+  list-style: none;
+  display: inline-block;
+}
+footer ul.company-info li {
+  border-right: 1px solid;
+  padding: 7px 7px;
+  width: 25%;
+}
+footer ul.company-info li:last-child {
+  border-right: 0px;
+}
+footer ul.social-icons li {
+  width: 8%;
 }

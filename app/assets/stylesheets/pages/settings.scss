@@ -142,3 +142,83 @@ label.error:before {
     }
   }
 }
+
+
+// Media Queries
+
+/* Styles for Desktops */
+@media screen and (min-width: 1025px) and (max-width: 1280px) {
+   .landing-banner {
+     min-height: 600px;
+   }
+ }
+
+// iPad in portrait & landscape
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)  {
+  // Body container
+  .container {
+    width: auto;
+  }
+
+  // Navbar bar links
+  nav.application-top-header .navbar-right li.side-left-li a, nav.application-top-header .navbar-right li.side-right-li a {
+    padding: 15px 12px;
+  }
+
+  // Navbar Center Logo
+  .navbar-center {
+    padding: 0px;
+    a.brand_name { padding: 15px 13px !important; }
+  }
+
+  // Navbar Form Input
+  nav.application-top-header form.navbar-search-form input[type='text'] {
+    width: 325px;
+  }
+
+  // Listings Box
+  .listings .caption {
+    min-height: 170px;
+  }
+}
+
+// iPhone in portrait & landscape
+@media only screen
+and (min-device-width : 375px)
+and (max-device-width : 667px) {
+  // Body container
+  .container {
+    width: auto;
+  }
+
+  // Navbar bar links
+  nav.application-top-header .navbar-right li.side-left-li a, nav.application-top-header .navbar-right li.side-right-li a {
+    padding: 15px 12px;
+  }
+
+  // Navbar Center Logo
+  .navbar-center {
+    padding: 0px;
+    a.brand_name { padding: 15px 13px !important; }
+  }
+
+  // Navbar Form Input
+  nav.application-top-header form.navbar-search-form input[type='text'] {
+    width: 325px;
+  }
+
+  // Listings Box
+  .listings .caption {
+    min-height: 190px;
+  }
+}
+
+// Window Size Above Macbook 13inch
+@media (min-width: 1440px) {
+  // Listings Box
+  .listings .caption {
+    .price { font-size: 17px; }
+  }
+}

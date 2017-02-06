@@ -85,13 +85,13 @@
             %a.collapse-filter-link{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseConditionFilter", :role => "button"}
               %span -
               CONDITION
-          #collapseConditionFilter.collapse{"aria-labelledby" => "headingTwo", :role => "tabpanel", class: (@p[:filters][:conditions].present? && (@condtions & @p[:filters][:conditions])).present? ? "in" : ""}
+          #collapseConditionFilter.collapse{"aria-labelledby" => "headingTwo", :role => "tabpanel", class: (@p[:filters][:condition].present? && (@condtions & @p[:filters][:condition])).present? ? "in" : ""}
             #conditionFilter.scroll
               %ul.list-unstyled
                 - @condtions.each do |condition|
                   %li
                   .checkbox
-                    = check_box_tag "filters[condition][]", condition, @p[:filters][:conditions].present? && @p[:filters][:conditions].include?(condition), id: "condtions_#{condition}"
+                    = check_box_tag "filters[condition][]", condition, @p[:filters][:condition].present? && @p[:filters][:condition].include?(condition), id: "condtions_#{condition}"
                     %label{for: "condtions_#{condition}"}= condition
 
           -# Locations

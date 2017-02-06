@@ -18,6 +18,5 @@ class FollowController < ApplicationController
       format.html { redirect_to follow_index_path }
       format.json { render :json => { status: 200, url: follow_index_path(follower_id: @follow.follower_id), method: :post, followers: @follow.follower.followers.count, followings: @follow.follower.followings.count } }
     end
-
   end
 end

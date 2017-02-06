@@ -6,7 +6,6 @@ module Utilities
     before_save :generate_slug
   end
 
-
   def generate_slug
     self.slug = name.parameterize
   end

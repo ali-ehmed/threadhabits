@@ -6,6 +6,7 @@
   color: #000;
   line-height: 1.555em;
 }
+
 .alphabetical-avatar-nav {
   @extend .alphabetical-avatar;
   font-size: 1em;
@@ -18,4 +19,14 @@
   padding: 27px 0px;
   background-color: #fff;
   margin-bottom: 19px;
+  border-radius: 4px;
+}
+.alphabetical-avatar-inbox-list {
+  @extend .alphabetical-avatar;
+  font-size: 2em;
+}
+.alphabetical-avatar-inbox-detail {
+  @extend .alphabetical-avatar;
+  font-size: 3em;
+  padding: 16px 0px;
 }
