@@ -9,6 +9,13 @@ class HomeController < ApplicationController
     end
 
     @listings = Listing.fetch_by_filters(@p[:filters]).paginate(:page => params[:page], :per_page => Listing::PER_PAGE)
+
+    sleep 2 if request.xhr?
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def verify_unread_message
