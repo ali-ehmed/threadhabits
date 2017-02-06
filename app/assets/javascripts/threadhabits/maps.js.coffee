@@ -70,12 +70,23 @@ class @GoogleMaps
       if status == google.maps.places.PlacesServiceStatus.OK
         callback place
 
+  # Pac Container CSS dynamic
+  autocompleteDropDownCSS: =>
+    setTimeout(->
+      $(".pac-container").css("top", $(".google-autocomplete").offset().top - 23 + "px")
+    , 5)
+
   holdFormOnAutocomplete: =>
+    that = this
     input = document.getElementsByClassName("google-autocomplete")
     $(input).focus ->
       $(this).closest("form").find("input[type='submit'], button[type='submit']").prop("disabled", true)
+      that.autocompleteDropDownCSS()
     $(input).blur ->
       $(this).closest("form").find("input[type='submit'], button[type='submit']").prop("disabled", false)
+
+    $(input).keypress ->
+      that.autocompleteDropDownCSS()
 
   # Autocomplete search for google map api
   initAutocomplete: (map, input, callback) =>

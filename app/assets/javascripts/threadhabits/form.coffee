@@ -69,28 +69,6 @@
         console.log "error"
 
   initializeMessageBox: ->
-
-    $.fn.followTo = (element, pos) ->
-      $this = this
-      $window = $(window)
-      $window.scroll (e) ->
-        if $window.scrollTop() > pos
-          element.stop(false, false).animate {
-            top: pos
-          }, 300
-        else if $window.scrollTop() > 400
-          element.stop(false, false).animate {
-            top: $window.scrollTop()
-          }, 300
-        else if $window.scrollTop() < 138
-          element.stop(false, false).animate {
-            top: 0
-          }, 300
-        return
-      return
-
-    # $('#scrolling-section').followTo($('#scrolling-section'), $("footer").offset().top - 1200);
-
     $("#message-box-link").click (e) ->
       e.preventDefault()
       $.get $(this).data("url"), (response) ->
@@ -437,46 +415,46 @@
       $this.css "z-index", "1"
 
       $window.scroll (e) ->
-        # Stops when scroll position cross
+        # Stops when scroll position crosses "pos"
         if $window.scrollTop() > pos
           stopPos = pos
+          # Depricated
           # For Banner (only comes when user not signed in)
           # if banner == true
           #   stopPos = pos - 600
           $this.css
             position: 'absolute'
             top: stopPos
-          # $this.css "width", "90%"
         else if $window.scrollTop() > topOffset
           # Starts
           $this.css
             position: 'fixed'
             top: 90
-          # if $(window).width() <= 980
-          #   $this.css "width", "160px"
-          # else
-          #   $this.css "width", "263px"
         else if $window.scrollTop() < topOffset
           # Stops back where started
           $this.css
             position: 'relative'
             top: 0
-          # $this.css "width", "100%"
         return
       return
 
     landing_banner = false
-    # Setting Stop Position
-    if $(".landing-banner").length
-      # This is the position for Screen Size 1440px (Macbook 13inch)
-      # Setting extra top position for properly collapsing the filters
-      footerY = 600
-      landing_banner = true
-    else
-      # 627 - was set top
-      footerY = 890
+    # - Issue
+    # Not Used Anymore - Banner Changed
+    # Problem occured on (Large Screens)
 
-    $('.listing-filters form').followTo(($("footer").offset().top - footerY), landing_banner);
+    # Setting Stop Position
+    # if $(".landing-banner").length
+    #   # This is the position for Screen Size 1440px (Macbook 13inch)
+    #   # Setting extra top position for properly collapsing the filters
+    #   footerY = 600
+    #   landing_banner = true
+    # else
+    #   # 627 - was set top
+    #   footerY = 890
+
+    landing_banner = true if $(".landing-banner").length
+    $('.listing-filters form').followTo(($("footer").offset().top), landing_banner);
 
     nonLinearSlider = nonLinearSlider = document.getElementById('nonlinearRangePriceSlider')
     nodes = [

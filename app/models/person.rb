@@ -62,7 +62,7 @@ class Person < ApplicationRecord
 
   attr_accessor :terms, :login, :setting_tab
 
-  after_create :generate_default_preferences
+  after_create :generate_default_preferences, :notify_admin
 
   validates_acceptance_of :terms
   validates_presence_of :first_name, :last_name, :username
@@ -136,9 +136,9 @@ class Person < ApplicationRecord
 
   def conversations(recepient, listing_id)
     if listing_id.blank?
-      chat_rooms.joins(:persons).where("people.id = ? and listing_id is null", recepient)
+      chat_rooms.joins(:persons).where("people.id = ? and listing_id is null", recepient).includes(:persons, :listing)
     else
-      chat_rooms.joins(:persons).where("people.id = ? and listing_id = ?", recepient, listing_id)
+      chat_rooms.joins(:persons).where("people.id = ? and listing_id = ?", recepient, listing_id).includes(:persons, :listing)
     end
   end
 
@@ -156,6 +156,10 @@ class Person < ApplicationRecord
       pref.data = hash
       pref.save
     end
+  end
+
+  def notify_admin
+    NotificationsMailer.sign_up_alert(self).deliver
   end
 
   def social_links
