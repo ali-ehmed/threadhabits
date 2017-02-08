@@ -41,7 +41,7 @@ nav.application-top-header {
     }
 
     li.open {
-      a, a:focus, a:hover, {
+      a, a:focus, a:hover {
         background-color: transparent !important;
       }
       .dropdown-options {
@@ -139,14 +139,16 @@ nav.application-bottom-header {
   }
   ul.side-left-section {
     li {
-      padding: 0px 10px;
-      width: 20%;
+      padding-left: 10px;
+      padding-right: 90px;
     }
   }
   ul.side-right-section {
     padding-right: 0px;
     li {
-      text-align: right; float: right; padding: 0px 10px; width: 25%;
+      text-align: right; float: right;
+      padding-right: 10px;
+      padding-left: 90px;
     }
     li:first-child {
       padding-right: 30px;

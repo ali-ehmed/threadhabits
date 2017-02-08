@@ -162,7 +162,7 @@ and (max-device-width : 1024px)  {
     width: auto;
   }
 
-  // Navbar bar links
+  // Navbar Top bar links
   nav.application-top-header .navbar-right li.side-left-li a, nav.application-top-header .navbar-right li.side-right-li a {
     padding: 15px 12px;
   }
@@ -176,6 +176,16 @@ and (max-device-width : 1024px)  {
   // Navbar Form Input
   nav.application-top-header form.navbar-search-form input[type='text'] {
     width: 325px;
+  }
+
+  // Navbar Bottom
+  nav.application-bottom-header {
+    ul.side-left-section li {
+      padding-right: 30px;
+    }
+    ul.side-right-section li {
+      padding-left: 30px;
+    }
   }
 
   // Listings Box
@@ -209,6 +219,16 @@ and (max-device-width : 667px) {
     width: 325px;
   }
 
+  // Navbar Bottom
+  nav.application-bottom-header {
+    ul.side-left-section li {
+      padding-right: 30px;
+    }
+    ul.side-right-section li {
+      padding-left: 30px;
+    }
+  }
+
   // Listings Box
   .listings .caption {
     min-height: 190px;
@@ -220,5 +240,15 @@ and (max-device-width : 667px) {
   // Listings Box
   .listings .caption {
     .price { font-size: 17px; }
+  }
+
+  // Navbar Bottom
+  nav.application-bottom-header {
+    ul.side-left-section li {
+      padding-right: 75px;
+    }
+    ul.side-right-section li {
+      padding-left: 75px;
+    }
   }
 }
