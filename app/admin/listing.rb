@@ -13,8 +13,8 @@ ActiveAdmin.register Listing do
     column :company
     column :product_type
     actions do |resource|
-      item "Detail", detail_listings_path(resource.slug, category_slug: resource.category.slug)
-      item "Edit", edit_listings_path(resource.slug, category_slug: resource.category.slug)
+      item "Detail", detail_listings_path(resource.slug)
+      item "Edit", edit_listings_path(resource.slug)
     end
   end
 end
