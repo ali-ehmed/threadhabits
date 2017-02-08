@@ -411,6 +411,7 @@
     ).on 'fileerror', (event, data) ->
       $("form").find("input[type='submit']").prop("disabled", false)
       $("form").find("input[type='submit']").val("Submit")
+
 @Home =
   initializeFilters: ->
     # Scroll Plugin
@@ -425,7 +426,9 @@
 
       $this.css "z-index", "1"
 
+      console.log "Position ->", pos
       $window.scroll (e) ->
+        console.log "Scroll Position ->", $window.scrollTop()
         # Stops when scroll position crosses "pos"
         if $window.scrollTop() > pos
           stopPos = pos
