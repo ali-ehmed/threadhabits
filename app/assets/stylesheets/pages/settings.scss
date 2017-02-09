@@ -241,14 +241,17 @@ and (max-device-width : 667px) {
   .listings .caption {
     .price { font-size: 17px; }
   }
+}
 
+// Window Size Below Macbook 13inch
+@media (max-width: 1440px) {
   // Navbar Bottom
   nav.application-bottom-header {
     ul.side-left-section li {
-      padding-right: 75px;
+      padding-right: 60px;
     }
     ul.side-right-section li {
-      padding-left: 75px;
+      padding-left: 60px;
     }
   }
 }
