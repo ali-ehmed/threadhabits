@@ -437,7 +437,7 @@
           # if banner == true
           #   stopPos = pos - 600
           $this.css
-            position: 'absolute'
+            position: 'relative'
             top: stopPos
         else if $window.scrollTop() > topOffset
           # Starts
@@ -468,7 +468,7 @@
     #   footerY = 890
 
     landing_banner = true if $(".landing-banner").length
-    $('.listing-filters form').followTo(($("footer").offset().top), landing_banner);
+    $('.listing-filters form').followTo(($("footer").offset().top + 2000), landing_banner);
 
     nonLinearSlider = nonLinearSlider = document.getElementById('nonlinearRangePriceSlider')
     nodes = [

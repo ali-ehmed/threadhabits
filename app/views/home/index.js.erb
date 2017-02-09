@@ -1,4 +1,4 @@
-$('#public-listings .listing-item').append('<div class="row"><%= j render partial: "listings/listing", collection: @listings %></div>');
+$('#public-listings .listing-item').append('<%= j render partial: "listings/listing", collection: @listings %>');
 <% if @listings.next_page %>
   $('.pagination').replaceWith('<%= j will_paginate @listings %>');
 <% else %>
