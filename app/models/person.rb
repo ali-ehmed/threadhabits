@@ -44,6 +44,8 @@ class Person < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
 
+  include Common
+
   has_one :address, as: :owner, dependent: :destroy
   accepts_nested_attributes_for :address
 
