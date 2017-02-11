@@ -41,7 +41,7 @@
             .row
               .col-md-2.col-sm-2.col-xs-2
                 = link_to profiles_path message.sender.username do
-                  = image_tag message.sender.avatar.url(:medium), class: "img-responsive"
+                  = person_avatar(message.sender, inner_class: "alphabetical-avatar-inbox-detail", outer_class: "recepient-avatar")
               .col-md-10.col-xs-10.col-sm-10
                 .top-section
                   %span.recepient-name
@@ -53,7 +53,7 @@
       .message-form
         .row
           .col-md-2.col-sm-2.col-xs-2
-            = image_tag current_person.avatar.url(:medium), class: "img-responsive"
+            = person_avatar(current_person, inner_class: "alphabetical-avatar-inbox-detail", outer_class: "recepient-avatar")
           .col-md-10.col-xs-10.col-sm-10
             - receiver_id = @messages.select{ |v| v.sender_id == current_person.id }.first.try(:receiver_id) || @messages.last.sender_id
             = render layout: "messages/form", locals: { object: @message, receiver_id: receiver_id, sender_id: current_person.id, chat_room: @chat_room, form_id: "messageFormInbox" } do

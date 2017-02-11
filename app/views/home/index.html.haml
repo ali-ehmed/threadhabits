@@ -1,3 +1,6 @@
+- content_for :javascript do
+  Listings.infiniteScroll();
+
 .container
   .row
     .col-md-3.col-sm-3.col-xs-3
@@ -10,12 +13,13 @@
             %small
               = pluralize(@listings.length, "Item")
       - if @listings.present?
-        .listings
+        .listings#public-listings
           .row
-            = render partial: "listings/listing", collection: @listings
+            .listing-item
+              = render partial: "listings/listing", collection: @listings
 
-          .items-pagination
-            = will_paginate @listings, renderer: BootstrapPagination::Rails
+        #infinite-scrolling.items-pagination
+          = will_paginate @listings, renderer: BootstrapPagination::Rails
       - else
         .alert.alert-success
           There are no listings

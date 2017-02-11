@@ -7,12 +7,13 @@ puts "Creating Admin User -> " << admin.username
   "Hype"
 ]
 
-@main_categories.each do |category|
-  Category.find_or_create_by!(name: category) do |n_category|
-    n_category.slug = category.name.parameterize
-  end
-end
-puts "Creating Main Categories"
+# Not any more
+# @main_categories.each do |category|
+#   Category.find_or_create_by!(name: category) do |n_category|
+#     n_category.slug = category.name.parameterize
+#   end
+# end
+# puts "Creating Main Categories"
 
 @product_types = [
   ["Tops", [

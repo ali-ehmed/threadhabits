@@ -10,18 +10,6 @@
     = hidden_field_tag "filters[q]", @p[:filters][:q]
     .panel.panel-default
       .panel-body
-        -# -# Categories
-        -# #categoriesFilter
-        -#   %label
-        -#     ALL CATEGORIES
-        -#   %ul.list-unstyled
-        -#     - @categories.each do |category|
-        -#       %li
-        -#       .checkbox
-        -#         = check_box_tag "filters[category_ids][]", category.id, @p[:filters][:category_ids] && @p[:filters][:category_ids].include?(category.id.to_s), id: "categories_#{category.id}"
-        -#         -# = f.check_box "category_ids[]", { id: "categories_#{category.id}", checked: @p[:filters][:category_ids] && @p[:filters][:category_ids].include?(category.id.to_s) }, category.id
-        -#         %label{for: "categories_#{category.id}"}= category.name
-
         -# Accordians
         #accordion.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
           -# Price
@@ -62,15 +50,15 @@
           - %w(tops bottoms shoes accessories).each do |product|
             #headingTwo.field-strip{:role => "tab"}
               %a.collapse-filter-link{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse#{product.capitalize}Filter", :role => "button"}
-                %span -
+                %span
                 - case product
-                - when "tops"
-                  TOP/OUTWEAR SIZE
-                - when "accessories"
-                  ACCESSORIES
-                - else
-                  = product.singularize.upcase
-                  SIZE
+                  - when "tops"
+                    TOP/OUTWEAR SIZE
+                  - when "accessories"
+                    ACCESSORIES
+                  - else
+                    = product.singularize.upcase
+                    SIZE
             .collapse.filtersCollapse{"aria-labelledby" => "headingTwo", :role => "tabpanel", id: "collapse#{product.capitalize}Filter", class: (@p[:filters][:size_names].present? && (instance_variable_get("@#{product}").map(&:name) & @p[:filters][:size_names])).present? ? "in" : "" }
               #filter.scroll
                 %ul.list-unstyled
@@ -85,14 +73,14 @@
             %a.collapse-filter-link{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseConditionFilter", :role => "button"}
               %span -
               CONDITION
-          #collapseConditionFilter.collapse{"aria-labelledby" => "headingTwo", :role => "tabpanel", class: (@p[:filters][:conditions].present? && (@condtions & @p[:filters][:conditions])).present? ? "in" : ""}
+          #collapseConditionFilter.collapse{"aria-labelledby" => "headingTwo", :role => "tabpanel", class: (@p[:filters][:condition].present? && (@condtions & @p[:filters][:condition])).present? ? "in" : ""}
             #conditionFilter.scroll
               %ul.list-unstyled
-                - @condtions.each do |condition|
+                - @conditions.each do |condition|
                   %li
                   .checkbox
-                    = check_box_tag "filters[condition][]", condition, @p[:filters][:conditions].present? && @p[:filters][:conditions].include?(condition), id: "condtions_#{condition}"
-                    %label{for: "condtions_#{condition}"}= condition
+                    = check_box_tag "filters[condition][]", condition, @p[:filters][:condition].present? && @p[:filters][:condition].include?(condition), id: "conditions_#{condition}"
+                    %label{for: "conditions_#{condition}"}= condition
 
           -# Locations
           #headingTwo.field-strip{:role => "tab"}

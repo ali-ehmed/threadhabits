@@ -4,6 +4,7 @@ class Payments::PaypalController < ApplicationController
 
   def checkout
     @listing = Listing.find(params[:listing_id])
+
     if !@listing.person.is_seller?
       flash[:alert] = "Can't do payment with paypal at the moment. Contact tech support"
       redirect_to detail_listings_path(@listing.slug) and return
@@ -26,6 +27,7 @@ class Payments::PaypalController < ApplicationController
             notify_url: "#{Rails.application.secrets.app_host}/payments/webhook",
             custom: current_person.id
         }
+
     redirect_to "#{Rails.application.secrets.paypal_host}/cgi-bin/webscr?" + values.to_query
   end
 

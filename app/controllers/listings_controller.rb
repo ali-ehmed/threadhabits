@@ -38,7 +38,7 @@ class ListingsController < ApplicationController
     if listing.uploads.blank?
       listing.update_attribute(:display_image, nil)
     else
-      listing.update_attribute(:display_image, listing.uploads.fitst.image)
+      listing.update_attribute(:display_image, listing.uploads.first.image)
     end
     render json: 200
   end

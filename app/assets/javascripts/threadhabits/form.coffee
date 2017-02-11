@@ -69,28 +69,6 @@
         console.log "error"
 
   initializeMessageBox: ->
-
-    $.fn.followTo = (element, pos) ->
-      $this = this
-      $window = $(window)
-      $window.scroll (e) ->
-        if $window.scrollTop() > pos
-          element.stop(false, false).animate {
-            top: pos
-          }, 300
-        else if $window.scrollTop() > 400
-          element.stop(false, false).animate {
-            top: $window.scrollTop()
-          }, 300
-        else if $window.scrollTop() < 138
-          element.stop(false, false).animate {
-            top: 0
-          }, 300
-        return
-      return
-
-    # $('#scrolling-section').followTo($('#scrolling-section'), $("footer").offset().top - 1200);
-
     $("#message-box-link").click (e) ->
       e.preventDefault()
       $.get $(this).data("url"), (response) ->
@@ -326,6 +304,7 @@
       initialPreviewShowDelete: true
     })
 
+  # Not used yet!!!
   scrollingFileInput: ->
     (($) ->
       element = $('.listing-uploads')
@@ -353,6 +332,16 @@
           return
       return
     ) jQuery
+
+  infiniteScroll: ->
+    if $('#infinite-scrolling').size() > 0
+      $(window).on 'scroll', ->
+        more_listings_url = $('.pagination li.next a').attr('href')
+        if more_listings_url && $(window).scrollTop() > $(document).height() - $(window).height() - 60
+            $('.pagination').html('<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i><strong class="load-more-listing">Loading More Listings...</strong>')
+            $.getScript more_listings_url
+        return
+      return
 
   initializeListingsForm: ->
     that = this
@@ -422,6 +411,7 @@
     ).on 'fileerror', (event, data) ->
       $("form").find("input[type='submit']").prop("disabled", false)
       $("form").find("input[type='submit']").val("Submit")
+
 @Home =
   initializeFilters: ->
     # Scroll Plugin
@@ -430,53 +420,55 @@
       $window = $(window)
       # Setting Start Position
       if banner == true
-        topOffset = 355
+        topOffset = 616
       else
         topOffset = 5
 
       $this.css "z-index", "1"
 
+      console.log "Position ->", pos
       $window.scroll (e) ->
-        # Stops when scroll position cross
+        console.log "Scroll Position ->", $window.scrollTop()
+        # Stops when scroll position crosses "pos"
         if $window.scrollTop() > pos
           stopPos = pos
+          # Depricated
           # For Banner (only comes when user not signed in)
-          if banner == true
-            stopPos = pos - 600
+          # if banner == true
+          #   stopPos = pos - 600
           $this.css
-            position: 'absolute'
+            position: 'relative'
             top: stopPos
-          $this.css "width", "90%"
         else if $window.scrollTop() > topOffset
           # Starts
           $this.css
             position: 'fixed'
             top: 90
-          if $(window).width() <= 980
-            $this.css "width", "160px"
-          else
-            $this.css "width", "263px"
         else if $window.scrollTop() < topOffset
           # Stops back where started
           $this.css
             position: 'relative'
             top: 0
-          $this.css "width", "100%"
         return
       return
 
     landing_banner = false
-    # Setting Stop Position
-    if $(".landing-banner").length
-      # This is the position for Screen Size 1440px (Macbook 13inch)
-      # Setting extra top position for properly collapsing the filters
-      footerY = 675
-      landing_banner = true
-    else
-      # 627 - was set top
-      footerY = 890
+    # - Issue
+    # Not Used Anymore - Banner Changed
+    # Problem occured on (Large Screens)
 
-    $('.listing-filters').followTo(($("footer").offset().top - footerY), landing_banner);
+    # Setting Stop Position
+    # if $(".landing-banner").length
+    #   # This is the position for Screen Size 1440px (Macbook 13inch)
+    #   # Setting extra top position for properly collapsing the filters
+    #   footerY = 600
+    #   landing_banner = true
+    # else
+    #   # 627 - was set top
+    #   footerY = 890
+
+    landing_banner = true if $(".landing-banner").length
+    $('.listing-filters form').followTo(($("footer").offset().top + 2000), landing_banner);
 
     nonLinearSlider = nonLinearSlider = document.getElementById('nonlinearRangePriceSlider')
     nodes = [

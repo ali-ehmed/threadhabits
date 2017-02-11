@@ -1,25 +1,12 @@
 %p.sent-at.pull-right= Date.today.strftime("%B %d, %Y")
 %p
-  Dear
+  Welcome
   = @resource.full_name
   ,
 %p
-  You've requested to reset password for your account
-  %strong= @resource.tagged_username
-  on Threadhabits.com
-%p
-  Below is the link to reset your password.
-%p
-  %strong Contact Us
-  if you have any questions
-
+  Thank you for joining Threadhabits. You can confirm your account email through the link below:
 %p.center-link
-  = link_to 'RESET PASSWORD', edit_password_url(@resource, reset_password_token: @token), class: "btn btn-primary", target: "_blank"
-
-%p
-  Thank you,
-%p
-  = link_to 'Threadhabits.com', root_url, target: "_blank"
+  = link_to 'Confirm My Account', confirmation_url(@resource, confirmation_token: @token), class: "btn btn-primary", target: "_blank"
 
 %footer
   %ul.list-inline.company-info

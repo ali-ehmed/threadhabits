@@ -30,6 +30,8 @@
         height: 100% !important
 
 .listing-filters
+  form
+    width: 263px
   .panel
     border-color: $black
     .panel-body
@@ -50,6 +52,8 @@
         color: $black
       span
         padding-right: 7px
+    .collapse
+      margin: 0px 10px
     #priceFilter
       padding-top: 15px
       #nonlinearRangePriceSlider
@@ -85,7 +89,7 @@
       margin: 0 10px
 
 .listing-details
-  margin-top: -35px
+  margin-top: -6px
   img.listing
     margin: 0 auto
     text-align: center
@@ -143,3 +147,10 @@
         font-size: 22px
       .sellings
         color: red
+
+/* Styles for Desktops */
+// @media screen and (min-width: 1025px) and (max-width: 1280px)
+@media (max-width: 1024px)
+  .listing-filters
+    form
+      width: auto

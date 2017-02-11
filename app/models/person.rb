@@ -44,25 +44,27 @@ class Person < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
 
-  has_one :address, as: :owner
+  include Common
+
+  has_one :address, as: :owner, dependent: :destroy
   accepts_nested_attributes_for :address
 
-  has_many :preferences
-  has_many :listings
+  has_many :preferences, dependent: :destroy
+  has_many :listings, dependent: :destroy
 
   has_many :chatrooms_persons, dependent: :destroy
   has_many :chat_rooms, through: :chatrooms_persons
 
-  has_many :messages, foreign_key: :sender_id
-  has_many :sent_messages, class_name: "Message", foreign_key: :sender_id
-  has_many :received_messages, class_name: "Message", foreign_key: :receiver_id
+  has_many :messages, foreign_key: :sender_id, dependent: :destroy
+  has_many :sent_messages, class_name: "Message", foreign_key: :sender_id, dependent: :destroy
+  has_many :received_messages, class_name: "Message", foreign_key: :receiver_id, dependent: :destroy
 
-  has_many :followings, class_name: "Follow", foreign_key: :following_id
-  has_many :followers, class_name: "Follow", foreign_key: :follower_id
+  has_many :followings, class_name: "Follow", foreign_key: :following_id, dependent: :destroy
+  has_many :followers, class_name: "Follow", foreign_key: :follower_id, dependent: :destroy
 
   attr_accessor :terms, :login, :setting_tab
 
-  after_create :generate_default_preferences
+  after_create :generate_default_preferences, :notify_admin
 
   validates_acceptance_of :terms
   validates_presence_of :first_name, :last_name, :username
@@ -136,9 +138,9 @@ class Person < ApplicationRecord
 
   def conversations(recepient, listing_id)
     if listing_id.blank?
-      chat_rooms.joins(:persons).where("people.id = ? and listing_id is null", recepient)
+      chat_rooms.joins(:persons).where("people.id = ? and listing_id is null", recepient).includes(:persons, :listing)
     else
-      chat_rooms.joins(:persons).where("people.id = ? and listing_id = ?", recepient, listing_id)
+      chat_rooms.joins(:persons).where("people.id = ? and listing_id = ?", recepient, listing_id).includes(:persons, :listing)
     end
   end
 
@@ -156,6 +158,14 @@ class Person < ApplicationRecord
       pref.data = hash
       pref.save
     end
+  end
+
+  def notify_admin
+    NotificationsMailer.sign_up_alert(self).deliver
+  end
+
+  def social_links
+    [facebook_profile, instagram_profile, twitter_profile]
   end
 
   # Checkout paypal business email

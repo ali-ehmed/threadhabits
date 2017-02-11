@@ -6,7 +6,8 @@
       .row
         .col-md-1.col-sm-1.col-xs-1
         .col-md-2.col-sm-2.col-xs-2
-          = image_tag @person.avatar.url(:medium), class: "image-profile thumbnail img-responsive", align: "left", alt: "Profile image"
+          = person_avatar @person, inner_class: "alphabetical-avatar-user-profile", outer_class: "image-profile thumbnail"
+          -# = image_tag @person.avatar.url(:medium), class: "image-profile thumbnail img-responsive", align: "left", alt: "Profile image"
         .col-md-9.col-sm-9.col-xs-9
           .profile-text
             %h1= @person.full_name
@@ -68,14 +69,15 @@
             -# %li{:role => "presentation"}
               %a{"aria-controls" => "instgram", "data-toggle" => "tab", :href => "#instgram", :role => "tab"} Instagram:
         .col-md-6.col-sm-6.col-xs-6
-          %ul.list-inline.list-right.socal-icons-list
-            %li= link_to "", @person.facebook_profile, class: "social-icons-fb", target: "_blank" if @person.facebook_profile.present?
-            %li= link_to "", @person.instagram_profile, class: "social-icons-instagram", target: "_blank" if @person.instagram_profile.present?
-            -# %li
-              = link_to "", "#", class: "social-icons-snapchat"
-            %li= link_to "", @person.instagram_profile, class: "social-icons-twitter", target: "_blank" if @person.instagram_profile.present?
-            -# %li
-              = link_to "", "#", class: "social-icons-pinterest"
+          - if @person.social_links.any?
+            %ul.list-inline.list-right.socal-icons-list
+              %li= link_to "", @person.facebook_profile, class: "social-icons-fb", target: "_blank" if @person.facebook_profile.present?
+              %li= link_to "", @person.instagram_profile, class: "social-icons-instagram", target: "_blank" if @person.instagram_profile.present?
+              -# %li
+                = link_to "", "#", class: "social-icons-snapchat"
+              %li= link_to "", @person.instagram_profile, class: "social-icons-twitter", target: "_blank" if @person.instagram_profile.present?
+              -# %li
+                = link_to "", "#", class: "social-icons-pinterest"
       .row
         .col-md-9.col-sm-9.col-xs-9
           .tab-content
@@ -84,6 +86,8 @@
                 .listings
                   .row
                     = render partial: "listings/listing", collection: @listings
+                .items-pagination
+                  = will_paginate @listings, renderer: BootstrapPagination::Rails
               - else
                 .alert.alert-success
                   There are no listings

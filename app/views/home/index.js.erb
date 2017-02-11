@@ -1,0 +1,10 @@
+$('#public-listings .listing-item').append('<%= j render partial: "listings/listing", collection: @listings %>');
+<% if @listings.next_page %>
+  $('.pagination').replaceWith('<%= j will_paginate @listings %>');
+<% else %>
+  // $(window).off('scroll');
+  $('.pagination').remove();
+<% end %>
+
+
+Home.initializeFilters();

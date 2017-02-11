@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
-  before_action { landing_banner(true) }
-  before_action :filter_data, only: [:index, :fetch_listings]
-  before_action :authenticate_person!, only: [:verify_unread_message]
+  before_action only: [ :index ] { landing_banner(true) }
+  before_action :filter_data, only: [ :index ]
+  before_action :authenticate_person!, only: [ :verify_unread_message ]
 
   def index
     if @p[:filters] and params[:q].present?
@@ -9,6 +9,13 @@ class HomeController < ApplicationController
     end
 
     @listings = Listing.fetch_by_filters(@p[:filters]).paginate(:page => params[:page], :per_page => Listing::PER_PAGE)
+
+    sleep 2 if request.xhr?
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def verify_unread_message
@@ -21,19 +28,14 @@ class HomeController < ApplicationController
   end
 
   def about_us
-
   end
 
   def contact_us
-
   end
 
   private
 
   def filter_data
-    # @categories  = Rails.cache.fetch("categories", expires_in: 1.hour) do
-    #                   Category.all
-    #                 end
     @designers   =  Rails.cache.fetch("designers", expires_in: 1.hour) do
                       Designer.all
                     end
@@ -49,6 +51,6 @@ class HomeController < ApplicationController
     @accessories =  Rails.cache.fetch("accessories", expires_in: 1.hour) do
                       Size.accessories
                     end
-    @condtions = Listing::CONDITIONS
+    @conditions = Listing::CONDITIONS
   end
 end

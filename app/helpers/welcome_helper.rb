@@ -6,4 +6,20 @@ module WelcomeHelper
       end
     end
   end
+
+  def person_avatar(person, options = {})
+    if person.has_image?(:avatar)
+      image_tag person.avatar.url(:medium), class: "img-responsive #{options[:outer_class]}"
+    else
+      person_alphabetical_avatar(person, options)
+    end
+  end
+
+  def person_alphabetical_avatar(person, options = {})
+    f = person.first_name.upcase.split("")
+    l = person.last_name.upcase.split("")
+    content_tag :span, class: "img-responsive #{options[:inner_class]}" do
+      [f[0], l[0]].join
+    end
+  end
 end

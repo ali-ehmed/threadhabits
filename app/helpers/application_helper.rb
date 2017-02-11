@@ -51,6 +51,16 @@ end
 
 class ActionView::Helpers::FormBuilder
   def preview_image_field field_name
+    remove_avatar = ""
+    if object.has_image?(field_name)
+      remove_avatar = %Q{
+        <a href="/settings/remove_avatar?avatar_type=#{field_name.to_s}" class="btn btn-primary" type="button" data-method="put" data-confirm="Remove this picture?">
+          <span class="glyphicon glyphicon-remove"></span>
+          Remove
+        </a>
+      }
+    end
+
     %Q{
       <div class="input-group image-preview" data-preview-img="#{object.has_image?(field_name) ? object.send(field_name).url(:medium) : ''}">
         <input class="form-control image-preview-filename" disabled="disabled" type="text"></input>
@@ -61,6 +71,7 @@ class ActionView::Helpers::FormBuilder
             <span class="glyphicon glyphicon-remove"></span>
             Clear
           </button>
+          #{remove_avatar}
           <!-- image-preview-input-->
           <div class="btn btn-default image-preview-input button">
             <span class="glyphicon glyphicon-folder-open"></span>
