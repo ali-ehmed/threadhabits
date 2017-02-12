@@ -16,7 +16,7 @@ ActiveAdmin.register_page "User Alerts" do
     alert_all = params[:send_to_all]
     emails    = params[:recipient_emails]
     body      = params[:body]
-    subject   = params[:subject]
+    subject   = params[:subject].blank? ? nil : params[:subject]
 
     valid = true
     msg   = ""
