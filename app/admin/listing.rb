@@ -11,9 +11,8 @@ ActiveAdmin.register Listing do
     end
     column :size
     column :company
-    column :product_type
     actions do |resource|
-      item "Detail", detail_listings_path(resource.slug)
+      item "View", detail_listings_path(resource.slug)
       item "Edit", edit_listings_path(resource.slug)
     end
   end

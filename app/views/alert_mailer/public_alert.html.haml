@@ -1,0 +1,24 @@
+%p.sent-at.pull-right= Date.today.strftime("%B %d, %Y")
+%p
+  Welcome
+  %strong= @person.full_name
+%p
+  = simple_format @body
+
+%footer
+  %ul.list-inline.company-info
+    %li &copy; 2017 Threadhabits
+    %li All Rights Reserved
+    %li
+      = link_to 'www.threadhabits.com', root_url, target: "_blank"
+  %br
+  %ul.list-inline.social-icons
+    %li
+      = link_to "#" do
+        = image_tag "#{S3_ASSET_PATH}/social-icons/fb.png", class: "img-responsive"
+    %li
+      = link_to "#" do
+        = image_tag "#{S3_ASSET_PATH}/social-icons/instagram.png", class: "img-responsive"
+    %li
+      = link_to "#" do
+        = image_tag "#{S3_ASSET_PATH}/social-icons/snapchat.png", class: "img-responsive"

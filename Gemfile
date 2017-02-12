@@ -60,11 +60,14 @@ gem "figaro"
 gem 'letter_opener_web', '~> 1.2.0', :group => :development
 
 # Compass SASS
+gem 'compass-rails', git: 'https://github.com/Compass/compass-rails'
 git 'https://github.com/ably-forks/compass', branch: 'sass-deprecation-warning-fix' do
   gem 'compass-core'
 end
 
 gem 'jquery-validation-rails'
+
+gem "wysiwyg-rails"
 
 # Pagination
 gem 'will_paginate', '~> 3.1.0'
