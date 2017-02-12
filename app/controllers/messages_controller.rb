@@ -13,8 +13,8 @@ class MessagesController < ApplicationController
         @chat_room.listing_id = params[:listing_id]
       end
 
-      [current_person, @receiver].each do |recepient|
-        @chat_room.chatrooms_persons.build(person_id: recepient.id)
+      [current_person, @receiver].each do |recipient|
+        @chat_room.chatrooms_persons.build(person_id: recipient.id)
       end
     else
       @chat_room = conversations.first

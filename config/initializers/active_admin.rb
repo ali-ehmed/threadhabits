@@ -8,9 +8,9 @@ ActiveAdmin.setup do |config|
 
   config.namespace :admin do |admin|
     admin.build_menu do |menu|
-      # menu.add :label => 'Custom Menu' do |submenu|
-      #   submenu.add :label => 'Custom Link', :url => "/"
-      # end
+      menu.add :label => 'Content' do |sub_menu|
+        sub_menu.add :label => 'Write Message', :url => "#", html_options: { id: "admin_write_message" }
+      end
       menu.add :label => 'Visit Site', :url => "/", html_options: { target: :blank }
     end
   end
@@ -115,6 +115,11 @@ ActiveAdmin.setup do |config|
   # Default:
   config.logout_link_method = :delete
 
+  # == Adding Custom Template in Active Admin Footer
+  config.namespace :admin do |admin|
+    config.view_factory.footer = ActiveAdmin::Footer
+  end
+
   # == Root
   #
   # Set the action to call for the root path. You can set different
@@ -195,13 +200,18 @@ ActiveAdmin.setup do |config|
   # and feel.
   #
   # To load a stylesheet:
-  #   config.register_stylesheet 'my_stylesheet.css'
+    config.register_stylesheet 'jquery-confirm.min.css'
+    config.register_stylesheet 'magic-suggest.min.css'
+    config.register_stylesheet 'select2.min.css'
   #
   # You can provide an options hash for more control, which is passed along to stylesheet_link_tag():
   #   config.register_stylesheet 'my_print_stylesheet.css', media: :print
   #
   # To load a javascript file:
-  #   config.register_javascript 'my_javascript.js'
+    config.register_javascript 'threadhabits/admin'
+    config.register_javascript 'jquery-confirm.min.js'
+    config.register_javascript 'magic-suggest.js'
+    config.register_javascript 'select2.min.js'
 
   # == CSV options
   #

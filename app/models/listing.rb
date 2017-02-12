@@ -38,6 +38,7 @@ class Listing < ApplicationRecord
   validates_attachment_content_type :display_image, content_type: /\Aimage\/.*\Z/
 
   include Utilities
+  include Common
 
   validates_presence_of :description, :size
   validates_uniqueness_of :slug

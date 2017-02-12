@@ -8,14 +8,28 @@
 // $sidebar-width: 242px;
 
 // Active Admin's got SASS!
+
+/*
+ *= require froala_editor.min.css
+ *= require froala_style.min.css
+ *= require plugins/char_counter.min.css
+ *= require plugins/code_view.min.css
+ *= require plugins/colors.min.css
+ *= require plugins/fullscreen.min.css
+ *= require plugins/image_manager.min.css
+ *= require plugins/image.min.css
+ *= require plugins/line_breaker.min.css
+ *= require plugins/quick_insert.min.css
+ *= require plugins/table.min.css
+ */
+
 @import "active_admin/mixins";
+
 $am-theme-primary: #252525;
 $am-theme-backdrop: #FBFBFB;
 
 @import "active_material";
-
 @import "font-awesome";
-
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
 //
@@ -24,4 +38,51 @@ $am-theme-backdrop: #FBFBFB;
 
 ul.header-item.tabs {
   li#visit_site { float: right; }
+}
+
+.columns {
+  padding: 0px 15px;
+  padding-bottom: 20px;
+  .column {
+    margin-right: 0 !important;
+    display: inline-table;
+    padding: 0px 15px;
+
+    .panel {
+      padding: 0px 15px;
+    }
+  }
+}
+
+.dashboard {
+  .dashboard-panel {
+    min-height: 353px;
+  }
+  .view-all {
+    padding: 15px;
+  }
+}
+
+.input.text textarea {
+  padding: 13px 7px !important;
+  border-radius: 3px !important;
+  height: 100px !important;
+}
+
+// jQuery Confirm for admin
+.jconfirm-box-container {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.select2-dropdown {
+  z-index: 100000000 !important;
+}
+.select2-container {
+  width: 100% !important;
+  margin-bottom: 10px;
+}
+
+.mce-window {
+  z-index: 100000000 !important;
 }

@@ -49,9 +49,9 @@ gem "font-awesome-rails"
 gem 'annotate', '~> 2.7', '>= 2.7.1'
 
 # Admin interface
-gem 'activeadmin', github: 'activeadmin'
-gem 'inherited_resources', github: 'activeadmin/inherited_resources'
-gem "active_material", github: "vigetlabs/active_material"
+gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'
+gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources'
+gem "active_material", git: "https://github.com/vigetlabs/active_material"
 
 # Environment variables
 gem "figaro"
@@ -60,9 +60,14 @@ gem "figaro"
 gem 'letter_opener_web', '~> 1.2.0', :group => :development
 
 # Compass SASS
-gem 'compass-rails'
+gem 'compass-rails', git: 'https://github.com/Compass/compass-rails'
+git 'https://github.com/ably-forks/compass', branch: 'sass-deprecation-warning-fix' do
+  gem 'compass-core'
+end
 
 gem 'jquery-validation-rails'
+
+gem "wysiwyg-rails"
 
 # Pagination
 gem 'will_paginate', '~> 3.1.0'
@@ -81,7 +86,7 @@ gem 'passenger'
 # Send Server variable to JS
 gem 'gon', '~> 6.1'
 
-gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
+gem "paperclip", git: "https://github.com/thoughtbot/paperclip.git"
 
 gem 'aws-sdk', '~> 2'
 

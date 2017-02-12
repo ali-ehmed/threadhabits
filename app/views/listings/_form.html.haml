@@ -46,7 +46,7 @@
           = f.select :condition,  Listing::CONDITIONS.map{ |v| v }, { include_blank: "Select Condition" }, class: "form-control input-lg"
 
         .form-group
-          = f.label :comapny, "Company/Designers"
+          = f.label :company, "Company/Designers"
           %br/
           = f.select :company_id,  @designers.map{ |v| [v.name, v.id] }, { include_blank: "Select Company/Designers" }, class: "form-control input-lg"
 

@@ -19,5 +19,18 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
+# Built in internationalization
+#I18n.t("date.abbr_month_names")[month.to_i]
+
 en:
   hello: "Hello world"
+  time:
+    formats:
+      short_time: "%H:%M"
+      short_time_meridian: "%I:%M %I"
+      formatted_datetime: "%b %d, %Y %I:%M %P"
+  date:
+    formats:
+      short_date: "%b %d, %Y"
+      current_year: "%y"
+      general_date: "%Y-%b-%d"
