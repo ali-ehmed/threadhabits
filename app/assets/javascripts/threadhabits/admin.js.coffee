@@ -40,14 +40,15 @@ Admin.alertUsers =
               text: 'Ok'
               btnClass: 'btn-red'
               action: ->
-                if valid
-                  dialog.close()
+                dialog.close() if valid
+
       ).fail( (response) ->
         $.alert
           title: "Something went wrong",
           type: "red"
         return false
       )
+
   sendAlerts: ->
     $("#admin_write_message").click (e) ->
       e.preventDefault()
