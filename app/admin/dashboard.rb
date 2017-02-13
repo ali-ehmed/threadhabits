@@ -11,7 +11,6 @@ ActiveAdmin.register_page "Dashboard" do
     end
 
     # Here is an example of a simple dashboard with columns and panels.
-    #
     columns(class: "dashboard columns") do
       column do
         panel "Recent Users Registered" do
@@ -20,6 +19,9 @@ ActiveAdmin.register_page "Dashboard" do
               column :full_name
               column :username
               column :location
+              column :joined_on do |p|
+                I18n.l p.created_at, format: :short_date rescue nil
+              end
               column :account_confirmed_at do |p|
                 I18n.l p.confirmed_at, format: :short_date rescue nil
               end
@@ -52,5 +54,5 @@ ActiveAdmin.register_page "Dashboard" do
         end
       end
     end
-  end # content
+  end
 end

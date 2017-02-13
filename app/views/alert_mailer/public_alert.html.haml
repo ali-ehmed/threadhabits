@@ -3,7 +3,7 @@
   Welcome
   %strong= @person.full_name
 %p
-  = simple_format @body
+  = @body.html_safe
 
 %footer
   %ul.list-inline.company-info

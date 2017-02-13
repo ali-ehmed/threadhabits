@@ -52,7 +52,7 @@ Admin.alertUsers =
   sendAlerts: ->
     $("#admin_write_message").click (e) ->
       e.preventDefault()
-      $.get "/admin/user_alerts/write_message.json", (response) ->
+      $.get "/admin/alerts/write_message.json", (response) ->
         $.confirm({
           backgroundDismiss: false
           title: "Send Alerts to Users"
@@ -74,10 +74,24 @@ Admin.alertUsers =
               allowClear: true
               tags: true
             })
-#            $("textarea#user_alert_body").froalaEditor({
-#              heightMin: 450,
-#              heightMax: 450
-#            })
+
+            $("textarea#user_alert_body").froalaEditor({
+              charCounterCount: true
+              heightMin: 400,
+              heightMax: 450
+              tableMultipleStyles: false
+              dragInline: true,
+              imageAllowedTypes: ['jpeg', 'jpg', 'png']
+              imageMove: true
+              fileAllowedTypes: ['image/png', 'image/jpeg', 'image/gif']
+              toolbarButtons: [
+                'bold', 'fontSize', 'strikeThrough', 'fontFamily', 'color', 'italic', 'underline',
+                'insertImage', 'insertLink', 'undo', 'redo', 'paragraphStyle', '|', 'paragraphFormat',
+                'align', 'insertTable', 'quote', 'selectAll', 'formatOL', 'formatUL', 'indent', 'outdent',
+                '-'
+              ]
+            })
+
             Admin.alertUsers.submitAlerts(this, this.$content.find('form'));
         })
 
