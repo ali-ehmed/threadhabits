@@ -1,4 +1,4 @@
-ActiveAdmin.register_page "User Alerts" do
+ActiveAdmin.register_page "Alerts" do
   menu false
 
   content do

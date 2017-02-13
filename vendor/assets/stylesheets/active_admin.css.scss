@@ -12,12 +12,10 @@
 /*
  *= require froala_editor.min.css
  *= require froala_style.min.css
- *= require plugins/char_counter.min.css
- *= require plugins/code_view.min.css
- *= require plugins/colors.min.css
  *= require plugins/fullscreen.min.css
  *= require plugins/image_manager.min.css
  *= require plugins/image.min.css
+ *= require plugins/fullscreen.min.css
  *= require plugins/line_breaker.min.css
  *= require plugins/quick_insert.min.css
  *= require plugins/table.min.css
@@ -83,6 +81,18 @@ ul.header-item.tabs {
   margin-bottom: 10px;
 }
 
-.mce-window {
+.fr-desktop {
   z-index: 100000000 !important;
+}
+
+.fr-tooltip {
+  z-index: 100000000 !important;
+}
+
+.space_left {
+  margin-left: 15px;
+}
+
+.space_right {
+  margin-right: 15px;
 }
