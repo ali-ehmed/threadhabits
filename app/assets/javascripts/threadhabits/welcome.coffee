@@ -1,10 +1,10 @@
 # Application Welcome Coffee
 $(document).on "turbolinks:load", ->
   # Hide Flash Message After 5 Seconds
-  window.setTimeout (->
-    $('.flash-messages').fadeTo(500, 0).slideUp 500, ->
-      $(this).hide()
-  ), 5000
+#  window.setTimeout (->
+#    $('.flash-messages').fadeTo(500, 0).slideUp 500, ->
+#      $(this).hide()
+#  ), 5000
 
   $("li.navbar-profile-icon a.dropdown-toggle").click (e) ->
     Turbolinks.visit("/profiles/#{$(this).find('.profile-name').text()}")
@@ -13,19 +13,22 @@ $(document).on "turbolinks:load", ->
   $("li.navbar-profile-icon").hover (->
     $this = $(this)
     $this.toggleClass 'open'
-    $.get "	/home/verify_unread_message", (response) ->
+
+    $.get "/verify_unread_message", (response) ->
       $this.find("span.notify_message").show() if response.unread == false
     return
+
   ), ->
     $(this).toggleClass 'open'
     return
 
-
+# About Us
 @AboutUs =
   initializeTweaks: ->
     setDefaultActive = true
     path = location.href.split("#")
     path = path[path.length-1]
+
     if jQuery.inArray("contact", location.href.split("#")) != -1 || jQuery.inArray("toc", location.href.split("#")) != -1 || jQuery.inArray("privacy_policy", location.href.split("#")) != -1
       setDefaultActive = false
       a = $("#about_us .side-affix a[href='##{path}']")

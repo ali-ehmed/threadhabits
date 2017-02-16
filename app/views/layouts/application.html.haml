@@ -4,20 +4,17 @@
     = render partial: "layouts/components/head"
   %body{ class: [view_controller, view_action].join(" ") }
     = include_gon
-    = render partial: "layouts/navbar/top_navigation"
-    = render partial: "layouts/navbar/bottom_navigation"
+    - if mobile_device?
+      = render partial: "layouts/navbar/device_navigation"
+    - else
+      = render partial: "layouts/navbar/top_navigation"
+      = render partial: "layouts/navbar/bottom_navigation"
 
-    - if @landing_banner
-      .jumbotron.landing-banner{style: "background-image: url('#{S3_ASSET_PATH}/THBanner-3.png')"}
-        %h1
-          Buying and selling menswear.
-        %p
-          Buy or sell menswear. With designers and brands from A to Z, we've got you covered. Completely free to use. 0% commission taken.
+    .main-container
+      .container-fluid
+        = yield(:heading_section) #Top Heading Section
+        = render 'layouts/components/messages'
+        %main
+          = yield
 
-    .container-fluid
-      = yield(:heading_section) #Top Heading Section
-      = render 'layouts/components/messages'
-      %main
-        = yield
-
-      = render partial: "layouts/components/footer"
+        = render partial: "layouts/components/footer"

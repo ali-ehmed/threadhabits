@@ -1,9 +1,18 @@
 class HomeController < ApplicationController
-  before_action only: [ :index ] { landing_banner(true) }
-  before_action :filter_data, only: [ :index ]
+  before_action only: [ :landing ] { landing_banner(true) }
+  before_action :filter_data, only: [ :inventory ]
   before_action :authenticate_person!, only: [ :verify_unread_message ]
 
-  def index
+  def landing
+    @landing_banners = [
+        { banner: S3_ASSET_PATH + "/LandingBanners/banner-1.jpg", text: "Buying and selling menswear." },
+        { banner: S3_ASSET_PATH + "/LandingBanners/banner-2.jpg", text: "Browse" },
+        { banner: S3_ASSET_PATH + "/LandingBanners/banner-3.jpg", text: "Designers" },
+        { banner: S3_ASSET_PATH + "/LandingBanners/banner-4.jpg", text: "Sell" }
+    ]
+  end
+
+  def inventory
     if @p[:filters] and params[:q].present?
       @p[:filters].merge!(q: params[:q])
     end
