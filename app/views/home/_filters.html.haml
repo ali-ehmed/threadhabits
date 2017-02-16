@@ -5,7 +5,7 @@
   $location.setMapForm();
 
 .listing-filters
-  = form_tag fetch_listings_path, method: :get do
+  = form_tag inventory_path, method: :get do
     = hidden_field_tag "filters[product_type]", @p[:filters][:product_type]
     = hidden_field_tag "filters[q]", @p[:filters][:q]
     .panel.panel-default

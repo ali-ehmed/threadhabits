@@ -1,0 +1,4 @@
+- @landing_banners.each do |banner|
+  = link_to "#" do
+    .jumbotron.landing-banner.row{style: "background-image: url('#{banner[:banner]}')"}
+      %h1= banner[:text]

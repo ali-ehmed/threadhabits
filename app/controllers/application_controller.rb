@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_person!, :authorize_person!, if: :admin_controller?
   before_action :set_filter_params
 
+  helper_method :mobile_device?
+
   def landing_banner(flag = false) @landing_banner = !person_signed_in? && flag end;
 
   def authorize_person!
@@ -46,6 +48,10 @@ class ApplicationController < ActionController::Base
     end
 
     @p = @p.to_unsafe_h
+  end
+
+  def mobile_device?
+    request.env["HTTP_USER_AGENT"] && request.env["HTTP_USER_AGENT"][/(iPhone|iPod|Android)/]
   end
 
   protected

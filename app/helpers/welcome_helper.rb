@@ -22,4 +22,21 @@ module WelcomeHelper
       [f[0], l[0]].join
     end
   end
+
+  def person_mobile_view_avatar(person, options = {})
+    avatar    = person_avatar(person, outer_class: "img-circle")
+    full_name = content_tag :span, person.full_name, class:  "name"
+    username  = content_tag :span, person.tagged_username, class: "username"
+
+    html = %Q{<div class="#{options[:class] || 'person-avatar-thumbnail'}">}
+
+    html += link_to profiles_path(person.username), class: "thumbnail" do
+      avatar
+    end
+
+    html << (full_name +  username)
+    html += %Q{</div>}
+
+    html.html_safe
+  end
 end

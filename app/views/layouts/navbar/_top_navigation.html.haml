@@ -11,7 +11,7 @@
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       .row
         .col-md-5.col-sm-5.col-xs-5.col-lg-5
-          = form_tag fetch_listings_path(@p.merge!(filters: { q: @p[:filters][:q] })), method: :get, class: "navbar-search-form" do
+          = form_tag inventory_path(@p.merge!(filters: { q: @p[:filters][:q] })), method: :get, class: "navbar-search-form" do
             .form-group
               .input-group
                 .input-group-addon
