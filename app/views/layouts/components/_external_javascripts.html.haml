@@ -1,0 +1,8 @@
+:javascript
+  Settings.clearTurbolinksCache();
+- if content_for(:javascript)
+  #external_javascript
+    :javascript
+      $(function() {
+        #{yield :javascript}
+      });

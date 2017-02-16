@@ -20,7 +20,18 @@ Rails.application.configure do
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
-  config.action_controller.perform_caching = false
+  config.action_controller.perform_caching = true
+
+
+  config.cache_store = :dalli_store,
+                    (ENV["MEMCACHIER_SERVERS"] || "").split(","),
+                    {:username => ENV["MEMCACHIER_USERNAME"],
+                     :password => ENV["MEMCACHIER_PASSWORD"],
+                     :failover => true,
+                     :socket_timeout => 1.5,
+                     :socket_failure_delay => 0.2,
+                     :down_retry_delay => 60
+                    }
 
   # Raise exceptions instead of rendering exception templates.
   config.action_dispatch.show_exceptions = false
@@ -42,21 +53,33 @@ Rails.application.configure do
 
 
   config.default_email = "quinn@threadhabits.com"
+  # config.default_email = "ali.ahmed.cs2104@gmail.com"
 
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
 
   config.action_mailer.smtp_settings = {
-    :address              => ENV["smtp_address"],
+    :address              => ENV["MAILGUN_SMTP_SERVER"],
     :port                 => "587",
     :domain               => ENV["smtp_domain"],
-    :user_name            => ENV["smtp_username"],
-    :password             => ENV["smtp_password"],
+    :user_name            => ENV["MAILGUN_SMTP_LOGIN"],
+    :password             => ENV["MAILGUN_SMTP_PASSWORD"],
     :authentication       => 'plain'
   }
-  
-  config.action_mailer.default_url_options = { host: ENV["domain"] }
+
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   :address              => ENV["smtp_address"],
+  #   :port                 => "587",
+  #   :domain               => ENV["smtp_domain"],
+  #   :user_name            => ENV["smtp_username"],
+  #   :password             => ENV["smtp_password"],
+  #   :authentication       => 'login',
+  #   :enable_starttls_auto => true
+  # }
+
+  config.action_mailer.default_url_options = { host: ENV["secure_domain"] }
 
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
@@ -65,4 +88,16 @@ Rails.application.configure do
     logger.formatter = config.log_formatter
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
+
+  config.paperclip_defaults = {
+    storage: :s3,
+    s3_region: "us-west-2",
+    s3_credentials: {
+      bucket: ENV['S3_BUCKET'],
+      access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+      secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
+      s3_host_name: 's3-us-west-2.amazonaws.com'
+    },
+    :default_url => "profile-icon.png"
+  }
 end

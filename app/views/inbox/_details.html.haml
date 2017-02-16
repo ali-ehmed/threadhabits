@@ -1,0 +1,61 @@
+= render layout: "inbox" do
+  - content_for :javascript do
+    Inbox.validateForm();
+
+  .message-detail
+    - if @chat_room.listing.present?
+      .row
+        .col-md-9.col-sm-9.col-xs-9.listing
+          .col-md-4.col-sm-4.col-xs-4
+            = link_to detail_listings_path @chat_room.listing.slug do
+              = image_tag @chat_room.listing.display_image.url(:medium), class: "img-responsive recipient-img"
+          .col-md-8.col-sm-8.col-xs-8
+            %h2
+              = link_to detail_listings_path @chat_room.listing.slug do
+                = @chat_room.listing.name
+              %small.pull-right
+                = number_to_currency @chat_room.listing.price
+            .item-info
+              %label
+                Designer/Company:
+              = @chat_room.listing.company.name
+              %br
+              %label
+                Size:
+              = @chat_room.listing.size.name
+              %br
+              %label
+                Condition:
+              = @chat_room.listing.condition
+            -# %button.btn.btn-default Add to Cart
+            -# %button.btn.btn-default Buy it now
+            %br
+            = link_to payments_checkout_paypal_path(listing_id: @chat_room.listing.id), "data-turbolinks" => false, class: "btn btn-default btn-block btn-block-lg" do
+              %i.fa.fa-paypal
+              Purchase with Paypal
+
+    .messages-list
+      %ul.list-group
+        - @messages.each do |message|
+          %li.list-group-item
+            .row
+              .col-md-2.col-sm-2.col-xs-2
+                = link_to profiles_path message.sender.username do
+                  = person_avatar(message.sender, inner_class: "alphabetical-avatar-inbox-detail", outer_class: "recipient-avatar")
+              .col-md-10.col-xs-10.col-sm-10
+                .top-section
+                  %span.recipient-name
+                  = link_to profiles_path message.sender.username do
+                    = message.sender.full_name
+                  %span.message-date.pull-right= message.created_at.strftime("%B %d, %Y")
+                .bottom-section
+                  = message.body
+      .message-form
+        .row
+          .col-md-2.col-sm-2.col-xs-2
+            = person_avatar(current_person, inner_class: "alphabetical-avatar-inbox-detail", outer_class: "recipient-avatar")
+          .col-md-10.col-xs-10.col-sm-10
+            - receiver_id = @messages.select{ |v| v.sender_id == current_person.id }.first.try(:receiver_id) || @messages.last.sender_id
+            = render layout: "messages/form", locals: { object: @message, receiver_id: receiver_id, sender_id: current_person.id, chat_room: @chat_room, form_id: "messageFormInbox" } do
+              .form-actions.text-right
+                %button.btn.btn-primary{:type => "submit"} Reply

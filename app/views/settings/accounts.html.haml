@@ -1,3 +1,32 @@
 = heading_section :h2, "Account Settings"
 = render layout: "side_bar" do
-  %p This information is visible to all Threadhabits users in your profile page.
+  .panel.panel-default
+    .panel-heading Account Settings
+    .panel-body
+      = form_for current_person, url: settings_path, method: :put, html: { multipart: true } do |f|
+        .form-group
+          = f.label :email
+          = f.email_field :email, class: "form-control input-lg"
+        .form-group
+          = f.label :username
+          = f.text_field :username, class: "form-control input-lg"
+        .form-group
+          = f.submit "Save Information", class: "btn btn-primary"
+  .panel.panel-default
+    .panel-heading
+      %h3.panel-title Security Settings
+    .panel-body
+      = form_for current_person, url: settings_path, method: :put, html: { multipart: true } do |f|
+        .form-group
+          = f.label :password
+          = f.password_field :password, class: "form-control input-lg"
+        .form-group
+          = f.label :password_confirmation
+          = f.password_field :password_confirmation, class: "form-control input-lg"
+        .form-group
+          = f.submit "Update Password", class: "btn btn-primary"
+  .panel.panel-danger
+    .panel-heading
+      %h3.panel-title Cancel your account
+    .panel-body
+      = button_to "Yes! Cancel", registration_path(current_person), class: "btn btn-default site-btn", data: { confirm: "Are you sure?" }, method: :delete

@@ -1,0 +1,27 @@
+%p.sent-at.pull-right= Date.today.strftime("%B %d, %Y")
+%p
+  Welcome
+  = @resource.full_name
+  ,
+%p
+  Thank you for joining Threadhabits. You can confirm your account email through the link below:
+%p.center-link
+  = link_to 'Confirm My Account', confirmation_url(@resource, confirmation_token: @token), class: "btn btn-primary", target: "_blank"
+
+%footer
+  %ul.list-inline.company-info
+    %li &copy; 2017 Threadhabits
+    %li All Rights Reserved
+    %li
+      = link_to 'www.threadhabits.com', root_url, target: "_blank"
+  %br
+  %ul.list-inline.social-icons
+    %li
+      = link_to "#" do
+        = image_tag "#{S3_ASSET_PATH}/social-icons/fb.png", class: "img-responsive"
+    %li
+      = link_to "#" do
+        = image_tag "#{S3_ASSET_PATH}/social-icons/instagram.png", class: "img-responsive"
+    %li
+      = link_to "#" do
+        = image_tag "#{S3_ASSET_PATH}/social-icons/snapchat.png", class: "img-responsive"

@@ -1,0 +1,30 @@
+-# External Javascripts
+= render partial: "layouts/components/external_javascripts"
+
+-# Application footer
+%footer
+  .row
+    .col-md-8.col-sm-8.col-xs-8
+      %ul.list-inline.side-left-section
+        %li
+          %a{href: "#"}
+            &copy;
+            = Date.today.year
+            = "Threadhabits"
+        %li
+          %a{href: "/about_us#toc"}
+            Terms of use
+        %li
+          %a{href: "/about_us#privacy_policy"}
+            Privacy Policy
+    .col-md-4.col-sm-4.col-xs-4
+      %ul.list-inline.side-right-section
+        %li
+          %a{href: "https://web.facebook.com/threadhabits", target: "_blank"}
+            %i.fa.fa-facebook
+        %li
+          %a{href: "https://www.instagram.com/threadhabits/", target: "_blank"}
+            %i.fa.fa-instagram
+        %li
+          %a{href: "https://twitter.com/threadhabits", target: "_blank"}
+            %i.fa.fa-twitter

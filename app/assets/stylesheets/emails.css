@@ -1,0 +1,119 @@
+@font-face {
+  font-family: 'Lato', sans-serif;
+}
+body {
+  font-family: 'Lato', sans-serif;
+  background-color: #FBFBFB;
+  padding: 2em 5em
+}
+
+
+.btn-primary {
+  color: #fff !important;
+  background-color: #010102;
+  border-color: #000;
+  -webkit-transition: border-color 0.2s ease;
+  -moz-transition: border-color 0.2s ease;
+  -o-transition: border-color 0.2s ease;
+  -ms-transition: border-color 0.2s ease;
+  transition: border-color 0.2s ease;
+}
+.btn-default {
+  color: #333;
+  background-color: #fff;
+  border-color: #000;
+}
+.btn-primary:hover {
+  color: #fff;
+  background-color: #010102;
+  border-color: #7d7d7d;
+}
+.btn {
+  padding: 15px 25px !important;
+}
+header h1.main {
+  color: #000;
+  font-weight: bold;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #aaa;
+}
+
+a {
+  color: #3a85bd;
+}
+
+main {
+  padding-top: 20px;
+}
+main .sent-at {
+  color: #000;
+  font-weight: bold;
+  float: right;
+}
+main .messages .person {
+  font-style: italic;
+  font-weight: bold;
+}
+main .messages .person .name {
+  font-size: 20px;
+}
+main .messages .person .username {
+  font-size: 15px;
+}
+main .messages .person .message {
+  font-size: 25px;
+}
+main .messages .person .message {
+  font-size: 25px;
+}
+main .messages .person .reply-actions {
+  margin-top: 25px;
+}
+main .messages .person .reply-actions a {
+  font-style: initial !important;
+}
+main .messages .listing .reference {
+  margin-bottom: 15px;
+  font-size: 22px;
+}
+main .messages .listing .buy-actions a {
+  border-color: #7be27b;
+  border-width: 1px;
+  border-radius: 0px;
+  padding: 15px 25px;
+}
+main .center-link {
+  text-align: center;
+  margin: 35px 0px;
+}
+main .center-link a {
+  padding: 15px 25px;
+}
+
+/* footer css */
+footer {
+  margin-top: 20px;
+  border-top: 1px solid #aaa;
+  padding-top: 25px;
+}
+
+footer ul.list-inline {
+  text-align: center;
+  font-style: italic;
+}
+
+footer ul.company-info li, ul.social-icons li {
+  list-style: none;
+  display: inline-block;
+}
+footer ul.company-info li {
+  border-right: 1px solid;
+  padding: 7px 7px;
+  width: 25%;
+}
+footer ul.company-info li:last-child {
+  border-right: 0px;
+}
+footer ul.social-icons li {
+  width: 8%;
+}

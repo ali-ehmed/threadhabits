@@ -1,0 +1,26 @@
+%p.sent-at.pull-right= Date.today.strftime("%B %d, %Y")
+%p
+  Hey Admin,
+%p
+  A new user has joined on Threadhabits.com. His name is
+  %strong= @person.full_name
+%p
+  = link_to 'Threadhabits.com', root_url, target: "_blank"
+
+%footer
+  %ul.list-inline.company-info
+    %li &copy; 2017 Threadhabits
+    %li All Rights Reserved
+    %li
+      = link_to 'www.threadhabits.com', root_url, target: "_blank"
+  %br
+  %ul.list-inline.social-icons
+    %li
+      = link_to "#" do
+        = image_tag "#{S3_ASSET_PATH}/social-icons/fb.png", class: "img-responsive"
+    %li
+      = link_to "#" do
+        = image_tag "#{S3_ASSET_PATH}/social-icons/instagram.png", class: "img-responsive"
+    %li
+      = link_to "#" do
+        = image_tag "#{S3_ASSET_PATH}/social-icons/snapchat.png", class: "img-responsive"

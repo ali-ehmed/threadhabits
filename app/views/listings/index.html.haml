@@ -1,0 +1,15 @@
+-# Not being used
+- title "Listings - Threadhabits"
+= heading_section :h2, "Sell Item"
+.listings-index
+  .authform.authform-container-fluid
+    .form-group
+      %h4 Select Category
+      .list-group.categories
+        - @categories.each do |category|
+          - if params[:slug].present?
+            %a.list-group-item{:href => edit_listings_path(params[:slug], category_slug: category.slug)}
+              = category.name
+          - else
+            %a.list-group-item{:href => new_listing_path(category_slug: category.slug)}
+              = category.name

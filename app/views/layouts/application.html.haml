@@ -1,21 +1,14 @@
 !!!
 %html
   %head
-    %title
-      = content_for(:title) ? yield(:title) : "Threadhabits - Buying and selling menswear."
-
-    = csrf_meta_tags
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-    %link{href: "https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700", rel: "stylesheet"}
-
-    = favicon_link_tag "favicon.png"
-  %body
+    = render partial: "layouts/components/head"
+  %body{ class: [view_controller, view_action].join(" ") }
+    = include_gon
     = render partial: "layouts/navbar/top_navigation"
     = render partial: "layouts/navbar/bottom_navigation"
 
     - if @landing_banner
-      .jumbotron.landing-banner
+      .jumbotron.landing-banner{style: "background-image: url('#{S3_ASSET_PATH}/THBanner-3.png')"}
         %h1
           Buying and selling menswear.
         %p
@@ -23,8 +16,8 @@
 
     .container-fluid
       = yield(:heading_section) #Top Heading Section
-      = render 'layouts/messages'
+      = render 'layouts/components/messages'
       %main
         = yield
 
-      = render partial: "layouts/footer"
+      = render partial: "layouts/components/footer"

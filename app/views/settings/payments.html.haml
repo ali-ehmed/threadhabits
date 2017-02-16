@@ -1,3 +1,8 @@
 = heading_section :h2, "Payments Settings"
 = render layout: "side_bar" do
-  %p This information is visible to all Threadhabits users in your profile page.
+  = form_for current_person, url: settings_path, method: :put, html: { multipart: true } do |f|
+    .form-group
+      = f.label :paypal_id, "Your Paypal email address"
+      = f.text_field :paypal_id, class: "form-control input-lg"
+    .form-group
+      = f.submit "Save Information", class: "btn btn-primary site-btn"

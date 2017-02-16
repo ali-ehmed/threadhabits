@@ -1,26 +1,35 @@
+/*
+*= require select2.min
+*= require fileinput.min
+*= require awesome-checkboxes
+*= require nouislider.min
+*= require easyzoom
+*/
 @import "font-awesome";
-@font-face {
-  font-family: 'Avenir Roman';
-  src:font-url('AvenirLTStd-Book.otf');
-  src:font-url('AvenirLTStd-Light.otf');
-  src:font-url('AvenirLTStd-Roman.otf');
-  font-weight: normal;
-  font-style: normal;
-}
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700,900');
 
-@import "customised_bootstrap";
+@font-face {
+  font-family: 'Lato', sans-serif;
+}
 
 @import "compass";
 
 @import "base";
+
+@import "customised_bootstrap";
 
 // Components
 @import "components/footer";
 @import "components/form";
 @import "components/listings";
 @import "components/navigation";
+@import "components/alphabetical_avatar";
 
 // Pages
 @import "pages/profiles";
 @import "pages/welcome";
-@import "pages/settings";
+@import "pages/settings"; // Media Queries Here - Bottom
+@import "pages/listings";
+@import "pages/inbox";
+@import "pages/follow";
+@import "pages/about_us";

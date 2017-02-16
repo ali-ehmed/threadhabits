@@ -14,4 +14,11 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
-//= require_tree .
+//= require jquery.validate
+//= require jquery.validate.additional-methods
+//= require select2.min
+//= require jquery-readySelector
+//= require nouislider.min
+//= require easyzoom
+//= require_tree ../../../vendor/assets/javascripts/bootstrap-fileinput
+//= require_tree ./threadhabits

@@ -1,0 +1,13 @@
+%table.table.table-striped
+  %thead
+    %tr
+      %th
+      %th Name
+      %th Profile
+  %tbody
+    - list.each do |elem|
+      %tr
+        %td= image_tag following.person.avatar.url(:medium), class: "img-responsive"
+        %td= following.person.full_name
+        %td
+          = link_to "Profile", profiles_path(following.person.username)

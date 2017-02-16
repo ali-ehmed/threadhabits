@@ -1,0 +1,96 @@
+:css
+  .messages .person .person-img, .messages .listing .listing-img {
+    display: inline-block;
+    width: 20%;
+  }
+  .messages .person .person-img img, .messages .listing .listing-img img {
+    width: 90%;
+  }
+  .messages .person .details, .messages .listing .details {
+    display: inline-block;
+    width: 78%;
+    position: relative;
+    top: -42px;
+  }
+  .messages .listing .details {
+    top: -60px;
+  }
+  .messages .person .details .reply-actions a, .messages .listing .details a {
+    margin-left: 15em;
+  }
+  .messages .person {
+    margin-bottom: 10px;
+  }
+  footer ul.social-icons li {
+    list-style: none;
+    display: inline-block;
+    width: 8%;
+  }
+
+%p.sent-at.pull-right= Date.today.strftime("%B %d, %Y")
+%p
+  Hey
+  = "#{@receiver.full_name}!"
+%p
+  You have received a new message from
+  = @sender.full_name
+  on Threadhabits.com
+
+.messages
+  .person
+    .person-img
+      = image_tag @sender.avatar.url(:medium), class: "img-responsive"
+    .details
+      %span.name= @sender.full_name
+      %br
+      %span.username= @sender.tagged_username
+      %br
+      %div.message
+        = "'#{@body}'"
+      .reply-actions
+        = link_to 'REPLY NOW', inbox_url(@message.chat_room.id), target: "_blank", class: "btn-primary reply", style: "padding: 15px 47px;"
+  - if @listing.present?
+    .listing
+      .reference Regarding:
+      .listing-img
+        = image_tag @listing.display_image.url(:medium)
+
+      .details
+        %label= @listing.name
+        %br
+        %label Size:
+        = @listing.size.name
+        %br
+        %label Condition:
+        = @listing.condition
+        %br
+        %label Price:
+        = number_to_currency @listing.price
+        %br
+        -# .buy-actions
+          = link_to 'BUY IT NOW', root_url, target: "_blank", class: "btn"
+        = link_to payments_checkout_paypal_url(listing_id: @listing.id), "data-turbolinks" => false, class: "btn btn-default" do
+          %i.fa.fa-paypal
+          Purchase with Paypal
+
+%footer
+  %p
+    Change notifications settings
+    %a{href: notifications_settings_url, target: "_blank"}
+      here.
+  %p
+    &copy; 2017 Threadhabits
+    %br
+    All Rights Reserved
+    %br
+    = link_to 'www.threadhabits.com', "#", target: "_blank"
+  %ul.list-inline.social-icons
+    %li
+      = link_to "#" do
+        = image_tag "#{S3_ASSET_PATH}/social-icons/fb.png", class: "img-responsive"
+    %li
+      = link_to "#" do
+        = image_tag "#{S3_ASSET_PATH}/social-icons/instagram.png", class: "img-responsive"
+    %li
+      = link_to "#" do
+        = image_tag "#{S3_ASSET_PATH}/social-icons/snapchat.png", class: "img-responsive"

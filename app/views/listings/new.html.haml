@@ -1,0 +1,12 @@
+- content_for :javascript do
+  Listings.initializeListingsForm();
+  Listings.toggleFileUploadValidation();
+
+- title "Create a new Listing"
+= heading_section :h2, "Sell Item"
+.authform.authform-container-fluid
+  -# .list-group.categories
+    %a.list-group-item.active{:href => listings_path}
+      Category:
+      = @category.name
+= render partial: "form", locals: { action: listings_path, method: :post }

@@ -1,0 +1,23 @@
+= form_tag admin_alerts_send_alerts_path(format: :json), action: :post, id: "write_message_form" do
+  %fieldset.inputs
+    %ol
+      %li.boolean.input.optional#user_alerts_type
+        %label{for: "all_recipient"}
+          %input#all_recipient{type: "checkbox", name: "send_to_all", value: "off"}
+          Send To All
+      -#<li class="boolean input optional" id="person_admin_input"><input type="hidden" name="person[admin]" value="0"><label for="person_admin" class=""><input type="checkbox" name="person[admin]" id="person_admin" value="1">Admin</label>
+      %li.email.input.optional.stringish#user_alerts_emails_input
+        %label{for: "recipient_emails", class: "label"}
+          Email(s)
+        %select#recipient_emails.tagging_select_emails{multiple: "multiple", name: "recipient_emails"}
+          - people.each do |person|
+            -#%optgroup{label: person.full_name}
+            %option{value: person.email}
+              = person.full_name
+              &ndash;
+              = person.email
+      %li.string.input.optional.stringish#user_alerts_subject_input
+        %label{for: "subject", class: "label"} Subject
+        %input#subject{type: "text", placeholder: "Welcome to Threadhabits", name: "subject"}
+      %li.text.input.optional.stringish#user_alerts_body_input
+        %textarea#user_alert_body{rows: "6", placeholder: "Write your content...", name: "body"}

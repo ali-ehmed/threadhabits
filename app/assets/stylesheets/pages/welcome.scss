@@ -1,29 +1,49 @@
 // Application Welcome Sass
 body {
-  font-family: 'Avenir Roman', sans-serif;
+  font-family: 'Lato', sans-serif;
   background-color: $threadhabits-theme-bg-color;
+  margin-top: 5em;
+  position: relative;
 }
 .landing-banner {
-  background: url('THbanner');
+  min-height: 600px;
+  background-size: cover;
   text-align: center;
   color: #fff;
+  margin-bottom: 10px !important;
+  width: 98%;
+  margin: 0 auto;
+  border: 1px solid #bbb;
+  position: relative;
+  top: 16px;
   h1 {
     font-size: 5.4em;
     font-weight: 900;
+    line-height: 80px;
+    margin-top: 70px;
   }
   p {
     font-size: 2em;
-    line-height: 1.38462em;
+    line-height: 2.38462em;
     font-weight: 600;
     margin: 0.75em auto;
     max-width: 22.5em;
   }
 }
 
+.search-results {
+  h1, h2, h3, h4 {
+    margin-top: 20px;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+}
+
 main {
-  min-height: 500px;
+  min-height: 800px;
   margin-top: 35px;
   margin-bottom: 35px;
+  margin-top: 23px;
 }
 
 .heading_section {
@@ -33,6 +53,7 @@ main {
   padding: 10px 6em;
   margin: 0px -15px;
   margin-bottom: 15px;
+  margin-top: 18px;
   h1, h2, h3, h4 {
     color: #fff;
     font-weight: 600;
@@ -52,4 +73,13 @@ a {
 ul.list-right {
   float: right !important;
   margin-right: 0;
+}
+
+#google-maps {
+  margin-top: 15px;
+  height: 325px;
+}
+
+.hide-content {
+  display: none;
 }

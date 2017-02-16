@@ -1,0 +1,5 @@
+- if @chat_room.present?
+  = render partial: "details"
+- else
+  .alert.alert-success
+    There are no Messages

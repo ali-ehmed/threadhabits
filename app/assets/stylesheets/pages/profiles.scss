@@ -10,6 +10,7 @@ $feedback-color: #b8ea1a;
 
 // Window Size For Macbook
 .profile .cover-img {
+  background-size: cover !important;
   margin-left: -15px;
   margin-right: -15px;
   margin-top: -35px;
@@ -53,6 +54,14 @@ $feedback-color: #b8ea1a;
         font-size: 18px;
       }
     }
+    li.followers, li.followings {
+      a {
+        color: $black;
+        &:hover, &:focus {
+          color: #777;
+        }
+      }
+    }
     li.feedback {
       color: $feedback-color;
     }
@@ -67,7 +76,7 @@ $feedback-color: #b8ea1a;
   ul.socal-icons-list {
     li {
       @include all-social-icons-sprites;
-      a { padding: 9px 20px; }
+      a { padding: 7px 20px; }
     }
   }
   .listing-tabs {
