@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_person!, :authorize_person!, if: :admin_controller?
-  before_action :set_filter_params
+  before_action :set_filter_params, :s3_presign_request
 
   helper_method :mobile_device?
 
@@ -52,6 +52,16 @@ class ApplicationController < ActionController::Base
 
   def mobile_device?
     request.env["HTTP_USER_AGENT"] && request.env["HTTP_USER_AGENT"][/(iPhone|iPod|Android)/]
+  end
+
+  # Direct upload to s3 Bucket
+  def s3_presign_request
+    s3data = S3_BUCKET.presigned_post(key: "alertUploads/#{SecureRandom.uuid}/${filename}", success_action_status: '201', acl: 'public-read')
+    gon.s3_presigned_data = {
+        fields: s3data.fields,
+        url: s3data.url,
+        content_length: 5.megabyte
+    }
   end
 
   protected

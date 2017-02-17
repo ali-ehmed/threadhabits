@@ -75,6 +75,7 @@ Admin.alertUsers =
               tags: true
             })
 
+            params = gon.s3_presigned_data.fields
             $("textarea#user_alert_body").froalaEditor({
               charCounterCount: true
               heightMin: 400,
@@ -90,8 +91,9 @@ Admin.alertUsers =
                 'align', 'insertTable', 'quote', 'selectAll', 'formatOL', 'formatUL', 'indent', 'outdent',
                 '-'
               ]
+              imageUploadParams: gon.s3_presigned_data.fields
               imageUploadMethod: "POST"
-              imageUploadURL: "/admin/alerts/upload_content_images.json"
+              imageUploadURL: "https://s3-us-west-2.amazonaws.com/threadhabits"
             })
 
             Admin.alertUsers.submitAlerts(this, this.$content.find('form'));

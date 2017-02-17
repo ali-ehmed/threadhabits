@@ -5,6 +5,8 @@ ActiveAdmin.register_page "Alerts" do
     # action code
   end
 
+  # skip_before_action :verify_authenticity_token, only: [:upload_content_images]
+
   page_action :message, method: :get do
     people = Person.select(:id, :email, :first_name, :last_name)
     respond_to do |format|
@@ -57,10 +59,5 @@ ActiveAdmin.register_page "Alerts" do
     end
 
     render json: { status: true, message: "Users have been sent email(s) successfully.", title: "Success!", type: "green" }
-  end
-
-  page_action :upload_content_images, method: :post do
-    S3_BUCKET.presigned_post(key: "alertUploads/#{SecureRandom.uuid}/${filename}", success_action_status: '201', acl: 'public-read')
-    render json: 200
   end
 end
