@@ -6,16 +6,17 @@ body {
   position: relative;
 }
 .landing-banner {
+  @include single-text-shadow;
   min-height: 600px;
   background-size: cover;
   text-align: center;
-  color: #fff;
+  color: white;
   margin-bottom: 0px !important;
   border: 1px solid #bbb;
   position: relative;
   top: -7px;
   border-radius: 0px !important;
-  background-position-y: -180px;
+  background-position-y: -350px;
   h1 {
     font-size: 5.4em;
     font-weight: 200;
@@ -53,15 +54,16 @@ main {
 }
 
 .heading_section {
-  background-color: #D1D1D1;
-  background: url('THcover.png');
+  @include single-text-shadow;
+  background-color: white;
+  background: url($s3_asset_path + "THbanner.png");
   min-height: 95px;
   padding: 10px 6em;
   margin: 0px -15px;
   margin-bottom: 15px;
   margin-top: 18px;
   h1, h2, h3, h4 {
-    color: #fff;
+    color: white;
     font-weight: 600;
   }
   h1 { font-size: 40px; }

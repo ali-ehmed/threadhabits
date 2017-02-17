@@ -1,4 +1,4 @@
-// Note: @extend cannot be included in @media query.s
+// Note: @extend cannot be included in @media query.
 
 @mixin toggle-in-out($left: 1000px, $absolute: true) {
   // Default toggled out
@@ -8,7 +8,7 @@
     position: relative;
   }
   left: $left;
-  transition: all 0.35s ease-in-out;
+  @include single-transition(all, 0.35s, ease-in-out);
 }
 
 body {
@@ -17,7 +17,7 @@ body {
 
 main { min-height: 450px; }
 
-.main-container { transition: all 0.35s ease-in-out; }
+.main-container { @include single-transition(all, 0.35s, ease-in-out); }
 
 .main-toggle-animation {
   position: fixed;

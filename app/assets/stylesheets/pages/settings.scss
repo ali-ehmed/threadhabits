@@ -43,6 +43,7 @@ label.error {
   top: -7px;
   border-radius: 4px;
 }
+
 label.error:after, label.error:before {
 	bottom: 100%;
 	left: 10%;
@@ -60,6 +61,7 @@ label.error:after {
 	border-width: 4px;
 	margin-left: -4px;
 }
+
 label.error:before {
 	border-color: rgba(173, 104, 115, 0);
 	border-bottom-color: #ad6873;
@@ -69,7 +71,8 @@ label.error:before {
 
 // Select2 Dropdown plugin
 .select2-selection {
-  border: 3px solid #aaa !important;
+  border-radius: 0 !important;
+  border: 1px solid #aaa !important;
   height: 46px !important;
   line-height: 46px !important;
   padding: 8px 5px;

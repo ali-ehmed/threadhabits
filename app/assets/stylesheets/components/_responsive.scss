@@ -45,6 +45,24 @@
   .listings .caption {
     .price { font-size: 17px; }
   }
+
+  // Profiles
+  .profile .top-content {
+    top: -125px;
+    p.desc {
+      margin: 25px 0;
+    }
+
+    ul.additional-details {
+      margin: 58px 0px;
+      li {
+        padding-left: 10px;
+        padding-right: 10px;
+        span.value { font-size: 20px; }
+        span.label { font-size: 20px; }
+      }
+    }
+  }
 }
 
 // Window Size Below Mac book 13inch
