@@ -59,7 +59,7 @@ class ApplicationController < ActionController::Base
     s3data = S3_BUCKET.presigned_post(key: "alertUploads/#{SecureRandom.uuid}/${filename}", success_action_status: '201', acl: 'public-read')
     gon.s3_presigned_data = {
         fields: s3data.fields,
-        url: s3data.url,
+        url: S3_ASSET_PATH,
         content_length: 5.megabyte
     }
   end

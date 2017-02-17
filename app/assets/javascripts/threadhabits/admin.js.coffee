@@ -93,7 +93,7 @@ Admin.alertUsers =
               ]
               imageUploadParams: gon.s3_presigned_data.fields
               imageUploadMethod: "POST"
-              imageUploadURL: "https://s3-us-west-2.amazonaws.com/threadhabits"
+              imageUploadURL: gon.s3_presigned_data.url
             })
 
             Admin.alertUsers.submitAlerts(this, this.$content.find('form'));
