@@ -24,7 +24,14 @@
 @import "components/listings";
 @import "components/navigation";
 @import "components/alphabetical_avatar";
-@import "components/responsive";
+@import "components/responsive"; // Desktop Responsiveness CSS
+
+
+// iPhone in portrait & landscape
+@media only screen and (min-device-width : $iphone_min_width) and (max-device-width : $iphone_max_width) {
+  @import "components/mobile_responsive/main";
+  @import "components/mobile_responsive/navigation";
+}
 
 // Pages
 @import "pages/profiles";

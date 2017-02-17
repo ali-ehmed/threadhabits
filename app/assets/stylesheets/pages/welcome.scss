@@ -1,7 +1,7 @@
 // Application Welcome Sass
 body {
   font-family: 'Lato', sans-serif;
-  background-color: $threadhabits-theme-bg-color;
+  background-color: $theme_bg_color;
   margin-top: 5em;
   position: relative;
 }
@@ -15,6 +15,7 @@ body {
   position: relative;
   top: -7px;
   border-radius: 0px !important;
+  background-position-y: -180px;
   h1 {
     font-size: 5.4em;
     font-weight: 200;

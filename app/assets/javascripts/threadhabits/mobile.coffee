@@ -38,11 +38,12 @@
       that.disabledEventPropagation(e)
       $(@).closest("form").submit()
 
-  collapseHeaderTweaks: ->
     # Close Search on window click
-    $(window).click ->
+    $(".cancel-search").click ->
       $(".navbar-header").css "left", "0px"
       $(".navbar-search-form").css "left", "1000px"
+
+  collapseHeaderTweaks: ->
     @topSearchBar()
     @sideMenu()
 

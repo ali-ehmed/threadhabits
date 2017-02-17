@@ -44,7 +44,8 @@
       %a.navbar-search{:href => "#"}
         %i.fa.fa-search
       %a.navbar-brand{:href => root_path}
-    / Collect the nav links, forms, and other content for toggling
+
+    -# Navbar search form
     .navbar-search-form
       = form_tag inventory_path(@p.merge!(filters: { q: @p[:filters][:q] })), method: :get do
         .form-group
@@ -52,46 +53,5 @@
             .input-group-addon.submit-search
               %i.fa.fa-search
             = text_field_tag "filters[q]", @p[:filters][:q], class: "form-control", placeholder: "Search"
-    #bs-example-navbar-collapse-1.collapse.navbar-collapse
-      %ul.nav.navbar-nav
-        %li.active
-          %a{:href => "#"}
-            Link
-            %span.sr-only (current)
-        %li
-          %a{:href => "#"} Link
-        %li.dropdown
-          %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-            Dropdown
-            %span.caret
-          %ul.dropdown-menu
-            %li
-              %a{:href => "#"} Action
-            %li
-              %a{:href => "#"} Another action
-            %li
-              %a{:href => "#"} Something else here
-            %li.divider{:role => "separator"}
-            %li
-              %a{:href => "#"} Separated link
-            %li.divider{:role => "separator"}
-            %li
-              %a{:href => "#"} One more separated link
-
-      %ul.nav.navbar-nav.navbar-right
-        %li
-          %a{:href => "#"} Link
-        %li.dropdown
-          %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-            Dropdown
-            %span.caret
-          %ul.dropdown-menu
-            %li
-              %a{:href => "#"} Action
-            %li
-              %a{:href => "#"} Another action
-            %li
-              %a{:href => "#"} Something else here
-            %li.divider{:role => "separator"}
-            %li
-              %a{:href => "#"} Separated link
+            .input-group-addon.cancel-search
+              %i.fa.fa-times

@@ -1,272 +1,62 @@
-//// Media Queries
-//
-// Note: @extend cannot be included in @media query.s
+///* Media Styles for Desktops */
 
-@mixin toggle-in-out($left: 1000px, $absolute: true) {
-  // Default toggled out
-  @if $absolute {
-    position: absolute;
-  } @else {
-    position: relative;
+// iPad in portrait & landscape
+@media only screen and (min-device-width : $ipad_min_width) and (max-device-width : $ipad_max_width)  {
+  // Body container
+  .container {
+    width: auto;
   }
-  left: $left;
-  transition: all 0.35s ease-in-out;
+
+  // Navbar Top bar links
+  nav.application-top-header .navbar-right li.side-left-li a, nav.application-top-header .navbar-right li.side-right-li a {
+    padding: 15px 12px;
+  }
+
+  // Navbar Center Logo
+  .navbar-center {
+    padding: 0px;
+    a.brand_name { padding: 15px 13px !important; }
+  }
+
+  // Navbar Form Input
+  nav.application-top-header form.navbar-search-form input[type='text'] {
+    width: 325px;
+  }
+
+  // Navbar Bottom
+  nav.application-bottom-header {
+    ul.side-left-section li {
+      padding-right: 30px;
+    }
+    ul.side-right-section li {
+      padding-left: 30px;
+    }
+  }
+
+  // Listings Box
+  .listings .caption {
+    min-height: 170px;
+  }
 }
 
-// iPhone in portrait & landscape
-@media only screen
-and (min-device-width : 375px)
-and (max-device-width : 667px) {
-  body {
-    margin-top: 0 !important;
+// Window Size Above Mac book 13inch
+@media (min-width: $mac_book_13inch_width) {
+  // Listings Box
+  .listings .caption {
+    .price { font-size: 17px; }
   }
+}
 
-  main { min-height: 450px; }
-
-  .main-container { transition: all 0.35s ease-in-out; }
-
-  .main-toggle-animation {
-    position: fixed;
-    left: 1000px;
-  }
-
-  .landing-banner {
-    top: 0 !important;
-  }
-
-  .device-header {
-    a {
-      color :#000 !important;
+// Window Size Below Mac book 13inch
+@media (max-width: $mac_book_13inch_width) {
+  // Navbar Bottom
+  nav.application-bottom-header {
+    ul.side-left-section li {
+      padding-right: 50px;
     }
-
-    .navbar-header {
-      @include toggle-in-out(0px, false);
-
-      button.navbar-toggle {
-        float: left;
-        margin-left: 15px;
-        background-color: #fff;
-        border-color: #fff;
-        span {
-          background-color: #000;
-        }
-      }
-
-      a.navbar-search {
-        float: right;
-        padding: 15px 15px;
-        font-size: 18px;
-        line-height: 20px;
-        height: 50px;
-      }
-
-      a.navbar-brand {
-        background: url($s3_asset_path + "threadhabitsheader_logo.png");
-        background-size: 11em;
-        width: 14em;
-        background-repeat: no-repeat;
-        background-position-y: 8px;
-        background-position-x: 23px;
-      }
-    }
-
-    .navbar-search-form {
-      top: 0px;
-      @include toggle-in-out();
-      padding: 8px 10px;
-
-      input[type='text'] {
-        border-width: 1px;
-      }
-      .input-group-addon, input[type='text'] {
-        border-radius: 1px;
-      }
-      .input-group-addon {
-        background-color: #fff;
-        border: 0;
-      }
-    }
-  }
-
-  .person-avatar-thumbnail {
-    text-align: center;
-    margin-bottom: 15px;
-    line-height: 25px;
-    a {
-      width: 150px;
-      margin: 0 auto;
-      border-radius: 50%;
-      margin-bottom: 15px;
-    }
-    span { display: block; }
-    span.username { font-weight: 100; }
-    span.name { font-weight: 300; }
-  }
-
-  // collapse nav menu left side
-  #nav-menu-bar {
-    @include toggle-in-out(-1000px);
-
-    width: 100%;
-    z-index: 9999;
-    background: #fff;
-    ul {
-      margin-bottom: 45px;
-
-      a {
-        color: #000;
-      }
-
-      li.dismiss-times {
-        background: url($s3_asset_path + "times.png");
-        height: 100px;
-        background-size: 50px;
-        background-repeat: no-repeat;
-        background-position-x: 160px;
-        background-position-y: 15px;
-        margin-bottom: 18px;
-        margin-top: 38px;
-      }
-      li {
-        line-height: 45px;
-        font-size: 18px;
-      }
-
-      li.sell { a { color: $sell-link !important; } }
-    }
-  }
-
-  .heading_section {
-    min-height: 85px !important;
-    padding: 10px 2em !important;
-    margin-top: 50px !important;
-    h2 {
-      font-size: 30px !important;
-    }
-  }
-
-  .authform-container {
-    width: 85% !important;
-  }
-
-  .flash-messages {
-    margin-top: 60px;
-  }
-
-  .landing-banner {
-    min-height: 300px !important;
-    h1 {
-      font-size: 2.4em !important;
-      line-height: 50px !important;
+    ul.side-right-section li {
+      padding-left: 50px;
     }
   }
 }
-///* Styles for Desktops */
-//@media screen and (min-width: 1025px) and (max-width: 1280px) {
-//  .landing-banner {
-//    min-height: 600px;
-//  }
-//}
-//
-//// iPad in portrait & landscape
-//@media only screen
-//and (min-device-width : 768px)
-//and (max-device-width : 1024px)  {
-//  // Body container
-//  .container {
-//    width: auto;
-//  }
-//
-//  // Navbar Top bar links
-//  nav.application-top-header .navbar-right li.side-left-li a, nav.application-top-header .navbar-right li.side-right-li a {
-//    padding: 15px 12px;
-//  }
-//
-//  // Navbar Center Logo
-//  .navbar-center {
-//    padding: 0px;
-//    a.brand_name { padding: 15px 13px !important; }
-//  }
-//
-//  // Navbar Form Input
-//  nav.application-top-header form.navbar-search-form input[type='text'] {
-//    width: 325px;
-//  }
-//
-//  // Navbar Bottom
-//  nav.application-bottom-header {
-//    ul.side-left-section li {
-//      padding-right: 30px;
-//    }
-//    ul.side-right-section li {
-//      padding-left: 30px;
-//    }
-//  }
-//
-//  // Listings Box
-//  .listings .caption {
-//    min-height: 170px;
-//  }
-//}
-//
-//// iPhone in portrait & landscape
-//@media only screen
-//and (min-device-width : 375px)
-//and (max-device-width : 667px) {
-//  // Body container
-//  .container {
-//    width: auto;
-//  }
-//
-//  // Navbar bar links
-//  nav.application-top-header .navbar-right li.side-left-li a, nav.application-top-header .navbar-right li.side-right-li a {
-//    padding: 15px 12px;
-//  }
-//
-//  // Navbar Center Logo
-//  .navbar-center {
-//    padding: 0px;
-//    a.brand_name { padding: 15px 13px !important; }
-//  }
-//
-//  // Navbar Form Input
-//  nav.application-top-header form.navbar-search-form input[type='text'] {
-//    width: 325px;
-//  }
-//
-//  // Navbar Bottom
-//  nav.application-bottom-header {
-//    ul.side-left-section li {
-//      padding-right: 30px;
-//    }
-//    ul.side-right-section li {
-//      padding-left: 30px;
-//    }
-//  }
-//
-//  // Listings Box
-//  .listings .caption {
-//    min-height: 190px;
-//  }
-//}
-//
-//// Window Size Above Macbook 13inch
-//@media (min-width: 1440px) {
-//  // Listings Box
-//  .listings .caption {
-//    .price { font-size: 17px; }
-//  }
-//}
-//
-//// Window Size Below Macbook 13inch
-//@media (max-width: 1440px) {
-//  // Navbar Bottom
-//  nav.application-bottom-header {
-//    ul.side-left-section li {
-//      padding-right: 50px;
-//    }
-//    ul.side-right-section li {
-//      padding-left: 50px;
-//    }
-//  }
-//}
+
