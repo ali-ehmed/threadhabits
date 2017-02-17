@@ -40,7 +40,7 @@ Admin.alertUsers =
               text: 'Ok'
               btnClass: 'btn-red'
               action: ->
-                dialog.close() if valid
+#                dialog.close() if valid
 
       ).fail( (response) ->
         $.alert
@@ -52,7 +52,7 @@ Admin.alertUsers =
   sendAlerts: ->
     $("#admin_write_message").click (e) ->
       e.preventDefault()
-      $.get "/admin/alerts/write_message.json", (response) ->
+      $.get "/admin/alerts/message.json", (response) ->
         $.confirm({
           backgroundDismiss: false
           title: "Send Alerts to Users"
@@ -90,6 +90,8 @@ Admin.alertUsers =
                 'align', 'insertTable', 'quote', 'selectAll', 'formatOL', 'formatUL', 'indent', 'outdent',
                 '-'
               ]
+              imageUploadMethod: "POST"
+              imageUploadURL: "/admin/alerts/upload_content_images.json"
             })
 
             Admin.alertUsers.submitAlerts(this, this.$content.find('form'));
