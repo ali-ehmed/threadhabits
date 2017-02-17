@@ -28,8 +28,9 @@
     $(".navbar-search").click (e) ->
       that.disabledEventPropagation(e)
 
-      $(".navbar-header").css "left", "-1000px"
-      $(".navbar-search-form").css "left", "0px"
+      # collapsing header
+      $(".navbar-header").css "left", "-1000px"  # Header
+      $(".navbar-search-form").css "left", "0px" # Search Form
 
     $(".navbar-search-form input").click (e) ->
       that.disabledEventPropagation(e)

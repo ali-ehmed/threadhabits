@@ -14,7 +14,7 @@
     .main-container
       .container-fluid
         = yield(:heading_section) #Top Heading Section
-        = render 'layouts/components/messages'
+        = render 'layouts/components/messages' unless @landing_banner
         %main
           = yield
 

@@ -4,8 +4,6 @@
   }
 
   .navbar-header {
-    @include toggle-in-out(0px, false);
-
     button.navbar-toggle {
       float: left;
       margin-left: 15px;

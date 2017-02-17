@@ -54,6 +54,15 @@ class ApplicationController < ActionController::Base
     request.env["HTTP_USER_AGENT"] && request.env["HTTP_USER_AGENT"][/(iPhone|iPod|Android)/]
   end
 
+  def after_sign_in_path_for(resource)
+    sign_in_url = new_person_session_url
+    if request.referer == sign_in_url
+      inventory_path
+    else
+      stored_location_for(resource) || request.referer || inventory_path
+    end
+  end
+
   # Direct upload to s3 Bucket
   def s3_presign_request
     s3data = S3_BUCKET.presigned_post(key: "alertUploads/#{SecureRandom.uuid}/${filename}", success_action_status: '201', acl: 'public-read')

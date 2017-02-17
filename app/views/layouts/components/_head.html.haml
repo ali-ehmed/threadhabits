@@ -9,4 +9,5 @@
 = favicon_link_tag "#{S3_ASSET_PATH}/favicon_new.png"
 = include_google_map(places: true)
 
-%meta{:content => "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no", :name => "viewport"}
+- if mobile_device?
+  %meta{:content => "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no", :name => "viewport"}
