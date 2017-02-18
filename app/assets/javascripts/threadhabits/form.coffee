@@ -338,7 +338,7 @@
       $(window).on 'scroll', ->
         more_listings_url = $('.pagination li.next a').attr('href')
         if more_listings_url && $(window).scrollTop() > $(document).height() - $(window).height() - 60
-            $('.pagination').html('<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i><strong class="load-more-listing">Loading More Listings...</strong>')
+            $('.pagination').html('<i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i><strong class="load-more-listing">Loading More Listings...</strong>')
             $.getScript more_listings_url
         return
       return
@@ -426,9 +426,7 @@
 
       $this.css "z-index", "1"
 
-      console.log "Position ->", pos
       $window.scroll (e) ->
-        console.log "Scroll Position ->", $window.scrollTop()
         # Stops when scroll position crosses "pos"
         if $window.scrollTop() > pos
           stopPos = pos

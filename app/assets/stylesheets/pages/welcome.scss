@@ -34,7 +34,7 @@ body {
     background-color: transparent;
     font-size: 3em;
     @include transform(scale(0.7));
-    @include single-transition(all, 0.34s, ease-in);
+    @include single-transition(all, 0.4s, ease-in);
     opacity: 0;
     filter: alpha(opacity=0);
     color: #fff;
@@ -52,7 +52,7 @@ body {
     border: 1px solid #bbb;
     position: relative;
     border-radius: 0px !important;
-    background-position-y: -235px;
+    background-position-y: -263px;
     display: block;
     position: relative;
     @include single-transition(all, 0.34s, ease-in);
@@ -66,7 +66,7 @@ body {
     line-height: 80px;
     margin-top: 3.4em;
 
-    a { color: white !important; }
+    a { color: white !important; pointer-events: none; }
     a.sell { color: $sell !important; }
   }
 
@@ -84,6 +84,13 @@ body {
       opacity: 1;
       filter: alpha(opacity=100);
       @include transform(scale(1));
+      a {
+        pointer-events: all;
+      }
+    }
+
+    .overlay {
+      @include single-box-shadow(2px, 7px, 16px, 4px, rgba(255,255,255,1), inset);
     }
   }
 }

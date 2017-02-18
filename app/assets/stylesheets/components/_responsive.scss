@@ -1,5 +1,4 @@
-///* Media Styles for Desktops */
-
+/******* Media Styles for Desktop ********/
 // iPad in portrait & landscape
 @media only screen and (min-device-width : $ipad_min_width) and (max-device-width : $ipad_max_width)  {
   // Body container
@@ -81,5 +80,54 @@
       padding-left: 50px;
     }
   }
+}
+
+/******* Media Styles for Mobile ********/
+// Note: @extend cannot be included in @media query.
+
+@mixin toggle-in-out($left: 1000px, $absolute: true) {
+  // Default toggled out
+  @if $absolute {
+    position: absolute;
+  } @else {
+    position: relative;
+  }
+  left: $left;
+  @include single-transition(all, 0.35s, ease-in-out);
+}
+
+@mixin collapsed-menu() {
+  width: 100%;
+  z-index: 9999;
+  background: #fff;
+  padding: 0px 40px;
+
+  .dismiss-times {
+    background: url($s3_asset_path + "times.png");
+    height: 100px;
+    background-size: 50px;
+    background-repeat: no-repeat;
+    background-position-x: 140px;
+    background-position-y: 15px;
+    margin-bottom: 18px;
+    margin-top: 38px;
+  }
+
+  ul {
+    margin-bottom: 45px;
+    a { color: #000; }
+    li {
+      line-height: 50px;
+      font-size: 25px;
+    }
+  }
+}
+
+// iPhone in portrait & landscape
+@media only screen and (min-device-width : $iphone_min_width) and (max-device-width : $iphone_max_width) {
+  @import "components/mobile_responsive/main";
+  @import "components/mobile_responsive/navigation";
+  @import "components/mobile_responsive/footer";
+  @import "components/mobile_responsive/listings";
 }
 

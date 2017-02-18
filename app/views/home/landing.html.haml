@@ -1,7 +1,7 @@
 - @landing_banners.each_with_index do |banner, i|
   .row
     .hover_effect
-      .jumbotron.landing-banner.row{style: "background-image: url('#{banner[:banner]}')"}
+      .jumbotron.landing-banner.row{style: "background-image: url('#{banner[:banner]}')", class: "banner-#{i+1}"}
       .overlay
         %h1.info{class: i != 0 ? "effective" : ""}
           = link_to banner[:text], banner[:path], class: @landing_banners.last == banner ? "sell" : ""

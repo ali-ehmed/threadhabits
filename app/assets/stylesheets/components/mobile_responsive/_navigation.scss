@@ -28,7 +28,7 @@
       width: 14em;
       background-repeat: no-repeat;
       background-position-y: 8px;
-      background-position-x: 23px;
+      background-position-x: 35px;
     }
   }
 
@@ -51,34 +51,10 @@
 }
 
 // collapse nav menu left side
-#nav-menu-bar {
+#navbar-menu {
   @include toggle-in-out(-1000px);
-
-  width: 100%;
-  z-index: 9999;
-  background: #fff;
+  @include collapsed-menu();
   ul {
-    margin-bottom: 45px;
-
-    a {
-      color: #000;
-    }
-
-    li.dismiss-times {
-      background: url($s3_asset_path + "times.png");
-      height: 100px;
-      background-size: 50px;
-      background-repeat: no-repeat;
-      background-position-x: 160px;
-      background-position-y: 15px;
-      margin-bottom: 18px;
-      margin-top: 38px;
-    }
-    li {
-      line-height: 45px;
-      font-size: 18px;
-    }
-
     li.sell { a { color: $sell !important; } }
   }
 }

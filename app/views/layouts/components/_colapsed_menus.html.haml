@@ -1,0 +1,53 @@
+-# Side Menus Partials
+- content_for :javascript do
+  Mobile.headerTweaks();
+  Mobile.filtersTweaks();
+
+-# Navbar Menu
+#navbar-menu
+  .menu-collapse
+    %div.dismiss-times
+    %ul.list-unstyled.text-center
+      - if person_signed_in?
+        %li
+          = person_mobile_view_avatar(current_person)
+        %li
+          = link_to "Log Out", destroy_person_session_path, method: :delete
+      - else
+        %li
+          %a{:href => new_person_registration_path}
+            Register
+        %li
+          %a{:href => new_person_session_path}
+            Login
+      %li
+        %a{:href => about_us_path} About
+      %li
+        %a{:href => "/about_us#contact"} Contact
+      %li
+        %a{:href => profiles_settings_path} Settings
+      %li.sell
+        %a{:href => new_listing_path} Sell
+
+-# Filters
+#filter-menu
+  .menu-collapse
+    %div.dismiss-times
+    %h3 Filters
+    %ul.list-unstyled
+      %li
+        %a{:href => "#"} Designer
+      %li
+        %a{:href => "#"} Price
+      %li
+        %a{:href => "#"} Tops
+      %li
+        %a{:href => "#"} Bottoms
+      %li
+        %a{:href => "#"} Shoes
+      %li
+        %a{:href => "#"} Accessories
+      %li
+        %a{:href => "#"} Outerwear
+      %li
+        %a{:href => "#"} Condition

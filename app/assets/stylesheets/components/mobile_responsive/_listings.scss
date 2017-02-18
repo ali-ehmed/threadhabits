@@ -1,0 +1,31 @@
+.filter-board {
+  text-align: center;
+  @include border-radius(4px);
+  border: 1px solid black;
+  margin-bottom: 10px;
+  padding: 5px 0px;
+
+  #toggle-filter-menu {
+    font-size: 20px;
+    padding: 4px 50px;
+  }
+}
+
+.load-more-listing {
+}
+
+#filter-menu {
+  @include toggle-in-out(-1000px);
+  @include collapsed-menu();
+
+  h3 {
+    font-weight: lighter;
+    text-align: center;
+    font-size: 40px;
+  }
+
+  ul {
+    margin-top: 30px;
+    li { font-weight: lighter; line-height: 60px; }
+  }
+}
