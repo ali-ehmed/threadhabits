@@ -48,6 +48,7 @@ Rails.application.routes.draw do
   get "profiles/:username" => "profiles#show", as: :profiles
 
   get '/inventory' => "home#inventory"
+  get '/designers' => "home#designers"
   get '/verify_unread_message' => "home#verify_unread_message"
   get 'about_us' => "home#about_us", as: :about_us
   get 'contact_us' => "home#contact_us"

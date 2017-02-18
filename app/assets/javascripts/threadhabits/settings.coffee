@@ -29,7 +29,7 @@ class window.Settings
     return
 
   showPosition: (position) =>
-    if typeof gon != "undefined"
+    if gon && gon.current_location != undefined
       Settings.current_location = gon.current_location
     else
       Settings.current_location.latitude = position.coords.latitude
@@ -66,7 +66,7 @@ class window.Location extends Settings
       $(@container).css "height", "0px"
 
   startMap: (callback) =>
-    Settings.current_location = gon.current_location if typeof gon != "undefined"
+    Settings.current_location = gon.current_location if gon && gon.current_location != undefined
     mapInterval = setInterval(->
       if !jQuery.isEmptyObject(Settings.current_location)
         clearInterval mapInterval

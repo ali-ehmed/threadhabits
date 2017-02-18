@@ -1,4 +1,6 @@
-// File Image Preview Profile
+// Contains Plugins Custom CSS
+
+// File Image Preview Profile Plugin
 .image-preview {
   .button {
     padding: 6px 25px;
@@ -30,9 +32,6 @@
   }
 }
 
-.flash-messages {
-  // margin-top: 6em;
-}
 // jQuery Validation Error Label
 label.error {
   position: relative;
@@ -44,6 +43,7 @@ label.error {
   top: -7px;
   border-radius: 4px;
 }
+
 label.error:after, label.error:before {
 	bottom: 100%;
 	left: 10%;
@@ -61,6 +61,7 @@ label.error:after {
 	border-width: 4px;
 	margin-left: -4px;
 }
+
 label.error:before {
 	border-color: rgba(173, 104, 115, 0);
 	border-bottom-color: #ad6873;
@@ -68,9 +69,10 @@ label.error:before {
 	margin-left: -7px;
 }
 
-// Select2 Dropdown
+// Select2 Dropdown plugin
 .select2-selection {
-  border: 3px solid #aaa !important;
+  border-radius: 0 !important;
+  border: 1px solid #aaa !important;
   height: 46px !important;
   line-height: 46px !important;
   padding: 8px 5px;
@@ -86,7 +88,7 @@ label.error:before {
   @extend .form-control;
 }
 
-// Fileinput
+// File input plugin
 .file-input {
   .btn { border-width: 1px; }
   .file-preview-frame {
@@ -108,7 +110,7 @@ label.error:before {
 #file-upload-error-container { @extend .alert-danger; }
 #file-upload-success-container { @extend .alert-success; }
 
-// Form
+// Forms
 .radio label, .checkbox label {
   padding-left: 5px !important;
 }

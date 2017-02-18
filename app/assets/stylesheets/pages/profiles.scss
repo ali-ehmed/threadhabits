@@ -1,11 +1,7 @@
-$feedback-color: #b8ea1a;
-
 @mixin split-background-half {
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,207cca+0,207cca+68,ffffff+68,ffffff+69,ffffff+100&0.01+53,1+100 */
-  background: -moz-linear-gradient(top,  rgba(32,124,202,0.01) 0%, rgba(206,226,243,0.01) 53%, rgba(255,255,255,0.33) 68%, rgba(255,255,255,0.35) 69%, rgba(255,255,255,1) 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(top,  rgba(32,124,202,0.01) 0%,rgba(206,226,243,0.01) 53%,rgba(255,255,255,0.33) 68%,rgba(255,255,255,0.35) 69%,rgba(255,255,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom,  rgba(32,124,202,0.01) 0%,rgba(206,226,243,0.01) 53%,rgba(255,255,255,0.33) 68%,rgba(255,255,255,0.35) 69%,rgba(255,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#03207cca', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+  @include background-image(linear-gradient(top, rgba(32,124,202,0.01) 0%,rgba(206,226,243,0.01) 53%,rgba(255,255,255,0.33) 68%,rgba(255,255,255,0.35) 69%,rgba(255,255,255,1) 100%));
+  @include background-image(linear-gradient(to bottom, rgba(32,124,202,0.01) 0%,rgba(206,226,243,0.01) 53%,rgba(255,255,255,0.33) 68%,rgba(255,255,255,0.35) 69%,rgba(255,255,255,1) 100%));
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#03207cca', endColorstr='#ffffff',GradientType=0 );
 }
 
 // Window Size For Macbook
@@ -40,7 +36,8 @@ $feedback-color: #b8ea1a;
   .profile-text {
     margin-top: -15px;
     margin-bottom: 30px;
-    color: #fff;
+    color: white;
+    @include single-text-shadow;
   }
 
   ul.additional-details {
@@ -49,21 +46,21 @@ $feedback-color: #b8ea1a;
     li {
       span.value { font-size: 18px; }
       span.label {
-        color: #000;
+        color: black;
         padding: 0;
         font-size: 18px;
       }
     }
     li.followers, li.followings {
       a {
-        color: $black;
+        color: black;
         &:hover, &:focus {
           color: #777;
         }
       }
     }
     li.feedback {
-      color: $feedback-color;
+      color: $feedback;
     }
   }
 }
@@ -101,42 +98,5 @@ $feedback-color: #b8ea1a;
   }
 }
 
-// Window Size Above Macbook 13inch
-@media (min-width: 1440px) {
-  .profile .top-content {
-    top: -125px;
-    p.desc {
-      margin: 25px 0;
-    }
 
-    ul.additional-details {
-      margin: 58px 0px;
-      li {
-        padding-left: 10px;
-        padding-right: 10px;
-        span.value { font-size: 20px; }
-        span.label { font-size: 20px; }
-      }
-    }
-  }
-}
 
-// Window Size For Ipad
-@media (max-width: 1024px) {
-  .profile .cover-img {
-    min-height: 235px;
-  }
-  .profile .top-content {
-    top: -70px;
-    .profile-text > h1 {
-      font-weight: 700;
-      font-size: 25px;
-    }
-    .image-profile {
-      z-index: 9;
-    }
-  }
-  .profile .bottom-content {
-    top: -58px;
-  }
-}

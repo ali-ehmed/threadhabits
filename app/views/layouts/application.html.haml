@@ -4,8 +4,10 @@
     = render partial: "layouts/components/head"
   %body{ class: [view_controller, view_action].join(" ") }
     = include_gon
+
     - if mobile_device?
       = render partial: "layouts/navbar/device_navigation"
+      = render partial: "layouts/components/colapsed_menus"
     - else
       = render partial: "layouts/navbar/top_navigation"
       = render partial: "layouts/navbar/bottom_navigation"
@@ -13,7 +15,7 @@
     .main-container
       .container-fluid
         = yield(:heading_section) #Top Heading Section
-        = render 'layouts/components/messages'
+        = render 'layouts/components/messages' unless @landing_banner
         %main
           = yield
 

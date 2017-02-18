@@ -5,10 +5,26 @@ class HomeController < ApplicationController
 
   def landing
     @landing_banners = [
-        { banner: S3_ASSET_PATH + "/LandingBanners/banner-1.jpg", text: "Buying and selling menswear." },
-        { banner: S3_ASSET_PATH + "/LandingBanners/banner-2.jpg", text: "Browse" },
-        { banner: S3_ASSET_PATH + "/LandingBanners/banner-3.jpg", text: "Designers" },
-        { banner: S3_ASSET_PATH + "/LandingBanners/banner-4.jpg", text: "Sell" }
+        {
+          path: "javascript:void(0);",
+          banner: S3_ASSET_PATH + "/LandingBanners/banner-1.jpg",
+          text: "Buying and selling menswear."
+        },
+        {
+          path: inventory_path,
+          banner: S3_ASSET_PATH + "/LandingBanners/banner-2.jpg",
+          text: "Browse"
+        },
+        {
+          path: designers_path,
+          banner: S3_ASSET_PATH + "/LandingBanners/banner-3.jpg",
+          text: "Designers"
+        },
+        {
+          path: new_listing_path,
+          banner: S3_ASSET_PATH + "/LandingBanners/banner-4.jpg",
+          text: "Sell"
+        }
     ]
   end
 
@@ -25,6 +41,9 @@ class HomeController < ApplicationController
       format.html
       format.js
     end
+  end
+
+  def designers
   end
 
   def verify_unread_message

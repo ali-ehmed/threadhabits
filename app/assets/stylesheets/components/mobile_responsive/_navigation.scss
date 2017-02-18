@@ -1,0 +1,60 @@
+.device-header {
+  a {
+    color: $black !important;
+  }
+
+  .navbar-header {
+    button.navbar-toggle {
+      float: left;
+      margin-left: 15px;
+      background-color: $white;
+      border-color: $white;
+      span {
+        background-color: $black;
+      }
+    }
+
+    a.navbar-search {
+      float: right;
+      padding: 15px 15px;
+      font-size: 18px;
+      line-height: 20px;
+      height: 50px;
+    }
+
+    a.navbar-brand {
+      background: url($s3_asset_path + "threadhabitsheader_logo.png");
+      background-size: 11em;
+      width: 14em;
+      background-repeat: no-repeat;
+      background-position-y: 8px;
+      background-position-x: 35px;
+    }
+  }
+
+  .navbar-search-form {
+    top: 0px;
+    @include toggle-in-out();
+    padding: 8px 10px;
+
+    input[type='text'] {
+      border-width: 1px;
+    }
+    .input-group-addon, input[type='text'] {
+      border-radius: 1px;
+    }
+    .input-group-addon {
+      background-color: #fff;
+      border: 0;
+    }
+  }
+}
+
+// collapse nav menu left side
+#navbar-menu {
+  @include toggle-in-out(-1000px);
+  @include collapsed-menu();
+  ul {
+    li.sell { a { color: $sell !important; } }
+  }
+}
