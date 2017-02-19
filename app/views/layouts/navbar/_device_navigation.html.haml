@@ -1,3 +1,32 @@
+- content_for :javascript do
+  Mobile.headerTweaks();
+
+- content_for :collapsed_menus do
+  #navbar-menu
+    .menu-collapse
+      %div.dismiss-times
+      %ul.list-unstyled.text-center
+        - if person_signed_in?
+          %li
+            = person_mobile_view_avatar(current_person, inner_class: "alphabetical-avatar")
+          %li
+            = link_to "Log Out", destroy_person_session_path, method: :delete
+        - else
+          %li
+            %a{:href => new_person_registration_path}
+              Register
+          %li
+            %a{:href => new_person_session_path}
+              Login
+        %li
+          %a{:href => about_us_path} About
+        %li
+          %a{:href => "/about_us#contact"} Contact
+        %li
+          %a{:href => profiles_settings_path} Settings
+        %li.sell
+          %a{:href => new_listing_path} Sell
+
 %nav.navbar.navbar-default.device-header.navbar-fixed-top
   .container-fluid
     / Brand and toggle get grouped for better mobile display

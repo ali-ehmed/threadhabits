@@ -7,7 +7,7 @@
 
     - if mobile_device?
       = render partial: "layouts/navbar/device_navigation"
-      = render partial: "layouts/components/colapsed_menus"
+      = yield(:collapsed_menus) if content_for(:collapsed_menus)
     - else
       = render partial: "layouts/navbar/top_navigation"
       = render partial: "layouts/navbar/bottom_navigation"
