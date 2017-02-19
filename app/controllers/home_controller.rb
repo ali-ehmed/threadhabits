@@ -16,7 +16,7 @@ class HomeController < ApplicationController
           text: "Browse"
         },
         {
-          path: designers_path,
+          path: "javascript:void(0);",
           banner: S3_ASSET_PATH + "/LandingBanners/banner-3-new.png",
           text: "Designers"
         },
