@@ -54,6 +54,13 @@
 #navbar-menu {
   @include toggle-in-out(-1000px);
   @include collapsed-menu();
+
+  .person-avatar-thumbnail {
+    .alphabetical-avatar {
+      font-size: 3em !important;
+    }
+  }
+
   ul {
     margin-bottom: 45px;
     a { color: #000; }

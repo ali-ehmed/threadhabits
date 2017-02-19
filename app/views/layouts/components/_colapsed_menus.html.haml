@@ -10,7 +10,7 @@
     %ul.list-unstyled.text-center
       - if person_signed_in?
         %li
-          = person_mobile_view_avatar(current_person)
+          = person_mobile_view_avatar(current_person, inner_class: "alphabetical-avatar")
         %li
           = link_to "Log Out", destroy_person_session_path, method: :delete
       - else
