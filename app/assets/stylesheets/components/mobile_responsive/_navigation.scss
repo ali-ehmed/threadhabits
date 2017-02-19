@@ -55,6 +55,12 @@
   @include toggle-in-out(-1000px);
   @include collapsed-menu();
   ul {
+    margin-bottom: 45px;
+    a { color: #000; }
+    li {
+      line-height: 60px;
+      font-size: 25px;
+    }
     li.sell { a { color: $sell !important; } }
   }
 }

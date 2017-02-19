@@ -15,7 +15,7 @@
           -# Price
           #headingOne.field-strip{:role => "tab"}
             %a{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapsePriceFiler", :role => "button"}
-              %span &ndash;
+              %span -
               PRICE
           #collapsePriceFiler.collapse.filtersCollapse{"aria-labelledby" => "headingOne", :role => "tabpanel", class: [@p[:filters][:lower_price], @p[:filters][:upper_price]].any?(&:present?) ? "in" : ""}
             #priceFilter
@@ -50,7 +50,7 @@
           - %w(tops bottoms shoes accessories).each do |product|
             #headingTwo.field-strip{:role => "tab"}
               %a.collapse-filter-link{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse#{product.capitalize}Filter", :role => "button"}
-                %span
+                %span -
                 - case product
                   - when "tops"
                     TOP/OUTWEAR SIZE

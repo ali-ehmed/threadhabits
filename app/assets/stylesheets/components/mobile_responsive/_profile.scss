@@ -1,0 +1,28 @@
+.profile {
+  .cover-img {
+    min-height: 240px !important;
+  }
+  .person-avatar-thumbnail {
+    line-height: 30px;
+    margin-bottom: 8px !important;
+    .name { font-size: 25px; font-weight: 400; }
+    .username { font-size: 20px; }
+  }
+
+  .top-content {
+    padding: 0px 20px;
+    border-bottom: 0 !important;
+    margin-top: 25px;
+
+    ul.contact {
+      font-size: 15px !important;
+      margin-bottom: 10px;
+    }
+    ul.list-inline {
+      li {
+        span.value { font-size: 25px; }
+        label { font-weight: 100; font-size: 16px; }
+      }
+    }
+  }
+}

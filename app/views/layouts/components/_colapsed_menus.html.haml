@@ -29,25 +29,22 @@
       %li.sell
         %a{:href => new_listing_path} Sell
 
--# Filters
-#filter-menu
-  .menu-collapse
-    %div.dismiss-times
-    %h3 Filters
-    %ul.list-unstyled
-      %li
-        %a{:href => "#"} Designer
-      %li
-        %a{:href => "#"} Price
-      %li
-        %a{:href => "#"} Tops
-      %li
-        %a{:href => "#"} Bottoms
-      %li
-        %a{:href => "#"} Shoes
-      %li
-        %a{:href => "#"} Accessories
-      %li
-        %a{:href => "#"} Outerwear
-      %li
-        %a{:href => "#"} Condition
+- if current_page? inventory_path
+  -# Filters
+  #filter-menu
+    .menu-collapse
+      %div.dismiss-times
+      %h3 Filters
+      %ul.list-unstyled.sub-categories
+        - @p[:filters].delete("product_type")
+        %li
+          %a{:href => inventory_path(@p.merge!(filters: { product_type: "tops" }))} Tops
+        %li
+          %a{:href => inventory_path(@p.merge!(filters: { product_type: "outerwear" }))} Outerwear
+        %li
+          %a{:href => inventory_path(@p.merge!(filters: { product_type: "bottoms" }))} Bottoms
+        %li
+          %a{:href => inventory_path(@p.merge!(filters: { product_type: "shoes" }))} Shoes
+        %li
+          %a{:href => inventory_path(@p.merge!(filters: { product_type: "accessories" }))} Accessories
+      = render partial: "home/filters"

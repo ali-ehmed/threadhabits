@@ -100,7 +100,7 @@
   width: 100%;
   z-index: 9999;
   background: #fff;
-  padding: 0px 40px;
+  padding: 0px 10px;
 
   .dismiss-times {
     background: url($s3_asset_path + "times.png");
@@ -112,15 +112,6 @@
     margin-bottom: 18px;
     margin-top: 38px;
   }
-
-  ul {
-    margin-bottom: 45px;
-    a { color: #000; }
-    li {
-      line-height: 50px;
-      font-size: 25px;
-    }
-  }
 }
 
 // iPhone in portrait & landscape
@@ -129,5 +120,6 @@
   @import "components/mobile_responsive/navigation";
   @import "components/mobile_responsive/footer";
   @import "components/mobile_responsive/listings";
+  @import "components/mobile_responsive/profile";
 }
 
