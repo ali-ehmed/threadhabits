@@ -8,7 +8,7 @@ class HomeController < ApplicationController
         {
           path: "javascript:void(0);",
           url: "banner-1-new.png",
-          text: "Buying and selling menswear."
+          text: "Buying and Selling Menswear"
         },
         {
           path: inventory_path,
