@@ -1,0 +1,52 @@
+.profile
+  .cover-img{style: "background: url('#{@person.cover_image.url(:medium)}');"}
+  .top-content
+    = person_mobile_view_avatar(@person, inner_class: "alphabetical-avatar")
+    - if @person.location
+      %ul.list-inline.contact.text-center
+        %li
+          %span.location
+            %i.fa.fa-map-marker
+          = @person.location
+
+    %ul.list-inline.text-center
+      %li
+        %span.value= @person.listings.count
+        %br/
+        %label Items
+      %li
+        %span.value= 0
+        %br/
+        %label Sales
+      %li
+        %span.value= @person.followers.count
+        %br/
+        %label
+          - if current_person and @person.is_current_person?(current_person)
+            = link_to "Followers", follow_index_path
+          - else
+            Followers
+
+      %li
+        %span.value= @person.followings.count
+        %br/
+        %label
+          - if current_person and @person.is_current_person?(current_person)
+            = link_to "Following", follow_index_path
+          - else
+            Following
+
+  .separator-content
+  - if @listings.present?
+    .listings
+      .row
+        = render partial: "listings/listing", collection: @listings
+    .items-pagination
+      = will_paginate @listings, renderer: BootstrapPagination::Rails
+  - else
+    .alert.alert-success
+      There are no listings
+
+  = render  partial: "side_section"
+%br/
+.message-box

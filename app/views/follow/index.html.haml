@@ -15,7 +15,8 @@
             %table.table.table-striped
               %thead
                 %tr
-                  %th.col-md-1.col-sm-1.col-xs-1
+                  - unless mobile_device?
+                    %th.col-md-1.col-sm-1.col-xs-1
                   %th Name
                   %th Items
                   %th Profile
@@ -23,7 +24,8 @@
               %tbody
                 - @followings.each do |list|
                   %tr
-                    %td= image_tag list.follower.avatar.url(:medium), class: "img-responsive"
+                    - unless mobile_device?
+                      %td= image_tag list.follower.avatar.url(:medium), class: "img-responsive"
                     %td= list.follower.full_name
                     %td= list.follower.listings.count
                     %td
@@ -46,14 +48,16 @@
             %table.table.table-striped
               %thead
                 %tr
-                  %th.col-md-1.col-sm-1.col-xs-1
+                  - unless mobile_device?
+                    %th.col-md-1.col-sm-1.col-xs-1
                   %th Name
                   %th Items
                   %th Profile
               %tbody
                 - @followers.each do |list|
                   %tr
-                    %td= image_tag list.following.avatar.url(:medium), class: "img-responsive"
+                    - unless mobile_device?
+                      %td= image_tag list.following.avatar.url(:medium), class: "img-responsive"
                     %td= list.following.full_name
                     %td= list.following.listings.count
                     %td

@@ -1,4 +1,4 @@
-= render layout: "inbox/inbox" do
+= render layout: "inbox" do
   - content_for :javascript do
     Inbox.validateForm();
 
@@ -8,7 +8,7 @@
         .col-md-9.col-sm-9.col-xs-9.listing
           .col-md-4.col-sm-4.col-xs-4
             = link_to detail_listings_path @chat_room.listing.slug do
-              = image_tag @chat_room.listing.display_image.url(:medium), class: "img-responsive recepient-img"
+              = image_tag @chat_room.listing.display_image.url(:medium), class: "img-responsive recipient-img"
           .col-md-8.col-sm-8.col-xs-8
             %h2
               = link_to detail_listings_path @chat_room.listing.slug do
@@ -41,10 +41,10 @@
             .row
               .col-md-2.col-sm-2.col-xs-2
                 = link_to profiles_path message.sender.username do
-                  = person_avatar(message.sender, inner_class: "alphabetical-avatar-inbox-detail", outer_class: "recepient-avatar")
+                  = person_avatar(message.sender, inner_class: "alphabetical-avatar-inbox-detail", outer_class: "recipient-avatar")
               .col-md-10.col-xs-10.col-sm-10
                 .top-section
-                  %span.recepient-name
+                  %span.recipient-name
                   = link_to profiles_path message.sender.username do
                     = message.sender.full_name
                   %span.message-date.pull-right= message.created_at.strftime("%B %d, %Y")
@@ -53,7 +53,7 @@
       .message-form
         .row
           .col-md-2.col-sm-2.col-xs-2
-            = person_avatar(current_person, inner_class: "alphabetical-avatar-inbox-detail", outer_class: "recepient-avatar")
+            = person_avatar(current_person, inner_class: "alphabetical-avatar-inbox-detail", outer_class: "recipient-avatar")
           .col-md-10.col-xs-10.col-sm-10
             - receiver_id = @messages.select{ |v| v.sender_id == current_person.id }.first.try(:receiver_id) || @messages.last.sender_id
             = render layout: "messages/form", locals: { object: @message, receiver_id: receiver_id, sender_id: current_person.id, chat_room: @chat_room, form_id: "messageFormInbox" } do

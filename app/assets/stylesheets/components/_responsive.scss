@@ -1,0 +1,125 @@
+/******* Media Styles for Desktop ********/
+// iPad in portrait & landscape
+@media only screen and (min-device-width : $ipad_min_width) and (max-device-width : $ipad_max_width)  {
+  // Body container
+  .container {
+    width: auto;
+  }
+
+  // Navbar Top bar links
+  nav.application-top-header .navbar-right li.side-left-li a, nav.application-top-header .navbar-right li.side-right-li a {
+    padding: 15px 12px;
+  }
+
+  // Navbar Center Logo
+  .navbar-center {
+    padding: 0px;
+    a.brand_name { padding: 15px 13px !important; }
+  }
+
+  // Navbar Form Input
+  nav.application-top-header form.navbar-search-form input[type='text'] {
+    width: 325px;
+  }
+
+  // Navbar Bottom
+  nav.application-bottom-header {
+    ul.side-left-section li {
+      padding-right: 30px;
+    }
+    ul.side-right-section li {
+      padding-left: 30px;
+    }
+  }
+
+  // Listings Box
+  .listings .caption {
+    min-height: 170px;
+  }
+
+  // Landing
+  .landing-banner {
+    background-position-y: -55px !important;
+  }
+}
+
+// Window Size Above Mac book 13inch
+@media (min-width: $mac_book_13inch_width) {
+  // Listings Box
+  .listings .caption {
+    .price { font-size: 17px; }
+  }
+
+  // Profiles
+  .profile .top-content {
+    top: -125px;
+    p.desc {
+      margin: 25px 0;
+    }
+
+    ul.additional-details {
+      margin: 58px 0px;
+      li {
+        padding-left: 10px;
+        padding-right: 10px;
+        span.value { font-size: 20px; }
+        span.label { font-size: 20px; }
+      }
+    }
+  }
+}
+
+// Window Size Below Mac book 13inch
+@media (max-width: $mac_book_13inch_width) {
+  // Navbar Bottom
+  nav.application-bottom-header {
+    ul.side-left-section li {
+      padding-right: 50px;
+    }
+    ul.side-right-section li {
+      padding-left: 50px;
+    }
+  }
+}
+
+/******* Media Styles for Mobile ********/
+// Note: @extend cannot be included in @media query.
+
+@mixin toggle-in-out($left: 1000px, $absolute: true) {
+  // Default toggled out
+  @if $absolute {
+    position: absolute;
+  } @else {
+    position: relative;
+  }
+  left: $left;
+  @include single-transition(all, 0.35s, ease-in-out);
+}
+
+@mixin collapsed-menu() {
+  width: 100%;
+  z-index: 9999;
+  background: #fff;
+  padding: 0px 10px;
+
+  .dismiss-times {
+    background: url($s3_asset_path + "times.png");
+    height: 100px;
+    background-size: 50px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: 15px;
+    margin-bottom: 18px;
+    margin-top: 38px;
+  }
+}
+
+// iPhone in portrait & landscape
+@media only screen and (min-device-width : $iphone_min_width) and (max-device-width : $iphone_max_width) {
+  @import "components/mobile_responsive/main";
+  @import "components/mobile_responsive/navigation";
+  @import "components/mobile_responsive/footer";
+  @import "components/mobile_responsive/listings";
+  @import "components/mobile_responsive/profile";
+}
+

@@ -1,0 +1,90 @@
+body {
+  margin-top: 0 !important;
+}
+
+main { min-height: 450px; }
+
+.main-container { @include single-transition(all, 0.35s, ease-in-out); margin-top: 40px; }
+
+.main-toggle-animation {
+  position: fixed;
+  left: 1000px;
+}
+
+.hover_effect {
+  margin-top: -12px;
+  .effective {
+    font-size: 2em !important;
+    margin-top: 3em !important;
+  }
+  h1.info {
+    font-size: 2em !important;
+    padding: 7px 5px !important;
+  }
+
+  h1.effective {
+    line-height: 45px !important;
+    padding: 7px 50px !important;
+    font-size: 2em !important;
+    margin-top: 4em !important;
+    border-color: white !important;
+  }
+}
+.landing-banner {
+  top: 0 !important;
+}
+
+.person-avatar-thumbnail {
+  text-align: center;
+  margin-bottom: 15px;
+  line-height: 35px;
+  a {
+    width: 150px;
+    margin: 0 auto;
+    border-radius: 50%;
+    margin-bottom: 15px;
+  }
+  div { text-align: center; }
+  div.username { font-weight: 100; }
+  div.name { font-weight: 300; }
+
+  .alphabetical-avatar {
+    padding: 10px 0px !important;
+    border: none !important;
+  }
+}
+
+.heading_section {
+  min-height: 85px !important;
+  padding: 10px 2em !important;
+  margin-top: 10px !important;
+  h2 {
+    text-align: center;
+    font-size: 30px !important;
+  }
+}
+
+.authform-container {
+  width: 85% !important;
+}
+
+.flash-messages {
+  margin-top: 20px;
+}
+
+.landing-banner {
+  min-height: 300px !important;
+  h1 {
+    font-size: 2.4em !important;
+    line-height: 50px !important;
+  }
+}
+
+.settings {
+  ul.settings-list {
+    margin-bottom: 20px;
+    li {
+      font-size: 18px;
+    }
+  }
+}

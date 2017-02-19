@@ -1,0 +1,23 @@
+%nav.navbar.navbar-default.device-header.navbar-fixed-top
+  .container-fluid
+    / Brand and toggle get grouped for better mobile display
+    .navbar-header
+      %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-search{:href => "#"}
+        %i.fa.fa-search
+      %a.navbar-brand{:href => root_path}
+
+    -# Navbar search form
+    .navbar-search-form
+      = form_tag inventory_path(@p.merge!(filters: { q: @p[:filters][:q] })), method: :get do
+        .form-group
+          .input-group
+            .input-group-addon.submit-search
+              %i.fa.fa-search
+            = text_field_tag "filters[q]", @p[:filters][:q], class: "form-control", placeholder: "Search"
+            .input-group-addon.cancel-search
+              %i.fa.fa-times

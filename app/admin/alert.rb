@@ -5,7 +5,9 @@ ActiveAdmin.register_page "Alerts" do
     # action code
   end
 
-  page_action :write_message, method: :get do
+  # skip_before_action :verify_authenticity_token, only: [:upload_content_images]
+
+  page_action :message, method: :get do
     people = Person.select(:id, :email, :first_name, :last_name)
     respond_to do |format|
       format.json { render json: { html: render_to_string(partial: "admin/alerts/form.html.haml", layout: false, locals: { people: people }) } }
@@ -28,7 +30,6 @@ ActiveAdmin.register_page "Alerts" do
 
     [emails, body].each_with_index do |content, i|
       if alert_all == "off"
-
         unless content.present?
           valid = false
           msg = errors[i]

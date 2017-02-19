@@ -73,7 +73,13 @@ class @GoogleMaps
   # Pac Container CSS dynamic
   autocompleteDropDownCSS: =>
     setTimeout(->
-      $(".pac-container").css("top", $(".google-autocomplete").offset().top - 23 + "px")
+      if $(window).width() < 667
+        $(".pac-container").show()
+        $(".pac-container").css("top", $(".google-autocomplete").offset().top + 5 + "px")
+      else
+        $(".pac-container").css("top", $(".google-autocomplete").offset().top - 23 + "px")
+      $(".pac-container").css "z-index", "9999"
+      console.log $(".pac-container").html()
     , 5)
 
   holdFormOnAutocomplete: =>

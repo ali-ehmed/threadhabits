@@ -4,20 +4,19 @@
     = render partial: "layouts/components/head"
   %body{ class: [view_controller, view_action].join(" ") }
     = include_gon
-    = render partial: "layouts/navbar/top_navigation"
-    = render partial: "layouts/navbar/bottom_navigation"
 
-    - if @landing_banner
-      .jumbotron.landing-banner{style: "background-image: url('#{S3_ASSET_PATH}/THBanner-3.png')"}
-        %h1
-          Buying and selling menswear.
-        %p
-          Buy or sell menswear. With designers and brands from A to Z, we've got you covered. Completely free to use. 0% commission taken.
+    - if mobile_device?
+      = render partial: "layouts/navbar/device_navigation"
+      = render partial: "layouts/components/colapsed_menus"
+    - else
+      = render partial: "layouts/navbar/top_navigation"
+      = render partial: "layouts/navbar/bottom_navigation"
 
-    .container-fluid
-      = yield(:heading_section) #Top Heading Section
-      = render 'layouts/components/messages'
-      %main
-        = yield
+    .main-container
+      .container-fluid
+        = yield(:heading_section) #Top Heading Section
+        = render 'layouts/components/messages' unless @landing_banner
+        %main
+          = yield
 
-      = render partial: "layouts/components/footer"
+        = render partial: "layouts/components/footer"

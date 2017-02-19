@@ -1,9 +1,34 @@
 class HomeController < ApplicationController
-  before_action only: [ :index ] { landing_banner(true) }
-  before_action :filter_data, only: [ :index ]
+  before_action only: [ :landing ] { landing_banner(true) }
+  before_action :filter_data, only: [ :inventory ]
   before_action :authenticate_person!, only: [ :verify_unread_message ]
 
-  def index
+  def landing
+    @landing_banners = [
+        {
+          path: "javascript:void(0);",
+          banner: S3_ASSET_PATH + "/LandingBanners/banner-1-new.png",
+          text: "Buying and selling menswear."
+        },
+        {
+          path: inventory_path,
+          banner: S3_ASSET_PATH + "/LandingBanners/banner-2-new.png",
+          text: "Browse"
+        },
+        {
+          path: "javascript:void(0);",
+          banner: S3_ASSET_PATH + "/LandingBanners/banner-3-new.png",
+          text: "Designers"
+        },
+        {
+          path: new_listing_path,
+          banner: S3_ASSET_PATH + "/LandingBanners/banner-4-new.png",
+          text: "Sell"
+        }
+    ]
+  end
+
+  def inventory
     if @p[:filters] and params[:q].present?
       @p[:filters].merge!(q: params[:q])
     end
@@ -16,6 +41,9 @@ class HomeController < ApplicationController
       format.html
       format.js
     end
+  end
+
+  def designers
   end
 
   def verify_unread_message

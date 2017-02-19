@@ -1,24 +1,24 @@
 %nav.navbar.navbar-default.application-bottom-header.navbar-fixed-top
   .container-fluid
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
-      %ul.nav.navbar-nav.col-md-6.col-sm-6.col-xs-6.side-left-section
+      %ul.nav.navbar-nav.col-md-8.col-sm-8.col-xs-6.side-left-section
         - @p[:filters].delete("product_type")
         %li
-          %a{:href => fetch_listings_path(@p.merge!(filters: { product_type: "tops" }))}
+          %a{:href => inventory_path(@p.merge!(filters: { product_type: "tops" }))}
             Tops
         %li
-          %a{:href => fetch_listings_path(@p.merge!(filters: { product_type: "outerwear" }))}
+          %a{:href => inventory_path(@p.merge!(filters: { product_type: "outerwear" }))}
             Outerwear
         %li
-          %a{:href => fetch_listings_path(@p.merge!(filters: { product_type: "bottoms" }))}
+          %a{:href => inventory_path(@p.merge!(filters: { product_type: "bottoms" }))}
             Bottoms
         %li
-          %a{:href => fetch_listings_path(@p.merge!(filters: { product_type: "shoes" }))}
+          %a{:href => inventory_path(@p.merge!(filters: { product_type: "shoes" }))}
             Shoes
         %li
-          %a{:href => fetch_listings_path(@p.merge!(filters: { product_type: "accessories" }))}
+          %a{:href => inventory_path(@p.merge!(filters: { product_type: "accessories" }))}
             Accessories
-      %ul.nav.navbar-nav.navbar-right.col-md-6.col-sm-6.col-xs-6.side-right-section
+      %ul.nav.navbar-nav.navbar-right.col-md-4.col-sm-4.col-xs-6.side-right-section
         -# %li.listing-view-options
           %a{:href => "#"}
             %i.fa.fa-th-large

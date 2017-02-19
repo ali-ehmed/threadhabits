@@ -3,7 +3,9 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_person!, :authorize_person!, if: :admin_controller?
-  before_action :set_filter_params
+  before_action :set_filter_params, :s3_presign_request, :variant
+
+  helper_method :mobile_device?
 
   def landing_banner(flag = false) @landing_banner = !person_signed_in? && flag end;
 
@@ -46,6 +48,33 @@ class ApplicationController < ActionController::Base
     end
 
     @p = @p.to_unsafe_h
+  end
+
+  def mobile_device?
+    gon.mobile_device = request.env["HTTP_USER_AGENT"] && request.env["HTTP_USER_AGENT"][/(iPhone|iPod|Android)/]
+  end
+
+  def after_sign_in_path_for(resource)
+    sign_in_url = new_person_session_url
+    if request.referer == sign_in_url
+      inventory_path
+    else
+      stored_location_for(resource) || request.referer || inventory_path
+    end
+  end
+
+  def variant
+    request.variant = :phone if mobile_device?
+  end
+
+  # Direct upload to s3 Bucket
+  def s3_presign_request
+    s3data = S3_BUCKET.presigned_post(key: "alertUploads/#{SecureRandom.uuid}/${filename}", success_action_status: '201', acl: 'public-read')
+    gon.s3_presigned_data = {
+        fields: s3data.fields,
+        url: S3_ASSET_PATH,
+        content_length: 5.megabyte
+    }
   end
 
   protected

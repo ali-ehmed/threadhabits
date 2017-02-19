@@ -40,7 +40,7 @@ Admin.alertUsers =
               text: 'Ok'
               btnClass: 'btn-red'
               action: ->
-                dialog.close() if valid
+#                dialog.close() if valid
 
       ).fail( (response) ->
         $.alert
@@ -52,7 +52,7 @@ Admin.alertUsers =
   sendAlerts: ->
     $("#admin_write_message").click (e) ->
       e.preventDefault()
-      $.get "/admin/alerts/write_message.json", (response) ->
+      $.get "/admin/alerts/message.json", (response) ->
         $.confirm({
           backgroundDismiss: false
           title: "Send Alerts to Users"
@@ -75,6 +75,7 @@ Admin.alertUsers =
               tags: true
             })
 
+            params = gon.s3_presigned_data.fields
             $("textarea#user_alert_body").froalaEditor({
               charCounterCount: true
               heightMin: 400,
@@ -90,6 +91,9 @@ Admin.alertUsers =
                 'align', 'insertTable', 'quote', 'selectAll', 'formatOL', 'formatUL', 'indent', 'outdent',
                 '-'
               ]
+              imageUploadParams: gon.s3_presigned_data.fields
+              imageUploadMethod: "POST"
+              imageUploadURL: gon.s3_presigned_data.url
             })
 
             Admin.alertUsers.submitAlerts(this, this.$content.find('form'));

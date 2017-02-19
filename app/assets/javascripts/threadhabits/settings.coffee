@@ -29,7 +29,7 @@ class window.Settings
     return
 
   showPosition: (position) =>
-    if typeof gon != "undefined"
+    if gon && gon.current_location != undefined
       Settings.current_location = gon.current_location
     else
       Settings.current_location.latitude = position.coords.latitude
@@ -50,6 +50,26 @@ class window.Settings
         $('#external_javascript').remove()
       return
 
+  @getUrlParameter = (sParam, parametersType = "plain") ->
+    sPageURL = decodeURIComponent(window.location.search.substring(1))
+    sURLVariables = if parametersType == "object"
+                      sPageURL.split('%5B')
+                    else
+                      sPageURL.split('&')
+    sParameterName = undefined
+    i = undefined
+    i = 0
+    while i < sURLVariables.length
+      objectParameter = sURLVariables[i]
+      sParameterName = if parametersType == "object"
+                        objectParameter.split('%5D')
+                      else
+                        objectParameter.split('=')
+      if sParameterName[0] == sParam
+        return if sParameterName[1] == undefined then true else sParameterName[1]
+      i++
+    return
+
 class window.Location extends Settings
   constructor: (map = true, presetLocation = true) ->
     @map = map
@@ -66,7 +86,7 @@ class window.Location extends Settings
       $(@container).css "height", "0px"
 
   startMap: (callback) =>
-    Settings.current_location = gon.current_location if typeof gon != "undefined"
+    Settings.current_location = gon.current_location if gon && gon.current_location != undefined
     mapInterval = setInterval(->
       if !jQuery.isEmptyObject(Settings.current_location)
         clearInterval mapInterval

@@ -1,0 +1,88 @@
+- content_for :javascript do
+  Inbox.initializeMessageBox();
+
+.listing-details-phone
+  #carousel-example-generic.carousel.slide{"data-ride" => "carousel"}
+    / Indicators
+    %ol.carousel-indicators
+      - @uploads.each_with_index do |upload, i|
+        %li{class: i == 0 ? "active" : "", "data-slide-to" => i.to_s, "data-target" => "#carousel-example-generic"}
+
+    / Wrapper for slides
+    .carousel-inner{:role => "listbox"}
+      - @uploads.each_with_index do |upload, i|
+        .item{class: i == 0 ? "active" : ""}
+          = image_tag upload.image.url(:large), class: "img-responsive listing"
+          .carousel-caption
+    / Controls
+    %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-example-generic", :role => "button"}
+      %span.glyphicon.glyphicon-chevron-left{"aria-hidden" => "true"}
+      %span.sr-only Previous
+    %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-example-generic", :role => "button"}
+      %span.glyphicon.glyphicon-chevron-right{"aria-hidden" => "true"}
+      %span.sr-only Next
+
+  .details
+    .created-at
+      = time_ago_in_words((@listing.updated_at || @listing.created_at))
+
+    %ul.list-unstyled.info-section-1
+      %li
+        %span.pull-left= @listing.company.try(:name)
+        %span.pull-right= @listing.size.try(:name)
+      %li.row &nbsp;
+      %li= @listing.name
+      %li
+        %span.pull-left= number_to_currency @listing.price
+        - if person_signed_in?
+          %span.pull-right
+            - if current_person.has_followed?(@listing.person)
+              %i.fa.fa-heart
+            - else
+              %i.fa.fa-heart-o
+
+    .row &nbsp;
+
+    - if person_signed_in?
+      - unless @listing.person.is_current_person?(current_person)
+        = link_to "Message", "#", id: "message-box-link", data: { url: new_message_path(receiver_id: @listing.person.id, listing_id: @listing.id) }, class: "btn btn-default btn-block-lg btn-block"
+      - unless @listing.person.is_current_person?(current_person)
+        = link_to payments_checkout_paypal_path(listing_id: @listing.id), "data-turbolinks" => false, class: "btn btn-default btn-block btn-block-lg" do
+          %i.fa.fa-paypal
+          Purchase with Paypal
+    - else
+      = link_to "Message", new_person_session_path, class: "btn btn-default btn-block-lg btn-block"
+      = link_to new_person_session_path, "data-turbolinks" => false, class: "btn btn-default btn-block btn-block-lg" do
+        %i.fa.fa-paypal
+        Purchase with Paypal
+
+    .info-section-2
+      %label Description:
+      %p= simple_format @listing.description
+
+      %label Condition:
+      = @listing.condition
+
+      %br
+
+      %label Posted By:
+      %br
+
+      .person-details
+        = person_mobile_view_avatar(@listing.person, inner_class: "alphabetical-avatar")
+
+        %ul.list-inline.text-center
+          %li
+            %span.value= @listing.person.listings.count
+            %br/
+            %label Items
+          %li
+            %span.value= 0
+            %br/
+            %label Sales
+          %li
+            %span.value= @listing.person.followers.count
+            %br/
+            %label Followers
+
+.message-box

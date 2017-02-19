@@ -58,6 +58,11 @@ class ListingsController < ApplicationController
     @uploads = @listing.uploads
 
     set_geocode_location!(@listing.address)
+    respond_to do |format|
+      format.html do |html|
+        html.phone
+      end
+    end
   end
 
   def edit

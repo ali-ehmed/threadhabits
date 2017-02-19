@@ -6,7 +6,7 @@
 *= require easyzoom
 */
 @import "font-awesome";
-@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700,900');
+@import url('https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900');
 
 @font-face {
   font-family: 'Lato', sans-serif;
@@ -18,17 +18,20 @@
 
 @import "customised_bootstrap";
 
-// Components
+/******* Components *******/
 @import "components/footer";
 @import "components/form";
 @import "components/listings";
 @import "components/navigation";
 @import "components/alphabetical_avatar";
 
-// Pages
+/******* Mobile/Ipad Devices CSS *******/
+@import "components/responsive";
+
+/******* Pages *******/
 @import "pages/profiles";
 @import "pages/welcome";
-@import "pages/settings"; // Media Queries Here - Bottom
+@import "pages/settings";
 @import "pages/listings";
 @import "pages/inbox";
 @import "pages/follow";

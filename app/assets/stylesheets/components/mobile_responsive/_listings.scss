@@ -1,0 +1,124 @@
+.filter-board {
+  @include border-radius(4px);
+  //border: 1px solid black;
+  margin-bottom: 10px;
+  padding: 5px 0px;
+
+  #toggle-filter-menu {
+    font-size: 20px;
+    //padding: 4px 50px;
+  }
+}
+
+.load-more-listing {
+}
+
+#filter-menu {
+  @include toggle-in-out(-1000px);
+  @include collapsed-menu();
+
+  h3 {
+    font-weight: lighter;
+    text-align: center;
+    font-size: 40px;
+  }
+
+  ul.sub-categories {
+    margin-top: 45px;
+    padding: 0px 18px;
+    border-bottom: 1px solid #eeeeee;
+    margin-bottom: 5px;
+    li {
+      font-size: 18px;
+      font-weight: lighter;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      a {  color: black !important;  }
+    }
+
+    li.active-category {
+      background-color: #ccc;
+      padding: 0px 10px;
+    }
+  }
+  .listing-filters {
+    //margin-top: 45px;
+    form { width: auto !important; }
+    .panel {
+      border: 0;
+      .panel-body { padding: 0px !important; font-size: 18px !important; }
+    }
+
+    .field-strip {
+      background: none !important;
+      font-weight: lighter !important;
+      span { display: none; }
+    }
+
+    .scroll {
+      padding: 0px 10px !important;
+      label {
+        font-weight: lighter;
+      }
+    }
+
+    .form-action {
+      margin-top: 30px;
+      text-align: center;
+      button {
+        width: 100%;
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+.listing-details-phone {
+  margin-top: -12px;
+  .carousel {
+    .carousel-indicators {
+      bottom: -40px;
+      li {
+        border-color: black;
+        background-color: black;
+      }
+      li.active {
+        border-color: #ddd;
+        background-color: #ddd;
+      }
+    }
+    .carousel-inner {
+      .item {
+        //min-height: 420px;
+        img {
+          //max-height: 420px;
+          //min-height: 500px;
+          max-width: 100%;
+        }
+      }
+    }
+  }
+
+  .details {
+    margin-top: 30px;
+    line-height: 33px;
+    .created-at {
+      color: rgba(119, 119, 119, 0.7);
+      font-weight: 100;
+      border-bottom: 1px solid rgba(119, 119, 119, 0.3);
+      margin-bottom: 5px;
+    }
+    ul.info-section-1 {
+      li { font-size: 18px; }
+    }
+
+    .info-section-2 {
+      margin-top: 6px;
+      .person-details {
+        .person-avatar-thumbnail {
+          line-height: 22px !important;
+        }
+      }
+    }
+  }
+}

@@ -7,6 +7,12 @@ class ProfilesController < ApplicationController
     end
 
     @listings = @person.listings.paginate(:page => params[:page], :per_page => Listing::PER_PAGE)
+
+    respond_to do |format|
+      format.html do |html|
+        html.phone
+      end
+    end
   end
 
   private
