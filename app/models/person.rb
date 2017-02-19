@@ -168,6 +168,10 @@ class Person < ApplicationRecord
     [facebook_profile, instagram_profile, twitter_profile]
   end
 
+  def has_followed?(person)
+    followings.map(&:follower_id).include?(person.id)
+  end
+
   # Checkout paypal business email
   def is_seller?
     self.paypal_id.present?

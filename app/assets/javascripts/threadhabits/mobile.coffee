@@ -4,6 +4,10 @@ class Native
   filtersTweaks: ->
     toggleSideMenu("#toggle-filter-menu", "#filter-menu")
 
+    $("ul.sub-categories li a").each ->
+      if $(this).text().toLowerCase() == Settings.getUrlParameter("filters[product_type]")
+        $(this).parent().addClass "active-category"
+
   headerTweaks: ->
     topSearchBar()
     toggleSideMenu(".navbar-toggle.collapsed", "#navbar-menu")

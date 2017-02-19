@@ -415,14 +415,11 @@
 @Home =
   initializeFilters: ->
     # Scroll Plugin
-    $.fn.followTo = (pos, banner) ->
+    $.fn.followTo = (pos) ->
       $this = this
       $window = $(window)
       # Setting Start Position
-      if banner == true
-        topOffset = 616
-      else
-        topOffset = 5
+      topOffset = 5
 
       $this.css "z-index", "1"
 
@@ -449,10 +446,8 @@
             top: 0
         return
       return
-
-    landing_banner = false
     # - Issue
-    # Not Used Anymore - Banner Changed
+    # Not Used Anymore - Banner Removed
     # Problem occured on (Large Screens)
 
     # Setting Stop Position
@@ -465,8 +460,9 @@
     #   # 627 - was set top
     #   footerY = 890
 
-    landing_banner = true if $(".landing-banner").length
-    $('.listing-filters form').followTo(($("footer").offset().top + 2000), landing_banner);
+    # only if mobile devices
+    unless gon.mobile_device
+      $('.listing-filters form').followTo(($("footer").offset().top + 2000));
 
     nonLinearSlider = nonLinearSlider = document.getElementById('nonlinearRangePriceSlider')
     nodes = [

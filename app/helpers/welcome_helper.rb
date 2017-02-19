@@ -18,15 +18,15 @@ module WelcomeHelper
   def person_alphabetical_avatar(person, options = {})
     f = person.first_name.upcase.split("")
     l = person.last_name.upcase.split("")
-    content_tag :span, class: "img-responsive #{options[:inner_class]}" do
+    content_tag :span, class: "img-responsive #{options[:outer_class]} #{options[:inner_class]}" do
       [f[0], l[0]].join
     end
   end
 
   def person_mobile_view_avatar(person, options = {})
-    avatar    = person_avatar(person, outer_class: "img-circle")
-    full_name = content_tag :span, person.full_name, class:  "name"
-    username  = content_tag :span, person.tagged_username, class: "username"
+    avatar    = person_avatar(person, options.merge({outer_class: "img-circle #{options[:outer_class]}"}) )
+    full_name = content_tag :div, person.full_name, class:  "name"
+    username  = content_tag :div, person.tagged_username, class: "username"
 
     html = %Q{<div class="#{options[:class] || 'person-avatar-thumbnail'}">}
 

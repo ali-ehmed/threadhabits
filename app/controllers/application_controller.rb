@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_person!, :authorize_person!, if: :admin_controller?
-  before_action :set_filter_params, :s3_presign_request
+  before_action :set_filter_params, :s3_presign_request, :variant
 
   helper_method :mobile_device?
 
@@ -51,7 +51,7 @@ class ApplicationController < ActionController::Base
   end
 
   def mobile_device?
-    request.env["HTTP_USER_AGENT"] && request.env["HTTP_USER_AGENT"][/(iPhone|iPod|Android)/]
+    gon.mobile_device = request.env["HTTP_USER_AGENT"] && request.env["HTTP_USER_AGENT"][/(iPhone|iPod|Android)/]
   end
 
   def after_sign_in_path_for(resource)
@@ -61,6 +61,10 @@ class ApplicationController < ActionController::Base
     else
       stored_location_for(resource) || request.referer || inventory_path
     end
+  end
+
+  def variant
+    request.variant = :phone if mobile_device?
   end
 
   # Direct upload to s3 Bucket

@@ -50,6 +50,26 @@ class window.Settings
         $('#external_javascript').remove()
       return
 
+  @getUrlParameter = (sParam, parametersType = "plain") ->
+    sPageURL = decodeURIComponent(window.location.search.substring(1))
+    sURLVariables = if parametersType == "object"
+                      sPageURL.split('%5B')
+                    else
+                      sPageURL.split('&')
+    sParameterName = undefined
+    i = undefined
+    i = 0
+    while i < sURLVariables.length
+      objectParameter = sURLVariables[i]
+      sParameterName = if parametersType == "object"
+                        objectParameter.split('%5D')
+                      else
+                        objectParameter.split('=')
+      if sParameterName[0] == sParam
+        return if sParameterName[1] == undefined then true else sParameterName[1]
+      i++
+    return
+
 class window.Location extends Settings
   constructor: (map = true, presetLocation = true) ->
     @map = map
