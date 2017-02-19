@@ -29,7 +29,7 @@ body {
     display: inline-block;
     text-decoration: none;
     padding: 7px 120px;
-    border: 1px solid;
+    //border: 1px solid;
     margin: 6em 0 0 0;
     background-color: transparent;
     font-size: 3em;
@@ -64,7 +64,7 @@ body {
     line-height: 80px;
     margin-top: 3.4em;
 
-    a { color: white !important; pointer-events: none; }
+    a { color: white !important; }
     a.sell { color: $sell !important; }
   }
 
@@ -78,15 +78,15 @@ body {
     //  @include transform(scale(1.2));
     //}
 
-    .effective {
-      box-shadow: 0 0 15px #fff;
-      opacity: 1;
-      filter: alpha(opacity=100);
-      @include transform(scale(1));
-      a {
-        pointer-events: all;
-      }
-    }
+    //.effective {
+    //  box-shadow: 0 0 15px #fff;
+    //  opacity: 1;
+    //  filter: alpha(opacity=100);
+    //  @include transform(scale(1));
+    //  a {
+    //    pointer-events: all;
+    //  }
+    //}
   }
 }
 
