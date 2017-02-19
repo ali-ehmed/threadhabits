@@ -1,10 +1,13 @@
 # Application Welcome Coffee
+document.addEventListener 'gesturestart', (e) ->
+  e.preventDefault()
+  
 $(document).on "turbolinks:load", ->
   # Hide Flash Message After 5 Seconds
-#  window.setTimeout (->
-#    $('.flash-messages').fadeTo(500, 0).slideUp 500, ->
-#      $(this).hide()
-#  ), 5000
+  window.setTimeout (->
+    $('.flash-messages').fadeTo(500, 0).slideUp 500, ->
+      $(this).hide()
+  ), 5000
 
   $("li.navbar-profile-icon a.dropdown-toggle").click (e) ->
     Turbolinks.visit("/profiles/#{$(this).find('.profile-name').text()}")
