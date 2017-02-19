@@ -1,5 +1,5 @@
 - @landing_banners.each_with_index do |banner, i|
-  - cache banner[:url], :expires_in => 10.minutes do
+  - cache banner[:url], :expires_in => 1.hour do
     .row
       .jumbotron.landing-banner{style: "background-image: url('#{S3_ASSET_PATH}/LandingBanners/#{banner[:url]}')", class: "banner-#{i+1}"}
         %h1.info
