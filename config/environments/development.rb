@@ -54,30 +54,29 @@ Rails.application.configure do
 
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  # config.action_mailer.delivery_method = :letter_opener_web
-
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    :address              => "smtp.gmail.com",
-    :port                 => "587",
-    :domain               => "staging-threadhabits.herokuapp.com",
-    :user_name            => "ali.ahmed.cs2016@gmail.com",
-    :password             => "Gumball2016",
-    :authentication       => 'login',
-    :enable_starttls_auto => true
-  }
-
+  config.action_mailer.delivery_method = :letter_opener_web
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
-  config.paperclip_defaults = {
-    storage: :s3,
-    s3_region: "us-west-2",
-    s3_credentials: {
-      bucket: "threadhabits",
-      access_key_id: "AKIAJK4T2CFKLIWSFR2A",
-      secret_access_key: "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",
-      s3_host_name: 's3-us-west-2.amazonaws.com'
-    },
-    :default_url => "profile-icon.png"
-  }
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   :address              => "smtp.gmail.com",
+  #   :port                 => "587",
+  #   :domain               => "staging-threadhabits.herokuapp.com",
+  #   :user_name            => "ali.ahmed.cs2016@gmail.com",
+  #   :password             => "",
+  #   :authentication       => 'login',
+  #   :enable_starttls_auto => true
+  # }
+
+  # config.paperclip_defaults = {
+  #   storage: :s3,
+  #   s3_region: "us-west-2",
+  #   s3_credentials: {
+  #     bucket: ENV['S3_BUCKET'],
+  #     access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+  #     secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
+  #     s3_host_name: 's3-us-west-2.amazonaws.com'
+  #   },
+  #   :default_url => "profile-icon.png"
+  # }
 end

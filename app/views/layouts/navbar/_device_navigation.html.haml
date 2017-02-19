@@ -22,8 +22,9 @@
           %a{:href => about_us_path} About
         %li
           %a{:href => "/about_us#contact"} Contact
-        %li
-          %a{:href => profiles_settings_path} Settings
+        - if person_signed_in?
+          %li
+            %a{:href => profiles_settings_path} Settings
         %li.sell
           %a{:href => new_listing_path} Sell
 
