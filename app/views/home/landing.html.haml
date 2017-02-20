@@ -2,6 +2,6 @@
   - @landing_banners.each_with_index do |banner, i|
     - cache banner[:url], :expires_in => 1.hour do
       .row
-        .jumbotron.landing-banner{style: "background-image: url('#{S3_ASSET_PATH}/LandingBanners/#{banner[:url]}')", class: "banner-#{i+1}"}
+        .jumbotron.landing-banner{style: "background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('#{S3_ASSET_PATH}/LandingBanners/#{banner[:url]}')", class: "banner-#{i+1}"}
           %h1.info
             = link_to banner[:text], banner[:path], class: @landing_banners.last == banner ? "sell" : ""

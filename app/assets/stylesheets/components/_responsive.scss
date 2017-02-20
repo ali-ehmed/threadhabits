@@ -8,7 +8,7 @@
 
   // Navbar Top bar links
   nav.application-top-header .navbar-right li.side-left-li a, nav.application-top-header .navbar-right li.side-right-li a {
-    padding: 15px 12px;
+    padding: 15px 8px;
   }
 
   // Navbar Center Logo
@@ -19,16 +19,16 @@
 
   // Navbar Form Input
   nav.application-top-header form.navbar-search-form input[type='text'] {
-    width: 265px;
+    width: 225px;
   }
 
   // Navbar Bottom
   nav.application-bottom-header {
     ul.side-left-section li {
-      padding-right: 30px;
+      padding-right: 30px !important;
     }
     ul.side-right-section li {
-      padding-left: 30px;
+      padding-left: 30px !important;
     }
   }
 

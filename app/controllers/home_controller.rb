@@ -7,22 +7,22 @@ class HomeController < ApplicationController
     @landing_banners = [
         {
           path: "javascript:void(0);",
-          url: "banner-1-new.png",
+          url: "banner-1.jpg",
           text: "Buying and Selling Menswear"
         },
         {
           path: inventory_path,
-          url: "banner-2-new.png",
+          url: "banner-2.jpg",
           text: "Browse"
         },
         {
           path: "javascript:void(0);",
-          url: "banner-3-new.png",
+          url: "banner-3.jpg",
           text: "Designers"
         },
         {
           path: new_listing_path,
-          url: "banner-4-new.png",
+          url: "banner-4.jpg",
           text: "Sell"
         }
     ]
