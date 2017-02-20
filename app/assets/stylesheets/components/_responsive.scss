@@ -1,4 +1,35 @@
 /******* Media Styles for Desktop ********/
+
+// iPad in portrait
+@media only screen and (min-device-width : $ipad-min-width) and (max-device-width : $ipad-max-width) and (orientation : portrait) {
+  // Navbar Top bar links
+  nav.application-top-header .navbar-right li.side-left-li a, nav.application-top-header .navbar-right li.side-right-li a {
+    padding: 15px 8px;
+  }
+
+  // Navbar Form Input
+  nav.application-top-header form.navbar-search-form input[type='text'] {
+    width: 225px;
+  }
+}
+
+// iPad in landscape
+@media only screen and (min-device-width : $ipad-min-width) and (max-device-width : $ipad-max-width) and (orientation : landscape) {
+  // Navbar Top bar links
+  nav.application-top-header .navbar-right li.side-left-li a, nav.application-top-header .navbar-right li.side-right-li a {
+    padding: 15px 15px;
+  }
+
+  // Navbar Form Input
+  nav.application-top-header form.navbar-search-form input[type='text'] {
+    width: 285px;
+  }
+
+  nav.application-bottom-header {
+    margin-top: 55px !important;
+  }
+}
+
 // iPad in portrait & landscape
 @media only screen and (min-device-width : $ipad-min-width) and (max-device-width : $ipad-max-width)  {
   // Body container
@@ -6,20 +37,11 @@
     width: auto;
   }
 
-  // Navbar Top bar links
-  nav.application-top-header .navbar-right li.side-left-li a, nav.application-top-header .navbar-right li.side-right-li a {
-    padding: 15px 8px;
-  }
 
   // Navbar Center Logo
   .navbar-center {
     padding: 0px;
     a.brand_name { padding: 15px 0px !important; font-size: 15px; }
-  }
-
-  // Navbar Form Input
-  nav.application-top-header form.navbar-search-form input[type='text'] {
-    width: 225px;
   }
 
   // Navbar Bottom
@@ -129,6 +151,28 @@
     background-position-y: 15px;
     margin-bottom: 18px;
     margin-top: 38px;
+  }
+}
+
+// iPhone in landscape
+@media only screen and (min-device-width : $iphone-min-width) and (max-device-width : $iphone-max-width) and (orientation : landscape) {
+  // Navbar
+  .device-header {
+    .navbar-header a.navbar-brand img {
+      width: 60%;
+      margin-top: -15px !important;
+    }
+  }
+}
+
+// iPhone in portrait
+@media only screen and (min-device-width : $iphone-min-width) and (max-device-width : $iphone-max-width) and (orientation : portrait) {
+  // Navbar
+  .device-header {
+    .navbar-header a.navbar-brand img {
+      width: 65%;
+      margin-top: -5px !important;
+    }
   }
 }
 

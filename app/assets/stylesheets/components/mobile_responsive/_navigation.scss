@@ -6,7 +6,6 @@
   .navbar-header {
     button.navbar-toggle {
       float: left;
-      margin-left: 15px;
       background-color: $primary-color;
       border-color: $primary-color;
       span {
@@ -23,12 +22,9 @@
     }
 
     a.navbar-brand {
-      background: url($s3-asset-path + "threadhabitsheader_logo.png");
-      background-size: 11em;
-      width: 14em;
-      background-repeat: no-repeat;
-      background-position-y: 8px;
-      background-position-x: center;
+      img {
+        margin: 0 auto;
+      }
     }
   }
 
