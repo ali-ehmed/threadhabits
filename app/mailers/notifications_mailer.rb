@@ -16,4 +16,9 @@ class NotificationsMailer < ActionMailer::Base
     @person = person
     mail to: Rails.application.secrets.admin_email, subject: "New Sign Up"
   end
+
+  def payment_processed(person)
+    @person = person
+    mail to: person.email, subject: "Thank you for purchasing"
+  end
 end

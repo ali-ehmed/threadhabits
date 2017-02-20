@@ -2,7 +2,7 @@ body {
   margin-top: 0 !important;
 }
 
-main { min-height: 420px !important; }
+main { min-height: 420px !important; margin-top: 0 !important; }
 
 .main-container { @include single-transition(all, 0.35s, ease-in-out); margin-top: 40px; }
 
@@ -27,12 +27,10 @@ main { min-height: 420px !important; }
     padding: 7px 50px !important;
     font-size: 2em !important;
     margin-top: 4em !important;
-    border-color: white !important;
+    border-color: $primary-color !important;
   }
 }
-.landing-banner {
-  top: 0 !important;
-}
+
 
 .person-avatar-thumbnail {
   text-align: center;
@@ -72,11 +70,15 @@ main { min-height: 420px !important; }
   margin-top: 20px;
 }
 
-.landing-banner {
-  min-height: 300px !important;
-  h1 {
-    font-size: 2.4em !important;
-    line-height: 50px !important;
+#banners {
+  margin-top: -12px !important;
+  .landing-banner {
+    top: 0 !important;
+    min-height: 300px !important;
+    h1 {
+      font-size: 2.4em !important;
+      line-height: 50px !important;
+    }
   }
 }
 
@@ -87,4 +89,9 @@ main { min-height: 420px !important; }
       font-size: 18px;
     }
   }
+}
+
+.toggle-side-menu {
+  left: 0px !important;
+  position: absolute !important;
 }

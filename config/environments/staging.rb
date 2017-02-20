@@ -55,6 +55,8 @@ Rails.application.configure do
   config.default_email = "quinn@threadhabits.com"
   # config.default_email = "ali.ahmed.cs2104@gmail.com"
 
+  config.device_browsers = /(iPhone|iPod|Android)/
+
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp

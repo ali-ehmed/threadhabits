@@ -1,6 +1,6 @@
 /******* Media Styles for Desktop ********/
 // iPad in portrait & landscape
-@media only screen and (min-device-width : $ipad_min_width) and (max-device-width : $ipad_max_width)  {
+@media only screen and (min-device-width : $ipad-min-width) and (max-device-width : $ipad-max-width)  {
   // Body container
   .container {
     width: auto;
@@ -14,12 +14,12 @@
   // Navbar Center Logo
   .navbar-center {
     padding: 0px;
-    a.brand_name { padding: 15px 13px !important; }
+    a.brand_name { padding: 15px 0px !important; font-size: 15px; }
   }
 
   // Navbar Form Input
   nav.application-top-header form.navbar-search-form input[type='text'] {
-    width: 325px;
+    width: 265px;
   }
 
   // Navbar Bottom
@@ -37,14 +37,32 @@
     min-height: 170px;
   }
 
-  // Landing
-  .landing-banner {
-    background-position-y: -55px !important;
+  .listings-details {
+    img.listing {
+      margin-bottom: 0px !important;
+    }
+  }
+
+  #banners {
+    // Landing
+    .landing-banner {
+      background-position-y: -55px !important;
+      margin-bottom: -55px !important;
+    }
   }
 }
 
 // Window Size Above Mac book 13inch
-@media (min-width: $mac_book_13inch_width) {
+@media (min-width: $mac-book-13inch-width) {
+  // Navbar Top
+  nav.application-top-header {
+    .navbar-center {
+      .brand_name {
+        padding: 7px 15px;
+      }
+    }
+  }
+
   // Listings Box
   .listings .caption {
     .price { font-size: 17px; }
@@ -70,7 +88,7 @@
 }
 
 // Window Size Below Mac book 13inch
-@media (max-width: $mac_book_13inch_width) {
+@media (max-width: $mac-book-13inch-width) {
   // Navbar Bottom
   nav.application-bottom-header {
     ul.side-left-section li {
@@ -88,7 +106,7 @@
 @mixin toggle-in-out($left: 1000px, $absolute: true) {
   // Default toggled out
   @if $absolute {
-    position: absolute;
+    position: fixed;
   } @else {
     position: relative;
   }
@@ -99,11 +117,11 @@
 @mixin collapsed-menu() {
   width: 100%;
   z-index: 9999;
-  background: #fff;
+  background: $primary-color;
   padding: 0px 10px;
 
   .dismiss-times {
-    background: url($s3_asset_path + "times.png");
+    background: url($s3-asset-path + "times.png");
     height: 100px;
     background-size: 50px;
     background-repeat: no-repeat;
@@ -115,7 +133,7 @@
 }
 
 // iPhone in portrait & landscape
-@media only screen and (min-device-width : $iphone_min_width) and (max-device-width : $iphone_max_width) {
+@media only screen and (min-device-width : $iphone-min-width) and (max-device-width : $iphone-max-width) {
   @import "components/mobile_responsive/main";
   @import "components/mobile_responsive/navigation";
   @import "components/mobile_responsive/footer";

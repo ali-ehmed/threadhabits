@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_person!, :authorize_person!, if: :admin_controller?
-  before_action :set_filter_params, :s3_presign_request, :variant
+  before_action :set_filter_params, :s3_presign_request, :device_variants
 
   helper_method :mobile_device?
 
@@ -51,7 +51,7 @@ class ApplicationController < ActionController::Base
   end
 
   def mobile_device?
-    gon.mobile_device = request.env["HTTP_USER_AGENT"] && request.env["HTTP_USER_AGENT"][/(iPhone|iPod|Android)/]
+    gon.mobile_device = request.env["HTTP_USER_AGENT"] && request.env["HTTP_USER_AGENT"][Rails.application.config.device_browsers]
   end
 
   def after_sign_in_path_for(resource)
@@ -63,7 +63,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def variant
+  def device_variants
     request.variant = :phone if mobile_device?
   end
 

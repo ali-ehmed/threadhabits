@@ -40,8 +40,7 @@ Admin.alertUsers =
               text: 'Ok'
               btnClass: 'btn-red'
               action: ->
-#                dialog.close() if valid
-
+                # code
       ).fail( (response) ->
         $.alert
           title: "Something went wrong",
@@ -68,14 +67,14 @@ Admin.alertUsers =
             cancel:
               text: 'Cancel'
           onContentReady: ->
-            # initializing on pop ups
+            # initialization on dialog opened
+
             $("select.tagging_select_emails").select2({
               placeholder: "Search User's Emails",
               allowClear: true
               tags: true
             })
 
-            params = gon.s3_presigned_data.fields
             $("textarea#user_alert_body").froalaEditor({
               charCounterCount: true
               heightMin: 400,

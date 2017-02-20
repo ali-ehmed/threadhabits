@@ -1,5 +1,6 @@
 class FollowController < ApplicationController
   before_action :authenticate_person!
+
   def index
     @followings = current_person.followings
     @followers = current_person.followers
@@ -8,7 +9,9 @@ class FollowController < ApplicationController
   def create
     @follow = current_person.followings.build(follower_id: params[:follower_id])
     @follow.save
-    render :json => { status: 200, url: follow_path(@follow.id), method: :put, followers: @follow.follower.followers.count, followings: @follow.follower.followings.count }
+    respond_to do |format|
+      format.json { render :json => { status: 200, url: follow_path(@follow.id), method: :put, followers: @follow.follower.followers.count, followings: @follow.follower.followings.count } }
+    end
   end
 
   def update

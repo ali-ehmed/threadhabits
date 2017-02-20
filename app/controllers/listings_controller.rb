@@ -56,8 +56,8 @@ class ListingsController < ApplicationController
     redirect_to root_path, flash: { alert: "Page not found" } unless @listing
 
     @uploads = @listing.uploads
-
     set_geocode_location!(@listing.address)
+
     respond_to do |format|
       format.html do |html|
         html.phone

@@ -27,7 +27,7 @@ $(document).on "turbolinks:load", ->
 
 # About Us
 @AboutUs =
-  initializeTweaks: ->
+  initialize: ->
     setDefaultActive = true
     path = location.href.split("#")
     path = path[path.length-1]

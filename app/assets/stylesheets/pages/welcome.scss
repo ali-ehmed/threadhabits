@@ -1,33 +1,28 @@
 // Application Welcome Sass
-body {
-  font-family: 'Lato', sans-serif;
-  background-color: $theme_bg_color;
-  margin-top: 5em;
-  position: relative;
-}
 
-// Landing Banners
-.landing-banner {
-  min-height: 600px;
-  background-size: cover;
-  text-align: center;
-  color: white;
-  border-radius: 0px !important;
-  display: block;
-  position: relative;
-  margin-bottom: -2px !important;
-  margin-top: -10px;
-  background-repeat: no-repeat;
+#banners {
+  // Landing Banners
+  .landing-banner {
+    min-height: 600px;
+    background-size: cover;
+    text-align: center;
+    color: $primary-color;
+    border-radius: 0px !important;
+    display: block;
+    position: relative;
+    margin-bottom: 0px;
+    background-repeat: no-repeat;
 
-  h1.info {
-    @include single-text-shadow(0px, 0px, 7px, black);
-    color: white;
-    font-size: 4.7em;
-    font-weight: 100;
-    line-height: 80px;
-    margin-top: 2.3em;
+    h1.info {
+      @include single-text-shadow(0px, 0px, 7px, $default-color);
+      color: $primary-color;
+      font-size: 4.7em;
+      font-weight: 100;
+      line-height: 80px;
+      margin-top: 2.3em;
 
-    a { color: white !important; }
+      a { color: $primary-color !important; }
+    }
   }
 }
 
@@ -125,15 +120,14 @@ body {
 
 main {
   min-height: 800px;
-  margin-top: 35px;
+  margin-top: 100px;
   margin-bottom: 35px;
-  margin-top: 23px;
 }
 
 .heading_section {
   @include single-text-shadow;
   background-color: white;
-  background: url($s3_asset_path + "THbanner.png");
+  background: url($s3-asset-path + "THbanner.png");
   min-height: 95px;
   padding: 10px 6em;
   margin: 0px -15px;
@@ -150,7 +144,7 @@ main {
 a {
   color: #777;
   &:hover, &:focus {
-    color: #000;
+    color: $default-color;
     text-decoration: none;
   }
 }

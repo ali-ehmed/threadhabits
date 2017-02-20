@@ -12,14 +12,11 @@ class Payments::PaypalController < ApplicationController
 
     cost = (@listing.price)
 
-    flash[:notice] = "Thank you for purchasing."
-
     values = {
             business: @listing.person.paypal_id,
             cmd: "_xclick",
             upload: 1,
             return: "#{Rails.application.secrets.app_host}#{payments_confirm_checkout_path}",
-            # invoice: @listing.id,
             amount: cost,
             item_name: @listing.name,
             item_number: @listing.id,
@@ -39,11 +36,10 @@ class Payments::PaypalController < ApplicationController
     params.permit! # Permit all Paypal input params
     status = params[:payment_status]
     if status == "Completed"
-      # if params[:custom].present?
-      #   person = Person.find(params[:custom])
-      #   # MailCarrier.deliver_now(BraintreeMailer.notify_successfull_purchase(person))
-      # end
-      # @checkout.update_attributes notification_params: params, status: status, transaction_id: params[:txn_id], purchased_at: Time.now
+      if params[:custom].present?
+        person = Person.find(params[:custom])
+        NotificationsMailer.payment_processed(person).deliver!
+      end
     end
     render nothing: true
   end

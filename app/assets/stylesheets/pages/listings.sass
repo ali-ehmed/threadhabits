@@ -32,7 +32,7 @@
 .listing-filters
   form
     width: 263px
-  border-color: $black
+  border-color: $default-color
   .panel-body
     font-size: 12px
     padding: 7px
@@ -44,11 +44,11 @@
   .panel-group
     margin-bottom: 0
   .field-strip
-    background: #EFEFEF
+    background: $primary-color
     padding: 1px 10px
     margin: 10px
     a
-      color: $black
+      color: $default-color
     span
       padding-right: 7px
   .collapse
@@ -63,7 +63,7 @@
       width: 0
       height: 0
       padding: 11px 16px
-      background: #D0D0D0
+      background: $primary-color
       box-shadow: none
       &::before
         top: 4px
@@ -79,7 +79,7 @@
     .input-group-addon, input[type='text']
       border-radius: 1px
     .input-group-addon
-      background-color: #fff
+      background-color: $primary-color
   .scroll
     max-height: 250px
     overflow: scroll
@@ -99,8 +99,8 @@
     padding: 0
     min-height: 1200px
   .box-left
-    border-right: 1px solid $success-border
-    background-color: #F5F5F7
+    border-right: 1px solid $success-border-color
+    background-color: $primary-color
     #scrolling-section
       padding: 0px
       height: 1200px
@@ -110,7 +110,7 @@
       &::-webkit-scrollbar:vertical
         width: 0px
   .box-right
-    background-color: #FFFFFF
+    background-color: $primary-color
 
   .detailed
     margin-top: 10em
@@ -134,4 +134,4 @@
       .heading
         font-size: 22px
       .sellings
-        color: red
+        color: $sell-color

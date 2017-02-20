@@ -427,10 +427,6 @@
         # Stops when scroll position crosses "pos"
         if $window.scrollTop() > pos
           stopPos = pos
-          # Depricated
-          # For Banner (only comes when user not signed in)
-          # if banner == true
-          #   stopPos = pos - 600
           $this.css
             position: 'relative'
             top: stopPos
@@ -438,7 +434,7 @@
           # Starts
           $this.css
             position: 'fixed'
-            top: 90
+            top: 100
         else if $window.scrollTop() < topOffset
           # Stops back where started
           $this.css
@@ -446,19 +442,6 @@
             top: 0
         return
       return
-    # - Issue
-    # Not Used Anymore - Banner Removed
-    # Problem occured on (Large Screens)
-
-    # Setting Stop Position
-    # if $(".landing-banner").length
-    #   # This is the position for Screen Size 1440px (Macbook 13inch)
-    #   # Setting extra top position for properly collapsing the filters
-    #   footerY = 600
-    #   landing_banner = true
-    # else
-    #   # 627 - was set top
-    #   footerY = 890
 
     # only if mobile devices
     unless gon.mobile_device
