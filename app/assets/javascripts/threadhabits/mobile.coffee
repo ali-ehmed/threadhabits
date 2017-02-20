@@ -48,7 +48,7 @@ class Native
       disabledEventPropagation(e)
 
     $(".navbar-search-form .submit-search").click (e) ->
-      that.disabledEventPropagation(e)
+      disabledEventPropagation(e)
       $(@).closest("form").submit()
 
     # Close Search on window click

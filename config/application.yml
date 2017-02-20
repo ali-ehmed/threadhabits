@@ -1,0 +1,4 @@
+development:
+  S3_BUCKET: threadhabits
+  AWS_ACCESS_KEY_ID: AKIAJK4T2CFKLIWSFR2A
+  AWS_SECRET_ACCESS_KEY: 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
