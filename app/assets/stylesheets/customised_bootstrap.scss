@@ -5,7 +5,7 @@
 @import "bootstrap";
 
 .navbar {
-  background-color: $navbar-color;
+  background-color: $primary-color;
   margin-bottom: 0px;
 }
 
@@ -27,16 +27,16 @@
 }
 
 .btn-primary {
-  color: white;
-  background-color: black;
-  border-color: white;
+  color: $primary-color;
+  background-color: $default-color;
+  border-color: $primary-color;
   @include transition-property(border-color, color, background-color);
   @include transition-duration(0.15s);
   @include transition-timing-function(ease-in);
   &:hover {
-    color: black;
-    background-color: white;
-    border-color: black;
+    color: $default-color;
+    background-color: $primary-color;
+    border-color: $default-color;
   }
 }
 
@@ -46,13 +46,13 @@
 }
 
 .btn-default {
-  color: black;
-  background-color: white;
-  border-color: black;
+  color: $default-color;
+  background-color: $primary-color;
+  border-color: $default-color;
   @include single-transition(border-color, 0.15s, ease);
   &:hover {
-    color: black;
-    background-color: white;
+    color: $default-color;
+    background-color: $primary-color;
     border-color: #aaa;
   }
 }
@@ -62,39 +62,39 @@
   border-width: 2px;
   padding: 8px 1.5em;
   font-size: 20px;
-  color: #fff;
+  color: $primary-color;
 }
 
 .alert-danger {
-  background-color: $danger;
-  border-color: $danger-border;
+  background-color: $danger-color;
+  border-color: $danger-border-color;
 }
 
 .alert-success {
-  background-color: $success;
-  border-color: $success-border;
+  background-color: $success-color;
+  border-color: $success-border-color;
 }
 
 .panel-danger {
-  .panel-heading { color: white; background-color: $danger; }
-  border-color: $danger-border;
+  .panel-heading { color: white; background-color: $danger-color; }
+  border-color: $danger-border-color;
 }
 
 .panel {
   border-radius: 0px;
   .panel-default {
-    .panel-heading { background-color: $success; }
-    border-color: $success-border;
+    .panel-heading { background-color: $success-color; }
+    border-color: $success-border-color;
   }
 }
 
 .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
-  color: black;
-  background-color: white;
+  color: $default-color;
+  background-color: $primary-color;
 }
 
 a.list-group-item:hover, a.list-group-item:focus, button.list-group-item:hover, button.list-group-item:focus {
-  background-color: white;
+  background-color: $primary-color;
 }
 
 .list-group-item {
@@ -102,8 +102,8 @@ a.list-group-item:hover, a.list-group-item:focus, button.list-group-item:hover, 
 }
 
 .list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
-  color: black;
-  background-color: white;
+  color: $default-color;
+  background-color: $primary-color;
   border-color: #aaa;
   border-width: 3px;
 }

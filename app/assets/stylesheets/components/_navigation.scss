@@ -1,6 +1,6 @@
 nav.application-top-header {
   a {
-    color: $black !important;
+    color: $default-color !important;
   }
   // Center Navbar
   .navbar-center {
@@ -12,7 +12,7 @@ nav.application-top-header {
       font-size: 20px;
       font-weight: 900;
       text-transform: uppercase;
-      color: #000 !important;
+      color: $default-color !important;
       letter-spacing: 1.5px;
     }
   }
@@ -36,7 +36,7 @@ nav.application-top-header {
     }
 
     li a.sell-btn span {
-      border: 1px solid $sell;
+      border: 1px solid $sell-color;
       padding: 8px 10px;
     }
 
@@ -116,7 +116,7 @@ nav.application-top-header {
       border-radius: 1px;
     }
     .input-group-addon {
-      background-color: #fff;
+      background-color: $primary-color;
       border: 0;
     }
   }
@@ -124,7 +124,7 @@ nav.application-top-header {
 
 nav.application-bottom-header {
   a {
-    color: $black !important;
+    color: $default-color !important;
   }
   min-height: 0px;
   font-size: 11px;
@@ -156,27 +156,8 @@ nav.application-bottom-header {
   }
   li.listing-view-options {
     a {
-      color: #000;
+      color: $default-color;
       display: inline-block;
-    }
-  }
-}
-
-// window size ipad
-@media (max-width: 1024px) {
-  nav.application-top-header {
-    .navbar-center {
-      .brand_name { font-size: 15px; }
-    }
-  }
-}
-
-@media (min-width: 1440px) {
-  nav.application-top-header {
-    .navbar-center {
-      .brand_name {
-        padding: 7px 15px;
-      }
     }
   }
 }

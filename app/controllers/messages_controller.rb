@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
   before_action :set_chat_room, only: [:create]
+
   def new
     @receiver = Person.find(params[:receiver_id])
 

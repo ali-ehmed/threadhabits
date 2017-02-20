@@ -23,14 +23,14 @@ class Native
     # opening side menu
     $(elem).click (e) ->
       disabledEventPropagation(e)
-      $(colapsedElem).css "left", "0px"
+      $(colapsedElem).addClass "toggle-side-menu"
       setTimeout(->
         $(".main-container").addClass "main-toggle-animation"
       , 200)
 
 
     $(".dismiss-times").click ->
-      $(colapsedElem).css "left", "-1000px"
+      $(colapsedElem).removeClass "toggle-side-menu"
       setTimeout(->
         $(".main-container").removeClass "main-toggle-animation"
       , 200)

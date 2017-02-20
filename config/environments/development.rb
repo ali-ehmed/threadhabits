@@ -57,6 +57,8 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :letter_opener_web
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
+  config.device_browsers = /(iPhone|iPod|Android)/
+
   # config.action_mailer.delivery_method = :smtp
   # config.action_mailer.smtp_settings = {
   #   :address              => "smtp.gmail.com",
@@ -68,15 +70,15 @@ Rails.application.configure do
   #   :enable_starttls_auto => true
   # }
 
-  # config.paperclip_defaults = {
-  #   storage: :s3,
-  #   s3_region: "us-west-2",
-  #   s3_credentials: {
-  #     bucket: ENV['S3_BUCKET'],
-  #     access_key_id: ENV['AWS_ACCESS_KEY_ID'],
-  #     secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
-  #     s3_host_name: 's3-us-west-2.amazonaws.com'
-  #   },
-  #   :default_url => "profile-icon.png"
-  # }
+  config.paperclip_defaults = {
+    storage: :s3,
+    s3_region: "us-west-2",
+    s3_credentials: {
+      bucket: ENV['S3_BUCKET'],
+      access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+      secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
+      s3_host_name: 's3-us-west-2.amazonaws.com'
+    },
+    :default_url => "profile-icon.png"
+  }
 end

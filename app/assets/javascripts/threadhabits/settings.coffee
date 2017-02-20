@@ -32,7 +32,7 @@ class window.Settings
     if gon && gon.current_location != undefined
       Settings.current_location = gon.current_location
     else
-      Settings.current_location.latitude = position.coords.latitude
+      Settings.current_location.latitude  = position.coords.latitude
       Settings.current_location.longitude = position.coords.longitude
 
     console.log 'Latitude: ' + Settings.current_location.latitude + '<br>Longitude: ' + Settings.current_location.longitude
@@ -56,15 +56,15 @@ class window.Settings
                       sPageURL.split('%5B')
                     else
                       sPageURL.split('&')
-    sParameterName = undefined
-    i = undefined
+
     i = 0
+
     while i < sURLVariables.length
       objectParameter = sURLVariables[i]
-      sParameterName = if parametersType == "object"
-                        objectParameter.split('%5D')
-                      else
-                        objectParameter.split('=')
+      sParameterName =  if parametersType == "object"
+                          objectParameter.split('%5D')
+                        else
+                          objectParameter.split('=')
       if sParameterName[0] == sParam
         return if sParameterName[1] == undefined then true else sParameterName[1]
       i++

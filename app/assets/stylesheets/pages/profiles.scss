@@ -36,7 +36,7 @@
   .profile-text {
     margin-top: -15px;
     margin-bottom: 30px;
-    color: white;
+    color: $primary-color;
     @include single-text-shadow;
   }
 
@@ -46,27 +46,26 @@
     li {
       span.value { font-size: 18px; }
       span.label {
-        color: black;
+        color: $default-color;
         padding: 0;
         font-size: 18px;
       }
     }
     li.followers, li.followings {
       a {
-        color: black;
+        color: $default-color;
         &:hover, &:focus {
           color: #777;
         }
       }
     }
     li.feedback {
-      color: $feedback;
+      color: $feedback-color;
     }
   }
 }
 
 // Generate sprite (Multiple images to single sprite image)
-@import "compass/utilities/sprites";
 @import "social-icons/*.png";
 
 .profile .bottom-content {

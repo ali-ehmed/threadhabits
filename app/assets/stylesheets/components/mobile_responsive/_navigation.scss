@@ -1,16 +1,15 @@
 .device-header {
   a {
-    color: $black !important;
+    color: $default-color !important;
   }
 
   .navbar-header {
     button.navbar-toggle {
       float: left;
-      margin-left: 15px;
-      background-color: $white;
-      border-color: $white;
+      background-color: $primary-color;
+      border-color: $primary-color;
       span {
-        background-color: $black;
+        background-color: $default-color;
       }
     }
 
@@ -23,12 +22,9 @@
     }
 
     a.navbar-brand {
-      background: url($s3_asset_path + "threadhabitsheader_logo.png");
-      background-size: 11em;
-      width: 14em;
-      background-repeat: no-repeat;
-      background-position-y: 8px;
-      background-position-x: center;
+      img {
+        margin: 0 auto;
+      }
     }
   }
 
@@ -44,7 +40,7 @@
       border-radius: 1px;
     }
     .input-group-addon {
-      background-color: #fff;
+      background-color: $primary-color;
       border: 0;
     }
   }
@@ -68,6 +64,6 @@
       line-height: 60px;
       font-size: 25px;
     }
-    li.sell { a { color: $sell !important; } }
+    li.sell { a { color: $sell-color !important; } }
   }
 }

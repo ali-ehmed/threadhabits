@@ -14,7 +14,7 @@
         #accordion.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
           -# Price
           #headingOne.field-strip{:role => "tab"}
-            %a{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapsePriceFiler", :role => "button"}
+            %a.collapse-filter-link{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapsePriceFiler", :role => "button"}
               %span -
               PRICE
           #collapsePriceFiler.collapse.filtersCollapse{"aria-labelledby" => "headingOne", :role => "tabpanel", class: [@p[:filters][:lower_price], @p[:filters][:upper_price]].any?(&:present?) ? "in" : ""}

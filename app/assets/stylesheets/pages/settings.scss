@@ -12,7 +12,7 @@
   	overflow: hidden;
   	margin: 0px;
     color: #333;
-    background-color: #fff;
+    background-color: $primary-color;
     border-color: #ccc;
   }
 
@@ -37,7 +37,7 @@ label.error {
   position: relative;
   background: #e04343;
   border: 2px solid #ad6873;
-  color: white;
+  color: $primary-color;
   padding: 3px 10px;
   font-size: 17px;
   top: -7px;
@@ -103,7 +103,7 @@ label.error:before {
 .file-status-container {
   @extend .alert;
   font-size: 15px !important;
-  color: #fff !important;
+  color: $primary-color !important;
   margin-top: 10px;
   display:none;
 }
@@ -123,24 +123,24 @@ label.error:before {
   li span {
     border-width: 2px !important;
     &:focus, &:hover {
-      background-color: $success;
-      border-color: $success-border;
+      background-color: $success-color;
+      border-color: $success-border-color;
     }
   }
   li a {
     border-width: 2px; color: #777 !important;
     &:focus, &:hover {
-      background-color: $success;
-      border-color: $success-border;
+      background-color: $success-color;
+      border-color: $success-border-color;
     }
   }
   li.active span {
-    background-color: $black;
-    border-color: $success-border;
-    color: $white;
+    background-color: $default-color;
+    border-color: $success-border-color;
+    color: $primary-color;
     &:focus, &:hover {
-      background-color: $success;
-      border-color: $success-border;
+      background-color: $success-color;
+      border-color: $success-border-color;
     }
   }
 }
