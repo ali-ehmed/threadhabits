@@ -23,7 +23,7 @@
   }
 
   ul.sub-categories {
-    margin-top: 45px;
+    margin-top: 30px;
     padding: 0px 18px;
     border-bottom: 1px solid $primary-color;
     margin-bottom: 5px;
@@ -41,6 +41,8 @@
     }
   }
   .listing-filters {
+    margin-top: 30px;
+
     form { width: auto !important; }
     .panel {
       border: 0;

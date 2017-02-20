@@ -481,6 +481,14 @@
         target.html "+"
       else
         target.html "-"
+
+    if Settings.getUrlParameter("filters[product_type]") == ""
+      $(".listing-filters .in").each ->
+        target = $(@).prev().find("a span")
+        if target.html() == "-"
+          target.html "+"
+        else
+          target.html "-"
 $ ->
   $.validator.setDefaults
     errorPlacement: (error, element) ->

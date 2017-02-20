@@ -163,6 +163,11 @@
       margin-top: -15px !important;
     }
   }
+
+  // Landing Banners
+  #banners .landing-banner {
+    background-position-y: -145px !important;
+  }
 }
 
 // iPhone in portrait
@@ -172,6 +177,15 @@
     .navbar-header a.navbar-brand img {
       width: 65%;
       margin-top: -5px !important;
+    }
+  }
+
+  // Landing Banners
+  #banners {
+    .landing-banner { background-position-y: 0px !important; }
+
+    .banner-3 {
+      background-position-y: -72px !important;
     }
   }
 }

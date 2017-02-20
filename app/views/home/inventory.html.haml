@@ -30,22 +30,26 @@
         .alert.alert-success
           There are no listings
 
+= @p[:filters][:upper_price]
 - content_for :collapsed_menus do
   -# Filters Menu
   #filter-menu
     .menu-collapse
       %div.dismiss-times
-      %h3 Filters
-      %ul.list-unstyled.sub-categories
-        - @p[:filters].delete("product_type")
-        %li
-          %a{:href => inventory_path(@p.merge!(filters: { product_type: "tops" }))} Tops
-        %li
-          %a{:href => inventory_path(@p.merge!(filters: { product_type: "outerwear" }))} Outerwear
-        %li
-          %a{:href => inventory_path(@p.merge!(filters: { product_type: "bottoms" }))} Bottoms
-        %li
-          %a{:href => inventory_path(@p.merge!(filters: { product_type: "shoes" }))} Shoes
-        %li
-          %a{:href => inventory_path(@p.merge!(filters: { product_type: "accessories" }))} Accessories
-      = render partial: "home/filters" if mobile_device?
+      %h3
+        = link_to "Filters", inventory_path
+      - if mobile_device?
+        = render layout: "filters" do
+          %ul.list-unstyled.sub-categories
+            - @p[:filters].delete("product_type")
+            %li
+              %a{:href => inventory_path(@p.merge!(filters: { product_type: "tops" }))} Tops
+            %li
+              %a{:href => inventory_path(@p.merge!(filters: { product_type: "outerwear" }))} Outerwear
+            %li
+              %a{:href => inventory_path(@p.merge!(filters: { product_type: "bottoms" }))} Bottoms
+            %li
+              %a{:href => inventory_path(@p.merge!(filters: { product_type: "shoes" }))} Shoes
+            %li
+              %a{:href => inventory_path(@p.merge!(filters: { product_type: "accessories" }))} Accessories
+
