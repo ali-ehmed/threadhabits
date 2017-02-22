@@ -96,10 +96,6 @@ label.error:before {
   }
 }
 
-#kvFileinputModal {
-  img { width: auto !important; }
-}
-
 .file-status-container {
   @extend .alert;
   font-size: 15px !important;
