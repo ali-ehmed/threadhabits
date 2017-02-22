@@ -121,3 +121,7 @@
 .listings {
   .caption { min-height: 180px !important; }
 }
+
+.listing-uploads {
+  img.file-preview-image { width: 100% !important; height: auto !important; }
+}
