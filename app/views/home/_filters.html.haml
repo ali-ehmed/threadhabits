@@ -99,5 +99,7 @@
                   %input#place_id_input{name: "filters[place_id]", value: @p[:filters][:place_id], :type => "hidden"}/
                   #google-maps
 
+        = yield if block_given?
+
         .form-action
           = button_tag "Update View", type: :submit, class: "btn btn-primary"

@@ -23,7 +23,7 @@
   }
 
   ul.sub-categories {
-    margin-top: 45px;
+    margin-top: 30px;
     padding: 0px 18px;
     border-bottom: 1px solid $primary-color;
     margin-bottom: 5px;
@@ -41,6 +41,8 @@
     }
   }
   .listing-filters {
+    margin-top: 30px;
+
     form { width: auto !important; }
     .panel {
       border: 0;
@@ -81,8 +83,8 @@
         background-color: $default-color;
       }
       li.active {
-        border-color: $primary-color;
-        background-color: $primary-color;
+        border-color: #ccc;
+        background-color: #ccc;
       }
     }
     .carousel-inner {
@@ -117,5 +119,9 @@
 }
 
 .listings {
-  .caption { min-height: 170px !important; }
+  .caption { min-height: 180px !important; }
+}
+
+.listing-uploads {
+  img.file-preview-image { width: 100% !important; height: auto !important; }
 }
