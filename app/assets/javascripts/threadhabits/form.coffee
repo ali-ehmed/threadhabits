@@ -487,6 +487,7 @@
         target = $(@).prev().find("a span")
         if target.html() == "-"
           target.html "+"
+          target.parent().addClass "active-strip"
         else
           target.html "-"
 $ ->

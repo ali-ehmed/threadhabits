@@ -73,7 +73,7 @@
             %a.collapse-filter-link{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseConditionFilter", :role => "button"}
               %span -
               CONDITION
-          #collapseConditionFilter.collapse{"aria-labelledby" => "headingTwo", :role => "tabpanel", class: (@p[:filters][:condition].present? && (@condtions & @p[:filters][:condition])).present? ? "in" : ""}
+          #collapseConditionFilter.collapse{"aria-labelledby" => "headingTwo", :role => "tabpanel", class: @p[:filters][:condition].present? ? "in" : ""}
             #conditionFilter.scroll
               %ul.list-unstyled
                 - @conditions.each do |condition|
@@ -102,4 +102,8 @@
         = yield if block_given?
 
         .form-action
-          = button_tag "Update View", type: :submit, class: "btn btn-primary"
+          %ul.list-inline
+            %li= button_tag "Update View", type: :submit, class: "btn btn-primary"
+            %li
+              = link_to inventory_path do
+                %i.fa.fa-refresh
