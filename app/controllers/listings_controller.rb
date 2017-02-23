@@ -78,13 +78,13 @@ class ListingsController < ApplicationController
 
   def destroy
     @listing.destroy
-    redirect_to root_path, notice: "Your listing has been sucessfully removed."
+    redirect_to root_path, notice: "Your listing has been successfully removed."
   end
 
   class PersistenceResponse < SimpleDelegator
     def listing_updated(listing)
       unless params[:attribute_name]
-        flash[:notice] = "Your Product has been Saved Sucessfully"
+        flash[:notice] = "Your Product has been Saved Successfully"
       end
       render json: { status: 200, redirect_to: root_path }
     end

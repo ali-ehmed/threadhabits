@@ -4,12 +4,24 @@
 @media only screen and (min-device-width : $ipad-min-width) and (max-device-width : $ipad-max-width) and (orientation : portrait) {
   // Navbar Top bar links
   nav.application-top-header .navbar-right li.side-left-li a, nav.application-top-header .navbar-right li.side-right-li a {
-    padding: 15px 8px;
+    padding: 15px 6.5px;
   }
 
   // Navbar Form Input
   nav.application-top-header form.navbar-search-form input[type='text'] {
     width: 225px;
+  }
+
+  // Navbar Bottom
+  nav.application-bottom-header {
+    ul.side-left-section li {
+      padding-right: 15px !important;
+      padding-left: 15px !important;
+    }
+    ul.side-right-section li {
+      padding-left: 10px !important;
+      padding-right: 10px !important;
+    }
   }
 }
 
@@ -28,6 +40,18 @@
   nav.application-bottom-header {
     margin-top: 55px !important;
   }
+
+  // Navbar Bottom
+  nav.application-bottom-header {
+    ul.side-left-section li {
+      padding-right: 20px !important;
+      padding-left: 20px !important;
+    }
+    ul.side-right-section li {
+      padding-right: 20px !important;
+      padding-left: 20px !important;
+    }
+  }
 }
 
 // iPad in portrait & landscape
@@ -42,16 +66,6 @@
   .navbar-center {
     padding: 0px;
     a.brand_name { padding: 15px 0px !important; font-size: 15px; }
-  }
-
-  // Navbar Bottom
-  nav.application-bottom-header {
-    ul.side-left-section li {
-      padding-right: 30px !important;
-    }
-    ul.side-right-section li {
-      padding-left: 30px !important;
-    }
   }
 
   // Listings Box
@@ -118,10 +132,10 @@
   // Navbar Bottom
   nav.application-bottom-header {
     ul.side-left-section li {
-      padding-right: 50px;
+      padding-left: 40px;
     }
     ul.side-right-section li {
-      padding-left: 50px;
+      padding-left: 40px;
     }
   }
 }
