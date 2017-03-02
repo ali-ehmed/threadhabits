@@ -69,12 +69,12 @@ class ApplicationController < ActionController::Base
 
   # Direct upload to s3 Bucket
   def s3_presign_request
-    s3data = S3_BUCKET.presigned_post(key: "alertUploads/#{SecureRandom.uuid}/${filename}", success_action_status: '201', acl: 'public-read')
-    gon.s3_presigned_data = {
-        fields: s3data.fields,
-        url: S3_ASSET_PATH,
-        content_length: 5.megabyte
-    }
+    # s3data = S3_BUCKET.presigned_post(Key: "alertUploads/#{SecureRandom.uuid}/${filename}", success_action_status: '201', acl: 'public-read')
+    # gon.s3_presigned_data = {
+    #     fields: s3data.fields,
+    #     url: S3_ASSET_PATH,
+    #     content_length: 5.megabyte
+    # }
   end
 
   protected

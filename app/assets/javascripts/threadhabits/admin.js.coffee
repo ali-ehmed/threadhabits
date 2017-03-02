@@ -90,9 +90,9 @@ Admin.alertUsers =
                 'align', 'insertTable', 'quote', 'selectAll', 'formatOL', 'formatUL', 'indent', 'outdent',
                 '-'
               ]
-              imageUploadParams: gon.s3_presigned_data.fields
-              imageUploadMethod: "POST"
-              imageUploadURL: gon.s3_presigned_data.url
+#              imageUploadParams: gon.s3_presigned_data.fields
+#              imageUploadMethod: "POST"
+#              imageUploadURL: gon.s3_presigned_data.url
             })
 
             Admin.alertUsers.submitAlerts(this, this.$content.find('form'));
