@@ -33,6 +33,28 @@
   }
 }
 
+.top-banner {
+  h1 {
+    font-weight: lighter;
+    font-size: 60px;
+  }
+  text-align: center;
+  margin: 110px 0px 30px 0px;
+  padding: 100px 0px 170px 0px;
+  border-bottom: 1px solid #c1c1c1;
+  .buttons {
+    margin-top: 40px;
+    .banner-btn:first-child {
+      margin-right: 30px;
+    }
+    .banner-btn {
+      padding: 12px 20px;
+      font-size: 25px;
+      @include border-radius(0px);
+    }
+  }
+}
+
 .search-results {
   h1, h2, h3, h4 {
     margin-top: 20px;

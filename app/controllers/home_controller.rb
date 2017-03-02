@@ -29,6 +29,8 @@ class HomeController < ApplicationController
   end
 
   def inventory
+    @banner = params[:banner] || true
+
     if @p[:filters] and params[:q].present?
       @p[:filters].merge!(q: params[:q])
     end

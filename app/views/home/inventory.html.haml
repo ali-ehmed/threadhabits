@@ -2,6 +2,14 @@
   Listings.infiniteScroll();
   Mobile.filtersTweaks();
 
+- if @banner == true
+  .top-banner
+    %h1 The best way to buy and sell clothing
+    .buttons
+      = link_to "explore", inventory_path(banner: false), class: "btn btn-primary btn-lg banner-btn"
+      - if !person_signed_in?
+        = link_to "login", new_person_session_path, class: "btn btn-primary btn-lg banner-btn"
+
 .container
   .filter-board.visible-xs
     = button_tag class: "btn btn-sm btn-default btn-block", id: "toggle-filter-menu" do

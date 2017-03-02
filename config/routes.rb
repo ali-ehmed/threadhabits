@@ -53,6 +53,6 @@ Rails.application.routes.draw do
   get 'about_us' => "home#about_us", as: :about_us
   get 'contact_us' => "home#contact_us"
 
-  root to: "home#landing"
+  root to: "home#inventory"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

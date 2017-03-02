@@ -418,24 +418,30 @@
     $.fn.followTo = (pos) ->
       $this = this
       $window = $(window)
+
       # Setting Start Position
-      topOffset = 5
+      navBottomHeaderHeight = $("nav.application-bottom-header").outerHeight()
+      navTopHeaderHeight    = $("nav.application-top-header").outerHeight()
+
+      topOffsetFilter = $('.listing-filters form').offset().top
 
       $this.css "z-index", "1"
 
       $window.scroll (e) ->
+        scrollPos = ($window.scrollTop() + navBottomHeaderHeight + navTopHeaderHeight)
+        console.log scrollPos
         # Stops when scroll position crosses "pos"
-        if $window.scrollTop() > pos
+        if scrollPos > pos
           stopPos = pos
           $this.css
             position: 'relative'
             top: stopPos
-        else if $window.scrollTop() > topOffset
+        else if scrollPos >= topOffsetFilter
           # Starts
           $this.css
             position: 'fixed'
             top: 100
-        else if $window.scrollTop() < topOffset
+        else if scrollPos <= topOffsetFilter
           # Stops back where started
           $this.css
             position: 'relative'
