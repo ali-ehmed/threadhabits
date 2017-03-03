@@ -14,6 +14,16 @@
 
     .main-container
       .container-fluid
+        - if @banner == true
+          .top-banner
+            %h1 The new way to buy and sell clothing.
+            .buttons
+              %ul.list-inline
+                %li= link_to "Explore", inventory_path(banner: false), class: "btn btn-default btn-lg banner-btn"
+                - if !person_signed_in?
+                  %li= link_to "Login", new_person_session_path, class: "btn btn-default btn-lg banner-btn"
+                - else
+                  %li= link_to "Sell", new_listing_path, class: "btn btn-default btn-lg banner-btn"
         = yield(:heading_section) #Top Heading Section
         = render 'layouts/components/messages' unless @landing_banner
         %main

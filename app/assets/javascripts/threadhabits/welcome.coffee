@@ -4,14 +4,20 @@ document.addEventListener 'gesturestart', (e) ->
   
 $(document).on "turbolinks:load", ->
   # Hide Flash Message After 5 Seconds
-  window.setTimeout (->
-    $('.flash-messages').fadeTo(500, 0).slideUp 500, ->
-      $(this).hide()
-  ), 5000
+#  window.setTimeout (->
+#    $('.flash-messages').fadeTo(500, 0).slideUp 500, ->
+#      $(this).hide()
+#  ), 5000
 
   $("li.navbar-profile-icon a.dropdown-toggle").click (e) ->
     Turbolinks.visit("/profiles/#{$(this).find('.profile-name').text()}")
     return false
+
+  $("li.navbar-profile-icon .dropdown-menu").on("click", (e)->
+    target = $(e.target)
+    if !target.is('a')
+      e.stopPropagation();
+  )
 
   $("li.navbar-profile-icon").hover (->
     $this = $(this)
@@ -67,6 +73,6 @@ $(document).on "turbolinks:load", ->
         target = $(@hash)
         target = if target.length then target else $('[name=' + @hash.slice(1) + ']')
         if target.length
-          $('html,body').animate { scrollTop: target.offset().top - 80 }, 1000
+          $('html, body').animate { scrollTop: target.offset().top - 80 }, 1000
           return false
       return

@@ -429,7 +429,6 @@
 
       $window.scroll (e) ->
         scrollPos = ($window.scrollTop() + navBottomHeaderHeight + navTopHeaderHeight)
-        console.log scrollPos
         # Stops when scroll position crosses "pos"
         if scrollPos > pos
           stopPos = pos

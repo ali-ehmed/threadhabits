@@ -2,41 +2,34 @@
   Listings.infiniteScroll();
   Mobile.filtersTweaks();
 
-- if @banner == true
-  .top-banner
-    %h1 The best way to buy and sell clothing
-    .buttons
-      = link_to "explore", inventory_path(banner: false), class: "btn btn-primary btn-lg banner-btn"
-      - if !person_signed_in?
-        = link_to "login", new_person_session_path, class: "btn btn-primary btn-lg banner-btn"
-
 .container
   .filter-board.visible-xs
     = button_tag class: "btn btn-sm btn-default btn-block", id: "toggle-filter-menu" do
       %i.fa.fa-filter
       Filters
-  .row
-    - unless mobile_device?
-      .col-md-3.col-sm-3.col-xs-3
-        = render partial: "filters"
-    .col-md-9.col-sm-9.col-xs-12
-      - if @p[:filters].present?
-        %blockquote.blockquote.search-results
-          %h3.page-header
-            Results
-            %small
-              = pluralize(@listings.length, "Item")
-      - if @listings.present?
-        .listings#public-listings
-          .row
-            .listing-item
-              = render partial: "listings/listing", collection: @listings
+  .inventory-listings
+    .row
+      - unless mobile_device?
+        .col-md-3.col-sm-3.col-xs-3
+          = render partial: "filters"
+      .col-md-9.col-sm-9.col-xs-12
+        - if @p[:filters].present?
+          %blockquote.blockquote.search-results
+            %h3.page-header
+              Results
+              %small
+                = pluralize(@listings.length, "Item")
+        - if @listings.present?
+          .listings#public-listings
+            .row
+              .listing-item
+                = render partial: "listings/listing", collection: @listings
 
-        #infinite-scrolling.items-pagination
-          = will_paginate @listings, renderer: BootstrapPagination::Rails
-      - else
-        .alert.alert-success
-          There are no listings
+          #infinite-scrolling.items-pagination
+            = will_paginate @listings, renderer: BootstrapPagination::Rails
+        - else
+          .alert.alert-success
+            There are no listings
 
 - content_for :collapsed_menus do
   -# Filters Menu

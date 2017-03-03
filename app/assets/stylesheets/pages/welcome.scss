@@ -35,22 +35,37 @@
 
 .top-banner {
   h1 {
-    font-weight: lighter;
-    font-size: 60px;
+    @include single-text-shadow(0px, 0px, 7px, $default-color);
+    color: $primary-color;
+    font-weight: 100;
+    font-size: 5.7em;
+    line-height: 95px;
   }
   text-align: center;
-  margin: 110px 0px 30px 0px;
-  padding: 100px 0px 170px 0px;
+  margin: 80px -15px 0px -15px;
+  min-height: 735px;
+  padding: 230px 0px 170px 0px;
   border-bottom: 1px solid #c1c1c1;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.44), rgba(0, 0, 0, 0.51)), url(https://s3-us-west-2.amazonaws.com/threadhabits/LandingBanners/banner-2.jpg);
+  background-size: cover;
+  background-position-y: -90px;
   .buttons {
     margin-top: 40px;
     .banner-btn:first-child {
       margin-right: 30px;
     }
     .banner-btn {
-      padding: 12px 20px;
-      font-size: 25px;
+      @include single-transition(all, 0.35s, ease-in-out);
+      font-weight: 100;
+      padding: 12px 60px;
+      font-size: 35px;
       @include border-radius(0px);
+      background-color: rgba(255, 255, 255, 0);
+      color: $primary-color;
+      border-color: $primary-color;
+      &:hover {
+        background-color: $default-color;
+      }
     }
   }
 }
@@ -65,7 +80,7 @@
 
 main {
   min-height: 800px;
-  margin-top: 100px;
+  margin-top: 30px;
   margin-bottom: 35px;
 }
 
