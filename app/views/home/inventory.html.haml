@@ -7,7 +7,7 @@
     = button_tag class: "btn btn-sm btn-default btn-block", id: "toggle-filter-menu" do
       %i.fa.fa-filter
       Filters
-  .inventory-listings
+  %div{style: !@banner ? "margin-top: 65px;" : ""}
     .row
       - unless mobile_device?
         .col-md-3.col-sm-3.col-xs-3
