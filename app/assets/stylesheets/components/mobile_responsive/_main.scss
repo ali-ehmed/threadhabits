@@ -84,11 +84,14 @@ main { min-height: 420px !important; margin-top: 0 !important; }
 }
 
 .top-banner {
+  background-position: center;
+  background-position-y: 0px !important;
   h1 {
     font-size: 35px !important;
+    line-height: 50px !important;
   }
-  margin: 0px 0px 10px 0px !important;
-  padding: 100px 0px 100px 0px !important;
+  margin: 0px -15px 10px -15px !important;
+  padding: 135px 0px 100px 0px !important;
 }
 
 .settings {

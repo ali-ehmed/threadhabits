@@ -34,16 +34,15 @@
   .container-fluid
     / Brand and toggle get grouped for better mobile display
     .navbar-header
-      .col-xs-1
+      .col-xs-2
         %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
           %span.sr-only Toggle navigation
           %span.icon-bar
           %span.icon-bar
           %span.icon-bar
-      .col-xs-10.text-center
+      .col-xs-8.text-center
         %a.navbar-brand{:href => root_path}
-          = image_tag S3_ASSET_PATH + "/threadhabitsheader_logo.png", class: "img-responsive"
-      .col-xs-1
+      .col-xs-2
         %a.navbar-search{:href => "#"}
           %i.fa.fa-search
 
