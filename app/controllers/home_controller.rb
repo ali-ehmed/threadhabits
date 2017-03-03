@@ -31,8 +31,9 @@ class HomeController < ApplicationController
   def inventory
     @banner = params[:banner] || true
 
-    if @p[:filters] and params[:q].present?
-      @p[:filters].merge!(q: params[:q])
+    if @p[:filters].present?
+      @banner = false
+      @p[:filters].merge!(q: params[:q]) if params[:q].present?
     end
 
     @listings = Listing.fetch_by_filters(@p[:filters]).paginate(:page => params[:page], :per_page => Listing::PER_PAGE)
