@@ -40,11 +40,11 @@
     font-weight: 100;
   }
   h1 {
-    font-size: 5.7em;
+    font-size: 5.3em;
     line-height: 60px;
   }
   h2 {
-    font-size: 4em;
+    font-size: 3em;
   }
   text-align: center;
   margin: 80px -15px 0px -15px;
@@ -52,7 +52,7 @@
   border-bottom: 1px solid #c1c1c1;
   background-size: cover;
   background-position-y: -90px;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.44), rgba(0, 0, 0, 0.51)), url($s3-asset-path + "LandingBanners/banner-2-new.png");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url($s3-asset-path + "LandingBanners/banner-2-new.png");
   .buttons {
     margin-top: 40px;
     .banner-btn:first-child {
